@@ -1,0 +1,306 @@
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Black.eot');
+    src: url('../font/Satoshi-Black.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Black.woff2') format('woff2'),
+        url('../font/Satoshi-Black.woff') format('woff'),
+        url('../font/Satoshi-Black.ttf') format('truetype'),
+        url('../font/Satoshi-Black.svg#Satoshi-Black') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Bold.eot');
+    src: url('../font/Satoshi-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Bold.woff2') format('woff2'),
+        url('../font/Satoshi-Bold.woff') format('woff'),
+        url('../font/Satoshi-Bold.ttf') format('truetype'),
+        url('../font/Satoshi-Bold.svg#Satoshi-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+ 
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_1.eot');
+    src: url('false_1.eot?#iefix') format('embedded-opentype'),
+        url('false_1.woff2') format('woff2'),
+        url('false_1.woff') format('woff'),
+        url('false_1.ttf') format('truetype'),
+        url('false_1.svg#false') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_3.eot');
+    src: url('false_3.eot?#iefix') format('embedded-opentype'),
+        url('false_3.woff2') format('woff2'),
+        url('false_3.woff') format('woff'),
+        url('false_3.ttf') format('truetype'),
+        url('false_3.svg#false') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_4.eot');
+    src: url('false_4.eot?#iefix') format('embedded-opentype'),
+        url('false_4.woff2') format('woff2'),
+        url('false_4.woff') format('woff'),
+        url('false_4.ttf') format('truetype'),
+        url('false_4.svg#false') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-BlackItalic.eot');
+    src: url('../font/Satoshi-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-BlackItalic.woff2') format('woff2'),
+        url('../font/Satoshi-BlackItalic.woff') format('woff'),
+        url('../font/Satoshi-BlackItalic.ttf') format('truetype'),
+        url('../font/Satoshi-BlackItalic.svg#Satoshi-BlackItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-BoldItalic.eot');
+    src: url('../font/Satoshi-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-BoldItalic.woff2') format('woff2'),
+        url('../font/Satoshi-BoldItalic.woff') format('woff'),
+        url('../font/Satoshi-BoldItalic.ttf') format('truetype'),
+        url('../font/Satoshi-BoldItalic.svg#Satoshi-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_5.eot');
+    src: url('false_5.eot?#iefix') format('embedded-opentype'),
+        url('false_5.woff2') format('woff2'),
+        url('false_5.woff') format('woff'),
+        url('false_5.ttf') format('truetype'),
+        url('false_5.svg#false') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Italic.eot');
+    src: url('../font/Satoshi-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Italic.woff2') format('woff2'),
+        url('../font/Satoshi-Italic.woff') format('woff'),
+        url('../font/Satoshi-Italic.ttf') format('truetype'),
+        url('../font/Satoshi-Italic.svg#Satoshi-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-LightItalic.eot');
+    src: url('../font/Satoshi-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-LightItalic.woff2') format('woff2'),
+        url('../font/Satoshi-LightItalic.woff') format('woff'),
+        url('../font/Satoshi-LightItalic.ttf') format('truetype'),
+        url('../font/Satoshi-LightItalic.svg#Satoshi-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Light.eot');
+    src: url('../font/Satoshi-Light.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Light.woff2') format('woff2'),
+        url('../font/Satoshi-Light.woff') format('woff'),
+        url('../font/Satoshi-Light.ttf') format('truetype'),
+        url('../font/Satoshi-Light.svg#Satoshi-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_8.eot');
+    src: url('false_8.eot?#iefix') format('embedded-opentype'),
+        url('false_8.woff2') format('woff2'),
+        url('false_8.woff') format('woff'),
+        url('false_8.ttf') format('truetype'),
+        url('false_8.svg#false') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_9.eot');
+    src: url('false_9.eot?#iefix') format('embedded-opentype'),
+        url('false_9.woff2') format('woff2'),
+        url('false_9.woff') format('woff'),
+        url('false_9.ttf') format('truetype'),
+        url('false_9.svg#false') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_10.eot');
+    src: url('false_10.eot?#iefix') format('embedded-opentype'),
+        url('false_10.woff2') format('woff2'),
+        url('false_10.woff') format('woff'),
+        url('false_10.ttf') format('truetype'),
+        url('false_10.svg#false') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_11.eot');
+    src: url('false_11.eot?#iefix') format('embedded-opentype'),
+        url('false_11.woff2') format('woff2'),
+        url('false_11.woff') format('woff'),
+        url('false_11.ttf') format('truetype'),
+        url('false_11.svg#false') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_14.eot');
+    src: url('false_14.eot?#iefix') format('embedded-opentype'),
+        url('false_14.woff2') format('woff2'),
+        url('false_14.woff') format('woff'),
+        url('false_14.ttf') format('truetype'),
+        url('false_14.svg#false') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_15.eot');
+    src: url('false_15.eot?#iefix') format('embedded-opentype'),
+        url('false_15.woff2') format('woff2'),
+        url('false_15.woff') format('woff'),
+        url('false_15.ttf') format('truetype'),
+        url('false_15.svg#false') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'false';
+    src: url('false_16.eot');
+    src: url('false_16.eot?#iefix') format('embedded-opentype'),
+        url('false_16.woff2') format('woff2'),
+        url('false_16.woff') format('woff'),
+        url('false_16.ttf') format('truetype'),
+        url('false_16.svg#false') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_17.eot');
+    src: url('false_17.eot?#iefix') format('embedded-opentype'),
+        url('false_17.woff2') format('woff2'),
+        url('false_17.woff') format('woff'),
+        url('false_17.ttf') format('truetype'),
+        url('false_17.svg#false') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Medium.eot');
+    src: url('../font/Satoshi-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Medium.woff2') format('woff2'),
+        url('../font/Satoshi-Medium.woff') format('woff'),
+        url('../font/Satoshi-Medium.ttf') format('truetype'),
+        url('../font/Satoshi-Medium.svg#Satoshi-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('false_18.eot');
+    src: url('false_18.eot?#iefix') format('embedded-opentype'),
+        url('false_18.woff2') format('woff2'),
+        url('false_18.woff') format('woff'),
+        url('false_18.ttf') format('truetype'),
+        url('false_18.svg#false') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-MediumItalic.eot');
+    src: url('../font/Satoshi-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-MediumItalic.woff2') format('woff2'),
+        url('../font/Satoshi-MediumItalic.woff') format('woff'),
+        url('../font/Satoshi-MediumItalic.ttf') format('truetype'),
+        url('../font/Satoshi-MediumItalic.svg#Satoshi-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Regular.eot');
+    src: url('../font/Satoshi-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../font/Satoshi-Regular.woff2') format('woff2'),
+        url('../font/Satoshi-Regular.woff') format('woff'),
+        url('../font/Satoshi-Regular.ttf') format('truetype'),
+        url('../font/Satoshi-Regular.svg#Satoshi-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+

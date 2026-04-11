@@ -1,0 +1,769 @@
+@media only screen and (max-width: 1400px) {
+  .sectionCommon {
+    padding: 70px;
+    overflow: hidden;
+  }
+  .banner-section {
+    position: relative;
+    padding-top: 150px;
+    overflow: hidden;
+  }
+  .background-banner-left {
+    position: absolute;
+    top: 112px;
+    left: -37px;
+    z-index: -1;
+  }
+  .background-banner-left img,
+  .background-banner-right img {
+    width: 75%;
+  }
+  .background-banner-right {
+    position: absolute;
+    top: 136px;
+    right: -155px;
+    z-index: -1;
+  }
+  .primary-heading {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.6;
+    position: relative;
+  }
+  .align-primary-heading {
+    text-align: center;
+  }
+  .secondary-heading {
+    color: #1d1d1d;
+    text-align: center;
+    font-family: "Satoshi";
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 72px;
+    position: relative;
+  }
+  .cards-leftone h2 {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+  }
+  .valueheading-anime {
+    position: absolute;
+    top: 0;
+    left: 310px;
+    
+  }
+  .valueheading-anime img {
+    width: 80%;
+  }
+  .description {
+    font-family: "Montserrat";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+  .superpower-cardheading {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+  }
+  .collabheading-anime {
+    position: absolute;
+    top: 68px;
+    left: 328px;
+  }
+  .audience-heading {
+    font-family: "Satoshi";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+  }
+  .audience-para {
+    color: #747474;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .margin-top-productdes {
+    margin-top: -87px;
+  }
+  .resourcebanner-btn {
+    font-size: 16px;
+  }
+  .question_anime_orange {
+    position: absolute;
+    top: 24px;
+    right: 218px;
+}
+.trans-text {
+  margin-left: -230px;
+}
+.word {
+  position: absolute;
+  opacity: 0;
+  left: 770px;
+}
+}
+@media only screen and (max-width: 1199px) {
+  .padding-top {
+    padding-top: 50px;
+  }
+  .banner-section {
+    position: relative;
+    padding-top: 125px;
+    overflow: hidden;
+  }
+  .primary-heading {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.6;
+    position: relative;
+  }
+  .heading-anime {
+    position: absolute;
+    top: 119px;
+    left: 140px;
+  }
+  .heading-anime img {
+    width: 70%;
+  }
+  .description {
+    font-family: "Montserrat";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2;
+  }
+  .background-banner-left {
+    position: absolute;
+    top: 81px;
+    left: -28px;
+    z-index: -1;
+  }
+  .background-banner-right {
+    position: absolute;
+    top: 71px;
+    right: -150px;
+    z-index: -1;
+  }
+  .secondary-heading {
+    color: #1d1d1d;
+    text-align: center;
+    font-family: "Satoshi";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.8;
+    position: relative;
+  }
+  .valueheading-anime {
+    position: absolute;
+    top: 0;
+    left: 221px;
+  }
+  .cards-leftone h2 {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .Valuecard-img {
+    position: static;
+  }
+  .cards-leftwo {
+    height: 55%;
+    display: flex;
+    padding: 30px 30px 30px 15px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 15px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #fff9e9;
+    position: relative;
+  }
+  .valuecard-middle {
+    position: static;
+  }
+  .cards-middleone {
+    position: relative;
+    height: 48%;
+    padding: 30px 30px 30px 30px;
+    gap: 15px;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #fff9e9;
+  }
+  .Valuecard-rightimg {
+    position: static;
+  }
+  .cards-middletwo {
+    position: relative;
+    height: 48%;
+    padding: 30px 30px 30px 30px;
+    gap: 15px;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #dcf7f0;
+  }
+  .valueheading-anime img {
+    width: 68%;
+  }
+  .heading-Orangeanime {
+    position: absolute;
+    top: 24px;
+    left: 173px;
+  }
+  .text-description {
+    padding: 80px 0px 0px 0px;
+  }
+  .collabheading-anime {
+    position: absolute;
+    top: 64px;
+    left: 255px;
+  }
+  .collabheading-anime img {
+    width: 90%;
+    transform: rotateY(180deg);
+  }
+  .heading-Orangeanime {
+    position: absolute;
+    top: 90px;
+    left: -8px;
+  }
+  .audience-heading {
+    font-family: "Satoshi";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .audience-para {
+    color: #747474;
+    font-family: "Montserrat";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  #footer ul li a {
+    color: #a8a8a8;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .border-bottom {
+    border-bottom: 2px;
+    border-radius: 3px;
+    border-color: #747474;
+    padding-bottom: 35px;
+  }
+  .footer-privacydes {
+    color: #a8a8a8;
+    font-family: "Montserrat";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+  .mt-5 {
+    margin-top: 2rem !important;
+  }
+.question_anime_orange {
+  position: absolute;
+  top: 20px;
+  right: 134px;
+}
+.question_anime_orange img {
+width: 70%;
+}
+.resBanner-cardDes {
+  color: #747474;
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.word {
+  position: absolute;
+  opacity: 0;
+  left: 770px;
+}
+}
+@media only screen and (max-width: 991px) {
+  .background-banner-left {
+    position: absolute;
+    top: 81px;
+    left: -160px;
+    z-index: -1;
+  }
+  .sectionCommon {
+    padding: 50px 0px;
+    overflow: hidden;
+}
+  nav.navbar {
+    background: #fff;
+}
+.menu {
+    text-align: center;
+}
+.menu li.nav-item {
+    width: fit-content;
+    margin: auto;
+}
+nav.navbar .black_btn {
+    margin: auto;
+    margin-top: 50px;
+}
+div#navbarScroll {
+    height: 100vh;
+}
+ul.navbar-nav {
+    height: 60vh;
+    margin-top: 50px;
+}
+  .background-banner-right {
+    position: absolute;
+    top: 87px;
+    right: -254px;
+    z-index: -1;
+  }
+  .heading-anime {
+    position: absolute;
+    top: 119px;
+    left: -10px;
+  }
+  .valueheading-anime {
+    position: absolute;
+    top: 0;
+    left: 133px;
+  }
+  .cards-leftwo {
+    height: 55%;
+    display: flex;
+    padding: 192px 30px 30px 15px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 15px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #fff9e9;
+    position: relative;
+  }
+  .Valuecard-img {
+    position: absolute;
+    left: 235px;
+  }
+  .cards-heading br {
+    display: none;
+  }
+  .cards-description br {
+    display: none;
+  }
+  .cards-heading {
+    color: #1d1d1d;
+    font-family: "Satoshi";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    max-width: 333px;
+  }
+  .cards-description {
+    color: #747474;
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    max-width: 365px;
+  }
+  .valuecard-middle {
+    position: absolute;
+    /* right: 5px; */
+    left: 262px;
+  }
+  .cards-middleone {
+    position: relative;
+    height: 48%;
+    padding: 190px 30px 110px 30px;
+    gap: 15px;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #fff9e9;
+  }
+  .cards-middletwo {
+    position: relative;
+    height: 48%;
+    padding: 180px 30px 30px 30px;
+    gap: 15px;
+    align-self: stretch;
+    border-radius: 30px;
+    background: #dcf7f0;
+  }
+  .Valuecard-rightimgTwo {
+    position: absolute;
+    bottom: 0;
+    right: 86px;
+  }
+  .row.heightFull {
+    gap: 20px;
+  }
+  .cards-rightone {
+    height: 40%;
+    /* display: flex; */
+    padding: 30px 30px 280px 30px;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    /* gap: 15px; */
+    /* flex-shrink: 0; */
+    /* align-self: stretch; */
+    border-radius: 30px;
+    background: #dcf7f0;
+    position: relative;
+  }
+  .Valuecard-rightimg {
+    position: absolute;
+    right: 31px;
+  }
+  .cards-rightwo {
+    height: 56%;
+    /* display: flex; */
+    padding: 30px;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    /* gap: 15px; */
+    /* flex-shrink: 0; */
+    /* align-self: stretch; */
+    border-radius: 30px;
+    background: #fff;
+    position: relative;
+  }
+  .heading-Orangeanime {
+    position: absolute;
+    top: 25px;
+    left: 127px;
+  }
+  .heading-Orangeanime img {
+    width: 70%;
+  }
+  .text-description {
+    padding: 0px 0px 0px 0px;
+  }
+  .cards-description {
+    color: #747474;
+    font-family: "Montserrat";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    max-width: 705px;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .superpower-cardheading {
+    color: #1d1d1d;
+    text-align: center;
+    font-family: "Satoshi";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.8; /* 127.778% */
+  }
+  .cards-description {
+    color: #747474;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.6; /* 166.667% */
+  }
+  .collabheading-anime {
+    position: absolute;
+    top: 64px;
+    left: 161px;
+  }
+  .description {
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2;
+  }
+  .heading-Orangeanime {
+    position: absolute;
+    top: 15px;
+    left: 167px;
+  }
+  .margin-top-productdes {
+    margin-top: 0;
+  }
+  .banner_card-title {
+    font-size: 34px;
+    line-height: 1.7;
+  }
+  .banner-card-heading {
+    font-size: 44px;
+  }
+  .banner_card-description {
+    font-size: 16px;
+  }
+  .primary-heading {
+    font-size: 52px;
+  }
+  .pricing-virtualheading-anime {
+    position: absolute;
+    top: 60px;
+    left: 163px;
+  }
+  .virtual-card-heading {
+    font-size: 32px;
+}
+.virtual-card-des {
+  font-size: 14px;
+}
+.virtual-gohead br{
+  display: none;
+}
+.pricing-virtualheading-anime img{
+width: 60%;
+}
+.heading-Orangeanime {
+  position: absolute;
+  top: 15px;
+  left: 294px;
+}
+.accordion-item .accordion-header .accordion-button {
+  color: #747474;
+  font-family: "Satoshi";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.accordion-item .accordion-body {
+  color: #747474;
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.question_anime_orange {
+  position: absolute;
+  top: 20px;
+  right: 69px;
+}
+.resBanner-cardDes {
+  font-size: 16px;
+}
+.heading-communityanime {
+  position: absolute;
+  top: 89px;
+  left: 474px;
+  transform: rotate(180deg);
+  transform-origin: left top;
+}
+.trans-text {
+  margin-left: 210px;
+}
+.word {
+  position: absolute;
+  opacity: 0;
+  left: 76px;
+}
+.logo-text {
+  position: absolute;
+  top: 23.48%;
+  left: 37.49%;
+  font-family: "Inter";
+  color: #A2A2A2;
+  font-family: 'Inter';
+  font-size: 27.833px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.logo-image {
+  width: 36.26%;
+  top: 1px;
+}
+#audience .container-fluid {
+  border-radius: 0px 0px 50px 50px;
+  background: #fff;
+}
+}
+@media only screen and (max-width: 767px) {
+  .background-banner-left {
+    display: none;
+  }
+  .background-banner-right {
+    display: none;
+  }
+  .space-cont-product {
+    width: 20%;
+  }
+  .question_anime_orange {
+    position: absolute;
+    top: 20px;
+    right: -31px;
+}
+.resourcebanner-btn {
+  padding: 15px 25px;
+  width: 25%;
+}
+.trans-text {
+  margin-left: 110px;
+}
+}
+@media only screen and (max-width: 540px) {
+    .space-cont-product {
+        width: 25%;
+    }
+    .space-cont-product {
+        font-size: 16px;
+        font-weight: 600;
+
+    }
+    .primary-heading {
+        font-size: 44px;
+    }
+    .heading-anime {
+      position: absolute;
+      top: 91px;
+      left: 3px;
+  }
+  .sectionCommon {
+    padding: 25px 0px;
+    overflow: hidden;
+}
+.secondary-heading {
+  font-size: 28px;
+}
+.secondary-heading br {
+display: none;
+}
+.cards-leftone h2 {
+  font-size: 22px;
+}
+.cards-leftone p {
+  font-size: 14px;
+}
+.cards-description {
+  color: #747474;
+  text-align: left;
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.Valuecard-img {
+  position: absolute;
+  left: 114px;
+}
+.valuecard-middle {
+  position: absolute;
+  /* right: 5px; */
+  left: 49px;
+}
+.Valuecard-rightimgTwo {
+  position: absolute;
+  bottom: 0;
+  right: -45px;
+}
+.superpower-cardheading {
+  color: #1d1d1d;
+  text-align: center;
+  font-family: "Satoshi";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.collabheading-anime {
+  position: absolute;
+  top: 50px;
+  left: 134px;
+}
+.cards-container-last{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.footer-section {
+  padding: 30px 30px;
+}
+.justify-content-end {
+  justify-content: flex-start !important;
+}
+.valueheading-anime {
+  position: absolute;
+  top: 0;
+  left: 31px;
+}
+.valueheading-anime img {
+width: 50%;
+}
+.description {
+  font-size: 14px;
+}
+.toggle-cont{
+  margin-bottom: 20px;
+}
+.pricing-virtualheading-anime {
+  position: absolute;
+  top: 47px;
+  left: 111px;
+}
+.heading-Orangeanime {
+  position: absolute;
+  top: 14px;
+  left: 198px;
+}
+.question_anime_orange {
+  position: absolute;
+  top: 16px;
+  right: 19px;
+}
+.resourcebanner-btn {
+  padding: 10px 10px;
+  width: 25%;
+  font-size: 15px;
+}
+.trans-text {
+  margin-left: 52px;
+}
+#audience .container-fluid {
+  border-radius: 0px 0px 30px 30px;
+  background: #fff;
+}
+}
