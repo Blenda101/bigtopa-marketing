@@ -1,3 +1,3 @@
 [build]
-  command = "mkdir -p _build/shared/assets && cp -r . _build/ && cp -r ../shared/assets/icons _build/shared/assets/icons"
+  command = "mkdir -p _build/shared/assets/icons && rsync -a --exclude=_build . _build/ && rsync -a ../shared/assets/icons/ _build/shared/assets/icons/"
   publish = "_build"
