@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__netlify__netlify-project-services-reader",
+      "Bash(netlify --version)",
+      "Bash(netlify api:*)",
+      "Bash(node -e ':*)",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const s=JSON.parse\\(d\\); console.log\\(JSON.stringify\\({name:s.name,repo:s.repo,build_settings:s.build_settings},null,2\\)\\)\")",
+      "Bash(curl -s -H 'Authorization: Bearer nfp_rtD5TxZ7dVgXZrHr14tGmyDMhFrKiVtZbbbd' https://api.netlify.com/api/v1/sites/1a3c184b-dde8-4f1c-a2c7-177989a4e421 -o /tmp/greekhouse_site.json)",
+      "Bash(curl -s -X PATCH -H 'Authorization: Bearer nfp_rtD5TxZ7dVgXZrHr14tGmyDMhFrKiVtZbbbd' -H 'Content-Type: application/json' -d '{:*)",
+      "mcp__netlify__netlify-deploy-services-updater",
+      "mcp__netlify__netlify-deploy-services-reader",
+      "Bash(curl -s -H 'Authorization: Bearer nfp_rtD5TxZ7dVgXZrHr14tGmyDMhFrKiVtZbbbd' https://api.netlify.com/api/v1/builds/69dac0373c37822a76751acc/log_lines)",
+      "Bash(curl -s -H 'Authorization: Bearer nfp_rtD5TxZ7dVgXZrHr14tGmyDMhFrKiVtZbbbd' https://api.netlify.com/api/v1/deploys/69dac0373c37822a76751ace/log)",
+      "Bash(curl -s -H 'Authorization: Bearer nfp_rtD5TxZ7dVgXZrHr14tGmyDMhFrKiVtZbbbd' https://api.netlify.com/api/v1/sites/1a3c184b-dde8-4f1c-a2c7-177989a4e421/deploys/69dac0373c37822a76751ace)",
+      "Bash(gh repo:*)",
+      "Bash(unzip -l bigtopa.com.zip)",
+      "Bash(unzip -l blending101.com.zip)",
+      "Bash(awk '{print $NF}')",
+      "Bash(unzip -l bigtopa.zip)",
+      "Bash(unzip -q bigtopa.com.zip -d _extract)",
+      "Bash([ -e \"$SRC/$item\" ])",
+      "Bash(cp -r __TRACKED_VAR__/__TRACKED_VAR__ __TRACKED_VAR__/)",
+      "Bash(find asstes/font -name \"false*\" -delete)",
+      "Bash(find asstes/font -name \"linea-basic-10*\" -delete)",
+      "Bash(find asstes/font -name \"demo.html\" -delete)"
+    ]
+  }
+}
