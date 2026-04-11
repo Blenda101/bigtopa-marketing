@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreekHouse.io — Your Greek Organization's Digital Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1C1410; --burgundy:#6B1E2E; --bm:#8B2D40;
+  --gold:#B8923A; --gl:#D4AF6A; --gp:#F0E4C8;
+  --stone:#F4EFE6; --sd:#E8E0D0; --white:#FDFAF6;
+  --muted:#8A7E72; --cbg:#2A1A10; --cb:rgba(184,146,58,0.2);
+  --sage:#3D6B57; --navy:#1E2E4A; --forest:#243D30;
+  --amber:#C47B1A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:'Outfit',sans-serif;overflow-x:hidden}
+
+/* ══════════════════════════════════
+   NAV BASE
+══════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,250,246,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(28,20,16,.07)}
+.ni{display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:64px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--burgundy);text-decoration:none}
+.logo .tld{color:var(--gold)}
+.nl{display:flex;align-items:center;gap:2px}
+.nitem{position:relative}
+.nlink{display:flex;align-items:center;gap:5px;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:400;color:var(--ink);opacity:.65;text-decoration:none;cursor:pointer;transition:opacity .15s,background .15s;white-space:nowrap;border:none;background:none;font-family:'Outfit',sans-serif}
+.nlink:hover,.nitem:hover>.nlink{opacity:1;background:rgba(28,20,16,.04)}
+.chev{font-size:9px;opacity:.45;transition:transform .2s;display:inline-block}
+.nitem:hover>.nlink .chev{transform:rotate(180deg)}
+.nr{display:flex;gap:10px;align-items:center}
+.nghost{font-size:14px;color:var(--ink);opacity:.6;text-decoration:none;padding:8px 12px}
+.nghost:hover{opacity:1}
+.nbtn{background:var(--burgundy);color:var(--white);padding:9px 22px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:background .2s;white-space:nowrap}
+.nbtn:hover{background:var(--bm)}
+
+/* ══════════════════════════════════
+   SHARED MEGA SHELL
+══════════════════════════════════ */
+.mega{
+  position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:var(--white);border:1px solid rgba(28,20,16,.1);border-radius:14px;
+  box-shadow:0 20px 60px rgba(28,20,16,.13);
+  display:none;z-index:300;overflow:hidden;
+  width:760px;
+}
+.nitem:hover>.mega{display:flex;flex-direction:column}
+
+.mega-label{
+  font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:18px 20px 12px;
+  border-bottom:1px solid rgba(28,20,16,.07);
+  flex-shrink:0;
+}
+
+/* Two-pane layout: tile strip left, detail panel right */
+.mega-body{display:flex;flex:1;min-height:0}
+
+/* ── TILE STRIP ── */
+.tile-strip{
+  width:220px;flex-shrink:0;
+  padding:10px;
+  border-right:1px solid rgba(28,20,16,.07);
+  display:flex;flex-direction:column;gap:2px;
+}
+
+.tile{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 12px;border-radius:9px;
+  cursor:pointer;transition:background .12s;
+  border:1px solid transparent;
+  position:relative;
+}
+.tile:hover{background:var(--stone)}
+.tile.active{
+  background:var(--stone);
+  border-color:rgba(28,20,16,.09);
+}
+/* Active left accent bar */
+.tile.active::before{
+  content:'';position:absolute;left:0;top:8px;bottom:8px;
+  width:3px;border-radius:0 2px 2px 0;
+}
+.tile-ug.active::before{background:var(--burgundy)}
+.tile-aa.active::before{background:var(--gold)}
+.tile-gc.active::before{background:var(--navy)}
+.tile-ev.active::before{background:var(--burgundy)}
+.tile-fin.active::before{background:var(--amber)}
+.tile-com.active::before{background:var(--sage)}
+.tile-org.active::before{background:var(--navy)}
+
+.tile-icon{
+  width:32px;height:32px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;margin-top:1px;
+}
+.tile-ug .tile-icon{background:rgba(107,30,46,.08)}
+.tile-aa .tile-icon{background:rgba(184,146,58,.1)}
+.tile-gc .tile-icon{background:rgba(30,46,74,.08)}
+.tile-ev .tile-icon{background:rgba(107,30,46,.08)}
+.tile-fin .tile-icon{background:rgba(196,123,26,.1)}
+.tile-com .tile-icon{background:rgba(61,107,87,.1)}
+.tile-org .tile-icon{background:rgba(30,46,74,.08)}
+
+.tile-text{}
+.tile-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.tile-desc{font-size:11px;color:var(--muted);line-height:1.4}
+
+/* ── DETAIL PANEL ── */
+.detail-wrap{flex:1;position:relative}
+
+.detail-panel{
+  position:absolute;inset:0;
+  padding:18px 20px;
+  opacity:0;transition:opacity .15s ease;
+  pointer-events:none;
+  overflow:hidden;
+}
+.detail-panel.active{opacity:1;pointer-events:auto}
+
+/* Ghost panel holds natural height so dropdown sizes to tallest content */
+.detail-ghost{
+  visibility:hidden;pointer-events:none;
+  padding:18px 20px;
+}
+
+.dp-tag{
+  display:inline-block;font-size:10px;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;margin-bottom:10px;
+}
+.dp-ug{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.dp-aa{background:rgba(184,146,58,.15);color:#8B6B20}
+.dp-gc{background:rgba(30,46,74,.1);color:var(--navy)}
+.dp-ev{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.dp-fin{background:rgba(196,123,26,.12);color:#8B5E0A}
+.dp-com{background:rgba(61,107,87,.12);color:var(--sage)}
+.dp-org{background:rgba(30,46,74,.1);color:var(--navy)}
+
+.dp-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:700;color:var(--ink);
+  margin-bottom:5px;line-height:1.15;
+}
+.dp-hook{font-size:12px;font-style:italic;color:var(--muted);margin-bottom:14px}
+.dp-items{display:flex;flex-direction:column;gap:1px;margin-bottom:16px}
+
+.dp-item{
+  display:flex;align-items:center;gap:8px;
+  padding:5px 7px;border-radius:6px;
+  text-decoration:none;transition:background .12s;
+}
+.dp-item:hover{background:var(--stone)}
+.dp-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.d-ug{background:var(--burgundy);opacity:.6}
+.d-aa{background:var(--gold);opacity:.7}
+.d-gc{background:var(--navy);opacity:.5}
+.d-ev{background:var(--burgundy);opacity:.6}
+.d-fin{background:var(--amber);opacity:.7}
+.d-com{background:var(--sage);opacity:.7}
+.d-org{background:var(--navy);opacity:.5}
+
+.dp-item-name{font-size:12px;color:var(--ink)}
+.dp-badge{
+  margin-left:auto;font-size:9px;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 6px;border-radius:100px;white-space:nowrap;
+}
+.soon{background:rgba(28,20,16,.06);color:var(--muted)}
+.horizon{background:rgba(30,46,74,.07);color:var(--navy)}
+
+.dp-cta{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:500;text-decoration:none;
+  padding:7px 12px;border-radius:7px;
+  border:1px solid rgba(28,20,16,.12);
+  transition:background .15s,border-color .15s;
+  color:var(--ink);
+}
+.dp-cta:hover{background:var(--stone);border-color:rgba(28,20,16,.2)}
+.dp-cta::after{content:'→';font-size:11px}
+
+/* Mega footer */
+.mega-foot{
+  padding:12px 16px;
+  border-top:1px solid rgba(28,20,16,.07);
+  display:flex;gap:6px;flex-shrink:0;
+}
+.mfc{
+  flex:1;padding:9px 12px;border-radius:8px;
+  text-decoration:none;transition:background .15s;
+  display:flex;align-items:center;gap:8px;
+}
+.mfc:hover{background:var(--stone)}
+.mfci{font-size:14px}
+.mfcl{font-size:12px;font-weight:500;color:var(--ink)}
+.mfcs{font-size:11px;color:var(--muted)}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero{min-height:88vh;padding:96px 60px 0;display:grid;grid-template-columns:54% 1fr;gap:52px;align-items:center;position:relative;overflow:visible}
+.hbg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 65% at 100% 55%,rgba(107,30,46,.05) 0%,transparent 65%),radial-gradient(ellipse 30% 40% at 5% 90%,rgba(184,146,58,.06) 0%,transparent 60%)}
+.hrule{position:absolute;top:0;bottom:0;left:52%;width:1px;background:linear-gradient(to bottom,transparent 5%,rgba(184,146,58,.18) 25%,rgba(184,146,58,.18) 75%,transparent 95%)}
+.hl{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;animation:rise .6s ease both}
+.eyr{width:28px;height:1px;background:var(--gold)}
+.eyt{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,6vw,82px);font-weight:700;line-height:.97;color:var(--ink);margin-bottom:26px;animation:rise .6s .08s ease both}
+h1 em{font-style:italic;color:var(--burgundy)}
+.hbody{font-size:17px;line-height:1.8;font-weight:300;color:rgba(28,20,16,.6);max-width:460px;margin-bottom:42px;animation:rise .6s .14s ease both}
+.hctas{display:flex;gap:14px;align-items:center;animation:rise .6s .2s ease both}
+.btnp{background:var(--burgundy);color:var(--white);padding:15px 32px;border-radius:6px;font-size:15px;font-weight:500;text-decoration:none;transition:all .22s}
+.btnp:hover{background:var(--bm);transform:translateY(-2px);box-shadow:0 10px 28px rgba(107,30,46,.22)}
+.btnt{font-size:14px;font-weight:400;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s}
+.btnt:hover{color:var(--ink)}
+.btnt::after{content:'↗';font-size:11px}
+
+.hr{position:relative;z-index:2;animation:rise .8s .18s ease both;display:flex;flex-direction:column;gap:10px}
+.opc{border-radius:12px;border:1px solid rgba(28,20,16,.09);padding:14px 16px;background:var(--white);display:flex;align-items:center;gap:13px;transition:border-color .25s,transform .25s;cursor:pointer;position:relative;overflow:hidden}
+.opc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.opc-ug::before{background:var(--burgundy)}
+.opc-aa::before{background:var(--gold)}
+.opc-gc::before{background:var(--navy)}
+.opc:hover{border-color:rgba(28,20,16,.18);transform:translateX(4px)}
+.opcb{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;flex-shrink:0}
+.opc-ug .opcb{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.opc-aa .opcb{background:rgba(184,146,58,.12);color:#8B6B20}
+.opc-gc .opcb{background:rgba(30,46,74,.08);color:var(--navy)}
+.opcn{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.opcd{font-size:12px;color:var(--muted)}
+.opct{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap;margin-left:auto}
+.opc-ug .opct{background:rgba(107,30,46,.08);color:var(--burgundy)}
+.opc-aa .opct{background:rgba(184,146,58,.12);color:#8B6B20}
+.opc-gc .opct{background:rgba(30,46,74,.07);color:var(--navy)}
+.hcc{background:var(--cbg);border-radius:12px;border:1px solid var(--cb);overflow:hidden}
+.hcch{padding:14px 16px 11px;border-bottom:1px solid rgba(184,146,58,.12);display:flex;align-items:center;justify-content:space-between}
+.hccn{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--stone)}
+.hccd{font-size:11px;color:rgba(244,239,230,.4);margin-top:2px}
+.lchip{display:flex;align-items:center;gap:5px;background:rgba(107,30,46,.4);border:1px solid rgba(184,146,58,.25);border-radius:100px;padding:3px 9px;font-size:10px;font-weight:600;color:var(--gl);letter-spacing:.5px}
+.ldot{width:5px;height:5px;border-radius:50%;background:var(--gl);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hcct{padding:10px 16px;display:flex;flex-direction:column;gap:6px}
+.tp{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:7px}
+.tp-pub{background:rgba(184,146,58,.1);border:1px solid rgba(184,146,58,.2)}
+.tp-mem{background:rgba(107,30,46,.2);border:1px solid rgba(107,30,46,.35)}
+.tp-pri{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
+.tdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.tp-pub .tdot{background:var(--gl)}.tp-mem .tdot{background:#E8A0AC}.tp-pri .tdot{background:rgba(244,239,230,.3)}
+.tname{font-size:12px;font-weight:500;color:var(--stone);flex:1}
+.tmeta{font-size:11px;color:rgba(244,239,230,.4)}
+.hccs{padding:11px 16px;border-top:1px solid rgba(255,255,255,.05);display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center}
+.hcsn{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--gl)}
+.hcsl{font-size:10px;color:rgba(244,239,230,.35);text-transform:uppercase;letter-spacing:.5px}
+
+/* ══ PHASE BANNER ══ */
+.pb{background:var(--stone);border-top:1px solid var(--sd);border-bottom:1px solid var(--sd);padding:16px 60px;display:flex;align-items:center;gap:36px}
+.pbl{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0}
+.pbs{display:flex;flex:1}
+.pbs-s{flex:1;display:flex;align-items:center;gap:10px;padding:0 16px;border-left:1px solid rgba(28,20,16,.1)}
+.pbs-s:first-child{padding-left:0;border-left:none}
+.pbn{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:rgba(28,20,16,.1);flex-shrink:0;line-height:1}
+.pbs-s.act .pbn{color:var(--burgundy)}
+.pbname{font-size:12px;font-weight:500;color:var(--ink)}
+.pbsub{font-size:11px;color:var(--muted);margin-top:1px}
+.pbbadge{margin-left:auto;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.bnow{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.bsoon{background:rgba(28,20,16,.05);color:var(--muted)}
+
+/* ══ WHO ══ */
+.who{padding:88px 60px}
+.seyebrow{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.ser{width:24px;height:1px;background:var(--gold)}
+.sel{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);font-weight:700;line-height:1.06;color:var(--ink);max-width:600px;margin-bottom:48px}
+.stitle em{font-style:italic;color:var(--burgundy)}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid rgba(28,20,16,.08);border-radius:14px;overflow:hidden}
+.wcard{background:var(--white);padding:32px 28px;border-right:1px solid rgba(28,20,16,.08);transition:background .25s}
+.wcard:last-child{border-right:none}
+.wcard:hover{background:var(--stone)}
+.wctype{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:100px;display:inline-block;margin-bottom:12px}
+.wct-ug{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.wct-aa{background:rgba(184,146,58,.12);color:#8B6B20}
+.wct-gc{background:rgba(30,46,74,.08);color:var(--navy)}
+.wctitle{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.15}
+.wchook{font-size:13px;font-weight:500;font-style:italic;color:var(--burgundy);margin-bottom:10px}
+.wcdesc{font-size:13px;line-height:1.75;color:rgba(28,20,16,.58)}
+.wcuses{margin-top:18px;display:flex;flex-direction:column;gap:6px;border-top:1px solid rgba(28,20,16,.07);padding-top:16px}
+.wcuse{font-size:12px;color:rgba(28,20,16,.65);display:flex;align-items:center;gap:7px}
+.wudot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.dug{background:var(--burgundy);opacity:.5}.daa{background:var(--gold);opacity:.7}.dgc{background:var(--navy);opacity:.4}
+.wccta{margin-top:18px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;text-decoration:none;transition:gap .2s}
+.wccta:hover{gap:10px}
+.cug{color:var(--burgundy)}.caa{color:#8B6B20}.cgc{color:var(--navy)}
+
+/* ══ APPS ══ */
+.apps{padding:88px 60px;background:var(--stone);border-top:1px solid var(--sd)}
+.apps-inner{display:grid;grid-template-columns:1fr 1.8fr;gap:80px;align-items:center}
+.apps-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:16px}
+.apps-title em{font-style:italic;color:var(--burgundy)}
+.apps-lead{font-size:15px;line-height:1.8;font-weight:300;color:rgba(28,20,16,.6);margin-bottom:28px}
+.apps-stat{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.apps-stat-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--burgundy);line-height:1}
+.apps-stat-label{font-size:15px;color:rgba(28,20,16,.6)}
+.apps-stat-sub{font-size:13px;color:var(--muted)}
+.apps-cta{display:inline-flex;align-items:center;gap:6px;margin-top:24px;font-size:14px;font-weight:500;color:var(--burgundy);text-decoration:none}
+.apps-cta:hover{gap:10px}
+.apps-grid-label{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.apps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.app-badge{background:var(--white);border:1px solid rgba(28,20,16,.09);border-radius:10px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:7px;transition:border-color .2s,transform .2s}
+.app-badge:hover{border-color:rgba(28,20,16,.2);transform:translateY(-2px)}
+.app-icon{font-size:22px}
+.app-name{font-size:10px;font-weight:500;color:var(--muted);text-align:center;line-height:1.3}
+.apps-note{font-size:12px;color:var(--muted);font-style:italic}
+
+/* ══ FINANCES ══ */
+.fin{padding:88px 60px;background:var(--ink);color:var(--stone);position:relative;overflow:hidden}
+.fin-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 5% 50%,rgba(196,123,26,.12) 0%,transparent 65%),radial-gradient(ellipse 35% 45% at 95% 80%,rgba(107,30,46,.2) 0%,transparent 60%)}
+.fin-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.fin-ey{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fin-eyr{width:24px;height:1px;background:var(--gl)}
+.fin-eyl{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gl)}
+.fin-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,58px);font-weight:700;line-height:1.05;margin-bottom:16px}
+.fin-title em{font-style:italic;color:var(--gl)}
+.fin-lead{font-size:15px;line-height:1.8;font-weight:300;color:rgba(244,239,230,.6);margin-bottom:28px}
+.fin-pains{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.fin-pain{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:9px}
+.fp-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.fp-text{font-size:13px;line-height:1.6;color:rgba(244,239,230,.65)}
+.fp-text strong{color:var(--stone);font-weight:500}
+.qb-badge{display:flex;align-items:center;gap:12px;background:rgba(196,123,26,.1);border:1px solid rgba(196,123,26,.25);border-radius:10px;padding:14px 16px}
+.qb-icon{font-size:22px;flex-shrink:0}
+.qb-text{font-size:13px;line-height:1.6;color:rgba(244,239,230,.7)}
+.qb-text strong{color:var(--gl);font-weight:500}
+.fin-features{display:flex;flex-direction:column;gap:12px}
+.fin-feat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;transition:border-color .25s}
+.fin-feat:hover{border-color:rgba(196,123,26,.4)}
+.ff-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ff-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ffi-budget{background:rgba(196,123,26,.15)}
+.ffi-receipt{background:rgba(107,30,46,.3)}
+.ffi-trans{background:rgba(61,107,87,.2)}
+.ffi-report{background:rgba(30,46,74,.3)}
+.ff-name{font-size:14px;font-weight:500;color:var(--stone)}
+.ff-desc{font-size:13px;line-height:1.6;color:rgba(244,239,230,.55)}
+.budget-viz{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.bv-row{display:flex;align-items:center;gap:10px}
+.bv-label{font-size:11px;color:rgba(244,239,230,.5);width:90px;flex-shrink:0}
+.bv-track{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden}
+.bv-fill{height:100%;border-radius:100px}
+.bv-income .bv-fill{background:var(--gl)}
+.bv-expense .bv-fill{background:#E8A0AC}
+.bv-net .bv-fill{background:rgba(61,107,87,.8)}
+.bv-val{font-size:11px;color:rgba(244,239,230,.5);width:44px;text-align:right;flex-shrink:0}
+.receipt-row{display:flex;gap:8px;margin-top:10px}
+.receipt-thumb{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.rt-icon{font-size:18px}
+.rt-label{font-size:10px;color:rgba(244,239,230,.4);text-align:center}
+.receipt-arrow{display:flex;align-items:center;color:rgba(244,239,230,.3);font-size:14px;flex-shrink:0}
+.receipt-result{flex:1;background:rgba(61,107,87,.15);border:1px solid rgba(61,107,87,.3);border-radius:8px;padding:10px}
+.rr-label{font-size:10px;color:rgba(61,107,87,.8);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.rr-val{font-size:13px;font-weight:500;color:var(--stone)}
+.rr-cat{font-size:10px;color:rgba(244,239,230,.4);margin-top:2px}
+
+/* ══ HOMECOMING ══ */
+.hcs{padding:88px 60px;background:var(--cbg);color:var(--stone);position:relative;overflow:hidden}
+.hcsbg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 45% 55% at 90% 50%,rgba(107,30,46,.28) 0%,transparent 65%),radial-gradient(ellipse 30% 40% at 5% 80%,rgba(184,146,58,.1) 0%,transparent 60%)}
+.hcsi{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.hcsey{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.hcser{width:24px;height:1px;background:var(--gold)}
+.hcsel{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.hcst{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,56px);font-weight:700;line-height:1.06;margin-bottom:15px}
+.hcst em{font-style:italic;color:var(--gl)}
+.hcsl2{font-size:15px;line-height:1.8;font-weight:300;color:rgba(244,239,230,.6);margin-bottom:24px}
+.hcsnote{background:rgba(184,146,58,.1);border:1px solid rgba(184,146,58,.2);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.6;color:rgba(244,239,230,.65);display:flex;gap:9px;align-items:flex-start;margin-bottom:26px}
+.hcsfeat{display:flex;flex-direction:column}
+.hcsf{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.06);display:grid;grid-template-columns:24px 1fr;gap:11px}
+.hcsf:last-child{border-bottom:none}
+.hfn{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:rgba(184,146,58,.4);padding-top:2px}
+.hfname{font-size:14px;font-weight:500;color:var(--stone);margin-bottom:3px}
+.hfdesc{font-size:13px;line-height:1.6;color:rgba(244,239,230,.5)}
+.hcsorgs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.hcsocard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px;transition:border-color .25s}
+.hcsocard:hover{border-color:rgba(184,146,58,.35)}
+.hcsolab{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
+.lug{color:#E8A0AC}.laa{color:var(--gl)}
+.hcsoname{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;color:var(--stone);margin-bottom:9px}
+.hcsel2{display:flex;flex-direction:column;gap:5px}
+.hcsev{font-size:12px;color:rgba(244,239,230,.55);display:flex;align-items:center;gap:6px}
+.evdot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.evdot.pub{background:var(--gl)}.evdot.mem{background:#E8A0AC}.evdot.pri{background:rgba(244,239,230,.3)}
+.collab{background:rgba(184,146,58,.08);border:1px solid rgba(184,146,58,.2);border-radius:8px;padding:11px 14px;font-size:12px;color:rgba(244,239,230,.65);text-align:center;margin-bottom:10px}
+.statsbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px}
+.sblabel{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(244,239,230,.35);margin-bottom:11px}
+.sbgrid{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center}
+.sbnum{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gl)}
+.sblab{font-size:10px;color:rgba(244,239,230,.35);text-transform:uppercase;letter-spacing:.5px}
+
+/* ══ TIERS ══ */
+.tiers{padding:88px 60px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;border:1px solid rgba(28,20,16,.08);border-radius:14px;overflow:hidden}
+.tcard{background:var(--white);padding:32px 28px;border-right:1px solid rgba(28,20,16,.08);transition:background .25s}
+.tcard:last-child{border-right:none}
+.tcard:hover{background:var(--stone)}
+.tctag{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;display:inline-block;margin-bottom:14px}
+.ttpub{background:rgba(184,146,58,.12);color:#8B6B20}
+.ttmem{background:rgba(107,30,46,.1);color:var(--burgundy)}
+.ttpri{background:rgba(28,20,16,.06);color:var(--muted)}
+.tctitle{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tcdesc{font-size:13px;line-height:1.75;color:rgba(28,20,16,.58);margin-bottom:16px}
+.tcex{display:flex;flex-direction:column;gap:6px}
+.tex{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.tex::before{content:'·';color:var(--gold);font-size:14px;line-height:1}
+
+/* ══ WAITLIST ══ */
+.wl{padding:88px 60px;background:var(--stone);border-top:1px solid var(--sd);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.wlbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(107,30,46,.1);border:1px solid rgba(107,30,46,.2);border-radius:100px;padding:5px 13px;margin-bottom:18px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--burgundy)}
+.wltitle{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.8vw,50px);font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:14px}
+.wltitle em{font-style:italic;color:var(--burgundy)}
+.wllead{font-size:15px;line-height:1.8;font-weight:300;color:rgba(28,20,16,.6);margin-bottom:26px}
+.wlfeats{display:flex;flex-direction:column;gap:9px}
+.wlfrow{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(28,20,16,.7)}
+.wlfck{width:19px;height:19px;border-radius:50%;background:rgba(107,30,46,.1);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--burgundy);flex-shrink:0}
+.wlcard{background:var(--white);border-radius:14px;border:1px solid rgba(28,20,16,.08);padding:32px;box-shadow:0 20px 50px rgba(28,20,16,.07)}
+.wlsp{display:flex;align-items:center;gap:9px;margin-bottom:15px}
+.avs{display:flex}
+.av{width:25px;height:25px;border-radius:50%;border:2px solid var(--white);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:white;margin-left:-7px;flex-shrink:0}
+.av:first-child{margin-left:0}
+.av1{background:var(--burgundy)}.av2{background:var(--sage)}.av3{background:var(--navy)}.av4{background:#8B6B20}
+.spt{font-size:13px;color:var(--muted)}
+.spt strong{color:var(--ink)}
+.wlct{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.wlcs{font-size:13px;color:var(--muted);margin-bottom:20px}
+.ff2{margin-bottom:10px}
+.ff2 label{display:block;font-size:11px;font-weight:500;color:rgba(28,20,16,.55);margin-bottom:5px;letter-spacing:.3px}
+.ff2 input,.ff2 select{width:100%;padding:10px 12px;border:1px solid rgba(28,20,16,.14);border-radius:7px;font-size:14px;font-family:'Outfit',sans-serif;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s}
+.ff2 input:focus,.ff2 select:focus{border-color:var(--burgundy)}
+.ff2 input::placeholder{color:rgba(28,20,16,.28)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wlbtn{width:100%;padding:13px;background:var(--burgundy);color:var(--white);border:none;border-radius:7px;font-size:15px;font-weight:500;font-family:'Outfit',sans-serif;cursor:pointer;margin-top:4px;transition:all .22s}
+.wlbtn:hover{background:var(--bm);transform:translateY(-1px);box-shadow:0 8px 20px rgba(107,30,46,.22)}
+.wlnote{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
+
+/* ══ CTA + FOOTER ══ */
+.cta{padding:88px 60px;text-align:center;position:relative;overflow:hidden}
+.ctaglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(107,30,46,.06) 0%,transparent 70%);pointer-events:none}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5vw,66px);font-weight:700;line-height:1.06;color:var(--ink);margin-bottom:15px;position:relative}
+.cta h2 em{font-style:italic;color:var(--burgundy)}
+.ctasub{font-size:17px;color:rgba(28,20,16,.5);margin-bottom:38px;font-weight:300;position:relative}
+.ctabts{display:flex;gap:14px;justify-content:center;position:relative}
+footer{background:var(--ink);padding:24px 60px;display:flex;align-items:center;justify-content:space-between}
+.flogo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:rgba(244,239,230,.35)}
+.flinks{display:flex;gap:24px}
+.flinks a{font-size:13px;color:rgba(244,239,230,.3);text-decoration:none}
+.flinks a:hover{color:rgba(244,239,230,.6)}
+.pwrd{display:flex;align-items:center;gap:6px;padding:5px 13px;border:1px solid rgba(244,239,230,.1);border-radius:100px;font-size:11px;color:rgba(244,239,230,.35)}
+.pwrd strong{color:rgba(244,239,230,.6)}
+
+/* ══ ANIMATIONS ══ */
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.sf{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.sf.in{opacity:1;transform:translateY(0)}
+.sf:nth-child(2){transition-delay:.07s}.sf:nth-child(3){transition-delay:.14s}.sf:nth-child(4){transition-delay:.21s}
+
+/* ══════════════════════════════════
+   MOBILE NAV DRAWER
+══════════════════════════════════ */
+.mob-toggle{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;background:none;border:none;cursor:pointer;
+  padding:4px;border-radius:6px;
+}
+.mob-toggle span{
+  display:block;height:1.5px;background:var(--ink);
+  transition:transform .25s,opacity .25s;border-radius:2px;
+}
+.mob-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.mob-toggle.open span:nth-child(2){opacity:0}
+.mob-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.mob-drawer{
+  position:fixed;top:64px;left:0;right:0;bottom:0;z-index:150;
+  background:var(--white);overflow-y:auto;
+  transform:translateX(100%);transition:transform .28s ease;
+  padding:16px 20px 40px;
+}
+.mob-drawer.open{transform:translateX(0)}
+body.nav-open{overflow:hidden}
+
+/* Mobile accordion */
+.mob-section{border-bottom:1px solid rgba(28,20,16,.07)}
+.mob-section-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0;background:none;border:none;
+  font-size:16px;font-weight:500;color:var(--ink);
+  font-family:'Outfit',sans-serif;cursor:pointer;text-align:left;
+}
+.mob-section-btn .mchev{
+  font-size:11px;color:var(--muted);transition:transform .2s;
+}
+.mob-section.open .mob-section-btn .mchev{transform:rotate(180deg)}
+
+.mob-acc-body{
+  display:none;padding-bottom:16px;
+}
+.mob-section.open .mob-acc-body{display:block}
+
+/* Mobile org tabs */
+.mob-org-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.mob-org-tab{
+  font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  padding:5px 11px;border-radius:100px;cursor:pointer;
+  border:1px solid rgba(28,20,16,.15);color:var(--muted);background:none;
+  font-family:'Outfit',sans-serif;transition:all .15s;
+}
+.mob-org-tab.active-ug{background:rgba(107,30,46,.1);border-color:rgba(107,30,46,.2);color:var(--burgundy)}
+.mob-org-tab.active-aa{background:rgba(184,146,58,.12);border-color:rgba(184,146,58,.25);color:#8B6B20}
+.mob-org-tab.active-gc{background:rgba(30,46,74,.08);border-color:rgba(30,46,74,.15);color:var(--navy)}
+
+.mob-panel{display:none}
+.mob-panel.active{display:block}
+
+.mob-panel-hook{
+  font-size:13px;font-style:italic;color:var(--muted);
+  margin-bottom:12px;line-height:1.5;
+}
+.mob-panel-items{display:flex;flex-direction:column;gap:2px;margin-bottom:14px}
+.mob-panel-item{
+  font-size:14px;color:rgba(28,20,16,.75);
+  padding:8px 0;border-bottom:1px solid rgba(28,20,16,.05);
+  display:flex;align-items:center;gap:8px;
+}
+.mob-panel-item:last-child{border-bottom:none}
+.mob-pdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;background:var(--gold);opacity:.7}
+
+.mob-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--burgundy);
+  text-decoration:none;padding:9px 14px;
+  border:1px solid rgba(107,30,46,.2);border-radius:7px;
+}
+
+/* Mobile How It Works accordions */
+.mob-hiw-section{margin-bottom:4px}
+.mob-hiw-btn{
+  width:100%;display:flex;align-items:center;gap:10px;
+  padding:12px 0;background:none;border:none;
+  font-family:'Outfit',sans-serif;cursor:pointer;text-align:left;
+}
+.mob-hiw-icon{
+  width:30px;height:30px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.mob-hiw-btn-text{flex:1}
+.mob-hiw-name{font-size:14px;font-weight:500;color:var(--ink)}
+.mob-hiw-desc{font-size:12px;color:var(--muted);margin-top:1px}
+.mob-hiw-chev{font-size:10px;color:var(--muted);transition:transform .2s}
+.mob-hiw-section.open .mob-hiw-chev{transform:rotate(180deg)}
+.mob-hiw-body{
+  display:none;padding:4px 0 14px 40px;
+  border-bottom:1px solid rgba(28,20,16,.06);
+}
+.mob-hiw-section.open .mob-hiw-body{display:flex;flex-direction:column;gap:8px}
+.mob-hiw-item{
+  font-size:13px;color:rgba(28,20,16,.7);
+  display:flex;align-items:center;gap:8px;
+}
+.mob-hiw-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+
+.mob-nav-links{margin-top:8px}
+.mob-nav-link{
+  display:block;padding:15px 0;
+  font-size:16px;font-weight:500;color:var(--ink);
+  text-decoration:none;border-bottom:1px solid rgba(28,20,16,.07);
+}
+.mob-nav-cta{
+  display:block;margin-top:20px;
+  background:var(--burgundy);color:var(--white);
+  padding:15px;border-radius:8px;
+  font-size:16px;font-weight:500;text-align:center;
+  text-decoration:none;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════ */
+
+/* ── TABLET (≤900px) ── */
+@media(max-width:900px){
+  .ni{padding:0 24px}
+  .nl,.nr .nghost{display:none}
+  .mob-toggle{display:flex}
+  .nbtn{display:none}
+
+  /* Hero */
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:36px;min-height:auto}
+  .hrule{display:none}
+  .hbody{max-width:100%}
+
+  /* Phase banner */
+  .pb{padding:16px 24px;gap:16px;overflow-x:auto}
+  .pbs{gap:0;min-width:520px}
+  .pbs-s{padding:0 12px}
+
+  /* Who */
+  .who{padding:64px 24px}
+  .wgrid{grid-template-columns:1fr}
+  .wcard{border-right:none;border-bottom:1px solid rgba(28,20,16,.08)}
+  .wcard:last-child{border-bottom:none}
+
+  /* Apps */
+  .apps{padding:64px 24px}
+  .apps-inner{grid-template-columns:1fr;gap:40px}
+  .apps-grid{grid-template-columns:repeat(4,1fr)}
+
+  /* Finances */
+  .fin{padding:64px 24px}
+  .fin-inner{grid-template-columns:1fr;gap:40px}
+
+  /* Homecoming */
+  .hcs{padding:64px 24px}
+  .hcsi{grid-template-columns:1fr;gap:36px}
+
+  /* Tiers */
+  .tiers{padding:64px 24px}
+  .tgrid{grid-template-columns:1fr}
+  .tcard{border-right:none;border-bottom:1px solid rgba(28,20,16,.08)}
+  .tcard:last-child{border-bottom:none}
+
+  /* Waitlist */
+  .wl{padding:64px 24px;grid-template-columns:1fr;gap:40px}
+
+  /* CTA */
+  .cta{padding:64px 24px}
+  .ctabts{flex-direction:column;align-items:center}
+
+  /* Footer */
+  footer{padding:20px 24px;flex-wrap:wrap;gap:14px}
+  .flinks{display:none}
+}
+
+/* ── MOBILE (≤600px) ── */
+@media(max-width:600px){
+  .ni{padding:0 18px;height:56px}
+  .mob-drawer{top:56px}
+
+  /* Hero */
+  .hero{padding:86px 18px 48px}
+  h1{font-size:clamp(44px,12vw,62px)}
+  .hbody{font-size:15px}
+  .hctas{flex-direction:column;align-items:flex-start;gap:12px}
+  .btnp{width:100%;text-align:center;padding:14px 24px}
+
+  /* Hero org cards */
+  .hr{gap:8px}
+  .opc{padding:12px 14px}
+  .opcb{width:32px;height:32px;font-size:11px}
+  .opcn{font-size:13px}
+  .opcd{font-size:11px}
+  .opct{display:none}
+
+  /* Phase banner */
+  .pb{flex-direction:column;align-items:flex-start;gap:0;overflow:visible}
+  .pbl{margin-bottom:10px}
+  .pbs{flex-direction:column;min-width:0;width:100%}
+  .pbs-s{border-left:none;border-top:1px solid rgba(28,20,16,.1);padding:10px 0}
+  .pbs-s:first-child{border-top:none;padding-top:0}
+  .pbn{font-size:18px}
+  .pbbadge{display:none}
+
+  /* Who */
+  .stitle{font-size:clamp(30px,8vw,42px)}
+
+  /* Apps */
+  .apps-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .app-badge{padding:10px 6px}
+  .app-icon{font-size:18px}
+  .app-name{font-size:9px}
+  .apps-stat-num{font-size:36px}
+
+  /* Finances */
+  .hcsorgs{grid-template-columns:1fr}
+  .fin-title{font-size:clamp(32px,8vw,46px)}
+
+  /* Homecoming */
+  .hcst{font-size:clamp(32px,8vw,46px)}
+
+  /* Waitlist form */
+  .frow{grid-template-columns:1fr}
+  .wlcard{padding:22px 18px}
+
+  /* Footer */
+  footer{flex-direction:column;align-items:flex-start;gap:12px}
+  .pwrd{align-self:flex-start}
+
+  /* CTA */
+  .cta{padding:56px 18px}
+  .cta h2{font-size:clamp(34px,9vw,48px)}
+  .btnt{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="ni">
+    <a href="#" class="logo">GreekHouse<span class="tld">.io</span></a>
+
+    <div class="nl">
+
+      <!-- ── SOLUTIONS ── -->
+      <div class="nitem" id="sol-item">
+        <button class="nlink">Solutions <span class="chev">▾</span></button>
+        <div class="mega" id="sol-mega">
+          <div class="mega-label">Who GreekHouse is built for</div>
+          <div class="mega-body">
+
+            <!-- Tile strip -->
+            <div class="tile-strip">
+              <div class="tile tile-ug active" data-panel="sol-ug">
+                <div class="tile-icon">🏛️</div>
+                <div class="tile-text">
+                  <div class="tile-name">Undergraduate Chapters</div>
+                  <div class="tile-desc">Currently enrolled students</div>
+                </div>
+              </div>
+              <div class="tile tile-aa" data-panel="sol-aa">
+                <div class="tile-icon">🎓</div>
+                <div class="tile-text">
+                  <div class="tile-name">Alumni Associations</div>
+                  <div class="tile-desc">Chapter-linked alumni groups</div>
+                </div>
+              </div>
+              <div class="tile tile-gc" data-panel="sol-gc">
+                <div class="tile-icon">🌆</div>
+                <div class="tile-text">
+                  <div class="tile-name">Graduate Chapters</div>
+                  <div class="tile-desc">City-based civic organizations</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detail panels -->
+            <div class="detail-wrap">
+
+            <!-- Ghost panel sets natural height -->
+            <div class="detail-ghost">
+              <div class="dp-tag dp-ug">Undergraduate</div>
+              <div class="dp-title">Undergraduate Chapters</div>
+              <div class="dp-hook">"Run every layer of chapter life."</div>
+              <div class="dp-items">
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Homecoming — public, member & private events</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Rush, recruitment & new member intake</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Formals, parties & ticketed social events</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Philanthropy drives & community service</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Budgeting, dues & financial transparency</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Chapter meetings & committee work</span></a>
+              </div>
+              <a class="dp-cta">Set up your chapter</a>
+            </div>
+
+              <div class="detail-panel active" id="sol-ug">
+                <div class="dp-tag dp-ug">Undergraduate</div>
+                <div class="dp-title">Undergraduate Chapters</div>
+                <div class="dp-hook">"Run every layer of chapter life."</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Homecoming — public, member & private events</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Rush, recruitment & new member intake</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Formals, parties & ticketed social events</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Philanthropy drives & community service</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Budgeting, dues & financial transparency</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ug"></div><span class="dp-item-name">Chapter meetings & committee work</span></a>
+                </div>
+                <a href="#who" class="dp-cta">Set up your chapter</a>
+              </div>
+
+              <div class="detail-panel" id="sol-aa">
+                <div class="dp-tag dp-aa">Alumni</div>
+                <div class="dp-title">Alumni Groups</div>
+                <div class="dp-hook">"Start where you are. Build what it could be."</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-aa"></div><span class="dp-item-name">Homecoming reunion — separate from the chapter</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-aa"></div><span class="dp-item-name">Annual gala & scholarship fundraising</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-aa"></div><span class="dp-item-name">Local dues, fees & donation management</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-aa"></div><span class="dp-item-name">Financial accountability for donors & members</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-aa"></div><span class="dp-item-name">Optional collaboration with the undergrad chapter</span></a>
+                </div>
+                <a href="#who" class="dp-cta">Build your association</a>
+              </div>
+
+              <div class="detail-panel" id="sol-gc">
+                <div class="dp-tag dp-gc">Graduate Chapter</div>
+                <div class="dp-title">Grad Chapters</div>
+                <div class="dp-hook">"Operate a full civic organization."</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">Monthly chapter & committee meetings</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">Annual gala, founders' day & ticketed events</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">Dues, event revenue & financial reporting</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">QuickBooks-ready exports for nationals compliance</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">Community service & undergrad mentorship</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-gc"></div><span class="dp-item-name">Officer management & governance records</span></a>
+                </div>
+                <a href="#who" class="dp-cta">Set up your chapter</a>
+              </div>
+
+            </div>
+          </div>
+          <div class="mega-foot">
+            <a href="#" class="mfc"><span class="mfci">📖</span><div><div class="mfcl">Compare org types</div><div class="mfcs">Find what fits your organization</div></div></a>
+            <a href="#" class="mfc"><span class="mfci">▶</span><div><div class="mfcl">See a live example</div><div class="mfcs">Homecoming weekend walkthrough</div></div></a>
+            <a href="#" class="mfc"><span class="mfci">💬</span><div><div class="mfcl">Talk to us</div><div class="mfcs">Not sure which fits? We'll help</div></div></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HOW IT WORKS ── -->
+      <div class="nitem" id="hiw-item">
+        <button class="nlink">How It Works <span class="chev">▾</span></button>
+        <div class="mega" id="hiw-mega">
+          <div class="mega-label">Everything your Greek organization needs</div>
+          <div class="mega-body">
+
+            <!-- Tile strip -->
+            <div class="tile-strip">
+              <div class="tile tile-ev active" data-panel="hiw-ev">
+                <div class="tile-icon">🎟️</div>
+                <div class="tile-text">
+                  <div class="tile-name">Run your events</div>
+                  <div class="tile-desc">Public, member & private</div>
+                </div>
+              </div>
+              <div class="tile tile-fin" data-panel="hiw-fin">
+                <div class="tile-icon">💳</div>
+                <div class="tile-text">
+                  <div class="tile-name">Manage finances</div>
+                  <div class="tile-desc">Budgets, expenses & clarity</div>
+                </div>
+              </div>
+              <div class="tile tile-com" data-panel="hiw-com">
+                <div class="tile-icon">🏘️</div>
+                <div class="tile-text">
+                  <div class="tile-name">Build your community</div>
+                  <div class="tile-desc">Keep members connected</div>
+                </div>
+              </div>
+              <div class="tile tile-org" data-panel="hiw-org">
+                <div class="tile-icon">🏛️</div>
+                <div class="tile-text">
+                  <div class="tile-name">Run your organization</div>
+                  <div class="tile-desc">Tasks, projects & governance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detail panels -->
+            <div class="detail-wrap">
+
+            <!-- Ghost panel sets natural height -->
+            <div class="detail-ghost">
+              <div class="dp-tag dp-com">Coming soon</div>
+              <div class="dp-title">Build your community</div>
+              <div class="dp-hook">The layer that keeps members connected year-round — not just at events</div>
+              <div class="dp-items">
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Member profiles & contacts</span><span class="dp-badge soon">Soon</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">DM & group chat</span><span class="dp-badge soon">Soon</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Email & newsletter</span><span class="dp-badge soon">Soon</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Voting & elections</span><span class="dp-badge soon">Soon</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Attendance tracking</span><span class="dp-badge soon">Soon</span></a>
+                <a class="dp-item"><div class="dp-dot"></div><span class="dp-item-name">Content library</span><span class="dp-badge soon">Soon</span></a>
+              </div>
+              <a class="dp-cta">Join the waitlist</a>
+            </div>
+
+              <div class="detail-panel active" id="hiw-ev">
+                <div class="dp-tag dp-ev">Available now</div>
+                <div class="dp-title">Run your events</div>
+                <div class="dp-hook">Bring people together — on your terms, with the right access for each audience</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Ticketing & RSVPs</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Payments & fundraising</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Virtual & in-person events</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Webinars</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Marketing & promotion</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-ev"></div><span class="dp-item-name">Swag & merch shop</span></a>
+                </div>
+                <a href="#" class="dp-cta">See events in action</a>
+              </div>
+
+              <div class="detail-panel" id="hiw-fin">
+                <div class="dp-tag dp-fin">Available now</div>
+                <div class="dp-title">Manage finances</div>
+                <div class="dp-hook">Clarity and trust — for every dollar in and out, from first expense to year-end report</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">Org & event budgeting</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">Mobile receipt scanning</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">Reimbursement requests</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">Member-facing financial summary</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">Financial reports & summaries</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-fin"></div><span class="dp-item-name">QuickBooks-ready export</span></a>
+                </div>
+                <a href="#finances" class="dp-cta">See finances in action</a>
+              </div>
+
+              <div class="detail-panel" id="hiw-com">
+                <div class="dp-tag dp-com">Coming soon</div>
+                <div class="dp-title">Build your community</div>
+                <div class="dp-hook">The layer that keeps members connected year-round — not just at events</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">Member profiles & contacts</span><span class="dp-badge soon">Soon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">DM & group chat</span><span class="dp-badge soon">Soon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">Email & newsletter</span><span class="dp-badge soon">Soon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">Voting & elections</span><span class="dp-badge soon">Soon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">Attendance tracking</span><span class="dp-badge soon">Soon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-com"></div><span class="dp-item-name">Content library</span><span class="dp-badge soon">Soon</span></a>
+                </div>
+                <a href="#wl" class="dp-cta">Join the waitlist</a>
+              </div>
+
+              <div class="detail-panel" id="hiw-org">
+                <div class="dp-tag dp-org">On the horizon</div>
+                <div class="dp-title">Run your organization</div>
+                <div class="dp-hook">The operating layer — tasks, projects & governance that keep your chapter moving forward</div>
+                <div class="dp-items">
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Tasks & projects</span><span class="dp-badge horizon">Horizon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Committee workspaces</span><span class="dp-badge horizon">Horizon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Document & file management</span><span class="dp-badge horizon">Horizon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Leadership transition tools</span><span class="dp-badge horizon">Horizon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Meeting management</span><span class="dp-badge horizon">Horizon</span></a>
+                  <a href="#" class="dp-item"><div class="dp-dot d-org"></div><span class="dp-item-name">Reporting & analytics</span><span class="dp-badge horizon">Horizon</span></a>
+                </div>
+                <a href="#" class="dp-cta">See the roadmap</a>
+              </div>
+
+            </div>
+          </div>
+          <div class="mega-foot">
+            <a href="#" class="mfc"><span class="mfci">🗺️</span><div><div class="mfcl">See the full roadmap</div><div class="mfcs">What's live, coming soon & on the horizon</div></div></a>
+            <a href="#wl" class="mfc"><span class="mfci">✦</span><div><div class="mfcl">Join the community waitlist</div><div class="mfcs">Early access to Build your community features</div></div></a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="nlink">Pricing</a>
+    </div>
+
+    <div class="nr">
+      <a href="#" class="nghost">Sign in</a>
+      <a href="#" class="nbtn">Claim Your House</a>
+      <button class="mob-toggle" id="mob-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ MOBILE DRAWER ══════════ -->
+<div class="mob-drawer" id="mob-drawer">
+
+  <!-- Solutions accordion -->
+  <div class="mob-section" id="mob-sol">
+    <button class="mob-section-btn">
+      Solutions <span class="mchev">▾</span>
+    </button>
+    <div class="mob-acc-body">
+      <div class="mob-org-tabs">
+        <button class="mob-org-tab active-ug" data-mob-panel="mob-ug">Undergraduate Chapters</button>
+        <button class="mob-org-tab" data-mob-panel="mob-aa">Alumni Assoc.</button>
+        <button class="mob-org-tab" data-mob-panel="mob-gc">Grad Chapters</button>
+      </div>
+
+      <div class="mob-panel active" id="mob-ug">
+        <p class="mob-panel-hook">"Run every layer of chapter life."</p>
+        <div class="mob-panel-items">
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--burgundy)"></div>Homecoming — public, member & private events</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--burgundy)"></div>Rush, recruitment & new member intake</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--burgundy)"></div>Formals, parties & ticketed social events</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--burgundy)"></div>Philanthropy drives & community service</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--burgundy)"></div>Budgeting, dues & financial transparency</div>
+        </div>
+        <a href="#who" class="mob-cta">Set up your chapter →</a>
+      </div>
+
+      <div class="mob-panel" id="mob-aa">
+        <p class="mob-panel-hook">"Start where you are. Build what it could be."</p>
+        <div class="mob-panel-items">
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--gold)"></div>Homecoming reunion — separate from the chapter</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--gold)"></div>Annual gala & scholarship fundraising</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--gold)"></div>Local dues, fees & donation management</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--gold)"></div>Financial accountability for donors & members</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--gold)"></div>Optional collaboration with the undergrad chapter</div>
+        </div>
+        <a href="#who" class="mob-cta" style="color:#8B6B20;border-color:rgba(184,146,58,.3)">Build your association →</a>
+      </div>
+
+      <div class="mob-panel" id="mob-gc">
+        <p class="mob-panel-hook">"Operate a full civic organization."</p>
+        <div class="mob-panel-items">
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--navy)"></div>Monthly chapter & committee meetings</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--navy)"></div>Annual gala, founders' day & ticketed events</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--navy)"></div>Dues, event revenue & financial reporting</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--navy)"></div>QuickBooks-ready exports for nationals compliance</div>
+          <div class="mob-panel-item"><div class="mob-pdot" style="background:var(--navy)"></div>Community service & undergrad mentorship</div>
+        </div>
+        <a href="#who" class="mob-cta" style="color:var(--navy);border-color:rgba(30,46,74,.2)">Set up your chapter →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works accordion -->
+  <div class="mob-section" id="mob-hiw">
+    <button class="mob-section-btn">
+      How It Works <span class="mchev">▾</span>
+    </button>
+    <div class="mob-acc-body">
+
+      <div class="mob-hiw-section">
+        <button class="mob-hiw-btn">
+          <div class="mob-hiw-icon" style="background:rgba(107,30,46,.08)">🎟️</div>
+          <div class="mob-hiw-btn-text">
+            <div class="mob-hiw-name">Run your events</div>
+            <div class="mob-hiw-desc">Public, member & private · Available now</div>
+          </div>
+          <span class="mob-hiw-chev">▾</span>
+        </button>
+        <div class="mob-hiw-body">
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--burgundy);opacity:.6"></div>Ticketing & RSVPs</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--burgundy);opacity:.6"></div>Payments & fundraising</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--burgundy);opacity:.6"></div>Virtual & in-person events</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--burgundy);opacity:.6"></div>Marketing & promotion</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--burgundy);opacity:.6"></div>Swag & merch shop</div>
+        </div>
+      </div>
+
+      <div class="mob-hiw-section">
+        <button class="mob-hiw-btn">
+          <div class="mob-hiw-icon" style="background:rgba(196,123,26,.1)">💳</div>
+          <div class="mob-hiw-btn-text">
+            <div class="mob-hiw-name">Manage finances</div>
+            <div class="mob-hiw-desc">Budgets, expenses & clarity · Available now</div>
+          </div>
+          <span class="mob-hiw-chev">▾</span>
+        </button>
+        <div class="mob-hiw-body">
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--amber);opacity:.7"></div>Org & event budgeting</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--amber);opacity:.7"></div>Mobile receipt scanning</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--amber);opacity:.7"></div>Reimbursement requests</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--amber);opacity:.7"></div>Financial reports & summaries</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--amber);opacity:.7"></div>QuickBooks-ready export</div>
+        </div>
+      </div>
+
+      <div class="mob-hiw-section">
+        <button class="mob-hiw-btn">
+          <div class="mob-hiw-icon" style="background:rgba(61,107,87,.1)">🏘️</div>
+          <div class="mob-hiw-btn-text">
+            <div class="mob-hiw-name">Build your community</div>
+            <div class="mob-hiw-desc">Keep members connected · Coming soon</div>
+          </div>
+          <span class="mob-hiw-chev">▾</span>
+        </button>
+        <div class="mob-hiw-body">
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--sage);opacity:.7"></div>Member profiles & contacts</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--sage);opacity:.7"></div>DM & group chat</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--sage);opacity:.7"></div>Email & newsletter</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--sage);opacity:.7"></div>Voting & elections</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--sage);opacity:.7"></div>Attendance tracking</div>
+        </div>
+      </div>
+
+      <div class="mob-hiw-section">
+        <button class="mob-hiw-btn">
+          <div class="mob-hiw-icon" style="background:rgba(30,46,74,.08)">🏛️</div>
+          <div class="mob-hiw-btn-text">
+            <div class="mob-hiw-name">Run your organization</div>
+            <div class="mob-hiw-desc">Tasks, projects & governance · On the horizon</div>
+          </div>
+          <span class="mob-hiw-chev">▾</span>
+        </button>
+        <div class="mob-hiw-body">
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--navy);opacity:.5"></div>Tasks & projects</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--navy);opacity:.5"></div>Committee workspaces</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--navy);opacity:.5"></div>Document & file management</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--navy);opacity:.5"></div>Leadership transition tools</div>
+          <div class="mob-hiw-item"><div class="mob-hiw-dot" style="background:var(--navy);opacity:.5"></div>Meeting management</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Direct links -->
+  <div class="mob-nav-links">
+    <a href="#" class="mob-nav-link">Pricing</a>
+    <a href="#wl" class="mob-nav-link">Join Community Waitlist</a>
+    <a href="#" class="mob-nav-link" style="opacity:.6;font-weight:400">Sign in</a>
+  </div>
+
+  <a href="#" class="mob-nav-cta">Claim Your House — Free</a>
+
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hbg"></div><div class="hrule"></div>
+  <div class="hl">
+    <div class="eyebrow"><div class="eyr"></div><span class="eyt">Built for Greek Life</span></div>
+    <h1>Your chapter's<br><em>digital home.</em></h1>
+    <p class="hbody">Every Greek organization is different — an undergraduate chapter running homecoming, an alumni association finding its footing, a graduate chapter operating year-round. GreekHouse gives each their own space, built for who they actually are.</p>
+    <div class="hctas">
+      <a href="#" class="btnp">Claim Your House</a>
+      <a href="#who" class="btnt">Find your org type</a>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="opc opc-ug">
+      <div class="opcb">ΔΣΘ</div>
+      <div style="flex:1"><div class="opcn">Delta Sigma Theta — Alpha Chapter</div><div class="opcd">Undergraduate · Howard University · 68 active members</div></div>
+      <div class="opct">Undergraduate Chapter</div>
+    </div>
+    <div class="hcc">
+      <div class="hcch">
+        <div><div class="hccn">Homecoming Weekend 2025</div><div class="hccd">Oct 10–12 · Howard University</div></div>
+        <div class="lchip"><div class="ldot"></div>Live</div>
+      </div>
+      <div class="hcct">
+        <div class="tp tp-pub"><div class="tdot"></div><div class="tname">Tailgate & Step Show</div><div class="tmeta">Public · $30</div></div>
+        <div class="tp tp-mem"><div class="tdot"></div><div class="tname">Chapter Social</div><div class="tmeta">Members only</div></div>
+        <div class="tp tp-pri"><div class="tdot"></div><div class="tname">Officers' Dinner</div><div class="tmeta">Invitation only</div></div>
+      </div>
+      <div class="hccs">
+        <div><div class="hcsn">312</div><div class="hcsl">Registered</div></div>
+        <div><div class="hcsn">$9.2k</div><div class="hcsl">Raised</div></div>
+        <div><div class="hcsn">3</div><div class="hcsl">Events</div></div>
+      </div>
+    </div>
+    <div class="opc opc-aa">
+      <div class="opcb">ΑΦΑ</div>
+      <div style="flex:1"><div class="opcn">Beta Chapter Alumni Association</div><div class="opcd">Alumni Association · Separate account · Homecoming reunion</div></div>
+      <div class="opct">Alumni Assoc.</div>
+    </div>
+    <div class="opc opc-gc">
+      <div class="opcb">ΚΑΨ</div>
+      <div style="flex:1"><div class="opcn">Atlanta Alumni Chapter — Kappa Alpha Psi</div><div class="opcd">Graduate Chapter · City-based · Year-round operations</div></div>
+      <div class="opct">Grad Chapter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PHASE BANNER ══════════ -->
+<div class="pb">
+  <span class="pbl">Platform roadmap</span>
+  <div class="pbs">
+    <div class="pbs-s act"><div class="pbn">01</div><div><div class="pbname">Run your events</div><div class="pbsub">Ticketing, payments, all access tiers</div></div><span class="pbbadge bnow">Live now</span></div>
+    <div class="pbs-s act"><div class="pbn">02</div><div><div class="pbname">Manage finances</div><div class="pbsub">Budgets, expenses, receipt capture</div></div><span class="pbbadge bnow">Live now</span></div>
+    <div class="pbs-s"><div class="pbn">03</div><div><div class="pbname">Build your community</div><div class="pbsub">Member hub, discussions, directory</div></div><span class="pbbadge bsoon">Coming soon</span></div>
+    <div class="pbs-s"><div class="pbn">04</div><div><div class="pbname">Run your organization</div><div class="pbsub">Tasks, projects, governance, workspaces</div></div><span class="pbbadge bsoon">On the horizon</span></div>
+  </div>
+</div>
+
+<!-- ══════════ WHO IT'S FOR ══════════ -->
+<section class="who" id="who">
+  <div class="seyebrow"><div class="ser"></div><span class="sel">Who It's For</span></div>
+  <h2 class="stitle">Three kinds of Greek organizations.<br><em>Each gets its own house.</em></h2>
+  <div class="wgrid">
+    <div class="wcard sf">
+      <div class="wctype wct-ug">Undergrad</div>
+      <div class="wctitle">Undergraduate Chapters</div>
+      <div class="wchook">"Run every layer of chapter life."</div>
+      <p class="wcdesc">Nationally-affiliated chapters of currently enrolled students. You run public events for campus, member-only events for your chapter, and private events for officers — sometimes all in the same weekend. When leadership rotates every year, your institutional knowledge stays in your House.</p>
+      <div class="wcuses">
+        <div class="wcuse"><div class="wudot dug"></div>Homecoming — public, member & private tiers</div>
+        <div class="wcuse"><div class="wudot dug"></div>Rush, recruitment & new member intake</div>
+        <div class="wcuse"><div class="wudot dug"></div>Formals, parties & ticketed social events</div>
+        <div class="wcuse"><div class="wudot dug"></div>Philanthropy drives & community service</div>
+        <div class="wcuse"><div class="wudot dug"></div>Budgeting, dues & financial transparency</div>
+        <div class="wcuse"><div class="wudot dug"></div>Chapter meetings & committee work</div>
+      </div>
+      <a href="#" class="wccta cug">Set up your chapter →</a>
+    </div>
+    <div class="wcard sf">
+      <div class="wctype wct-aa">Alumni</div>
+      <div class="wctitle">Alumni Groups</div>
+      <div class="wchook">"Start where you are. Build what it could be."</div>
+      <p class="wcdesc">Linked to a specific undergraduate chapter, alumni associations range from a single motivated person with a vision to a fully structured organization with officers and committees. GreekHouse meets you wherever you are — and gives you the infrastructure to grow into whatever your chapter alumni deserve.</p>
+      <div class="wcuses">
+        <div class="wcuse"><div class="wudot daa"></div>Homecoming reunion — separate from the chapter</div>
+        <div class="wcuse"><div class="wudot daa"></div>Annual gala & scholarship fundraising</div>
+        <div class="wcuse"><div class="wudot daa"></div>Local dues, fees & donation management</div>
+        <div class="wcuse"><div class="wudot daa"></div>Financial accountability for donors & members</div>
+        <div class="wcuse"><div class="wudot daa"></div>Optional collaboration with the undergrad chapter</div>
+      </div>
+      <a href="#" class="wccta caa">Build your association →</a>
+    </div>
+    <div class="wcard sf">
+      <div class="wctype wct-gc">Grad</div>
+      <div class="wctitle">Graduate Chapters</div>
+      <div class="wchook">"Operate a full civic organization."</div>
+      <p class="wcdesc">City-based chapters of graduate members, formally linked to national organizations. You hold regular chapter and committee meetings, host community events and an annual gala, mentor undergraduate chapters, and coordinate with nationals — all on a consistent year-round operating rhythm.</p>
+      <div class="wcuses">
+        <div class="wcuse"><div class="wudot dgc"></div>Monthly chapter & committee meetings</div>
+        <div class="wcuse"><div class="wudot dgc"></div>Annual gala, founders' day & ticketed events</div>
+        <div class="wcuse"><div class="wudot dgc"></div>Dues, event revenue & financial reporting</div>
+        <div class="wcuse"><div class="wudot dgc"></div>QuickBooks-ready exports for nationals compliance</div>
+        <div class="wcuse"><div class="wudot dgc"></div>Community service & undergrad mentorship</div>
+      </div>
+      <a href="#" class="wccta cgc">Set up your chapter →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ APP REPLACEMENT ══════════ -->
+<section class="apps">
+  <div class="apps-inner">
+    <div class="apps-left sf">
+      <div class="seyebrow"><div class="ser"></div><span class="sel">Simplify</span></div>
+      <h2 class="apps-title">How many apps are you<br><em>juggling right now?</em></h2>
+      <p class="apps-lead">Most Greek orgs run on a patchwork of consumer apps — group chats for comms, Venmo for money, Google Forms for RSVPs, Eventbrite for tickets. It works until it doesn't. GreekHouse brings it all under one roof.</p>
+      <div class="apps-stat">
+        <div class="apps-stat-num">7+</div>
+        <div><div class="apps-stat-label">apps the average Greek org juggles</div><div class="apps-stat-sub">to do what GreekHouse does in one place</div></div>
+      </div>
+      <a href="#" class="apps-cta">See what you can replace →</a>
+    </div>
+    <div class="apps-right sf">
+      <div class="apps-grid-label">Apps Greek orgs commonly use today</div>
+      <div class="apps-grid">
+        <div class="app-badge"><div class="app-icon">💬</div><div class="app-name">GroupMe</div></div>
+        <div class="app-badge"><div class="app-icon">💸</div><div class="app-name">Venmo</div></div>
+        <div class="app-badge"><div class="app-icon">💵</div><div class="app-name">Cash App</div></div>
+        <div class="app-badge"><div class="app-icon">📋</div><div class="app-name">Google Forms</div></div>
+        <div class="app-badge"><div class="app-icon">🎟️</div><div class="app-name">Eventbrite</div></div>
+        <div class="app-badge"><div class="app-icon">📧</div><div class="app-name">Mailchimp</div></div>
+        <div class="app-badge"><div class="app-icon">📨</div><div class="app-name">Constant Contact</div></div>
+        <div class="app-badge"><div class="app-icon">📁</div><div class="app-name">Google Drive</div></div>
+        <div class="app-badge"><div class="app-icon">🎥</div><div class="app-name">Zoom</div></div>
+        <div class="app-badge"><div class="app-icon">📸</div><div class="app-name">Instagram</div></div>
+        <div class="app-badge"><div class="app-icon">📱</div><div class="app-name">iMessage / SMS</div></div>
+        <div class="app-badge"><div class="app-icon">📊</div><div class="app-name">Google Sheets</div></div>
+        <div class="app-badge"><div class="app-icon">📝</div><div class="app-name">Google Docs</div></div>
+        <div class="app-badge"><div class="app-icon">🗳️</div><div class="app-name">Poll Everywhere</div></div>
+        <div class="app-badge"><div class="app-icon">🛍️</div><div class="app-name">Bonfire / Custom Ink</div></div>
+      </div>
+      <div class="apps-note">Every one of these is a separate login, a separate thread, a separate place things get lost.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FINANCES ══════════ -->
+<section class="fin" id="finances">
+  <div class="fin-bg"></div>
+  <div class="fin-inner">
+    <div class="sf">
+      <div class="fin-ey"><div class="fin-eyr"></div><span class="fin-eyl">Financial Clarity</span></div>
+      <h2 class="fin-title">Money handled clearly.<br><em>Trust built automatically.</em></h2>
+      <p class="fin-lead">Treasurer is a one-year role held by a 20-year-old managing thousands of dollars. Alumni associations float costs on a credit card. Graduate chapters report to nationals with spreadsheets. GreekHouse makes financial transparency the default — not a year-end scramble.</p>
+      <div class="fin-pains">
+        <div class="fin-pain"><span class="fp-icon">📱</span><p class="fp-text"><strong>Capture at the moment.</strong> Scan a receipt on your phone the second you spend. It's categorized, attached to the right event, and in the record — before anyone forgets.</p></div>
+        <div class="fin-pain"><span class="fp-icon">👁️</span><p class="fp-text"><strong>Transparent by default.</strong> Members always see a clean financial summary. Officers see the detail. Nobody has to ask where the money went.</p></div>
+        <div class="fin-pain"><span class="fp-icon">🔄</span><p class="fp-text"><strong>Built for turnover.</strong> End-of-term financial report generated automatically. The new treasurer inherits a complete picture, not a mess.</p></div>
+      </div>
+      <div class="qb-badge">
+        <span class="qb-icon">📒</span>
+        <p class="qb-text">GreekHouse handles your day-to-day. When your accountant or nationals need the full picture, everything exports cleanly. <strong>QuickBooks-ready, always.</strong></p>
+      </div>
+    </div>
+    <div class="fin-features sf">
+      <div class="fin-feat">
+        <div class="ff-head"><div class="ff-icon ffi-budget">📊</div><div class="ff-name">Org & event budgeting</div></div>
+        <p class="ff-desc">Set an annual org budget and a per-event budget. See projected vs. actual income and expenses side by side — in plain language, not accounting speak.</p>
+        <div class="budget-viz">
+          <div class="bv-row"><span class="bv-label">Ticket income</span><div class="bv-track bv-income"><div class="bv-fill" style="width:78%"></div></div><span class="bv-val">$9,200</span></div>
+          <div class="bv-row"><span class="bv-label">Expenses</span><div class="bv-track bv-expense"><div class="bv-fill" style="width:52%"></div></div><span class="bv-val">$6,400</span></div>
+          <div class="bv-row"><span class="bv-label">Net to chapter</span><div class="bv-track bv-net"><div class="bv-fill" style="width:26%"></div></div><span class="bv-val">$2,800</span></div>
+        </div>
+      </div>
+      <div class="fin-feat">
+        <div class="ff-head"><div class="ff-icon ffi-receipt">📷</div><div class="ff-name">Mobile receipt scanning</div></div>
+        <p class="ff-desc">Point your camera, tap scan. The expense is captured, categorized, and attached to the right event instantly. No end-of-month reconciliation nightmares.</p>
+        <div class="receipt-row">
+          <div class="receipt-thumb"><div class="rt-icon">🧾</div><div class="rt-label">Venue deposit receipt</div></div>
+          <div class="receipt-arrow">→</div>
+          <div class="receipt-result"><div class="rr-label">Logged</div><div class="rr-val">$1,200.00</div><div class="rr-cat">Homecoming · Venue · Oct 3</div></div>
+        </div>
+      </div>
+      <div class="fin-feat">
+        <div class="ff-head"><div class="ff-icon ffi-trans">👥</div><div class="ff-name">Member-facing summary</div></div>
+        <p class="ff-desc">Members see a clean "here's what we collected and spent" view — no line-item exposure, no awkward requests to the treasurer. Transparency that builds trust automatically.</p>
+      </div>
+      <div class="fin-feat">
+        <div class="ff-head"><div class="ff-icon ffi-report">📄</div><div class="ff-name">End-of-term report & export</div></div>
+        <p class="ff-desc">One-click financial summary for the outgoing officer. Export in QuickBooks-ready format for orgs that need to report to nationals, a CPA, or scholarship donors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PAYMENT METHODS ══════════ -->
+<section style="padding:48px 60px;background:var(--stone);border-top:1px solid var(--sd)">
+  <div style="max-width:900px;margin:0 auto;text-align:center">
+    <p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Accepted payments</p>
+    <p style="font-size:16px;color:rgba(28,20,16,.55);font-weight:300;margin-bottom:28px">Cards, digital wallets, or pay as you go — members and guests pay the way they prefer</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center">
+      <img src="../shared/assets/icons/1_credit-debit.svg" height="48" alt="Credit and Debit" style="display:block">
+      <img src="../shared/assets/icons/2_apple-pay.svg" height="48" alt="Apple Pay" style="display:block">
+      <img src="../shared/assets/icons/3_google-pay.svg" height="48" alt="Google Pay" style="display:block">
+      <img src="../shared/assets/icons/4_cash-app.svg" height="48" alt="Cash App" style="display:block">
+      <img src="../shared/assets/icons/5_link.svg" height="48" alt="Link" style="display:block">
+      <img src="../shared/assets/icons/6_cypto.svg" height="48" alt="Crypto" style="display:block">
+      <img src="../shared/assets/icons/7_klarna.svg" height="48" alt="Klarna" style="display:block">
+      <img src="../shared/assets/icons/8_affirm.svg" height="48" alt="Affirm" style="display:block">
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:18px">Powered by Stripe · PCI compliant · SSL encrypted</p>
+  </div>
+</section>
+
+<!-- ══════════ HOMECOMING ══════════ -->
+<section class="hcs">
+  <div class="hcsbg"></div>
+  <div class="hcsi">
+    <div class="sf">
+      <div class="hcsey"><div class="hcser"></div><span class="hcsel">Feature Spotlight</span></div>
+      <h2 class="hcst">Homecoming.<br><em>Both houses.</em></h2>
+      <p class="hcsl2">The undergrad chapter runs their weekend. The alumni association runs their own reunion alongside it. Two separate GreekHouse accounts. Two separate programs. And when they choose to collaborate — they can.</p>
+      <div class="hcsnote"><span>ℹ</span> Homecoming belongs to undergraduate chapters and their affiliated alumni associations. Graduate chapters are city-based civic organizations with their own year-round calendar — independent of campus homecoming.</div>
+      <div class="hcsfeat">
+        <div class="hcsf"><div class="hfn">01</div><div><div class="hfname">Separate accounts, same weekend</div><div class="hfdesc">Each org manages their own events, registrations, and finances independently. No shared access unless you choose it.</div></div></div>
+        <div class="hcsf"><div class="hfn">02</div><div><div class="hfname">Three event tiers per org</div><div class="hfdesc">Public (campus & community), member-only (verified actives or alumni), and private (officers, invited guests).</div></div></div>
+        <div class="hcsf"><div class="hfn">03</div><div><div class="hfname">Event P&L tracked automatically</div><div class="hfdesc">Every ticket sale and expense logged against the event. Close of weekend, both treasurers have a clean financial picture.</div></div></div>
+        <div class="hcsf"><div class="hfn">04</div><div><div class="hfname">Optional collaboration</div><div class="hfdesc">When a joint event makes sense, both orgs can cross-promote or co-host. Collaboration is a choice, not a default.</div></div></div>
+      </div>
+    </div>
+    <div class="sf">
+      <div class="hcsorgs">
+        <div class="hcsocard">
+          <div class="hcsolab lug">Undergrad Chapter</div>
+          <div class="hcsoname">Delta Sigma Theta — Alpha Chapter</div>
+          <div class="hcsel2">
+            <div class="hcsev"><div class="evdot pub"></div>Tailgate & Step Show — Public</div>
+            <div class="hcsev"><div class="evdot pub"></div>Philanthropy Concert — Public</div>
+            <div class="hcsev"><div class="evdot mem"></div>Chapter Social — Members only</div>
+            <div class="hcsev"><div class="evdot pri"></div>Officers' Dinner — Private</div>
+          </div>
+        </div>
+        <div class="hcsocard">
+          <div class="hcsolab laa">Alumni Association</div>
+          <div class="hcsoname">Alpha Chapter Alumni Association</div>
+          <div class="hcsel2">
+            <div class="hcsev"><div class="evdot pub"></div>Alumni Welcome Mixer — Public</div>
+            <div class="hcsev"><div class="evdot mem"></div>Reunion Dinner — Alumni only</div>
+            <div class="hcsev"><div class="evdot mem"></div>Scholarship Fundraiser — Members</div>
+            <div class="hcsev"><div class="evdot pri"></div>Board Meeting — Officers only</div>
+          </div>
+        </div>
+      </div>
+      <div class="collab">✦ &nbsp; When they choose to — one joint event, cross-promoted to both audiences</div>
+      <div class="statsbox">
+        <div class="sblabel">Weekend at a glance</div>
+        <div class="sbgrid">
+          <div><div class="sbnum">7</div><div class="sblab">Total events</div></div>
+          <div><div class="sbnum">480+</div><div class="sblab">Registered</div></div>
+          <div><div class="sbnum">$14k</div><div class="sblab">Raised</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EVENT TIERS ══════════ -->
+<section class="tiers">
+  <div class="seyebrow"><div class="ser"></div><span class="sel">Event Access</span></div>
+  <h2 class="stitle">Not every event is<br><em>for everyone.</em></h2>
+  <div class="tgrid">
+    <div class="tcard sf">
+      <div class="tctag ttpub">Public</div>
+      <div class="tctitle">Open Events</div>
+      <p class="tcdesc">Campus-wide and community events with open registration. Sell tickets, collect donations, and run public fundraisers with full payment processing built in.</p>
+      <div class="tcex">
+        <div class="tex">Homecoming tailgate & step shows</div>
+        <div class="tex">Philanthropy concerts & drives</div>
+        <div class="tex">Seasonal parties & ticketed socials</div>
+        <div class="tex">Alumni welcome mixers</div>
+        <div class="tex">Annual gala (graduate chapters)</div>
+      </div>
+    </div>
+    <div class="tcard sf">
+      <div class="tctag ttmem">Members Only</div>
+      <div class="tctitle">Chapter Events</div>
+      <p class="tcdesc">Verified members only. Invisible to the public. Actives, alumni, or graduate members — each organization defines who counts as a member in their own account.</p>
+      <div class="tcex">
+        <div class="tex">Chapter meetings & retreats</div>
+        <div class="tex">Formals & semi-formals</div>
+        <div class="tex">Alumni reunion dinners</div>
+        <div class="tex">New member presentations</div>
+        <div class="tex">Committee meetings (grad chapters)</div>
+      </div>
+    </div>
+    <div class="tcard sf">
+      <div class="tctag ttpri">Private</div>
+      <div class="tctitle">Invitation Only</div>
+      <p class="tcdesc">Total access control. Officers, selected alumni, board members, or any specific guest list you define. Individual approvals, no self-registration, no public visibility.</p>
+      <div class="tcex">
+        <div class="tex">Founders' banquets & ceremonies</div>
+        <div class="tex">Executive officer meetings</div>
+        <div class="tex">Board-level alumni dinners</div>
+        <div class="tex">Initiation-related gatherings</div>
+        <div class="tex">National convention prep sessions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WAITLIST ══════════ -->
+<section class="wl" id="wl">
+  <div class="sf">
+    <div class="wlbadge">✦ Coming Soon</div>
+    <h2 class="wltitle">Events are the start.<br><em>Community</em> is the house.</h2>
+    <p class="wllead">Events get people in the door. Community keeps them connected year-round. Whether you're an undergraduate chapter, an alumni association still finding its shape, or a graduate chapter with a full member roster — your GreekHouse community space is where it all lives between events.</p>
+    <div class="wlfeats">
+      <div class="wlfrow"><div class="wlfck">✓</div>Member directory & profiles</div>
+      <div class="wlfrow"><div class="wlfck">✓</div>Chapter announcements & discussions</div>
+      <div class="wlfrow"><div class="wlfck">✓</div>Voting, attendance & member roles</div>
+      <div class="wlfrow"><div class="wlfck">✓</div>Committee spaces & working groups</div>
+      <div class="wlfrow"><div class="wlfck">✓</div>Document library & chapter history</div>
+      <div class="wlfrow"><div class="wlfck">✓</div>Leadership transition tools</div>
+    </div>
+  </div>
+  <div class="sf">
+    <div class="wlcard">
+      <div class="wlsp">
+        <div class="avs"><div class="av av1">JM</div><div class="av av2">KR</div><div class="av av3">TP</div><div class="av av4">AL</div></div>
+        <span class="spt"><strong>400+ organizations</strong> on the waitlist</span>
+      </div>
+      <div class="wlct">Join the waitlist</div>
+      <p class="wlcs">Early access orgs get founding pricing and first look at community features.</p>
+      <div class="frow">
+        <div class="ff2"><label>First name</label><input type="text" placeholder="Jordan"></div>
+        <div class="ff2"><label>Last name</label><input type="text" placeholder="Mitchell"></div>
+      </div>
+      <div class="ff2"><label>Email</label><input type="email" placeholder="jordan@example.com"></div>
+      <div class="ff2"><label>Organization name</label><input type="text" placeholder="e.g. Alpha Phi Alpha — Beta Chapter Alumni Assoc."></div>
+      <div class="frow">
+        <div class="ff2"><label>Organization type</label><select><option>Undergraduate Chapter</option><option>Alumni Association</option><option>Graduate Chapter</option></select></div>
+        <div class="ff2"><label>Greek council</label><select><option>NPHC</option><option>IFC</option><option>Panhellenic</option><option>MGC</option><option>Other / Independent</option></select></div>
+      </div>
+      <button class="wlbtn" id="wlb">Reserve My Spot →</button>
+      <p class="wlnote">No credit card. No spam. Just early access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta">
+  <div class="ctaglow"></div>
+  <h2>Every Greek org deserves<br>a real <em>home.</em></h2>
+  <p class="ctasub">Start with events. Finances included. Your full house is being built.</p>
+  <div class="ctabts">
+    <a href="#" class="btnp">Claim Your House — Free</a>
+    <a href="#who" class="btnt">Find your org type</a>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">GreekHouse.io</div>
+  <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+  <div class="pwrd">Powered by <strong>BigTopa</strong></div>
+</footer>
+
+<script>
+/* ── Scroll fade ── */
+const io = new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})
+},{threshold:.1});
+document.querySelectorAll('.sf').forEach(el=>io.observe(el));
+
+/* ── Waitlist button ── */
+document.getElementById('wlb').addEventListener('click',()=>{
+  const b=document.getElementById('wlb');
+  b.textContent="✓ You're on the list!";
+  b.style.background='#3D6B57';
+  b.style.transform='none';
+});
+
+/* ── Desktop: Two-level mega menu tile hover → detail panel swap ── */
+function initMega(megaId) {
+  const mega = document.getElementById(megaId);
+  if (!mega) return;
+  const tiles = mega.querySelectorAll('.tile');
+  const panels = mega.querySelectorAll('.detail-panel');
+  function activate(panelId) {
+    tiles.forEach(t => t.classList.toggle('active', t.dataset.panel === panelId));
+    panels.forEach(p => {
+      if (p.id === panelId) { p.classList.add('active'); }
+      else { p.classList.remove('active'); }
+    });
+  }
+  tiles.forEach(tile => {
+    tile.addEventListener('mouseenter', () => activate(tile.dataset.panel));
+  });
+}
+initMega('sol-mega');
+initMega('hiw-mega');
+
+/* ── Mobile: Hamburger toggle ── */
+const toggle = document.getElementById('mob-toggle');
+const drawer = document.getElementById('mob-drawer');
+toggle.addEventListener('click', () => {
+  const isOpen = drawer.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  document.body.classList.toggle('nav-open', isOpen);
+});
+
+/* ── Mobile: Top-level accordion (Solutions / How It Works) ── */
+document.querySelectorAll('.mob-section-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.mob-section');
+    section.classList.toggle('open');
+  });
+});
+
+/* ── Mobile: Solutions org tabs ── */
+document.querySelectorAll('.mob-org-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const panelId = tab.dataset.mobPanel;
+    const container = tab.closest('.mob-acc-body');
+
+    // Update tab styles
+    container.querySelectorAll('.mob-org-tab').forEach(t => {
+      t.className = 'mob-org-tab';
+    });
+    // Apply correct active class based on panel
+    const classMap = { 'mob-ug':'active-ug', 'mob-aa':'active-aa', 'mob-gc':'active-gc' };
+    tab.classList.add(classMap[panelId] || 'active-ug');
+
+    // Show correct panel
+    container.querySelectorAll('.mob-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(panelId).classList.add('active');
+  });
+});
+
+/* ── Mobile: How It Works sub-accordion ── */
+document.querySelectorAll('.mob-hiw-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.mob-hiw-section');
+    const wasOpen = section.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.mob-hiw-section').forEach(s => s.classList.remove('open'));
+    // Toggle clicked
+    if (!wasOpen) section.classList.add('open');
+  });
+});
+
+/* ── Close drawer when clicking a link inside it ── */
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    drawer.classList.remove('open');
+    toggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+  });
+});
+</script>
+</body>
+</html>
