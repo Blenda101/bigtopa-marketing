@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigTopa Event Landing Pages - Wireframes & Mockups</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* BigTopa brand colors */
+        :root {
+            --bt-primary: #FF6B35;
+            --bt-secondary: #F7931E;
+            --bt-accent: #4ECDC4;
+            --bt-dark: #1A1A2E;
+            --bt-light: #F8F9FA;
+        }
+        
+        .bt-primary { background-color: var(--bt-primary); }
+        .bt-secondary { background-color: var(--bt-secondary); }
+        .bt-accent { background-color: var(--bt-accent); }
+        .bt-dark { background-color: var(--bt-dark); }
+        
+        .text-bt-primary { color: var(--bt-primary); }
+        .text-bt-secondary { color: var(--bt-secondary); }
+        .text-bt-accent { color: var(--bt-accent); }
+        
+        .border-bt-primary { border-color: var(--bt-primary); }
+        
+        /* Ticket card hover effect */
+        .ticket-card {
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        /* Tab styles */
+        .tab-button {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--bt-primary);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-upcoming {
+            background-color: #E3F2FD;
+            color: #1976D2;
+        }
+        
+        .status-live {
+            background-color: #FFF3E0;
+            color: #F57C00;
+        }
+        
+        .status-ended {
+            background-color: #F5F5F5;
+            color: #757575;
+        }
+        
+        /* Countdown timer */
+        .countdown-unit {
+            text-align: center;
+            min-width: 60px;
+        }
+        
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--bt-primary);
+        }
+        
+        .countdown-label {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center gap-8">
+                    <div class="text-2xl font-bold">
+                        <span class="text-bt-primary">BigTopa</span>
+                        <span class="text-gray-400 text-sm ml-2">Event Wireframes</span>
+                    </div>
+                    <div class="hidden md:flex gap-4">
+                        <button onclick="showExample('single-day')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-bt-primary transition">Single Day</button>
+                        <button onclick="showExample('multi-day')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-bt-primary transition">Multi-Day</button>
+                        <button onclick="showExample('conference')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-bt-primary transition">Conference</button>
+                        <button onclick="showExample('hybrid')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-bt-primary transition">Hybrid Event</button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-gray-500">Preview Mode:</span>
+                    <select id="viewMode" onchange="changeViewMode()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                        <option value="public">Public View</option>
+                        <option value="attendee">Attendee View</option>
+                        <option value="facilitator">Facilitator View</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Example Selector -->
+        <div class="mb-8 bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Event Landing Page Examples</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <button onclick="showExample('single-day')" class="example-btn p-4 border-2 border-gray-200 rounded-lg hover:border-bt-primary transition text-left">
+                    <div class="font-medium text-gray-900">Single Day Event</div>
+                    <div class="text-sm text-gray-500 mt-1">Workshop, Webinar, Launch</div>
+                </button>
+                <button onclick="showExample('multi-day')" class="example-btn p-4 border-2 border-gray-200 rounded-lg hover:border-bt-primary transition text-left">
+                    <div class="font-medium text-gray-900">Multi-Day Event</div>
+                    <div class="text-sm text-gray-500 mt-1">Training, Festival, Retreat</div>
+                </button>
+                <button onclick="showExample('conference')" class="example-btn p-4 border-2 border-gray-200 rounded-lg hover:border-bt-primary transition text-left">
+                    <div class="font-medium text-gray-900">Conference</div>
+                    <div class="text-sm text-gray-500 mt-1">Multiple tracks, sessions</div>
+                </button>
+                <button onclick="showExample('hybrid')" class="example-btn p-4 border-2 border-gray-200 rounded-lg hover:border-bt-primary transition text-left">
+                    <div class="font-medium text-gray-900">Hybrid Event</div>
+                    <div class="text-sm text-gray-500 mt-1">Online + In-person</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Event Landing Pages -->
+        <div id="eventExamples">
+            <!-- Examples will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        let currentView = 'public';
+        
+        function changeViewMode() {
+            currentView = document.getElementById('viewMode').value;
+            // Re-render current example with new view
+            const currentExample = document.querySelector('[data-example].active');
+            if (currentExample) {
+                showExample(currentExample.dataset.example);
+            }
+        }
+        
+        function showExample(exampleType) {
+            const container = document.getElementById('eventExamples');
+            
+            // Mark active example
+            document.querySelectorAll('.example-btn').forEach(btn => {
+                btn.classList.remove('border-bt-primary', 'bg-orange-50');
+            });
+            event.target.closest('.example-btn')?.classList.add('border-bt-primary', 'bg-orange-50');
+            
+            switch(exampleType) {
+                case 'single-day':
+                    container.innerHTML = renderSingleDayEvent();
+                    break;
+                case 'multi-day':
+                    container.innerHTML = renderMultiDayEvent();
+                    break;
+                case 'conference':
+                    container.innerHTML = renderConferenceEvent();
+                    break;
+                case 'hybrid':
+                    container.innerHTML = renderHybridEvent();
+                    break;
+                default:
+                    container.innerHTML = renderSingleDayEvent();
+            }
+            
+            container.setAttribute('data-example', exampleType);
+            container.classList.add('active', 'fade-in');
+        }
+        
+        // Single Day Event Template
+        function renderSingleDayEvent() {
+            return `
+                <div class="space-y-6">
+                    <!-- Hero Section -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-r from-orange-400 to-pink-500">
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-upcoming">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Upcoming
+                                </span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="px-3 py-1 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-sm">
+                                        Online Event
+                                    </span>
+                                </div>
+                                <h1 class="text-4xl font-bold mb-2">Product Design Masterclass</h1>
+                                <p class="text-lg text-white text-opacity-90">Learn the fundamentals of user-centered design</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Event Info Bar -->
+                        <div class="bg-gray-50 border-y border-gray-200 px-8 py-4">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <div>
+                                        <div class="text-sm text-gray-500">Date</div>
+                                        <div class="font-medium">March 15, 2026</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <div>
+                                        <div class="text-sm text-gray-500">Time</div>
+                                        <div class="font-medium">2:00 PM - 6:00 PM EST</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <div>
+                                        <div class="text-sm text-gray-500">Attendees</div>
+                                        <div class="font-medium">247 registered</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                    </svg>
+                                    <div>
+                                        <div class="text-sm text-gray-500">Format</div>
+                                        <div class="font-medium">Live Webinar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Countdown Timer -->
+                        <div class="bg-gradient-to-r from-orange-50 to-pink-50 px-8 py-6">
+                            <div class="flex items-center justify-center gap-8">
+                                <div class="countdown-unit">
+                                    <div class="countdown-value">28</div>
+                                    <div class="countdown-label">Days</div>
+                                </div>
+                                <div class="text-2xl text-gray-300">:</div>
+                                <div class="countdown-unit">
+                                    <div class="countdown-value">14</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="text-2xl text-gray-300">:</div>
+                                <div class="countdown-unit">
+                                    <div class="countdown-value">32</div>
+                                    <div class="countdown-label">Minutes</div>
+                                </div>
+                                <div class="text-2xl text-gray-300">:</div>
+                                <div class="countdown-unit">
+                                    <div class="countdown-value">18</div>
+                                    <div class="countdown-label">Seconds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Left Column: Event Details -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <!-- About -->
+                            <div class="bg-white rounded-lg shadow-sm p-8">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
+                                <div class="prose max-w-none text-gray-600">
+                                    <p>Join us for an intensive 4-hour masterclass where you'll learn the essential principles and practices of modern product design. This hands-on workshop will cover:</p>
+                                    <ul class="mt-4 space-y-2">
+                                        <li>User research and persona development</li>
+                                        <li>Design thinking methodology</li>
+                                        <li>Prototyping and wireframing</li>
+                                        <li>Usability testing and iteration</li>
+                                        <li>Design systems and component libraries</li>
+                                    </ul>
+                                    <p class="mt-4">Perfect for designers, product managers, and developers looking to enhance their design skills.</p>
+                                </div>
+                                
+                                <!-- What You'll Get -->
+                                <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                                    <h3 class="font-semibold text-gray-900 mb-4">What's Included:</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span class="text-gray-700">4-hour live workshop</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span class="text-gray-700">Downloadable resources</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span class="text-gray-700">Recording access (7 days)</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span class="text-gray-700">Certificate of completion</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Instructor -->
+                            <div class="bg-white rounded-lg shadow-sm p-8">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-6">Your Instructor</h2>
+                                <div class="flex items-start gap-6">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='80' height='80' fill='%23FF6B35'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='32' fill='white'%3ESJ%3C/text%3E%3C/svg%3E" 
+                                         alt="Instructor" 
+                                         class="w-20 h-20 rounded-full">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Sarah Johnson</h3>
+                                        <p class="text-gray-600 mb-3">Lead Product Designer at TechCorp</p>
+                                        <p class="text-gray-600">Sarah has 10+ years of experience in product design, having led design teams at Fortune 500 companies. She's passionate about teaching design thinking and has trained over 5,000 designers worldwide.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Tickets & Commerce -->
+                        <div class="space-y-6">
+                            <!-- Ticket Selection -->
+                            <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                                <h2 class="text-xl font-bold text-gray-900 mb-4">Get Your Ticket</h2>
+                                
+                                <!-- Ticket Options -->
+                                <div class="space-y-3 mb-6">
+                                    ${renderTicketCard({
+                                        name: 'Standard Access',
+                                        price: 49,
+                                        description: 'Live workshop access + 7-day recording',
+                                        available: 143,
+                                        features: ['Live workshop', 'Recording access', 'Basic resources']
+                                    })}
+                                    
+                                    ${renderTicketCard({
+                                        name: 'VIP Pass',
+                                        price: 99,
+                                        description: 'Everything + Q&A session + premium resources',
+                                        available: 23,
+                                        features: ['Everything in Standard', '30-min Q&A with instructor', 'Premium resource pack', 'Priority support'],
+                                        recommended: true
+                                    })}
+                                </div>
+                                
+                                <button class="w-full bt-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
+                                    Purchase Ticket
+                                </button>
+                                
+                                <div class="mt-4 text-center text-sm text-gray-500">
+                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Secure payment via Stripe
+                                </div>
+                            </div>
+                            
+                            <!-- Support This Event -->
+                            <div class="bg-white rounded-lg shadow-sm p-6">
+                                <h3 class="font-semibold text-gray-900 mb-3">Support This Event</h3>
+                                <p class="text-sm text-gray-600 mb-4">Help us make design education accessible to everyone</p>
+                                <button class="w-full border-2 border-bt-primary text-bt-primary font-medium py-2 px-4 rounded-lg hover:bg-orange-50 transition">
+                                    Make a Donation
+                                </button>
+                            </div>
+                            
+                            <!-- Resources -->
+                            <div class="bg-white rounded-lg shadow-sm p-6">
+                                <h3 class="font-semibold text-gray-900 mb-3">Event Resources</h3>
+                                <div class="space-y-3">
+                                    <a href="#" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                        <div class="flex items-center gap-3">
+                                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">Workshop Prep Guide</div>
+                                                <div class="text-xs text-gray-500">PDF • 2.4 MB</div>
+                                            </div>
+                                        </div>
+                                        <span class="text-bt-primary text-sm font-medium">$9</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                        <div class="flex items-center gap-3">
+                                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">Figma Template Pack</div>
+                                                <div class="text-xs text-gray-500">Figma File</div>
+                                            </div>
+                                        </div>
+                                        <span class="text-bt-primary text-sm font-medium">$19</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${currentView === 'facilitator' ? renderFacilitatorDashboard() : ''}
+                </div>
+            `;
+        }
+        
+        // Multi-Day Event Template
+        function renderMultiDayEvent() {
+            return `
+                <div class="space-y-6">
+                    <!-- Hero Section -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="relative h-80 bg-gradient-to-r from-purple-600 to-blue-500">
+                            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-upcoming">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Starts in 42 days
+                                </span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="px-3 py-1 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-sm">
+                                        3-Day Intensive
+                                    </span>
+                                    <span class="px-3 py-1 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-sm">
+                                        Online + In-Person
+                                    </span>
+                                </div>
+                                <h1 class="text-5xl font-bold mb-3">Leadership Summit 2026</h1>
+                                <p class="text-xl text-white text-opacity-90">Transform your leadership style and build high-performing teams</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Event Info Bar -->
+                        <div class="bg-gray-50 border-y border-gray-200 px-8 py-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div>
+                                    <div class="text-sm text-gray-500 mb-1">Event Duration</div>
+                                    <div class="text-2xl font-bold text-gray-900">April 12-14, 2026</div>
+                                    <div class="text-sm text-gray-600 mt-1">3 days • 18 sessions</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500 mb-1">Location</div>
+                                    <div class="text-2xl font-bold text-gray-900">San Francisco, CA</div>
+                                    <div class="text-sm text-gray-600 mt-1">+ Virtual attendance option</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500 mb-1">Attendance</div>
+                                    <div class="text-2xl font-bold text-gray-900">1,247 registered</div>
+                                    <div class="text-sm text-gray-600 mt-1">823 in-person • 424 virtual</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Schedule Tabs -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <div class="border-b border-gray-200">
+                            <nav class="flex gap-8 px-8" aria-label="Tabs">
+                                <button onclick="switchTab('schedule')" class="tab-button active py-4 text-sm font-medium text-gray-900">
+                                    Schedule
+                                </button>
+                                <button onclick="switchTab('speakers')" class="tab-button py-4 text-sm font-medium text-gray-500 hover:text-gray-900">
+                                    Speakers
+                                </button>
+                                <button onclick="switchTab('tickets')" class="tab-button py-4 text-sm font-medium text-gray-500 hover:text-gray-900">
+                                    Tickets
+                                </button>
+                                <button onclick="switchTab('venue')" class="tab-button py-4 text-sm font-medium text-gray-500 hover:text-gray-900">
+                                    Venue Info
+                                </button>
+                            </nav>
+                        </div>
+                        
+                        <!-- Schedule Content -->
+                        <div class="p-8">
+                            <div class="space-y-8">
+                                <!-- Day 1 -->
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="text-3xl font-bold text-bt-primary">Day 1</div>
+                                        <div class="text-lg text-gray-600">Monday, April 12</div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        ${renderSessionCard({
+                                            time: '9:00 AM - 10:30 AM',
+                                            title: 'Opening Keynote: The Future of Leadership',
+                                            speaker: 'Dr. Marcus Chen',
+                                            location: 'Main Hall',
+                                            type: 'Keynote',
+                                            attendees: 847
+                                        })}
+                                        ${renderSessionCard({
+                                            time: '11:00 AM - 12:30 PM',
+                                            title: 'Building Trust in Remote Teams',
+                                            speaker: 'Sarah Martinez',
+                                            location: 'Room A',
+                                            type: 'Workshop',
+                                            attendees: 120
+                                        })}
+                                        ${renderSessionCard({
+                                            time: '2:00 PM - 3:30 PM',
+                                            title: 'Data-Driven Decision Making',
+                                            speaker: 'James Patterson',
+                                            location: 'Room B',
+                                            type: 'Workshop',
+                                            attendees: 98
+                                        })}
+                                        ${renderSessionCard({
+                                            time: '4:00 PM - 5:30 PM',
+                                            title: 'Panel: Leading Through Change',
+                                            speaker: 'Multiple Speakers',
+                                            location: 'Main Hall',
+                                            type: 'Panel',
+                                            attendees: 623
+                                        })}
+                                    </div>
+                                </div>
+                                
+                                <!-- Day 2 -->
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="text-3xl font-bold text-bt-primary">Day 2</div>
+                                        <div class="text-lg text-gray-600">Tuesday, April 13</div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        ${renderSessionCard({
+                                            time: '9:00 AM - 10:30 AM',
+                                            title: 'Emotional Intelligence for Leaders',
+                                            speaker: 'Dr. Amanda Liu',
+                                            location: 'Main Hall',
+                                            type: 'Keynote',
+                                            attendees: 789
+                                        })}
+                                        ${renderSessionCard({
+                                            time: '11:00 AM - 12:30 PM',
+                                            title: 'Conflict Resolution Strategies',
+                                            speaker: 'Michael Torres',
+                                            location: 'Room A',
+                                            type: 'Workshop',
+                                            attendees: 145
+                                        })}
+                                    </div>
+                                </div>
+                                
+                                <!-- Day 3 Preview -->
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="text-3xl font-bold text-bt-primary">Day 3</div>
+                                        <div class="text-lg text-gray-600">Wednesday, April 14</div>
+                                    </div>
+                                    <div class="text-gray-500 italic">Full schedule to be announced</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tickets Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        ${renderEventTicket({
+                            name: 'Virtual Pass',
+                            price: 299,
+                            description: 'Full access to all sessions online',
+                            features: [
+                                'Live stream of all sessions',
+                                '30-day recording access',
+                                'Digital workbooks',
+                                'Virtual networking',
+                                'Certificate of attendance'
+                            ],
+                            available: 276,
+                            popular: false
+                        })}
+                        
+                        ${renderEventTicket({
+                            name: 'In-Person Pass',
+                            price: 799,
+                            description: 'Full conference experience',
+                            features: [
+                                'Access to all sessions',
+                                'Networking events',
+                                'Lunch & refreshments',
+                                'Workshop materials',
+                                'Recording access',
+                                'Swag bag'
+                            ],
+                            available: 43,
+                            popular: true
+                        })}
+                        
+                        ${renderEventTicket({
+                            name: 'VIP All-Access',
+                            price: 1299,
+                            description: 'Premium experience + exclusive perks',
+                            features: [
+                                'Everything in In-Person',
+                                'VIP lounge access',
+                                'Private speaker sessions',
+                                'Premium seating',
+                                '1-on-1 coaching session',
+                                'Exclusive dinner'
+                            ],
+                            available: 12,
+                            popular: false
+                        })}
+                    </div>
+                    
+                    ${currentView === 'facilitator' ? renderMultiDayFacilitatorView() : ''}
+                </div>
+            `;
+        }
+        
+        // Conference Event Template
+        function renderConferenceEvent() {
+            return `
+                <div class="space-y-6">
+                    <!-- Hero -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="relative h-96 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                            <div class="absolute top-4 left-4">
+                                <div class="bg-white rounded-lg px-4 py-2">
+                                    <div class="text-xs text-gray-500">Annual Conference</div>
+                                    <div class="text-2xl font-bold text-gray-900">2026</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="status-badge status-upcoming">
+                                    June 5-7, 2026
+                                </span>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white px-8">
+                                    <h1 class="text-6xl font-bold mb-4">TechVision Conference</h1>
+                                    <p class="text-2xl mb-8">The Future of Technology & Innovation</p>
+                                    <div class="flex items-center justify-center gap-6 text-lg">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span>50+ Speakers</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z"/>
+                                            </svg>
+                                            <span>100+ Sessions</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <span>4 Tracks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 border-t border-gray-200">
+                            <div class="p-6 border-r border-gray-200">
+                                <div class="text-3xl font-bold text-bt-primary">3,247</div>
+                                <div class="text-sm text-gray-600">Total Attendees</div>
+                            </div>
+                            <div class="p-6 border-r border-gray-200">
+                                <div class="text-3xl font-bold text-bt-primary">2,891</div>
+                                <div class="text-sm text-gray-600">In-Person</div>
+                            </div>
+                            <div class="p-6 border-r border-gray-200">
+                                <div class="text-3xl font-bold text-bt-primary">356</div>
+                                <div class="text-sm text-gray-600">Virtual</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-3xl font-bold text-bt-primary">89%</div>
+                                <div class="text-sm text-gray-600">Capacity</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conference Tracks -->
+                    <div class="bg-white rounded-lg shadow-sm p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Conference Tracks</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            ${renderTrackCard({
+                                name: 'AI & Machine Learning',
+                                color: 'blue',
+                                sessions: 28,
+                                icon: `<path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>`
+                            })}
+                            ${renderTrackCard({
+                                name: 'Cloud & DevOps',
+                                color: 'purple',
+                                sessions: 24,
+                                icon: `<path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>`
+                            })}
+                            ${renderTrackCard({
+                                name: 'Security & Privacy',
+                                color: 'red',
+                                sessions: 22,
+                                icon: `<path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>`
+                            })}
+                            ${renderTrackCard({
+                                name: 'Web3 & Blockchain',
+                                color: 'green',
+                                sessions: 26,
+                                icon: `<path d="M13 10V3L4 14h7v7l9-11h-7z"/>`
+                            })}
+                        </div>
+                    </div>
+                    
+                    <!-- Ticket Options -->
+                    <div class="bg-white rounded-lg shadow-sm p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Choose Your Pass</h2>
+                        <p class="text-gray-600 mb-8">All passes include access to all tracks and networking events</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                            <div class="border-2 border-gray-200 rounded-xl p-6 hover:border-bt-primary transition">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-900">Conference Pass</h3>
+                                        <p class="text-gray-600 text-sm">Full 3-day access</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold text-gray-900">$899</div>
+                                        <div class="text-sm text-gray-500">per person</div>
+                                    </div>
+                                </div>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        All sessions & workshops
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        Networking events
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        Meals & refreshments
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        90-day recording access
+                                    </li>
+                                </ul>
+                                <button class="w-full bt-primary text-white font-semibold py-3 rounded-lg hover:opacity-90 transition">
+                                    Select Pass
+                                </button>
+                            </div>
+                            
+                            <div class="border-2 border-bt-primary rounded-xl p-6 bg-gradient-to-br from-orange-50 to-pink-50 relative">
+                                <div class="absolute top-4 right-4">
+                                    <span class="bg-bt-primary text-white text-xs font-bold px-3 py-1 rounded-full">BEST VALUE</span>
+                                </div>
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-900">VIP Experience</h3>
+                                        <p class="text-gray-600 text-sm">Premium access + exclusive perks</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold text-gray-900">$1,799</div>
+                                        <div class="text-sm text-gray-500">per person</div>
+                                    </div>
+                                </div>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        Everything in Conference Pass
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        <strong>VIP lounge access</strong>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        <strong>Private speaker sessions</strong>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        Front row seating
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        VIP networking dinner
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-700">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        Premium swag package
+                                    </li>
+                                </ul>
+                                <button class="w-full bt-primary text-white font-semibold py-3 rounded-lg hover:opacity-90 transition shadow-lg">
+                                    Select VIP Pass
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Group Discounts -->
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Team Discounts Available</h3>
+                                    <p class="text-gray-600">Save up to 25% when registering 5 or more people</p>
+                                </div>
+                                <button class="bg-white text-bt-primary font-medium px-6 py-3 rounded-lg border-2 border-bt-primary hover:bg-orange-50 transition">
+                                    Contact Sales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Hybrid Event Template
+        function renderHybridEvent() {
+            return `
+                <div class="space-y-6">
+                    <!-- Hero -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="relative h-72 bg-gradient-to-r from-teal-500 to-cyan-600">
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                            <div class="absolute top-4 right-4 flex gap-2">
+                                <span class="px-3 py-1 bg-white bg-opacity-90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-900">
+                                    🏢 In-Person
+                                </span>
+                                <span class="px-3 py-1 bg-white bg-opacity-90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-900">
+                                    💻 Virtual
+                                </span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                <h1 class="text-5xl font-bold mb-3">Global Innovation Summit</h1>
+                                <p class="text-xl text-white text-opacity-90">Join us from anywhere in the world</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 border-t border-gray-200">
+                            <div class="p-8 border-r border-gray-200">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900">In-Person Venue</h3>
+                                        <p class="text-gray-600">New York Convention Center</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm text-gray-600">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                                        123 Convention Ave, New York, NY 10001
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                                        1,847 in-person attendees
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-8">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900">Virtual Platform</h3>
+                                        <p class="text-gray-600">Live streaming + networking</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm text-gray-600">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/></svg>
+                                        HD live streams of all sessions
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                                        3,219 virtual attendees
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ticket Comparison -->
+                    <div class="bg-white rounded-lg shadow-sm p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Choose Your Experience</h2>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            ${renderHybridTicket({
+                                name: 'Virtual Attendee',
+                                price: 199,
+                                type: 'virtual',
+                                features: [
+                                    'Live stream of all sessions',
+                                    'Virtual networking rooms',
+                                    'Q&A participation',
+                                    '60-day recording access',
+                                    'Digital resources',
+                                    'Certificate of attendance'
+                                ]
+                            })}
+                            
+                            ${renderHybridTicket({
+                                name: 'In-Person Pass',
+                                price: 699,
+                                type: 'inperson',
+                                features: [
+                                    'Physical venue access',
+                                    'All sessions & workshops',
+                                    'Networking events',
+                                    'Meals & refreshments',
+                                    'Recording access',
+                                    'Swag bag'
+                                ],
+                                popular: true
+                            })}
+                            
+                            ${renderHybridTicket({
+                                name: 'Hybrid Premium',
+                                price: 899,
+                                type: 'hybrid',
+                                features: [
+                                    'In-person OR virtual (your choice)',
+                                    'Flexible attendance',
+                                    'VIP lounge access',
+                                    'Priority seating',
+                                    'Extended recording (90 days)',
+                                    'Premium materials'
+                                ]
+                            })}
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ -->
+                    <div class="bg-white rounded-lg shadow-sm p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                        <div class="space-y-4">
+                            ${renderFAQItem('Can I switch from virtual to in-person?', 'Yes! If you purchase a Hybrid Premium ticket, you can decide on the day. For standard tickets, contact us at least 7 days before the event to upgrade.')}
+                            ${renderFAQItem('Will virtual attendees be able to interact?', 'Absolutely. Virtual attendees can participate in Q&A sessions, join virtual networking rooms, and chat with both in-person and virtual attendees.')}
+                            ${renderFAQItem('What if I cant attend live?', 'All ticket holders get recording access. Virtual attendees get 60 days, in-person get 30 days, and Hybrid Premium get 90 days.')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Ticket Card
+        function renderTicketCard({ name, price, description, available, features, recommended = false }) {
+            return `
+                <div class="ticket-card border-2 ${recommended ? 'border-bt-primary bg-orange-50' : 'border-gray-200'} rounded-lg p-4 cursor-pointer relative">
+                    ${recommended ? '<div class="absolute -top-3 right-4"><span class="bg-bt-primary text-white text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</span></div>' : ''}
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900">${name}</h3>
+                            <p class="text-sm text-gray-600 mt-1">${description}</p>
+                        </div>
+                        <div class="text-right ml-4">
+                            <div class="text-2xl font-bold text-gray-900">$${price}</div>
+                        </div>
+                    </div>
+                    ${features ? `
+                        <ul class="space-y-1 mb-3">
+                            ${features.map(f => `
+                                <li class="text-xs text-gray-600 flex items-center gap-1">
+                                    <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                    ${f}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    ` : ''}
+                    <div class="text-xs text-gray-500">${available} tickets available</div>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Event Ticket
+        function renderEventTicket({ name, price, description, features, available, popular }) {
+            return `
+                <div class="ticket-card border-2 ${popular ? 'border-bt-primary' : 'border-gray-200'} rounded-lg p-6 ${popular ? 'bg-gradient-to-br from-orange-50 to-pink-50' : 'bg-white'} relative">
+                    ${popular ? '<div class="absolute -top-3 right-6"><span class="bg-bt-primary text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span></div>' : ''}
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">${name}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${description}</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$${price}</span>
+                        <span class="text-gray-500"> / person</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        ${features.map(f => `
+                            <li class="flex items-start gap-2 text-sm text-gray-700">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                ${f}
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <div class="text-sm text-gray-500 mb-4">${available} tickets remaining</div>
+                    <button class="w-full ${popular ? 'bt-primary' : 'border-2 border-gray-300'} ${popular ? 'text-white' : 'text-gray-900'} font-semibold py-3 rounded-lg hover:opacity-90 transition">
+                        Select Pass
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Session Card
+        function renderSessionCard({ time, title, speaker, location, type, attendees }) {
+            const typeColors = {
+                'Keynote': 'bg-purple-100 text-purple-700',
+                'Workshop': 'bg-blue-100 text-blue-700',
+                'Panel': 'bg-green-100 text-green-700'
+            };
+            
+            return `
+                <div class="border border-gray-200 rounded-lg p-4 hover:border-bt-primary hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-sm font-medium text-gray-500">${time}</span>
+                                <span class="px-2 py-1 ${typeColors[type] || 'bg-gray-100 text-gray-700'} text-xs font-medium rounded">${type}</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-1">${title}</h4>
+                            <p class="text-sm text-gray-600">${speaker}</p>
+                        </div>
+                        <div class="text-right ml-4">
+                            <div class="text-sm text-gray-500">${location}</div>
+                            <div class="text-xs text-gray-400 mt-1">${attendees} attending</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Track Card
+        function renderTrackCard({ name, color, sessions, icon }) {
+            const colors = {
+                'blue': 'from-blue-500 to-blue-600',
+                'purple': 'from-purple-500 to-purple-600',
+                'red': 'from-red-500 to-red-600',
+                'green': 'from-green-500 to-green-600'
+            };
+            
+            return `
+                <div class="bg-gradient-to-br ${colors[color]} rounded-lg p-6 text-white cursor-pointer hover:scale-105 transition">
+                    <svg class="w-8 h-8 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        ${icon}
+                    </svg>
+                    <h3 class="font-bold text-lg mb-2">${name}</h3>
+                    <p class="text-white text-opacity-90 text-sm">${sessions} sessions</p>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Hybrid Ticket
+        function renderHybridTicket({ name, price, type, features, popular = false }) {
+            const icons = {
+                'virtual': `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>`,
+                'inperson': `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>`,
+                'hybrid': `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>`
+            };
+            
+            return `
+                <div class="border-2 ${popular ? 'border-bt-primary bg-orange-50' : 'border-gray-200 bg-white'} rounded-lg p-6 relative">
+                    ${popular ? '<div class="absolute -top-3 right-6"><span class="bg-bt-primary text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</span></div>' : ''}
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${icons[type]}
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${name}</h3>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-gray-900">$${price}</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        ${features.map(f => `
+                            <li class="flex items-start gap-2 text-sm text-gray-700">
+                                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                ${f}
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <button class="w-full ${popular ? 'bt-primary text-white' : 'border-2 border-gray-300 text-gray-900'} font-semibold py-3 rounded-lg hover:opacity-90 transition">
+                        Select
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Helper: Render FAQ Item
+        function renderFAQItem(question, answer) {
+            return `
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-900">${question}</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="px-4 pb-4 text-gray-600 text-sm">
+                        ${answer}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Helper: Render Facilitator Dashboard
+        function renderFacilitatorDashboard() {
+            return `
+                <div class="bg-white rounded-lg shadow-sm p-8 mt-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">Event Dashboard</h2>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">Facilitator View</span>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                            <div class="text-blue-600 text-sm font-medium mb-1">Total Revenue</div>
+                            <div class="text-3xl font-bold text-gray-900">$12,103</div>
+                            <div class="text-sm text-gray-600 mt-2">247 tickets sold</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
+                            <div class="text-green-600 text-sm font-medium mb-1">Registrations</div>
+                            <div class="text-3xl font-bold text-gray-900">247</div>
+                            <div class="text-sm text-gray-600 mt-2">+23 this week</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                            <div class="text-purple-600 text-sm font-medium mb-1">Checked In</div>
+                            <div class="text-3xl font-bold text-gray-900">0</div>
+                            <div class="text-sm text-gray-600 mt-2">Event not started</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6">
+                            <div class="text-orange-600 text-sm font-medium mb-1">Capacity</div>
+                            <div class="text-3xl font-bold text-gray-900">82%</div>
+                            <div class="text-sm text-gray-600 mt-2">53 spots left</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Attendees -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Registrations</h3>
+                            <button class="text-bt-primary text-sm font-medium hover:underline">View all attendees →</button>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ticket Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Purchased</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Emma Wilson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">VIP Pass</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">2 hours ago</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Confirmed</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Michael Chen</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Standard Access</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5 hours ago</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Confirmed</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sarah Johnson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">VIP Pass</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1 day ago</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Confirmed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Helper: Multi-day facilitator view
+        function renderMultiDayFacilitatorView() {
+            return `
+                <div class="bg-white rounded-lg shadow-sm p-8 mt-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Event Analytics Dashboard</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6">
+                            <div class="text-indigo-600 text-sm font-medium mb-1">Total Revenue</div>
+                            <div class="text-3xl font-bold text-gray-900">$623,453</div>
+                            <div class="text-sm text-gray-600 mt-2">1,247 tickets • Avg $500</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6">
+                            <div class="text-teal-600 text-sm font-medium mb-1">By Ticket Type</div>
+                            <div class="space-y-1 mt-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-700">Virtual</span>
+                                    <span class="font-semibold text-gray-900">424 ($127k)</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-700">In-Person</span>
+                                    <span class="font-semibold text-gray-900">811 ($458k)</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-700">VIP</span>
+                                    <span class="font-semibold text-gray-900">12 ($16k)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg p-6">
+                            <div class="text-rose-600 text-sm font-medium mb-1">Donations</div>
+                            <div class="text-3xl font-bold text-gray-900">$8,247</div>
+                            <div class="text-sm text-gray-600 mt-2">From 89 supporters</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active', 'text-gray-900');
+                btn.classList.add('text-gray-500');
+            });
+            event.target.classList.remove('text-gray-500');
+            event.target.classList.add('active', 'text-gray-900');
+        }
+        
+        // Initialize with single-day example
+        window.addEventListener('load', () => {
+            showExample('single-day');
+        });
+    </script>
+</body>
+</html>
