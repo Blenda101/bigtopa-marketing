@@ -15,6 +15,7 @@
   --teal:#2ABFBF;--violet:#7B5CF0;--lime:#A8C840;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+a{color:inherit;text-decoration:none}
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 
@@ -61,16 +62,12 @@ h2 em{color:var(--accent);font-style:italic}
 .hero-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
 
 /* ══ CORE INTERACTIVE DIAGRAM ══ */
-
-/* CHANGE 1: narrower left diagram — 380px fixed, detail panel takes the rest */
 .core-outer{display:grid;grid-template-columns:380px 1fr;gap:16px;align-items:start}
-
 .core-diagram{border:1px solid var(--edge);border-radius:14px;overflow:hidden;background:var(--ink2)}
 .cd-header{padding:11px 18px;background:var(--ink3);border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between}
 .cd-header-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--muted)}
 .cd-body{padding:14px}
 
-/* Spaces — Major Core block */
 .spaces-block{border:2px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-bottom:8px;cursor:pointer;transition:border-color .2s}
 .spaces-block:hover{border-color:rgba(255,255,255,.25)}
 .spaces-block.active{border-color:var(--accent)}
@@ -78,14 +75,9 @@ h2 em{color:var(--accent);font-style:italic}
 .sb-head-icon{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);flex-shrink:0}
 .sb-major-badge{font-size:9px;padding:2px 7px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--muted);letter-spacing:.5px;text-transform:uppercase;font-weight:600}
 .sb-label{font-size:13px;font-weight:600;color:var(--white);flex:1}
-.sb-hint{font-size:10px;color:var(--hint)}
-
-/* Streams + Meetups side by side */
 .sb-children{padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
 
-/* Unified block height */
 .block-h{min-height:64px}
-
 .sub-block{border-radius:7px;padding:10px 12px;cursor:pointer;transition:all .18s;border:1px solid;display:flex;align-items:center;gap:10px}
 .sub-block.streams{border-color:rgba(42,191,191,.2);background:rgba(42,191,191,.05)}
 .sub-block.streams:hover,.sub-block.streams.active{border-color:rgba(42,191,191,.5);background:rgba(42,191,191,.1)}
@@ -99,9 +91,7 @@ h2 em{color:var(--accent);font-style:italic}
 .badge-on{background:rgba(42,191,191,.12);color:var(--teal);border:1px solid rgba(42,191,191,.2)}
 .badge-opt{background:rgba(232,98,26,.1);color:var(--accent);border:1px solid rgba(232,98,26,.2)}
 
-/* CHANGE 2: Core modules — 2x2 grid instead of 4 across */
 .core-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-
 .core-chip{border-radius:7px;padding:10px 8px;cursor:pointer;border:1px solid var(--edge);background:var(--ink3);transition:all .18s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px}
 .core-chip:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
 .core-chip.active{border-color:var(--active-color);background:rgba(var(--active-rgb),.08)}
@@ -160,7 +150,7 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
 .flogo{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(250,251,255,.3)}
 .flogo span{color:rgba(232,98,26,.4)}
 .flinks{display:flex;gap:20px}
-.flinks a{font-size:12px;color:var(--hint);text-decoration:none;transition:color .15s}
+.flinks a{font-size:12px;color:var(--hint);transition:color .15s}
 .flinks a:hover{color:var(--muted)}
 
 /* RESPONSIVE */
@@ -187,7 +177,7 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
 
 <nav>
   <div class="nav-i">
-    <a href="index.html" class="nav-logo"><img src="assets/logo_only.svg" alt="BigTopa" style="height:32px;width:auto;display:block;"></a>
+    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
     <div class="nl">
       <a href="platform.html" class="nlink">Platform</a>
       <a href="how-it-works.html" class="nlink act">How It Works</a>
@@ -196,7 +186,7 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
     </div>
     <div class="nr">
       <a href="#" class="nsign">Sign in</a>
-      <a href="bigtopa-index.html#cta" class="nbtn">Request Access</a>
+      <a href="index.html#cta" class="nbtn">Request Access</a>
     </div>
   </div>
 </nav>
@@ -220,7 +210,6 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
   <p class="sec-p">Click any block to learn what it does, what's always on, what's optional, and what features it includes.</p>
 
   <div class="core-outer">
-    <!-- LEFT: narrow diagram -->
     <div>
       <div class="core-diagram">
         <div class="cd-header">
@@ -259,7 +248,6 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
 
           <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);font-weight:600;margin:8px 0 6px">Core modules &amp; capabilities</div>
 
-          <!-- 2×2 grid -->
           <div class="core-row">
             <div class="core-chip block-h" data-block="marketing" style="--active-color:var(--accent);--active-rgb:232,98,26">
               <div class="cc-icon-wrap" style="background:rgba(232,98,26,.1)">
@@ -294,8 +282,6 @@ footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px
         </div>
       </div>
     </div>
-
-    <!-- RIGHT: detail panel — wider now -->
     <div class="detail-panel" id="detail-panel"></div>
   </div>
 </div>
