@@ -1,1184 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- HTML Meta Tags -->
-    
-    <title>All-in-one virtual spaces platform for real people!</title>
-    <meta name="description" content="Step into BigTopa's digital big top, where you're the ringmaster - transforming the complexity of team collaboration and member engagement into the greatest show on earth">
-    <meta property="og:site_name" content="BigTopa: Pricing"/>
-    
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://www.bigtopa.com">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="All-in-one virtual spaces platform for real people!">
-    <meta property="og:description" content="Step into BigTopa's digital big top, where you're the ringmaster - transforming the complexity of team collaboration and member engagement into the greatest show on earth">
-    <meta property="og:image" content="https://bigtopa.com/asstes/images/superpower1.png">
-    
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="bigtopa.com">
-    <meta property="twitter:url" content="https://www.bigtopa.com">
-    <meta name="twitter:title" content="All-in-one virtual spaces platform for real people!">
-    <meta name="twitter:description" content="Step into BigTopa's digital big top, where you're the ringmaster - transforming the complexity of team collaboration and member engagement into the greatest show on earth">
-    <meta name="twitter:image" content="https://bigtopa.com/asstes/images/superpower1.png"><title>BigTopa</title>
-    
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./asstes/css/stylesheet.css" />
-    <link rel="stylesheet" href="./asstes/css/responsive.css" />
-    <link rel="stylesheet" href="./asstes/css/font.css" />
-  </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigTopa — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+<style>
+:root{
+  --ink:#080C14;--ink2:#0D1220;--ink3:#141B2D;
+  --edge:#1E2840;--rule:#FFFFFF0F;--rule2:#FFFFFF18;
+  --white:#FAFBFF;--muted:#8892A4;--hint:#4D5A70;
+  --accent:#E8621A;--accent2:#FF7A35;
+  --teal:#2ABFBF;--violet:#7B5CF0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 
-  <body>
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;border-bottom:1px solid var(--rule);backdrop-filter:blur(20px);background:rgba(8,12,20,.88)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:60px;max-width:1400px;margin:0 auto}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nl{display:flex;gap:2px}
+.nlink{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:6px;transition:color .15s,background .15s}
+.nlink:hover,.nlink.active{color:var(--white);background:var(--rule)}
+.nlink.active{color:var(--accent)}
+.nr{display:flex;gap:10px;align-items:center}
+.nghst{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 12px}
+.nghst:hover{color:var(--white)}
+.nbtn{background:var(--accent);color:var(--white);padding:8px 20px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;transition:background .2s}
+.nbtn:hover{background:var(--accent2)}
+.mtog{display:none;flex-direction:column;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;align-items:center;justify-content:center}
+.mtog span{display:block;height:1.5px;width:22px;background:var(--white);transition:transform .25s,opacity .25s;border-radius:2px}
+.mtog.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.mtog.open span:nth-child(2){opacity:0}
+.mtog.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob-drawer{position:fixed;top:60px;left:0;right:0;bottom:0;z-index:200;background:var(--ink2);transform:translateX(100%);transition:transform .28s ease;padding:24px;overflow-y:auto}
+.mob-drawer.open{transform:translateX(0)}
+.mob-link{display:block;padding:16px 0;font-size:17px;color:var(--white);text-decoration:none;border-bottom:1px solid var(--rule);opacity:.8}
+.mob-cta{display:block;margin-top:24px;background:var(--accent);color:var(--white);padding:16px;border-radius:8px;font-size:16px;font-weight:500;text-align:center;text-decoration:none}
+body.nav-open{overflow:hidden}
+
+/* DEMO BANNER */
+.demo-banner{background:rgba(123,92,240,.1);border-bottom:1px solid rgba(123,92,240,.2);padding:9px 60px;margin-top:60px;text-align:center}
+.demo-banner p{font-size:12px;color:rgba(250,251,255,.6)}
+.demo-banner strong{color:var(--white)}
+
+/* PAGE HEADER */
+.ph{padding:40px 60px 32px;max-width:1400px;margin:0 auto}
+.ph-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(36px,4.5vw,58px);line-height:.97;letter-spacing:-.03em;color:var(--white);margin-bottom:8px}
+h1 em{color:var(--accent);font-style:italic}
+.ph-sub{font-size:14px;line-height:1.7;font-weight:300;color:var(--muted);max-width:400px}
+
+/* MODE TOGGLE */
+.mode-toggle{display:flex;background:var(--ink2);border:1px solid var(--edge);border-radius:8px;overflow:hidden;flex-shrink:0;align-self:flex-start}
+.mtab{display:flex;align-items:center;gap:7px;padding:10px 20px;background:none;border:none;cursor:pointer;font-size:13px;font-weight:500;color:var(--hint);font-family:'DM Sans',sans-serif;transition:all .2s;line-height:1.4}
+.mtab.active{background:var(--accent);color:var(--white)}
+
+/* FROM CONFIG BANNER */
+.from-cfg{background:rgba(232,98,26,.07);border:1px solid rgba(232,98,26,.2);border-radius:9px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.from-cfg.hidden{display:none}
+.fc-txt{font-size:12px;color:rgba(250,251,255,.65);flex:1}
+.fc-txt strong{color:var(--white)}
+.fc-edit{font-size:11px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
+
+/* ══ PLAN GRID — shared by Standard and Custom ══ */
+.plan-section{padding:0 60px 24px;max-width:1400px;margin:0 auto}
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+.plan-grid.four-col{grid-template-columns:repeat(4,1fr)}
+
+/* Plan card */
+.plan-card{background:var(--ink2);border:2px solid var(--edge);border-radius:14px;overflow:hidden;transition:border-color .22s,transform .22s}
+.plan-card:hover{transform:translateY(-3px)}
+.plan-card.featured{border-color:rgba(232,98,26,.45)}
+.plan-card.featured:hover{border-color:var(--accent)}
+.plan-card.custom-card{border-color:rgba(42,191,191,.25)}
+.plan-card.custom-card:hover{border-color:rgba(42,191,191,.5)}
+.plan-card.custom-card.active-build{border-color:var(--teal)}
+
+/* Top color bar — just a div with height, no flex */
+.pc-bar{height:3px;display:block;background:var(--edge)}
+.plan-card.featured .pc-bar{background:var(--accent)}
+.plan-card.custom-card .pc-bar{background:var(--teal)}
+
+.pc-body{padding:22px 20px}
+.pc-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:13px;line-height:1.6;border:1px solid}
+.pb-std{background:rgba(255,255,255,.05);color:var(--hint);border-color:var(--edge)}
+.pb-hot{background:rgba(232,98,26,.15);color:var(--accent);border-color:rgba(232,98,26,.25)}
+.pb-cus{background:rgba(42,191,191,.1);color:var(--teal);border-color:rgba(42,191,191,.2)}
+.pb-empty{background:rgba(255,255,255,.03);color:var(--hint);border-color:var(--edge);border-style:dashed}
+
+.pc-name{font-family:'DM Serif Display',serif;font-size:24px;color:var(--white);margin-bottom:3px;line-height:1.1}
+.pc-price{margin-bottom:6px}
+.pc-amount{font-size:38px;font-weight:300;color:var(--white);font-family:'DM Serif Display',serif;line-height:1}
+.pc-period{font-size:12px;color:var(--muted);margin-left:2px}
+.pc-tagline{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+
+.pc-divider{height:1px;background:var(--edge);margin-bottom:14px}
+.pc-slabel{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);margin-bottom:8px;display:block}
+
+.pc-spaces{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:14px}
+.pc-chip{font-size:10px;padding:2px 7px;border-radius:4px;border:1px solid var(--edge);color:var(--muted);line-height:1.6}
+.pc-chip.on{border-color:rgba(232,98,26,.3);color:var(--accent);background:rgba(232,98,26,.07)}
+
+.pc-features{margin-bottom:16px}
+.pcf{display:flex;align-items:flex-start;gap:7px;font-size:12px;line-height:1.5;color:rgba(250,251,255,.6);padding:3px 0}
+.pcf-dot{width:14px;text-align:center;flex-shrink:0;line-height:1.5}
+.pcf.inc .pcf-dot{color:var(--accent)}
+.pcf.exc{color:var(--hint)}
+.pcf.exc .pcf-dot{opacity:.35}
+
+.pc-cta{display:block;text-align:center;padding:10px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;text-decoration:none;margin-top:2px}
+.cta-acc{background:var(--accent);color:var(--white)}
+.cta-acc:hover{background:var(--accent2)}
+.cta-out{background:none;border:1px solid var(--edge);color:var(--muted)}
+.cta-out:hover{border-color:rgba(255,255,255,.2);color:var(--white)}
+.cta-teal{background:rgba(42,191,191,.12);color:var(--teal);border:1px solid rgba(42,191,191,.25)}
+.cta-teal:hover{background:rgba(42,191,191,.2)}
+
+.pc-foot{padding:11px 20px;border-top:1px solid var(--edge);text-align:center}
+.pc-edit{font-size:11px;color:var(--hint);text-decoration:none;transition:color .15s;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}
+.pc-edit:hover{color:var(--accent)}
+
+/* Create placeholder card */
+.create-card{
+  background:rgba(255,255,255,.02);
+  border:2px dashed var(--edge);
+  border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:36px 20px;cursor:pointer;
+  transition:border-color .2s,background .2s;
+  min-height:200px;
+}
+.create-card:hover{border-color:rgba(42,191,191,.4);background:rgba(42,191,191,.04)}
+.create-icon{font-size:28px;color:var(--hint);margin-bottom:10px;opacity:.6}
+.create-title{font-size:14px;font-weight:500;color:var(--muted);margin-bottom:4px}
+.create-sub{font-size:12px;color:var(--hint);line-height:1.5}
+
+/* Compare note */
+.compare-note{padding:12px 60px;max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cn-text{font-size:12px;color:var(--hint)}
+.add-plan-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;border:1px dashed var(--edge);background:none;color:var(--hint);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.add-plan-btn:hover{border-color:rgba(255,255,255,.2);color:var(--white)}
+
+/* ══ INLINE BUILDER ══ */
+.builder-wrap{
+  max-width:1400px;margin:0 auto;padding:0 60px 32px;
+}
+.builder-panel{
+  background:var(--ink2);border:1px solid rgba(42,191,191,.25);
+  border-radius:14px;overflow:hidden;
+}
+.builder-head{
+  padding:16px 24px;border-bottom:1px solid var(--edge);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.bh-left h3{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);margin-bottom:2px}
+.bh-left p{font-size:12px;color:var(--muted)}
+.bh-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.builder-body{padding:24px;display:grid;grid-template-columns:1fr 300px;gap:20px}
+.builder-body.no-fitz{grid-template-columns:1fr}
+
+/* Space selector inside builder */
+.b-scbar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.b-scard{flex:1;min-width:110px;border:2px solid var(--edge);border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .2s;background:var(--ink3);position:relative}
+.b-scard:hover{border-color:rgba(255,255,255,.18)}
+.b-scard.sel{border-color:var(--sc)}
+.b-scard .bck{position:absolute;top:6px;right:6px;width:14px;height:14px;border-radius:50%;background:var(--sc);display:none;align-items:center;justify-content:center;font-size:8px;color:white;font-weight:700}
+.b-scard.sel .bck{display:flex}
+.bsc-tag{font-size:9px;letter-spacing:.8px;text-transform:uppercase;font-weight:600;margin-bottom:2px;color:var(--sc)}
+.bsc-nm{font-size:12px;font-weight:500;color:var(--white);font-family:'DM Serif Display',serif}
+
+/* Filter tabs inside builder */
+.b-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--edge)}
+.b-tab{display:flex;align-items:center;gap:5px;padding:9px 14px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-size:12px;font-weight:500;color:var(--hint);font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;margin-bottom:-1px}
+.b-tab:hover{color:var(--muted)}
+.b-tab.active{color:var(--white);border-bottom-color:var(--teal)}
+.b-tab-dot{width:5px;height:5px;border-radius:50%}
+
+/* Config sections */
+.b-section{margin-bottom:18px}
+.b-slabel{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.b-badge{font-size:9px;padding:2px 7px;border-radius:100px;background:rgba(42,191,191,.1);color:var(--teal);border:1px solid rgba(42,191,191,.18);letter-spacing:.5px;text-transform:uppercase}
+.b-badge-opt{background:rgba(232,98,26,.08);color:var(--accent);border-color:rgba(232,98,26,.18)}
+
+.b-cboxes{display:flex;flex-wrap:wrap;gap:6px}
+.b-cbox{flex:1;min-width:80px;border:1px solid rgba(42,191,191,.18);border-radius:7px;padding:9px 10px;background:rgba(42,191,191,.03);position:relative}
+.b-cbox.mbox{border-color:rgba(232,98,26,.18);background:rgba(232,98,26,.03)}
+.bcb-nm{font-size:11px;font-weight:500;color:var(--white)}
+.bcb-sub{font-size:9px;color:rgba(42,191,191,.5);margin-top:1px}
+.b-cbox.mbox .bcb-sub{color:rgba(232,98,26,.5)}
+.b-mtog{position:absolute;top:6px;right:6px;width:24px;height:14px;border-radius:100px;border:none;cursor:pointer;background:rgba(232,98,26,.3);transition:background .2s}
+.b-mtog::after{content:'';position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:var(--accent);transition:transform .2s}
+.b-mtog.off{background:var(--edge)}
+.b-mtog.off::after{background:var(--hint);transform:none}
+.b-mtog.on::after{transform:translateX(10px)}
+
+.b-cmods{display:flex;flex-direction:column;gap:3px}
+.b-cmod{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;border-radius:6px;border:1px solid var(--edge);background:var(--ink3);cursor:pointer;transition:border-color .2s}
+.b-cmod:hover{border-color:rgba(255,255,255,.12)}
+.b-cmod.on{border-color:rgba(232,98,26,.3);background:rgba(232,98,26,.04)}
+.bcm-l{display:flex;align-items:center;gap:7px}
+.bcm-ico{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.bcm-nm{font-size:12px;font-weight:500;color:var(--white)}
+.bcm-ds{font-size:10px;color:var(--muted);margin-top:1px}
+.b-ctog{width:24px;height:14px;border-radius:100px;background:var(--edge);position:relative;flex-shrink:0;transition:background .2s}
+.b-ctog::after{content:'';position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:var(--hint);transition:transform .2s,background .2s}
+.b-cmod.on .b-ctog{background:rgba(232,98,26,.3)}
+.b-cmod.on .b-ctog::after{transform:translateX(10px);background:var(--accent)}
+.b-subext{display:none;padding:7px 9px;border-radius:0 0 6px 6px;border:1px solid rgba(232,98,26,.18);border-top:none;background:rgba(232,98,26,.025);margin-bottom:3px}
+.b-subext.open{display:block}
+.b-sub-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(232,98,26,.5);margin-bottom:5px}
+.b-sub-grid{display:flex;flex-wrap:wrap;gap:4px}
+
+.b-egrid{display:flex;flex-wrap:wrap;gap:4px}
+.b-epill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:5px;border:1px solid var(--edge);background:var(--ink3);cursor:pointer;font-size:11px;font-weight:500;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s;line-height:1.4}
+.b-epill:hover{border-color:rgba(255,255,255,.18);color:var(--white)}
+.b-epill.on{border-color:rgba(232,98,26,.35);background:rgba(232,98,26,.06);color:var(--white)}
+.b-ebox{width:10px;height:10px;border-radius:2px;border:1px solid var(--edge);flex-shrink:0;font-size:7px;color:transparent;display:flex;align-items:center;justify-content:center}
+.b-epill.on .b-ebox{background:var(--accent);border-color:var(--accent);color:white}
+
+.b-mpills{display:flex;flex-wrap:wrap;gap:4px}
+.b-mpill{display:inline-flex;align-items:center;padding:4px 9px;border-radius:5px;border:1px solid var(--edge);font-size:11px;font-weight:500;cursor:pointer;color:var(--hint);transition:all .15s;background:none;font-family:'DM Sans',sans-serif;line-height:1.4}
+.b-mpill:hover{border-color:rgba(255,255,255,.18);color:var(--muted)}
+.b-mpill.on{background:rgba(232,98,26,.1);border-color:rgba(232,98,26,.3);color:var(--accent)}
+
+/* No space in builder */
+.b-no-space{padding:32px;text-align:center;color:var(--hint);font-size:13px}
+
+/* Plan preview sidebar in builder */
+.b-preview{background:var(--ink3);border:1px solid var(--edge);border-radius:10px;padding:18px;position:sticky;top:80px}
+.bp-title{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);margin-bottom:12px}
+.bp-name{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);margin-bottom:6px}
+.bp-spaces{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px}
+.bp-space{font-size:10px;padding:2px 7px;border-radius:4px;border:1px solid rgba(232,98,26,.3);color:var(--accent);background:rgba(232,98,26,.07)}
+.bp-mods{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+.bp-price{font-size:12px;color:var(--hint);font-style:italic;margin-bottom:14px}
+.bp-save{display:block;text-align:center;padding:9px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;background:var(--teal);color:var(--ink);margin-bottom:8px}
+.bp-save:hover{background:var(--teal);opacity:.9}
+.bp-cancel{display:block;text-align:center;font-size:11px;color:var(--hint);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color .15s;width:100%;padding:4px}
+.bp-cancel:hover{color:var(--white)}
+
+/* Bottom */
+.bottom-section{padding:32px 60px 56px;max-width:1400px;margin:0 auto}
+
+/* ══ FITZ CHAT STYLES ══ */
+.fm{font-size:12px;line-height:1.6}
+.fm.fitz{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:0 8px 8px 8px;padding:8px 10px;color:rgba(250,251,255,.85);align-self:flex-start;max-width:92%;margin-bottom:2px}
+.fm.user{background:rgba(232,98,26,.15);border:1px solid rgba(232,98,26,.25);border-radius:8px 0 8px 8px;padding:8px 10px;color:var(--white);align-self:flex-end;max-width:92%;margin-bottom:2px}
+.fs-sugs{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+.fs-sug{background:none;border:1px solid rgba(232,98,26,.2);border-radius:5px;padding:5px 9px;font-size:11px;color:var(--accent);cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;transition:all .15s;line-height:1.4}
+.fs-sug:hover{background:rgba(232,98,26,.08);border-color:rgba(232,98,26,.4)}
+.fs-inp{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 9px;font-size:12px;color:var(--white);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+.fs-inp::placeholder{color:var(--hint)}
+.fs-inp:focus{border-color:rgba(232,98,26,.4)}
+.bottom-note{background:var(--ink2);border:1px solid var(--edge);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bn-text{flex:1}
+.bn-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:3px}
+.bn-sub{font-size:12px;color:var(--muted);line-height:1.5}
+.bn-cta{display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:7px;background:var(--accent);color:var(--white);text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap}
+.bn-cta:hover{background:var(--accent2)}
+
+footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px}
+.fi{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.flogo{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(250,251,255,.3)}
+.flogo span{color:rgba(232,98,26,.4)}
+.flinks{display:flex;gap:20px}
+.flinks a{font-size:12px;color:var(--hint);text-decoration:none;transition:color .15s}
+.flinks a:hover{color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .nl,.nghst,.nbtn{display:none}
+  .mtog{display:flex}
+  .demo-banner{padding:9px 24px}
+  .ph{padding:32px 24px 24px}
+  .plan-section{padding:0 24px 20px}
+  .plan-grid{grid-template-columns:1fr}
+  .plan-grid.four-col{grid-template-columns:1fr 1fr}
+  #builder-wrap{padding:0 24px 24px !important}
+  #builder-wrap [style*="grid-template-columns:1fr 300px"]{grid-template-columns:1fr !important}
+  .compare-note{padding:10px 24px}
+  .bottom-section{padding:24px 24px 40px}
+  footer{padding:18px 24px}
+}
+@media(max-width:600px){
+  .nav-i{padding:0 18px}
+  .ph-top{flex-direction:column;align-items:flex-start}
+  .plan-grid.four-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
+    <div class="nl">
+      <a href="platform.html" class="nlink">Platform</a>
+      <a href="how-it-works.html" class="nlink">How It Works</a>
+      <a href="solutions.html" class="nlink">Solutions</a>
+      <a href="pricing.html" class="nlink active">Pricing</a>
+    </div>
+    <div class="nr">
+      <a href="#" class="nghst">Sign in</a>
+      <a href="index.html#cta" class="nbtn">Request Access</a>
+      <button class="mtog" id="mtog"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mob-drawer">
+  <a href="index.html" class="mob-link">Home</a>
+  <a href="platform.html" class="mob-link">Platform</a>
+  <a href="how-it-works.html" class="mob-link">How It Works</a>
+  <a href="solutions.html" class="mob-link">Solutions</a>
+  <a href="pricing.html" class="mob-link">Pricing</a>
+  <a href="index.html#cta" class="mob-cta">Request Early Access</a>
+</div>
+
+<div class="demo-banner">
+  <p><strong>Pricing shown is for demonstration purposes only.</strong> Actual pricing will be available at launch. All plans and features are subject to change.</p>
+</div>
+
+<div class="ph">
+  <div class="ph-top">
     <div>
-      <nav class="navbar navbar-expand-lg position-absolute w-100">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <div class="logo">
-              <img
-                class="logo-image"
-                alt=""
-                src="./asstes/images/navbar/logo_white.png"
-              />
-              <div class="logo-text">BigTopa</div>
-            </div></a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul
-              class="navbar-nav me-auto mx-auto menu"
-              style="--bs-scroll-height: 100px"
-            >
-              <li class="nav-item">
-                <a
-                  class="nav-link menu-option"
-                  aria-current="page"
-                  href="index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link  menu-option" href="product.html"
-                  >Features</a
-                >
-              </li>
-            </ul>
-            <div>
-              <a class="black_btn" href="#0"> Contact US </a>
-            </div>
+      <h1>Find your<br><em>perfect plan.</em></h1>
+      <p class="ph-sub">Browse standard tiers or build a custom plan from scratch. All plans editable — nothing locked in.</p>
+    </div>
+    <div class="mode-toggle">
+      <button class="mtab active" id="tab-std" onclick="setView('standard')">Standard Plans</button>
+      <button class="mtab" id="tab-cus" onclick="setView('custom')">Custom Plans</button>
+    </div>
+  </div>
+  <div class="from-cfg hidden" id="from-cfg">
+    <div class="fc-txt">Showing your <strong>Plan Builder configuration</strong> from How It Works &mdash; your selections are pre-loaded below.</div>
+    <a href="how-it-works.html" class="fc-edit">Edit &#8250;</a>
+  </div>
+</div>
+
+<!-- ══ STANDARD VIEW ══ -->
+<div id="view-std">
+  <div class="plan-section">
+    <div class="plan-grid" id="std-grid">
+
+      <!-- Plan 1 -->
+      <div class="plan-card">
+        <div class="pc-bar"></div>
+        <div class="pc-body">
+          <span class="pc-badge pb-std">Plan 1</span>
+          <div class="pc-name">Starter</div>
+          <div class="pc-price"><span class="pc-amount">$49</span><span class="pc-period">/ month</span></div>
+          <p class="pc-tagline">One space. Core features. Perfect for small teams and solo organizers.</p>
+          <div class="pc-divider"></div>
+          <span class="pc-slabel">Spaces included</span>
+          <div class="pc-spaces">
+            <span class="pc-chip on">1 Space type</span>
+            <span class="pc-chip">Community</span>
+            <span class="pc-chip">Event</span>
+            <span class="pc-chip">Work</span>
           </div>
+          <span class="pc-slabel">What's included</span>
+          <div class="pc-features">
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>1 space type (your choice)</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Streams, Rooms, Meetups</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Up to 100 members</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>5 GB storage</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>2 events per month</div>
+            <div class="pcf exc"><span class="pcf-dot">&ndash;</span>Marketing Core</div>
+            <div class="pcf exc"><span class="pcf-dot">&ndash;</span>Monetization Core</div>
+            <div class="pcf exc"><span class="pcf-dot">&ndash;</span>Multiple spaces</div>
+          </div>
+          <a href="index.html#cta" class="pc-cta cta-out">Request access</a>
         </div>
-      </nav>
-      <!--Navbar Section Close-->
+        <div class="pc-foot"><a href="how-it-works.html" class="pc-edit">Edit in Plan Builder</a></div>
+      </div>
 
-      <!--plans Section Start-->
-      <section class="banner-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-12 mb-4">
-              <h2 class="primary-heading text-start">
-                BigTopa Beta Plans Grow with Us
-              </h2>
-              <p class="description text-left">
-                Join our beta for less than $2.00 plus bandwidth usage.
-              </p>
-            </div>
+      <!-- Plan 2 featured -->
+      <div class="plan-card featured">
+        <div class="pc-bar"></div>
+        <div class="pc-body">
+          <span class="pc-badge pb-hot">Most popular</span>
+          <div class="pc-name">Standard</div>
+          <div class="pc-price"><span class="pc-amount">$99</span><span class="pc-period">/ month</span></div>
+          <p class="pc-tagline">Two spaces, core modules included. The plan most organizations grow into.</p>
+          <div class="pc-divider"></div>
+          <span class="pc-slabel">Spaces included</span>
+          <div class="pc-spaces">
+            <span class="pc-chip on">2 Space types</span>
+            <span class="pc-chip on">Community</span>
+            <span class="pc-chip on">Event</span>
+            <span class="pc-chip">Work</span>
           </div>
-          <div class="row gap-4 gap-lg-0">
-            <div class="col-lg-4 col-12">
-              <div
-                class="d-flex flex-column justify-content-between heightFull gap-2"
-              >
-                <div class="d-flex flex-row gap-2 toggle-cont">
-                  <p class="description">Monthly</p>
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="switch" /><label
-                      for="switch"
-                    ></label>
-                    <!-- <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label> -->
-                  </div>
-                  <p class="description text-color-orange">
-                    Annually (Save 100%)
-                  </p>
-                </div>
-                <div class="plan-card plan-card-border">
-                  <a class="btn-card-pricing text-color-black" href="#0">
-                    <img src="./asstes/images/pricingcard1.png" />
-                    <p>Beta Starter</p>
-                  </a>
-                  <div
-                    class="d-flex flex-row gap-2 card-header align-items-baseline"
-                  >
-                    <h3 class="pricing-card-header text-color-black">Free</h3>
-                    <p class="description">Yearly/Per User</p>
-                  </div>
-                  <h3 class="start-card-head text-color-black">
-                    Here what’s included
-                  </h3>
-                  <!-- <div class="d-flex flex-column flex-sm-row flex-lg-column justify-content-between"> -->
-                  <div class="first-cont-pricing-card">
-                    <div class="row">
-                    <ul class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                      Spaces (up to 10)
-                      <li
-                        class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                      >
-                        <span class="d-flex align-items-center gap-2">
-                          <img
-                            src="./asstes/images/greencheck.png"
-                            class="img-fluid"
-                          /> </span
-                        >Work
-                      </li>
-                    </ul>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Chat Streams</p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Rooms</p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Library</p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Blogs</p>
-                    <p
-                      class=" col-6 card-option-des text-color-gray d-flex flex-row gap-2"
-                    >
-                      Users 10
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </p>
-                    <p
-                      class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                    >
-                      Members 100
-                      <span class=" gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </p>
-                    <ul class=" col-sm-6 col-lg-12 col-12  card-option-des text-color-gray">
-                      Meetups
-                      <li
-                        class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                      >
-                        <span class="d-flex align-items-center gap-2">
-                          <img
-                            src="./asstes/images/greencheck.png"
-                            class="img-fluid"
-                          /> </span
-                        >Meets 1 to 1
-                        <span class="d-flex flex-row align-items-center gap-2">
-                          <img
-                            src="./asstes/images/user-icon-pricingcard.png"
-                            class="img-fluid"
-                          />
-                        </span>
-                      </li>
-                      <li
-                        class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                      >
-                        <span class="d-flex align-items-center gap-2">
-                          <img
-                            src="./asstes/images/greencheck.png"
-                            class="img-fluid"
-                          /> </span
-                        >Meetings 10
-                        <span class="d-flex flex-row align-items-center gap-2">
-                          <img
-                            src="./asstes/images/user-icon-pricingcard.png"
-                            class="img-fluid"
-                          />
-                        </span>
-                      </li>
-                    </ul>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Whiteboard</p>
-                    <p
-                      class=" col-6 card-option-des text-color-gray d-flex flex-row"
-                    >
-                      Meetup 30 min
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/clock-icon pricingCard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </p>
-                  </div>
-                  </div>
-                  <div>
-                    <div class="row">
-                    <p class="  col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                      Custom Branding
-                    </p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">2 Admins</p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Rich Profiles</p>
-                    <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Integration 2</p>
-                    </div>
-                  </div>
-                <!-- </div> -->
-
-                  <a class="black_btn-pricing widthFull" href="#0">
-                    Get Started
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12">
-              <div class="plan-card bg-green-pricing-card">
-                <a class="btn-card-pricing text-color-white" href="#0">
-                  <img src="./asstes/images/lightning-icon.png" />
-                  <p>Beta Pro</p>
-                </a>
-                <div
-                  class="d-flex flex-row gap-2 card-header align-items-baseline"
-                >
-                  <h3 class="pricing-card-header text-color-white">$1.00</h3>
-                  <p class="description text-color-white">Yearly/Per User</p>
-                </div>
-                <h3 class="start-card-head text-color-white">
-                  Here what’s included
-                </h3>
-                <div class="first-cont-pricing-card">
-                  <div class="row">
-
-                  <ul class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Spaces Unlimited
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Provider
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Work
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Community
-                    </li>
-                  </ul>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">Private Rooms</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">Monetization</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Email Marketing
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white d-flex flex-row gap-2"
-                  >
-                    Users 50
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/white-user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white d-flex flex-row gap-2"
-                  >
-                    Members 500
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/white-user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <ul class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Meetups
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Meets 1 to 1
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Meetings 25
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-white d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Webinars 100
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/white-user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                  </ul>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white d-flex flex-row gap-2"
-                  >
-                    Recordings
-                    <span class=" gap-2">
-                      <img
-                        src="./asstes/images/white-clock-icon pricingCard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                    25 Hours
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Noise Cancelation
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Appointment Scheduler
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">Q & A</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">Survey/Quiz</p>
-                </div>
-                </div>
-                <div>
-                  <div class="row">
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">
-                    Activity Dashboard
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white d-flex flex-row gap-2"
-                  >
-                    Admins 5
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/white-user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white d-flex flex-row gap-2"
-                  >
-                    Organizes 10
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/white-user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-white">Integration 10</p>
-                </div>
-                </div>
-
-                <a class="white_btn-pricing widthFull" href="#0">
-                  Get Started
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12">
-              <div class="plan-card plan-card-border">
-                <a class="btn-card-pricing text-color-black" href="#0">
-                  <img src="./asstes/images/pricingcard3.png" />
-                  <p>Beta Team</p>
-                </a>
-                <div
-                  class="d-flex flex-row gap-2 card-header align-items-baseline"
-                >
-                  <h3 class="pricing-card-header text-color-black">$2.00</h3>
-                  <p class="description">Yearly/Per User</p>
-                </div>
-                <h3 class="start-card-head text-color-black">
-                  Here what’s included
-                </h3>
-                <div class="first-cont-pricing-card">
-                  <div class="row">
-                  <ul class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Spaces Unlimited
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Provider
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Work
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Community
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Event
-                    </li>
-                  </ul>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Tickets</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Multispace Events
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                  >
-                    Users 200
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                  >
-                    Members 2000
-                    <span class=" gap-2">
-                      <img
-                        src="./asstes/images/user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <ul class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Meetups
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Meets 1 to 1
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Meetings 100
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Webinars 500
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                    <li
-                      class="card-option-des-li text-color-gray d-flex flex-row gap-2"
-                    >
-                      <span class="d-flex align-items-center gap-2">
-                        <img
-                          src="./asstes/images/greencheck.png"
-                          class="img-fluid"
-                        /> </span
-                      >Broadcast 10,000
-                      <span class="d-flex flex-row align-items-center gap-2">
-                        <img
-                          src="./asstes/images/user-icon-pricingcard.png"
-                          class="img-fluid"
-                        />
-                      </span>
-                    </li>
-                  </ul>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                  >
-                    Recordings
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/clock-icon pricingCard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                    100 Hours
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Broadcast Studio
-                  </p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Simulcast</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Concierge Onboarding
-                  </p>
-                </div>
-                </div>
-                <div>
-                  <div class="row">
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">Custom Domain</p>
-                  <p class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray">
-                    Integrations Unlimited
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                  >
-                    Admins 25
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                  <p
-                    class=" col-sm-6 col-lg-12 col-12 card-option-des text-color-gray d-flex flex-row gap-2"
-                  >
-                    Organizers 100
-                    <span class="d-flex flex-row align-items-center gap-2">
-                      <img
-                        src="./asstes/images/user-icon-pricingcard.png"
-                        class="img-fluid"
-                      />
-                    </span>
-                  </p>
-                </div>
-                </div>
-
-                <a class="black_btn-pricing widthFull" href="#0">
-                  Get Started
-                </a>
-              </div>
-            </div>
+          <span class="pc-slabel">What's included</span>
+          <div class="pc-features">
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>2 space types (your choice)</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Streams, Rooms, Meetups</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Up to 500 members</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>25 GB storage</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Unlimited events</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Marketing Core</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Monetization Core</div>
+            <div class="pcf exc"><span class="pcf-dot">&ndash;</span>All 4 spaces</div>
           </div>
+          <a href="index.html#cta" class="pc-cta cta-acc">Request access</a>
         </div>
-      </section>
-      <!--plans Section End-->
+        <div class="pc-foot"><a href="how-it-works.html" class="pc-edit">Edit in Plan Builder</a></div>
+      </div>
 
-      <!--Virtual Section start-->
-      <section class="sectionCommon">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <h2 class="secondary-heading virtual-gohead">
-                Under the BigTopa All you need to <br />Go Virtual
-                <span class="pricing-virtualheading-anime"
-                  ><img src="./asstes/images/afterheadingValue.png"
-                /></span>
-              </h2>
-            </div>
+      <!-- Plan 3 -->
+      <div class="plan-card">
+        <div class="pc-bar"></div>
+        <div class="pc-body">
+          <span class="pc-badge pb-std">Plan 3</span>
+          <div class="pc-name">Pro</div>
+          <div class="pc-price"><span class="pc-amount">$199</span><span class="pc-period">/ month</span></div>
+          <p class="pc-tagline">All four spaces, full module access. The complete BigTopa platform.</p>
+          <div class="pc-divider"></div>
+          <span class="pc-slabel">Spaces included</span>
+          <div class="pc-spaces">
+            <span class="pc-chip on">All 4 spaces</span>
+            <span class="pc-chip on">Work</span>
+            <span class="pc-chip on">Community</span>
+            <span class="pc-chip on">Event</span>
+            <span class="pc-chip on">Provider</span>
           </div>
-          <div class="row mt-5 position-relative">
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="54"
-                    viewBox="0 0 54 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M3.00098 13.2858C3.00098 10.5579 4.08465 7.94168 6.01359 6.01274C7.94254 4.08379 10.5587 3.00012 13.2867 3.00012H40.7153C43.4432 3.00012 46.0594 4.08379 47.9884 6.01274C49.9173 7.94168 51.001 10.5579 51.001 13.2858V35.5716H48.5667L43.6707 27.0001H47.5724V13.2858C47.5724 11.4672 46.85 9.72307 45.564 8.4371C44.278 7.15114 42.5339 6.42869 40.7153 6.42869H13.2867C11.4681 6.42869 9.72392 7.15114 8.43796 8.4371C7.15199 9.72307 6.42955 11.4672 6.42955 13.2858V27.0001H10.3313L5.43526 35.5716H3.00098V13.2858ZM3.00098 40.7144V39.0001H17.8707L15.0695 48.8058L14.4113 51.0001H13.2867C10.5587 51.0001 7.94254 49.9165 6.01359 47.9875C4.08465 46.0586 3.00098 43.4423 3.00098 40.7144ZM18.361 49.7555L21.4364 39.0001H32.5655L35.6341 49.7453L35.977 51.0001H17.9907L18.3575 49.7795L18.361 49.7555ZM22.4204 35.5716H31.5884L29.1404 27.0001H24.865L22.4204 35.5716ZM38.9393 48.8161L36.1347 39.0001H51.001V40.7144C51.001 43.4423 49.9173 46.0586 47.9884 47.9875C46.0594 49.9165 43.4432 51.0001 40.7153 51.0001H39.5324L38.9393 48.8333V48.8161ZM35.1507 35.5716H44.617L39.721 27.0001H32.7027L35.1507 35.5716ZM9.38498 35.5716H18.8478L21.2993 27.0001H14.281L9.38498 35.5716Z"
-                      fill="#000"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Spaces</h4>
-                <p class="virtual-card-des">
-                  Create dynamic virtual environments with BigTopa Spaces.
-                  Tailor them for various interactions, from focused work
-                  sessions to large community gatherings, all within a unified
-                  platform.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M46.5324 31.8C49.1834 31.8 51.3324 29.6509 51.3324 27C51.3324 24.349 49.1834 22.2 46.5324 22.2C43.8815 22.2 41.7324 24.349 41.7324 27C41.7324 29.6509 43.8815 31.8 46.5324 31.8Z"
-                    />
-                    <path
-                      d="M8.13203 31.8C10.783 31.8 12.932 29.6509 12.932 27C12.932 24.349 10.783 22.2 8.13203 22.2C5.48106 22.2 3.33203 24.349 3.33203 27C3.33203 29.6509 5.48106 31.8 8.13203 31.8Z"
-                    />
-                    <path
-                      d="M27.3322 51C29.9832 51 32.1322 48.851 32.1322 46.2C32.1322 43.5491 29.9832 41.4 27.3322 41.4C24.6813 41.4 22.5322 43.5491 22.5322 46.2C22.5322 48.851 24.6813 51 27.3322 51Z"
-                    />
-                    <path
-                      d="M31.9962 18.8858L42.5658 8.34497L45.957 11.7434L35.385 22.2842L31.9962 18.8858ZM18.501 21.4322L19.245 22.2002L22.653 18.8162L13.005 9.12017H12.981L12.237 8.35217L8.82898 11.7362L18.477 21.4562L18.501 21.4322ZM35.517 31.6562L32.133 35.0402L41.709 44.6642L42.549 45.5042L45.957 42.1202L36.381 32.4962L35.517 31.6562ZM19.149 31.6802L9.47698 41.3042L8.70898 42.0962L12.093 45.4802L21.765 35.8322L22.557 35.0642L19.149 31.6802Z"
-                    />
-                    <path
-                      d="M27.3322 12.6C29.9832 12.6 32.1322 10.451 32.1322 7.8C32.1322 5.14903 29.9832 3 27.3322 3C24.6813 3 22.5322 5.14903 22.5322 7.8C22.5322 10.451 24.6813 12.6 27.3322 12.6Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Stream</h4>
-                <p class="virtual-card-des">
-                  Facilitate ongoing dialogue and collaboration in real-time.
-                  BigTopa Streams are the lifelines of your Spaces, keeping
-                  conversations active and accessible.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M9 9.85678V44.1433C9 44.598 9.18062 45.0341 9.50212 45.3556C9.82361 45.6771 10.2597 45.8577 10.7143 45.8577H17.5716V8.14246H10.7143C10.2597 8.14246 9.82361 8.32307 9.50212 8.64457C9.18062 8.96607 9 9.40212 9 9.85678Z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M21.5 4.24393C21.5 3.60505 22.0909 3.13001 22.7149 3.26729L45.7149 8.32728C46.1734 8.42816 46.5 8.83444 46.5 9.30393V44.7116C46.5 45.174 46.183 45.5761 45.7334 45.684L22.7334 51.204C22.1045 51.3549 21.5 50.8783 21.5 50.2316V4.24393ZM23 6.25926C23 5.61548 23.5995 5.13943 24.2265 5.28525L43.7265 9.82013C44.1794 9.92547 44.5 10.3291 44.5 10.7941V43.2059C44.5 43.6709 44.1794 44.0746 43.7265 44.1799L24.2265 48.7148C23.5995 48.8606 23 48.3846 23 47.7408V6.25926Z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M28.517 21C26.943 21 25.667 22.276 25.667 23.85V30.15C25.667 31.724 26.943 33 28.517 33C30.091 33 31.367 31.724 31.367 30.15V23.85C31.367 22.276 30.091 21 28.517 21ZM28.5672 22.7C27.9044 22.7 27.3672 23.2373 27.3672 23.9V29.9C27.3672 30.5627 27.9044 31.1 28.5672 31.1C29.2299 31.1 29.7672 30.5627 29.7672 29.9V23.9C29.7672 23.2373 29.2299 22.7 28.5672 22.7Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Room</h4>
-                <p class="virtual-card-des">
-                  BigTopa Rooms are sub-environments within your Spaces,
-                  allowing for targeted discussions and niche meetups, complete
-                  with bespoke privacy settings.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="54"
-                    viewBox="0 0 54 54"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M36.3333 37.6666C36.3333 37.313 36.4737 36.9738 36.7238 36.7238C36.9738 36.4737 37.313 36.3333 37.6666 36.3333H49.6666C50.0202 36.3333 50.3593 36.4737 50.6094 36.7238C50.8594 36.9738 50.9999 37.313 50.9999 37.6666V49.6666C50.9999 50.0202 50.8594 50.3593 50.6094 50.6094C50.3593 50.8594 50.0202 50.9999 49.6666 50.9999H37.6666C37.313 50.9999 36.9738 50.8594 36.7238 50.6094C36.4737 50.3593 36.3333 50.0202 36.3333 49.6666V37.6666ZM35.5213 33.6359L31.2759 29.3906L29.3906 31.2759L33.6359 35.5213L35.5213 33.6359ZM23.9026 22.0173L29.2053 27.3199L27.3199 29.2066L22.0173 23.9026V29.5266H19.3506V19.3506H29.5266V22.0173H23.9026Z"
-                    />
-                    <path
-                      d="M3.39052 3.39052C3.14048 3.64057 3 3.97971 3 4.33333V16.3333C3 16.687 3.14048 17.0261 3.39052 17.2761C3.64057 17.5262 3.97971 17.6667 4.33333 17.6667H16.3333C16.687 17.6667 17.0261 17.5262 17.2761 17.2761C17.5262 17.0261 17.6667 16.687 17.6667 16.3333V4.33333C17.6667 3.97971 17.5262 3.64057 17.2761 3.39052C17.0261 3.14048 16.687 3 16.3333 3H4.33333C3.97971 3 3.64057 3.14048 3.39052 3.39052Z"
-                      stroke="#1D1D1D"
-                      stroke-width="3"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Provide Spaces</h4>
-                <p class="virtual-card-des">
-                  Customized spaces for professionals to conduct one-on-one
-                  consultations and services, featuring tools for scheduling,
-                  payments, and personalized client management.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="53"
-                    viewBox="0 0 54 53"
-                    fill="none"
-                  >
-                    <path
-                      d="M15.6667 13.6667C15.1362 13.6667 14.6275 13.8774 14.2525 14.2525C13.8774 14.6275 13.6667 15.1362 13.6667 15.6667V26.3333C13.6667 27.4373 14.5627 28.3333 15.6667 28.3333H38.3333C38.8638 28.3333 39.3725 28.1226 39.7476 27.7475C40.1226 27.3725 40.3333 26.8638 40.3333 26.3333V15.6667C40.3333 15.1362 40.1226 14.6275 39.7476 14.2525C39.3725 13.8774 38.8638 13.6667 38.3333 13.6667H15.6667ZM42.3333 51C44.6319 51 46.8363 50.0869 48.4616 48.4616C50.0869 46.8363 51 44.6319 51 42.3333V11.6667C51 9.36812 50.0869 7.16372 48.4616 5.53841C46.8363 3.91309 44.6319 3 42.3333 3H11.6667C9.36812 3 7.16372 3.91309 5.53841 5.53841C3.91309 7.16372 3 9.36812 3 11.6667V42.3333C3 44.6319 3.91309 46.8363 5.53841 48.4616C7.16372 50.0869 9.36812 51 11.6667 51H42.3333ZM47 11.6667V42.3333C47 43.571 46.5083 44.758 45.6332 45.6332C44.758 46.5083 43.571 47 42.3333 47H11.6667C10.429 47 9.24201 46.5083 8.36684 45.6332C7.49167 44.758 7 43.571 7 42.3333V11.6667C7 9.09067 9.09067 7 11.6667 7H42.3333C44.9093 7 47 9.09067 47 11.6667Z"
-                      fill="#FD5109"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Work Spaces</h4>
-                <p class="virtual-card-des">
-                  Collaborative areas designed for teams to converge, create,
-                  and share. Work Spaces are equipped with productivity and
-                  project management tools to foster efficiency and innovation.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M24.3327 10.3333C24.3327 8.38841 23.5601 6.52315 22.1848 5.14788C20.8095 3.77262 18.9443 3 16.9993 3C15.0544 3 13.1892 3.77262 11.8139 5.14788C10.4386 6.52315 9.66602 8.38841 9.66602 10.3333C9.66602 12.2783 10.4386 14.1435 11.8139 15.5188C13.1892 16.8941 15.0544 17.6667 16.9993 17.6667C18.9443 17.6667 20.8095 16.8941 22.1848 15.5188C23.5601 14.1435 24.3327 12.2783 24.3327 10.3333ZM12.3327 10.3333C12.3327 9.7205 12.4534 9.11366 12.6879 8.54748C12.9224 7.98129 13.2662 7.46684 13.6995 7.0335C14.1329 6.60016 14.6473 6.25642 15.2135 6.0219C15.7797 5.78737 16.3865 5.66667 16.9993 5.66667C17.6122 5.66667 18.219 5.78737 18.7852 6.0219C19.3514 6.25642 19.8658 6.60016 20.2992 7.0335C20.7325 7.46684 21.0763 7.98129 21.3108 8.54748C21.5453 9.11366 21.666 9.7205 21.666 10.3333C21.666 11.571 21.1744 12.758 20.2992 13.6332C19.424 14.5083 18.237 15 16.9993 15C15.7617 15 14.5747 14.5083 13.6995 13.6332C12.8243 12.758 12.3327 11.571 12.3327 10.3333ZM7.66602 20.3333H18.8207C18.3833 21.16 18.058 22.056 17.866 23H7.66602C7.31239 23 6.97326 23.1405 6.72321 23.3905C6.47316 23.6406 6.33268 23.9797 6.33268 24.3333V25.6667C6.33268 29.0267 9.26335 32.6373 14.5887 33.48C13.73 34.0667 13.0153 34.848 12.506 35.7573C6.87935 34.2347 3.66602 29.8987 3.66602 25.6667V24.3333C3.66602 23.2725 4.08744 22.2551 4.83759 21.5049C5.58773 20.7548 6.60515 20.3333 7.66602 20.3333ZM22.01 20.3333C23.354 18.7067 25.3887 17.6667 27.666 17.6667C29.263 17.6639 30.817 18.1836 32.091 19.1466C33.365 20.1095 34.289 21.4628 34.722 23C35.108 24.372 35.0862 25.8267 34.6594 27.1865C34.2326 28.5463 33.4192 29.7525 32.3185 30.6579C31.2177 31.5633 29.8772 32.1287 28.4606 32.2851C27.044 32.4415 25.6124 32.1821 24.3407 31.5387C23.3615 31.0403 22.5069 30.3283 21.8398 29.4553C21.1728 28.5823 20.7104 27.5705 20.487 26.4948C20.2635 25.4191 20.2845 24.3069 20.5486 23.2404C20.8127 22.174 21.3104 21.1805 22.01 20.3333ZM23.4527 23C23.19 23.554 23.0391 24.1543 23.0084 24.7667C22.9778 25.379 23.0681 25.9914 23.2741 26.5688C23.6902 27.7351 24.5525 28.6882 25.6713 29.2187C26.7902 29.7491 28.074 29.8133 29.2402 29.3973C30.4064 28.9812 31.3596 28.1189 31.89 27C32.4204 25.8808 32.4846 24.5967 32.0682 23.4302C31.6519 22.2637 30.7892 21.3104 29.67 20.78C28.5508 20.2496 27.2667 20.1855 26.1002 20.6018C24.9338 21.0181 23.9804 21.8808 23.45 23M42.826 35.7573C42.3191 34.8468 41.6058 34.0677 40.7434 33.4827C46.066 32.6373 48.9994 29.024 48.9994 25.6667V24.3333C48.9994 23.9797 48.8589 23.6406 48.6088 23.3905C48.3588 23.1405 48.0196 23 47.666 23H37.466C37.2785 22.07 36.9579 21.1718 36.514 20.3333H47.666C48.7269 20.3333 49.7443 20.7548 50.4944 21.5049C51.2446 22.2551 51.666 23.2725 51.666 24.3333V25.6667C51.666 29.8987 48.45 34.232 42.826 35.7573ZM39.6314 35.9893C38.9027 35.3519 37.9675 35.0004 36.9994 35H18.3327C17.807 34.9986 17.2862 35.1011 16.8003 35.3016C16.3143 35.5021 15.8728 35.7967 15.5011 36.1684C15.1294 36.5401 14.8348 36.9817 14.6343 37.4676C14.4338 37.9535 14.3313 38.4743 14.3327 39V40.3333C14.3327 45.5893 19.2927 51 27.666 51C36.0393 51 40.9994 45.5893 40.9994 40.3333V39C40.9994 37.8 40.4714 36.7227 39.6314 35.9867M16.9993 39C16.9993 38.6464 17.1398 38.3072 17.3899 38.0572C17.6399 37.8071 17.9791 37.6667 18.3327 37.6667H36.9994C37.353 37.6667 37.6921 37.8071 37.9422 38.0572C38.1922 38.3072 38.3327 38.6464 38.3327 39V40.3333C38.3327 44.168 34.514 48.3333 27.666 48.3333C20.818 48.3333 16.9993 44.168 16.9993 40.3333V39ZM38.3327 3C40.2776 3 42.1429 3.77262 43.5181 5.14788C44.8934 6.52315 45.666 8.38841 45.666 10.3333C45.666 12.2783 44.8934 14.1435 43.5181 15.5188C42.1429 16.8941 40.2776 17.6667 38.3327 17.6667C36.3878 17.6667 34.5225 16.8941 33.1472 15.5188C31.772 14.1435 30.9993 12.2783 30.9993 10.3333C30.9993 8.38841 31.772 6.52315 33.1472 5.14788C34.5225 3.77262 36.3878 3 38.3327 3ZM38.3327 5.66667C37.095 5.66667 35.908 6.15833 35.0329 7.0335C34.1577 7.90867 33.666 9.09566 33.666 10.3333C33.666 11.571 34.1577 12.758 35.0329 13.6332C35.908 14.5083 37.095 15 38.3327 15C39.5704 15 40.7573 14.5083 41.6325 13.6332C42.5077 12.758 42.9994 11.571 42.9994 10.3333C42.9994 9.09566 42.5077 7.90867 41.6325 7.0335C40.7573 6.15833 39.5704 5.66667 38.3327 5.66667Z"
-                    />
-                    <path
-                      d="M23.4527 23C23.19 23.554 23.0391 24.1543 23.0084 24.7667C22.9778 25.379 23.0681 25.9914 23.2741 26.5688C23.6902 27.7351 24.5525 28.6882 25.6713 29.2187C26.7902 29.7491 28.074 29.8133 29.2402 29.3973C30.4064 28.9812 31.3596 28.1189 31.89 27C32.4204 25.8808 32.4846 24.5967 32.0682 23.4302C31.6519 22.2637 30.7892 21.3104 29.67 20.78C28.5508 20.2496 27.2667 20.1855 26.1002 20.6018C24.9338 21.0181 23.9804 21.8808 23.45 23M39.6314 35.9893C38.9027 35.3519 37.9675 35.0004 36.9993 35H18.3327C17.807 34.9986 17.2862 35.1011 16.8003 35.3016C16.3143 35.5021 15.8728 35.7967 15.5011 36.1684C15.1294 36.5402 14.8348 36.9817 14.6343 37.4676C14.4338 37.9535 14.3313 38.4743 14.3327 39V40.3333C14.3327 45.5893 19.2927 51 27.666 51C36.0394 51 40.9994 45.5893 40.9994 40.3333V39C40.9994 37.8 40.4714 36.7227 39.6314 35.9867M24.3327 10.3333C24.3327 8.38841 23.5601 6.52315 22.1848 5.14788C20.8095 3.77262 18.9443 3 16.9993 3C15.0544 3 13.1892 3.77262 11.8139 5.14788C10.4386 6.52315 9.66602 8.38841 9.66602 10.3333C9.66602 12.2783 10.4386 14.1435 11.8139 15.5188C13.1892 16.8941 15.0544 17.6667 16.9993 17.6667C18.9443 17.6667 20.8095 16.8941 22.1848 15.5188C23.5601 14.1435 24.3327 12.2783 24.3327 10.3333ZM12.3327 10.3333C12.3327 9.7205 12.4534 9.11366 12.6879 8.54748C12.9224 7.98129 13.2662 7.46684 13.6995 7.0335C14.1329 6.60016 14.6473 6.25642 15.2135 6.0219C15.7797 5.78737 16.3865 5.66667 16.9993 5.66667C17.6122 5.66667 18.219 5.78737 18.7852 6.0219C19.3514 6.25642 19.8658 6.60016 20.2992 7.0335C20.7325 7.46684 21.0763 7.98129 21.3108 8.54748C21.5453 9.11366 21.666 9.7205 21.666 10.3333C21.666 11.571 21.1744 12.758 20.2992 13.6332C19.424 14.5083 18.237 15 16.9993 15C15.7617 15 14.5747 14.5083 13.6995 13.6332C12.8243 12.758 12.3327 11.571 12.3327 10.3333ZM7.66602 20.3333H18.8207C18.3833 21.16 18.058 22.056 17.866 23H7.66602C7.31239 23 6.97326 23.1405 6.72321 23.3905C6.47316 23.6406 6.33268 23.9797 6.33268 24.3333V25.6667C6.33268 29.0267 9.26335 32.6373 14.5887 33.48C13.73 34.0667 13.0153 34.848 12.506 35.7573C6.87935 34.2347 3.66602 29.8987 3.66602 25.6667V24.3333C3.66602 23.2725 4.08744 22.2551 4.83759 21.5049C5.58773 20.7548 6.60515 20.3333 7.66602 20.3333ZM22.01 20.3333C23.354 18.7067 25.3887 17.6667 27.666 17.6667C29.263 17.6639 30.817 18.1836 32.091 19.1466C33.365 20.1095 34.289 21.4628 34.722 23C35.108 24.372 35.0862 25.8267 34.6594 27.1865C34.2326 28.5463 33.4192 29.7525 32.3185 30.6579C31.2177 31.5633 29.8772 32.1287 28.4606 32.2851C27.044 32.4415 25.6124 32.1821 24.3407 31.5387C23.3615 31.0403 22.5069 30.3283 21.8398 29.4553C21.1728 28.5823 20.7104 27.5705 20.487 26.4948C20.2635 25.4191 20.2845 24.3069 20.5486 23.2404C20.8127 22.174 21.3104 21.1805 22.01 20.3333ZM42.826 35.7573C42.3191 34.8468 41.6058 34.0677 40.7434 33.4827C46.066 32.6373 48.9994 29.024 48.9994 25.6667V24.3333C48.9994 23.9797 48.8589 23.6406 48.6088 23.3905C48.3588 23.1405 48.0196 23 47.666 23H37.466C37.2785 22.07 36.9579 21.1718 36.514 20.3333H47.666C48.7269 20.3333 49.7443 20.7548 50.4944 21.5049C51.2446 22.2551 51.666 23.2725 51.666 24.3333V25.6667C51.666 29.8987 48.45 34.232 42.826 35.7573ZM16.9993 39C16.9993 38.6464 17.1398 38.3072 17.3899 38.0572C17.6399 37.8071 17.9791 37.6667 18.3327 37.6667H36.9993C37.353 37.6667 37.6921 37.8071 37.9422 38.0572C38.1922 38.3072 38.3327 38.6464 38.3327 39V40.3333C38.3327 44.168 34.514 48.3333 27.666 48.3333C20.818 48.3333 16.9993 44.168 16.9993 40.3333V39ZM38.3327 3C40.2776 3 42.1429 3.77262 43.5181 5.14788C44.8934 6.52315 45.666 8.38841 45.666 10.3333C45.666 12.2783 44.8934 14.1435 43.5181 15.5188C42.1429 16.8941 40.2776 17.6667 38.3327 17.6667C36.3878 17.6667 34.5225 16.8941 33.1472 15.5188C31.772 14.1435 30.9993 12.2783 30.9993 10.3333C30.9993 8.38841 31.772 6.52315 33.1472 5.14788C34.5225 3.77262 36.3878 3 38.3327 3ZM38.3327 5.66667C37.095 5.66667 35.908 6.15833 35.0329 7.0335C34.1577 7.90867 33.666 9.09566 33.666 10.3333C33.666 11.571 34.1577 12.758 35.0329 13.6332C35.908 14.5083 37.095 15 38.3327 15C39.5704 15 40.7573 14.5083 41.6325 13.6332C42.5077 12.758 42.9994 11.571 42.9994 10.3333C42.9994 9.09566 42.5077 7.90867 41.6325 7.0335C40.7573 6.15833 39.5704 5.66667 38.3327 5.66667Z"
-                      stroke="#1D1D1D"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Community Spaces</h4>
-                <p class="virtual-card-des">
-                  Open and inclusive spaces for communities to thrive. Host
-                  forums, share updates, and engage members in a space that's
-                  built for connectivity and growth.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="54"
-                    viewBox="0 0 54 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M47.5579 9.85714C47.5579 8.94783 47.1967 8.07576 46.5537 7.43278C45.9107 6.78979 45.0386 6.42857 44.1293 6.42857H37.2722V3H33.8436V6.42857H20.1293V3H16.7008V6.42857H9.84361C8.9343 6.42857 8.06223 6.78979 7.41924 7.43278C6.77626 8.07576 6.41504 8.94783 6.41504 9.85714V44.1429C6.41504 45.0522 6.77626 45.9242 7.41924 46.5672C8.06223 47.2102 8.9343 47.5714 9.84361 47.5714H16.7008V44.1429H9.84361V9.85714H16.7008V13.2857H20.1293V9.85714H33.8436V13.2857H37.2722V9.85714H44.1293V20.1429H47.5579V9.85714Z"
-                    />
-                    <path
-                      d="M35.558 25.2856L39.9277 33.7508L49.2723 35.1068L42.4152 41.6965L44.1295 50.9999L35.558 46.6079L26.9866 50.9999L28.7009 41.6965L21.8438 35.1068L31.4438 33.7508L35.558 25.2856Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Event Spaces</h4>
-                <p class="virtual-card-des">
-                  Versatile spaces for hosting virtual events. From planning to
-                  execution, Event Spaces provide the functionalities you need
-                  for a successful gathering, complete with registration and
-                  attendee interaction tools.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M39.333 19.7133C40.8837 20.1773 41.9997 20.3333 41.9997 20.3333V16.3333H44.6663C46.4345 16.3333 48.1301 15.631 49.3804 14.3807C50.6306 13.1305 51.333 11.4348 51.333 9.66667C51.333 7.89856 50.6306 6.20286 49.3804 4.95262C48.1301 3.70238 46.4345 3 44.6663 3H36.981C35.1294 3 33.3537 3.73553 32.0445 5.04479C30.7352 6.35404 29.9997 8.12977 29.9997 9.98133C29.9997 16.0053 35.797 18.656 39.333 19.7133ZM15.089 18.9907C13.3417 18.9302 11.6881 18.1854 10.4849 16.917C9.28163 15.6485 8.62505 13.958 8.65671 12.21C8.68837 10.4619 9.40574 8.79629 10.6541 7.57227C11.9026 6.34824 13.582 5.66385 15.3303 5.66667H19.5557C21.2647 5.66667 22.9038 6.34559 24.1123 7.55407C25.3208 8.76256 25.9997 10.4016 25.9997 12.1107C25.9997 17.5 21.1597 19.964 17.9997 21C16.469 21.5013 15.333 21.6667 15.333 21.6667V19L15.089 18.9907ZM32.6663 27C32.6663 29.9467 30.2797 32.3333 27.333 32.3333C24.3863 32.3333 21.9997 29.9467 21.9997 27C21.9997 24.0533 24.3863 21.6667 27.333 21.6667C30.2797 21.6667 32.6663 24.0533 32.6663 27ZM29.9997 27C29.9997 27.7072 29.7187 28.3855 29.2186 28.8856C28.7185 29.3857 28.0403 29.6667 27.333 29.6667C26.6258 29.6667 25.9475 29.3857 25.4474 28.8856C24.9473 28.3855 24.6663 27.7072 24.6663 27C24.6663 26.2928 24.9473 25.6145 25.4474 25.1144C25.9475 24.6143 26.6258 24.3333 27.333 24.3333C28.0403 24.3333 28.7185 24.6143 29.2186 25.1144C29.7187 25.6145 29.9997 26.2928 29.9997 27ZM20.6663 29.6667C20.6663 32.6133 18.2797 35 15.333 35C12.3863 35 9.99967 32.6133 9.99967 29.6667C9.99967 26.72 12.3863 24.3333 15.333 24.3333C18.2797 24.3333 20.6663 26.72 20.6663 29.6667ZM17.9997 29.6667C17.9997 30.3739 17.7187 31.0522 17.2186 31.5523C16.7185 32.0524 16.0403 32.3333 15.333 32.3333C14.6258 32.3333 13.9475 32.0524 13.4474 31.5523C12.9473 31.0522 12.6663 30.3739 12.6663 29.6667C12.6663 28.9594 12.9473 28.2811 13.4474 27.781C13.9475 27.281 14.6258 27 15.333 27C16.0403 27 16.7185 27.281 17.2186 27.781C17.7187 28.2811 17.9997 28.9594 17.9997 29.6667ZM3.33301 43.728C3.33301 39.696 11.3277 37.6667 15.333 37.6667C16.113 37.6667 17.045 37.744 18.0397 37.8973C19.8277 36.5867 23.1023 35 27.333 35C31.5623 35 34.8383 36.5867 36.6277 37.8973C37.5224 37.753 38.4267 37.6759 39.333 37.6667C43.3383 37.6667 51.333 39.6973 51.333 43.7267V51H3.33301V43.728ZM24.2023 43.0307C24.6663 43.4627 24.6663 43.688 24.6663 43.7267V48.3333H5.99967V43.7267C5.99967 43.6867 5.99967 43.4627 6.46367 43.0307C6.94767 42.5787 7.74634 42.0973 8.83167 41.6573C11.0077 40.7773 13.6663 40.3333 15.333 40.3333C16.9997 40.3333 19.6583 40.7773 21.8343 41.6573C22.9197 42.0973 23.7183 42.5787 24.2023 43.0307ZM32.8557 38.808C31.1127 38.0522 29.2328 37.6637 27.333 37.6667C25.125 37.6667 23.2477 38.1813 21.8117 38.808C24.765 39.8 27.333 41.4427 27.333 43.728C27.333 41.4427 29.901 39.8013 32.8557 38.808ZM48.6663 43.728C48.6663 43.688 48.6663 43.4627 48.2023 43.0307C47.7183 42.5787 46.9197 42.0973 45.8343 41.6573C43.6583 40.7773 40.9997 40.3333 39.333 40.3333C37.6663 40.3333 35.0077 40.7773 32.8317 41.6573C31.7463 42.0973 30.9477 42.5787 30.4637 43.0307C29.9997 43.4627 29.9997 43.688 29.9997 43.7267V48.3333H48.6663V43.728ZM39.333 35C42.2797 35 44.6663 32.6133 44.6663 29.6667C44.6663 26.72 42.2797 24.3333 39.333 24.3333C36.3863 24.3333 33.9997 26.72 33.9997 29.6667C33.9997 32.6133 36.3863 35 39.333 35ZM39.333 32.3333C40.0403 32.3333 40.7185 32.0524 41.2186 31.5523C41.7187 31.0522 41.9997 30.3739 41.9997 29.6667C41.9997 28.9594 41.7187 28.2811 41.2186 27.781C40.7185 27.281 40.0403 27 39.333 27C38.6258 27 37.9475 27.281 37.4474 27.781C36.9473 28.2811 36.6663 28.9594 36.6663 29.6667C36.6663 30.3739 36.9473 31.0522 37.4474 31.5523C37.9475 32.0524 38.6258 32.3333 39.333 32.3333Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Meetups</h4>
-                <p class="virtual-card-des">
-                  Transform your virtual gatherings with BigTopa Meetups,
-                  offering flexible formats for any type of engagement, whether
-                  it's a small workshop or a large conference.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M11.5001 29.197C10.6206 27.0738 10.168 24.7981 10.168 22.5C10.168 20.2019 10.6206 17.9262 11.5001 15.803C12.3795 13.6798 13.6686 11.7507 15.2936 10.1256C16.9186 8.50061 18.8478 7.21157 20.971 6.33211C23.0942 5.45265 25.3698 5 27.668 5C29.9661 5 32.2417 5.45265 34.3649 6.33211C36.4881 7.21157 38.4173 8.50061 40.0423 10.1256C41.6674 11.7507 42.9564 13.6798 43.8359 15.803C44.7153 17.9262 45.168 20.2019 45.168 22.5C45.168 24.7981 44.7153 27.0738 43.8359 29.197C42.9564 31.3202 41.6674 33.2493 40.0423 34.8744C38.4173 36.4994 36.4881 37.7884 34.3649 38.6679C32.2417 39.5474 29.9661 40 27.668 40C25.3698 40 23.0942 39.5474 20.971 38.6679C18.8478 37.7884 16.9186 36.4994 15.2936 34.8744C13.6686 33.2493 12.3795 31.3202 11.5001 29.197ZM14.2717 28.0489C13.543 26.2897 13.168 24.4042 13.168 22.5C13.168 20.5958 13.543 18.7103 14.2717 16.9511C15.0004 15.1919 16.0685 13.5934 17.4149 12.247C18.7614 10.9005 20.3598 9.83244 22.1191 9.10375C23.8783 8.37505 25.7638 8 27.668 8C29.5721 8 31.4577 8.37505 33.2169 9.10375C34.9761 9.83244 36.5746 10.9005 37.921 12.247C39.2675 13.5934 40.3355 15.1919 41.0642 16.9511C41.7929 18.7103 42.168 20.5958 42.168 22.5C42.168 24.4042 41.7929 26.2897 41.0642 28.0489C40.3355 29.8081 39.2675 31.4066 37.921 32.753C36.5746 34.0995 34.9761 35.1676 33.2169 35.8963C31.4577 36.6249 29.5721 37 27.668 37C25.7638 37 23.8783 36.6249 22.1191 35.8963C20.3598 35.1676 18.7614 34.0995 17.4149 32.753C16.0685 31.4066 15.0004 29.8081 14.2717 28.0489Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M16.4288 35.5386L11.5836 44.1908C10.3776 46.3444 11.9342 49.0001 14.4024 49.0001H40.4504C42.937 49.0001 44.4915 46.3087 43.2489 44.1549L37.9673 35.0001L28.8577 38.8357C28.135 39.14 27.3263 39.1711 26.5824 38.9231L16.4288 35.5386ZM18.6827 37.3326L14.1991 44.6694C13.7605 45.3871 14.277 46.3079 15.118 46.3079H39.2776C40.1186 46.3079 40.635 45.3871 40.1965 44.6694L35.7313 37.3627C35.4653 36.9275 34.9305 36.7386 34.4501 36.9101L28.0756 39.1867C27.8554 39.2654 27.6155 39.2702 27.3922 39.2004L19.9228 36.8662C19.4514 36.7189 18.9402 36.9112 18.6827 37.3326Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      d="M22.894 27.273C21.6282 26.0071 20.917 24.2902 20.917 22.5C20.917 20.7098 21.6282 18.9929 22.894 17.727C24.1599 16.4612 25.8768 15.75 27.667 15.75C29.4572 15.75 31.1741 16.4612 32.44 17.727C33.7058 18.9929 34.417 20.7098 34.417 22.5C34.417 24.2902 33.7058 26.0071 32.44 27.273C31.1741 28.5388 29.4572 29.25 27.667 29.25C25.8768 29.25 24.1599 28.5388 22.894 27.273Z"
-                      fill="#1D1D1D"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Meets</h4>
-                <p class="virtual-card-des">
-                  Conduct intimate, one-on-one meetings in a private and secure
-                  setting. Meets are ideal for deep, personal connections and
-                  focused discussions.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="54"
-                    viewBox="0 0 54 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M21.0897 45.7822C22.5077 47.2002 23.4311 49.0202 23.749 50.9743C23.8849 51.8094 23.1863 52.4998 22.3402 52.4998C21.5176 52.4998 20.8604 51.8404 20.6399 51.0478C20.3492 50.0028 19.7929 49.04 19.0124 48.2595C17.8215 47.0687 16.2064 46.3997 14.5222 46.3997C12.8381 46.3997 11.223 47.0687 10.0321 48.2595C9.28688 49.0048 8.74601 49.9161 8.44557 50.9066C8.18293 51.7724 7.46199 52.4998 6.55719 52.4998C5.62661 52.4998 4.85704 51.7395 5.02123 50.8236C5.36127 48.9267 6.27331 47.1637 7.65472 45.7822C9.43631 44.0006 11.8527 42.9998 14.3722 42.9998C16.8918 42.9998 19.3081 44.0006 21.0897 45.7822Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M14.3722 42.9998C17.6859 42.9998 20.3722 40.3135 20.3722 36.9998C20.3722 33.686 17.6859 30.9998 14.3722 30.9998C11.0585 30.9998 8.37223 33.686 8.37223 36.9998C8.37223 40.3135 11.0585 42.9998 14.3722 42.9998ZM14.3722 39.9998C16.0291 39.9998 17.3722 38.6566 17.3722 36.9998C17.3722 35.3429 16.0291 33.9998 14.3722 33.9998C12.7154 33.9998 11.3722 35.3429 11.3722 36.9998C11.3722 38.6566 12.7154 39.9998 14.3722 39.9998Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      d="M47.0897 45.7822C48.5077 47.2002 49.4311 49.0202 49.749 50.9743C49.8849 51.8094 49.1863 52.4998 48.3402 52.4998C47.5176 52.4998 46.8604 51.8404 46.6399 51.0478C46.3492 50.0028 45.7929 49.04 45.0124 48.2595C43.8215 47.0687 42.2064 46.3997 40.5222 46.3997C38.8381 46.3997 37.223 47.0687 36.0321 48.2595C35.2869 49.0048 34.746 49.9161 34.4456 50.9066C34.1829 51.7724 33.462 52.4998 32.5572 52.4998C31.6266 52.4998 30.857 51.7395 31.0212 50.8236C31.3613 48.9267 32.2733 47.1637 33.6547 45.7822C35.4363 44.0006 37.8527 42.9998 40.3722 42.9998C42.8918 42.9998 45.3081 44.0006 47.0897 45.7822Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M40.3722 42.9998C43.6859 42.9998 46.3722 40.3135 46.3722 36.9998C46.3722 33.686 43.6859 30.9998 40.3722 30.9998C37.0585 30.9998 34.3722 33.686 34.3722 36.9998C34.3722 40.3135 37.0585 42.9998 40.3722 42.9998ZM40.3722 39.9998C42.0291 39.9998 43.3722 38.6566 43.3722 36.9998C43.3722 35.3429 42.0291 33.9998 40.3722 33.9998C38.7154 33.9998 37.3722 35.3429 37.3722 36.9998C37.3722 38.6566 38.7154 39.9998 40.3722 39.9998Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      d="M33.2679 19.7512C34.5869 21.0702 35.4459 22.7632 35.7416 24.581C35.868 25.3578 35.2182 26 34.4312 26C33.6659 26 33.0546 25.3866 32.8495 24.6494C32.579 23.6773 32.0615 22.7817 31.3355 22.0556C30.2277 20.9478 28.7252 20.3255 27.1586 20.3255C25.592 20.3255 24.0895 20.9478 22.9817 22.0556C22.2885 22.7488 21.7854 23.5966 21.5059 24.518C21.2616 25.3234 20.5909 26 19.7493 26C18.8836 26 18.1677 25.2928 18.3205 24.4407C18.6368 22.6762 19.4852 21.0362 20.7702 19.7511C22.4275 18.0939 24.6753 17.1628 27.0191 17.1628C29.3628 17.1628 31.6106 18.0939 33.2679 19.7512Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M27.0191 17.1628C30.1016 17.1628 32.6005 14.6639 32.6005 11.5814C32.6005 8.49888 30.1016 6 27.0191 6C23.9365 6 21.4377 8.49888 21.4377 11.5814C21.4377 14.6639 23.9365 17.1628 27.0191 17.1628ZM27.0191 14.3721C28.5603 14.3721 29.8098 13.1227 29.8098 11.5814C29.8098 10.0401 28.5603 8.7907 27.0191 8.7907C25.4778 8.7907 24.2284 10.0401 24.2284 11.5814C24.2284 13.1227 25.4778 14.3721 27.0191 14.3721Z"
-                      fill="#1D1D1D"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M8.99902 0.999756C6.78988 0.999756 4.99902 2.79062 4.99902 4.99976V23.9998C4.99902 26.2089 6.78988 27.9998 8.99902 27.9998H44.999C47.2082 27.9998 48.999 26.2089 48.999 23.9998V4.99976C48.999 2.79062 47.2082 0.999756 44.999 0.999756H8.99902ZM8.99902 4.1C8.44674 4.1 7.99902 5.44747 7.99902 5.99976V22.9998C7.99902 23.552 8.44674 24.9 8.99902 24.9H44.999C45.5513 24.9 45.999 23.552 45.999 22.9998V5.99976C45.999 5.44747 45.5513 4.1 44.999 4.1H8.99902Z"
-                      fill="#1D1D1D"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Meetings</h4>
-                <p class="virtual-card-des">
-                  BigTopa Meetings bring your team or clients together in a
-                  collaborative space, perfect for brainstorming, presenting,
-                  and making collective decisions.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M44.4752 3H51.3323V9.85714H44.4752V3ZM44.4752 13.2857H51.3323V20.1429H44.4752V13.2857ZM34.1895 3H41.0466V9.85714H34.1895V3ZM34.1895 13.2857H41.0466V20.1429H34.1895V13.2857Z"
-                    />
-                    <path
-                      d="M47.9035 26.9999V37.2856H6.7606V9.85704H27.332V6.42847H6.7606C5.85129 6.42847 4.97922 6.78969 4.33624 7.43267C3.69325 8.07565 3.33203 8.94772 3.33203 9.85704V37.2856C3.33203 38.1949 3.69325 39.067 4.33624 39.71C4.97922 40.353 5.85129 40.7142 6.7606 40.7142H20.4749V47.5713H13.6177V50.9999H41.0463V47.5713H34.1892V40.7142H47.9035C48.8128 40.7142 49.6848 40.353 50.3278 39.71C50.9708 39.067 51.332 38.1949 51.332 37.2856V26.9999H47.9035ZM30.7606 47.5713H23.9035V40.7142H30.7606V47.5713Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Webinars</h4>
-                <p class="virtual-card-des">
-                  Educate and engage with BigTopa Webinars. Share your
-                  knowledge, interact with a large audience, and provide
-                  valuable content in an immersive learning environment.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 col-12 mt-2">
-              <div class="virtual-card">
-                <div class="virtual-card-icon-cont">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="55"
-                    height="54"
-                    viewBox="0 0 55 54"
-                    fill="none"
-                  >
-                    <path
-                      d="M14.5771 48.8522H40.7589L27.668 35.7613M47.3043 7.39771H8.03161C6.8743 7.39771 5.76439 7.85744 4.94605 8.67578C4.12771 9.49412 3.66797 10.604 3.66797 11.7613V37.9432C3.66797 39.1005 4.12771 40.2104 4.94605 41.0287C5.76439 41.8471 6.8743 42.3068 8.03161 42.3068H16.7589V37.9432H8.03161V11.7613H47.3043V37.9432H38.5771V42.3068H47.3043C48.4616 42.3068 49.5715 41.8471 50.3899 41.0287C51.2082 40.2104 51.668 39.1005 51.668 37.9432V11.7613C51.668 10.604 51.2082 9.49412 50.3899 8.67578C49.5715 7.85744 48.4616 7.39771 47.3043 7.39771Z"
-                    />
-                  </svg>
-                </div>
-                <h4 class="virtual-card-heading">Brodcast</h4>
-                <p class="virtual-card-des">
-                  Reach out to a wider audience with BigTopa Broadcasts. Stream
-                  your events live, engage with viewers, and deliver
-                  high-quality content on a scalable platform.
-                </p>
-              </div>
-            </div>
-            <div class="backgroundtop-left"></div>
-            <div class="backgroundbottom-right"></div>
+          <span class="pc-slabel">What's included</span>
+          <div class="pc-features">
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>All 4 space types</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Streams, Rooms, Meetups</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Unlimited members</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>100 GB storage</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Unlimited events</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Marketing Core</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>Monetization Core</div>
+            <div class="pcf inc"><span class="pcf-dot">&#10003;</span>All extensions</div>
           </div>
+          <a href="index.html#cta" class="pc-cta cta-out">Request access</a>
         </div>
-      </section>
-      <!--Virtual Section End-->
+        <div class="pc-foot"><a href="how-it-works.html" class="pc-edit">Edit in Plan Builder</a></div>
+      </div>
 
-      <!--Answers Section start-->
-      <section id="audience"  class="sectionCommon">
-        <div class="container-fluid sectionCommon">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <h2 class="secondary-heading position-relative text-left">
-                Answers for your Questions
-                <span class="heading-Orangeanime">
-                  <img
-                    class="img-fluid"
-                    src="./asstes/images/oran-underlineAnime.png"
-                  />
-                </span>
-              </h2>
-            </div>
-          </div>
-          <div class="row mt-5">
-            <div class="col-12">
-              <div class="accordion" id="accordionExample">
-              <!--Accordion item render here by javascript-->
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-      <!--Answers Section End-->
+    </div>
+  </div>
+  <div class="compare-note">
+    <span class="cn-text">Want to see a custom plan alongside these?</span>
+    <button class="add-plan-btn" onclick="setView('custom')">Build a custom plan</button>
+  </div>
+</div>
 
-      
-      <!--Footer Section Start-->
-     <section id="footer" class="footer-section">
-      <div class="container">
-        <div class="row flex-column gap-5 flex-md-row gap-md-0 border-bottom">
-          <div class="col-4">
-            <div class="logo d-flex flex-row align-items-center">
-              <img
-                class="img-fluid"
-                alt=""
-                src="./asstes/images/white_bigTop.png"
-              />
-              <div class="footer-logohead">BigTopa</div>
-            </div>
-          </div>
-          <div class="col-4 align-items-center">
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="resource.html">About us </a></li>
-              <li><a href="#0">Q&A</a></li>
-              <li><a href="#contact">Contact Us</a></li>
-            </ul>
-          </div>
-          <div id="contact" class="col-md-4 col-12">
-            <div class="d-flex flex-row gap-2 md-justify-content-end justify-content-start">
-              <img
-                src="./asstes/images/facebook-logo.png"
-                class="img-fluid"
-              />
-              <img src="./asstes/images/insta-logo.png" class="img-fluid" />
-              <img src="./asstes/images/yt-logo.png" class="img-fluid" />
-              <img src="./asstes/images/x-logo.png" class="img-fluid" />
-            </div>
-          </div>
+<!-- ══ CUSTOM VIEW ══ -->
+<div id="view-cus" style="display:none">
+
+  <!-- Plan cards grid — hidden when builder is open -->
+  <div id="cus-cards-wrap">
+    <div class="plan-section">
+      <div class="plan-grid" id="cus-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    <div class="compare-note">
+      <span class="cn-text" id="cus-note">Build a custom plan — configure spaces, modules, and extensions, then see your pricing.</span>
+      <button class="add-plan-btn" id="add-plan-btn" onclick="addPlanSlot()">+ Add plan to compare</button>
+    </div>
+  </div>
+
+  <!-- Builder — replaces card grid when open -->
+  <div id="builder-wrap" style="display:none;padding:0 60px 32px;max-width:1400px;margin:0 auto">
+    <div style="background:var(--ink2);border:1px solid rgba(42,191,191,.25);border-radius:14px;overflow:hidden">
+
+      <!-- Builder header -->
+      <div style="padding:16px 24px;border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <div id="builder-title" style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--white)">Configure your plan</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Select spaces and configure features. Fitz can help on the right.</div>
         </div>
-        <div class="row footer-privacydes mt-5">
-          <div class="col-lg-3 col-12 d-flex flex-column gap-2 gap-sm-0  flex-sm-row lg-justify-content-start justify-content-start">
-            <!--<div class="borderprivacy d-none d-sm-block"></div>-->
-            <p>support@bigtopa.com</p>
-          </div>
-          <div class="col-lg-9 col-12 d-flex flex-column gap-2 gap-sm-0 flex-sm-row
-           lg-justify-content-end justify-content-start mt-4 mt-lg-0">
-              <p class="small">
-    We collect basic user information (like name and email) to personalize your experience and enhance platform features. Learn more in our <a href="https://policy.app.bigtopa.com/bigtopa/pp.html" target="_blank">Privacy Policy</a>.
-  </p>
-            <!--<a href="https://policy.app.bigtopa.com/bigtopa/pp.html">Privacy Policy</a>-->
-            <div class="borderprivacy  d-none d-sm-block"></div>
-            <p>© <span id="start-year">2010</span>-<span id="current-year"></span> All Rights Reserved. Bigtopa®</p>
-          </div>
+        <div style="display:flex;gap:8px">
+          <button onclick="savePlan()" style="padding:9px 18px;border-radius:7px;background:var(--teal);border:none;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s">Done — save plan</button>
+          <button onclick="closeBuilder()" style="padding:9px 14px;border-radius:7px;background:none;border:1px solid var(--edge);color:var(--muted);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s">Cancel</button>
         </div>
       </div>
-    </section>
-    <!--Footer Section End-->
+
+      <!-- Builder body: config left, Fitz right -->
+      <div id="builder-grid" style="display:grid;grid-template-columns:1fr 300px;min-height:500px">
+
+        <!-- Left: config panel -->
+        <div style="padding:22px;border-right:1px solid var(--edge);overflow-y:auto">
+
+          <!-- Space selector -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--hint)">Select spaces</div>
+            <button id="show-fitz-btn" onclick="toggleBFitz()" style="display:none;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;background:rgba(232,98,26,.1);border:1px solid rgba(232,98,26,.25);color:var(--accent);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">&#10022; Show Fitz</button>
+          </div>
+          <div class="b-scbar" id="b-scbar">
+            <div class="b-scard" data-bspace="work" style="--sc:var(--violet)">
+              <div class="bck">&#10003;</div>
+              <div class="bsc-tag">Work</div>
+              <div class="bsc-nm">Your Team</div>
+            </div>
+            <div class="b-scard" data-bspace="community" style="--sc:var(--teal)">
+              <div class="bck">&#10003;</div>
+              <div class="bsc-tag">Community</div>
+              <div class="bsc-nm">Your Members</div>
+            </div>
+            <div class="b-scard" data-bspace="event" style="--sc:var(--accent)">
+              <div class="bck">&#10003;</div>
+              <div class="bsc-tag">Event</div>
+              <div class="bsc-nm">Your Audience</div>
+            </div>
+            <div class="b-scard" data-bspace="provider" style="--sc:#5A8A10">
+              <div class="bck">&#10003;</div>
+              <div class="bsc-tag">Provider</div>
+              <div class="bsc-nm">Your Clients</div>
+            </div>
+          </div>
+
+          <!-- Space filter tabs -->
+          <div class="b-tabs" id="b-tabs">
+            <span style="font-size:12px;color:var(--hint);padding:9px 0;font-style:italic">Select a space above</span>
+          </div>
+
+          <!-- Config panel per space -->
+          <div id="b-config">
+            <div class="b-no-space">Click a space above to configure it</div>
+          </div>
+
+          <!-- Bottom summary bar -->
+          <div style="margin-top:18px;background:var(--ink3);border:1px solid var(--edge);border-radius:9px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+              <span style="font-size:12px;color:var(--muted)">Your plan:</span>
+              <div id="b-sum-chips" style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:12px;color:var(--hint);font-style:italic">No spaces selected</span>
+              </div>
+              <span id="b-demo-price" style="font-size:11px;color:var(--hint);font-style:italic"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Fitz — self-contained, no inherited fside class -->
+        <div id="b-fside-wrap" style="display:flex;flex-direction:column;background:var(--ink3);border-left:1px solid rgba(232,98,26,.2)">
+          <!-- Fitz header with collapse toggle -->
+          <div style="padding:13px 15px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px;flex-shrink:0">
+            <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,rgba(232,98,26,.8),rgba(123,92,240,.8));display:flex;align-items:center;justify-content:center;font-size:12px;color:white;flex-shrink:0">&#10022;</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--white);line-height:1">Fitz</div>
+              <div style="font-size:10px;color:rgba(232,98,26,.7);margin-top:1px">Plan Assistant</div>
+            </div>
+            <button onclick="toggleBFitz()" id="bfitz-tog" title="Hide Fitz" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:5px;cursor:pointer;color:var(--muted);padding:3px 8px;font-size:11px;font-family:'DM Sans',sans-serif;transition:all .15s">Hide</button>
+          </div>
+          <!-- Fitz messages -->
+          <div id="b-fbody" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:6px;min-height:200px;align-items:flex-start">
+            <div class="fm fitz">Hi, I'm <strong>Fitz</strong> — BigTopa's plan assistant.</div>
+            <div class="fm fitz">I can interview you to configure the right plan, or answer questions about spaces and modules.</div>
+            <div class="fs-sugs">
+              <button class="fs-sug" onclick="bFSug('Configure my plan')">Configure my plan &#8250;</button>
+              <button class="fs-sug" onclick="bFSug('What spaces do I need?')">What spaces do I need?</button>
+              <button class="fs-sug" onclick="bFSug('Explain the modules')">Explain the modules</button>
+            </div>
+          </div>
+          <!-- Fitz input -->
+          <div style="padding:9px 11px;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0">
+            <div style="display:flex;gap:5px">
+              <input class="fs-inp" id="b-finp" placeholder="Ask Fitz anything..." onkeydown="if(event.key==='Enter')bFSend()" style="flex:1">
+              <button onclick="bFSend()" style="width:28px;height:28px;border-radius:5px;background:var(--accent);border:none;cursor:pointer;color:white;font-size:14px;flex-shrink:0;transition:background .15s">&#8594;</button>
+            </div>
+            <div style="font-size:9px;color:var(--hint);text-align:center;margin-top:6px">Fitz &middot; BigTopa Plan Assistant</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-      <script>
-  
-     const startYear = 2010;
-     const currentYear = new Date().getFullYear();
-     document.getElementById("current-year").textContent = currentYear;
-  
-  
-    var words = document.getElementsByClassName("word");
-    var wordArray = [];
-    var currentWord = 0;
+  </div>
 
-    words[currentWord].style.opacity = 1;
-    for (var i = 0; i < words.length; i++) {
-      splitLetters(words[i]);
+</div>
+
+<!-- BOTTOM -->
+<div class="bottom-section">
+  <div class="bottom-note">
+    <div class="bn-text">
+      <div class="bn-title">Not sure which plan fits?</div>
+      <div class="bn-sub">Let Fitz interview you on the How It Works page — he'll recommend the right spaces and plan tier for your organization.</div>
+    </div>
+    <a href="how-it-works.html#fitz" class="bn-cta">Ask Fitz &#8250;</a>
+    <a href="index.html#cta" class="bn-cta" style="background:none;border:1px solid var(--edge);color:var(--muted)">Request access</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fi">
+    <div class="flogo">Big<span>Topa</span></div>
+    <div class="flinks">
+      <a href="platform.html">Platform</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#">Privacy</a><a href="#">Terms</a>
+    </div>
+    <div style="font-size:11px;color:var(--hint)">&#169; 2026 BigTopa</div>
+  </div>
+</footer>
+
+<script>
+/* ══ DATA ══ */
+const SP={
+  work:{tag:'Work',nm:'Your Team',color:'var(--violet)',bg:'rgba(123,92,240,.12)',
+    cores:[],
+    exts:['Meetings','Direct Calls','Productivity Suite','Time Tracking','SSO','Encryption'],
+    meetups:['Meet Now','Meet'],coreBoxes:['Spaces','Streams','Rooms']},
+  community:{tag:'Community',nm:'Your Members',color:'var(--teal)',bg:'rgba(42,191,191,.12)',
+    cores:[
+      {id:'marketing',nm:'Marketing Core',ico:'ph-megaphone',ibg:'rgba(232,98,26,.1)',subs:['Email','Landing Pages','Forms','Social Posts','Content Marketing','Affiliates']},
+      {id:'monetization',nm:'Monetization Core',ico:'ph-currency-dollar',ibg:'rgba(168,200,64,.1)',subs:['Shop','Donations','Print on Demand','Digital Products','Virtual Card','Affiliates','Subscriptions']},
+    ],
+    exts:['RSVP','Attendance','Photo Album','Voting','Meetings','Webinars','Broadcast'],
+    meetups:['Meet Now','Meet','Meetings','Webinars','Broadcast'],coreBoxes:['Spaces','Streams','Rooms']},
+  event:{tag:'Event',nm:'Your Audience',color:'var(--accent)',bg:'rgba(232,98,26,.12)',
+    cores:[
+      {id:'marketing',nm:'Marketing Core',ico:'ph-megaphone',ibg:'rgba(232,98,26,.1)',subs:['Email','Landing Pages','Forms','Social Posts','Content Marketing','Affiliates']},
+      {id:'monetization',nm:'Monetization Core',ico:'ph-currency-dollar',ibg:'rgba(168,200,64,.1)',subs:['Shop','Donations','Print on Demand','Digital Products','Virtual Card','Affiliates','Subscriptions']},
+    ],
+    exts:['RSVP','Matching','Meetings','Webinars','Broadcast'],
+    meetups:['Meet Now','Meet','Meetings','Webinars','Broadcast'],coreBoxes:['Spaces','Streams','Rooms']},
+  provider:{tag:'Provider',nm:'Your Clients',color:'#5A8A10',bg:'rgba(168,200,64,.12)',
+    cores:[
+      {id:'marketing',nm:'Marketing Core',ico:'ph-megaphone',ibg:'rgba(232,98,26,.1)',subs:['Email','Landing Pages','Forms','Social Posts','Content Marketing','Affiliates']},
+      {id:'monetization',nm:'Monetization Core',ico:'ph-currency-dollar',ibg:'rgba(168,200,64,.1)',subs:['Shop','Donations','Print on Demand','Digital Products','Virtual Card','Affiliates','Subscriptions']},
+    ],
+    exts:['Booking','Meetings'],
+    meetups:['Meet Now','Meet','Meetings'],coreBoxes:['Spaces','Streams','Rooms']},
+};
+
+const sharedCores={marketing:false,monetization:false};
+const bCfgs={};
+const bSelSpaces=new Set();
+let bActiveSpace=null;
+let editingSlot=null;
+let savedPlans=[];
+
+function getBCfg(s){if(!bCfgs[s])bCfgs[s]={mOn:true,exts:new Set(),meetups:new Set(SP[s].meetups)};return bCfgs[s]}
+
+/* ══ VIEW TOGGLE ══ */
+function setView(v){
+  document.getElementById('view-std').style.display=v==='standard'?'block':'none';
+  document.getElementById('view-cus').style.display=v==='custom'?'block':'none';
+  document.getElementById('tab-std').classList.toggle('active',v==='standard');
+  document.getElementById('tab-cus').classList.toggle('active',v==='custom');
+  if(v==='custom') renderCusGrid();
+}
+
+/* ══ URL PARAMS ══ */
+function readParams(){
+  const p=new URLSearchParams(window.location.search);
+  const spaces=p.get('spaces');
+  const cores=p.get('cores');
+  const view=p.get('view');
+  if(spaces){
+    spaces.split(',').forEach(s=>{if(SP[s]){bSelSpaces.add(s);document.querySelector(`[data-bspace="${s}"]`)?.classList.add('sel')}});
+  }
+  if(cores){cores.split(',').forEach(c=>{if(sharedCores.hasOwnProperty(c))sharedCores[c]=true})}
+  if(view==='custom'||spaces){
+    setView('custom');
+    document.getElementById('from-cfg').classList.remove('hidden');
+    if(bSelSpaces.size>0){
+      openBuilder(null);
+      bActiveSpace=[...bSelSpaces][0];
+      renderBTabs();renderBConfig();updatePreview();
     }
+  }
+}
 
-    function changeWord() {
-      var cw = wordArray[currentWord];
-      var nw =
-        currentWord == words.length - 1
-          ? wordArray[0]
-          : wordArray[currentWord + 1];
-      for (var i = 0; i < cw.length; i++) {
-        animateLetterOut(cw, i);
-      }
+/* ══ CUSTOM GRID ══ */
+function renderCusGrid(){
+  const grid=document.getElementById('cus-grid');
+  const addBtn=document.getElementById('add-plan-btn');
+  let h=savedPlans.map((plan,idx)=>{
+    const spaceChips=plan.spaces.map(sp=>`<span class="pc-chip on">${SP[sp].nm}</span>`).join('');
+    const coreNames=Object.keys(sharedCores).filter(c=>sharedCores[c]).map(c=>c==='marketing'?'Marketing Core':'Monetization Core');
+    const extList=plan.spaces.flatMap(sp=>[...getBCfg(sp).exts]).slice(0,4);
+    const allFeatures=[...coreNames,...extList];
+    return `<div class="plan-card custom-card">
+      <div class="pc-bar"></div>
+      <div class="pc-body">
+        <span class="pc-badge pb-cus">Custom Plan ${idx+1}</span>
+        <div class="pc-name">${plan.name||'Your Configuration'}</div>
+        <div class="pc-price"><span class="pc-amount">${plan.price}</span><span class="pc-period">/ month <em style="font-size:10px;color:var(--hint)">(demo)</em></span></div>
+        <p class="pc-tagline">${plan.spaces.map(s=>SP[s].nm).join(' + ')} — custom composition</p>
+        <div class="pc-divider"></div>
+        <span class="pc-slabel">Spaces</span>
+        <div class="pc-spaces">${spaceChips}</div>
+        <span class="pc-slabel">Features</span>
+        <div class="pc-features">
+          ${allFeatures.length?allFeatures.map(f=>`<div class="pcf inc"><span class="pcf-dot">&#10003;</span>${f}</div>`).join(''):'<div class="pcf exc"><span class="pcf-dot">&ndash;</span>Core features only</div>'}
+        </div>
+        <a href="index.html#cta" class="pc-cta cta-teal">Request access</a>
+      </div>
+      <div class="pc-foot"><button class="pc-edit" onclick="editPlan(${idx})">Edit this plan</button></div>
+    </div>`;
+  }).join('');
 
-      for (var i = 0; i < nw.length; i++) {
-        nw[i].className = "letter behind";
-        nw[0].parentElement.style.opacity = 1;
-        animateLetterIn(nw, i);
-      }
+  /* Add create slot if < 4 plans */
+  if(savedPlans.length<4){
+    h+=`<div class="create-card" onclick="openBuilder(null)">
+      <div class="create-icon"><i class="ph ph-plus-circle"></i></div>
+      <div class="create-title">${savedPlans.length===0?'Create your first custom plan':'Add another plan to compare'}</div>
+      <div class="create-sub">Configure spaces, modules, and extensions<br>to see your personalized pricing</div>
+    </div>`;
+  }
 
-      currentWord = currentWord == wordArray.length - 1 ? 0 : currentWord + 1;
+  grid.innerHTML=h;
+  grid.className='plan-grid'+(savedPlans.length>=3?' four-col':'');
+  addBtn.style.display=savedPlans.length>=4?'none':'flex';
+}
+
+/* ══ BUILDER ══ */
+function openBuilder(slotIdx){
+  editingSlot=slotIdx;
+  document.getElementById('cus-cards-wrap').style.display='none';
+  document.getElementById('builder-wrap').style.display='block';
+  document.getElementById('builder-title').textContent=slotIdx!==null&&savedPlans[slotIdx]?'Edit your plan':'Configure your plan';
+  if(slotIdx!==null&&savedPlans[slotIdx]){
+    const plan=savedPlans[slotIdx];
+    bSelSpaces.clear();
+    plan.spaces.forEach(s=>{bSelSpaces.add(s);document.querySelector(`[data-bspace="${s}"]`)?.classList.add('sel')});
+    bActiveSpace=plan.spaces[0];
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderBTabs();renderBConfig();updatePreview();
+}
+function closeBuilder(){
+  document.getElementById('builder-wrap').style.display='none';
+  document.getElementById('cus-cards-wrap').style.display='block';
+  editingSlot=null;
+  bSelSpaces.clear();
+  document.querySelectorAll('.b-scard').forEach(c=>c.classList.remove('sel'));
+  bActiveSpace=null;
+  renderBTabs();renderBConfig();
+}
+function savePlan(){
+  if(bSelSpaces.size===0)return;
+  const spaces=[...bSelSpaces];
+  const cores=Object.keys(sharedCores).filter(c=>sharedCores[c]);
+  let price='$49/mo';
+  if(spaces.length===2||cores.length>0)price='$99/mo';
+  if(spaces.length>=3||cores.length>=2)price='$199/mo';
+  const plan={spaces,cores,price,name:'Custom Plan '+(editingSlot!==null?editingSlot+1:savedPlans.length+1)};
+  if(editingSlot!==null){savedPlans[editingSlot]=plan;}else{savedPlans.push(plan);}
+  closeBuilder();renderCusGrid();
+}
+function editPlan(idx){openBuilder(idx)}
+function addPlanSlot(){openBuilder(null)}
+
+document.querySelectorAll('.b-scard').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const sp=c.dataset.bspace;
+    if(bSelSpaces.has(sp)){bSelSpaces.delete(sp);c.classList.remove('sel');}
+    else{bSelSpaces.add(sp);c.classList.add('sel');bActiveSpace=sp;}
+    if(bSelSpaces.size>0&&!bSelSpaces.has(bActiveSpace))bActiveSpace=[...bSelSpaces][0];
+    renderBTabs();renderBConfig();updatePreview();
+  });
+});
+
+function renderBTabs(){
+  const el=document.getElementById('b-tabs');
+  if(!el)return;
+  if(bSelSpaces.size===0){el.innerHTML='<span style="font-size:12px;color:var(--hint);padding:9px 0;font-style:italic">Select a space above</span>';return;}
+  el.innerHTML=[...bSelSpaces].map(sp=>{
+    const m=SP[sp];const isA=bActiveSpace===sp;
+    return `<button class="b-tab ${isA?'active':''}" onclick="setBActive('${sp}')"><span class="b-tab-dot" style="background:${m.color}"></span>${m.nm}</button>`;
+  }).join('');
+}
+function setBActive(sp){bActiveSpace=sp;renderBTabs();renderBConfig()}
+
+function renderBConfig(){
+  const el=document.getElementById('b-config');
+  if(!el)return;
+  if(!bActiveSpace||bSelSpaces.size===0){el.innerHTML='<div class="b-no-space">Click a space above to configure it</div>';return;}
+  const m=SP[bActiveSpace],cfg=getBCfg(bActiveSpace);
+  let h='';
+
+  /* 1. Space Core boxes — meetup pills inline below when ON */
+  h+=`<div class="b-section"><div class="b-slabel">Space Core <span class="b-badge">Always included</span></div>
+    <div class="b-cboxes">`;
+  m.coreBoxes.forEach(nm=>{h+=`<div class="b-cbox"><div class="bcb-nm">${nm}</div><div class="bcb-sub">Always on</div></div>`});
+  h+=`<div class="b-cbox mbox"><button class="b-mtog ${cfg.mOn?'on':'off'}" id="bmtb-${bActiveSpace}"></button>
+    <div class="bcb-nm">Meetups</div><div class="bcb-sub">Toggle to enable</div></div>
+  </div>
+  <div id="bmu-pills-${bActiveSpace}" style="${cfg.mOn?'':'display:none'}margin-top:8px">
+    <div style="font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:rgba(232,98,26,.55);margin-bottom:6px">Meetup types</div>
+    <div class="b-mpills">`;
+  m.meetups.forEach(mu=>{const on=cfg.meetups.has(mu);h+=`<button class="b-mpill ${on?'on':''}" data-bmu="${mu}">${mu}</button>`});
+  h+=`</div></div></div>`;
+
+  /* 2. Extensions — directly after Space Core */
+  if(m.exts.length){
+    h+=`<div class="b-section"><div class="b-slabel">Extensions <span class="b-badge b-badge-opt">Optional</span></div>
+      <div class="b-egrid">`;
+    m.exts.forEach(e=>{const on=cfg.exts.has(e);h+=`<button class="b-epill ${on?'on':''}" data-bext="${e}"><div class="b-ebox">${on?'&#10003;':''}</div>${e}</button>`});
+    h+=`</div></div>`;
+  }
+
+  /* 3. Core Modules — last, shared across spaces */
+  if(m.cores.length){
+    h+=`<div class="b-section"><div class="b-slabel">Core Modules <span class="b-badge b-badge-opt">Optional &mdash; shared across spaces</span></div>
+      <div class="b-cmods">`;
+    m.cores.forEach(core=>{
+      const on=sharedCores[core.id];
+      h+=`<div class="b-cmod ${on?'on':''}" data-bcore="${core.id}">
+        <div class="bcm-l">
+          <div class="bcm-ico" style="background:${core.ibg}"><i class="ph ${core.ico}" style="color:${m.color};font-size:10px"></i></div>
+          <div><div class="bcm-nm">${core.nm}</div><div class="bcm-ds">Enable to configure features</div></div>
+        </div><div class="b-ctog"></div>
+      </div>
+      <div class="b-subext ${on?'open':''}" id="bsub-${core.id}">
+        <div class="b-sub-label">${core.nm} features</div>
+        <div class="b-sub-grid">${core.subs.map(s=>`<button class="b-epill ${on?'on':''}" data-bsub="${s}"><div class="b-ebox">${on?'&#10003;':''}</div>${s}</button>`).join('')}</div>
+      </div>`;
+    });
+    h+=`</div></div>`;
+  }
+
+  el.innerHTML=h;
+
+  /* Meetups toggle — show/hide pills */
+  const bmtb=document.getElementById(`bmtb-${bActiveSpace}`);
+  const muPills=document.getElementById(`bmu-pills-${bActiveSpace}`);
+  if(bmtb)bmtb.addEventListener('click',e=>{
+    e.stopPropagation();const c=getBCfg(bActiveSpace);c.mOn=!c.mOn;
+    bmtb.classList.toggle('on',c.mOn);bmtb.classList.toggle('off',!c.mOn);
+    if(muPills)muPills.style.display=c.mOn?'block':'none';
+    updatePreview();
+  });
+  el.querySelectorAll('.b-cmod[data-bcore]').forEach(row=>{
+    row.addEventListener('click',()=>{
+      const cid=row.dataset.bcore;sharedCores[cid]=!sharedCores[cid];const on=sharedCores[cid];
+      el.querySelectorAll(`.b-cmod[data-bcore="${cid}"]`).forEach(r=>r.classList.toggle('on',on));
+      const sub=document.getElementById(`bsub-${cid}`);
+      if(sub){sub.classList.toggle('open',on);sub.querySelectorAll('.b-epill').forEach(ep=>{ep.classList.toggle('on',on);ep.querySelector('.b-ebox').innerHTML=on?'&#10003;':''});}
+      updatePreview();
+    });
+  });
+  el.querySelectorAll('.b-epill[data-bext]').forEach(p=>{
+    p.addEventListener('click',()=>{
+      const e=p.dataset.bext;const cfg=getBCfg(bActiveSpace);
+      if(cfg.exts.has(e)){cfg.exts.delete(e);p.classList.remove('on');p.querySelector('.b-ebox').innerHTML='';}
+      else{cfg.exts.add(e);p.classList.add('on');p.querySelector('.b-ebox').innerHTML='&#10003;';}
+      updatePreview();
+    });
+  });
+  el.querySelectorAll('.b-mpill[data-bmu]').forEach(p=>{
+    p.addEventListener('click',()=>{
+      const mu=p.dataset.bmu;const cfg=getBCfg(bActiveSpace);
+      if(cfg.meetups.has(mu)){cfg.meetups.delete(mu);p.classList.remove('on');}
+      else{cfg.meetups.add(mu);p.classList.add('on');}
+    });
+  });
+}
+
+/* Fitz inside builder */
+const BFS={
+  'configure my plan':{r:"Let's go. What type of organization are you?",sugs:['Greek chapter','Reunion organizer','Creator or coach','Startup team']},
+  'greek chapter':{r:"Greek chapters typically need Work + Community. Do you run events like homecoming too?",sugs:['Yes, events too','Just Work + Community'],
+    a:()=>{['work','community'].forEach(s=>{bSelSpaces.add(s);document.querySelector(`[data-bspace="${s}"]`)?.classList.add('sel')});bActiveSpace='work';renderBTabs();renderBConfig();updatePreview()}},
+  'yes, events too':{r:"Adding Event Space. Recommending Marketing Core for promotion and Monetization Core for tickets and dues.",sugs:['Looks good'],
+    a:()=>{bSelSpaces.add('event');document.querySelector('[data-bspace="event"]')?.classList.add('sel');sharedCores.marketing=true;sharedCores.monetization=true;renderBTabs();renderBConfig();updatePreview()}},
+  'reunion organizer':{r:"Event Space with Monetization Core — ticketing, payments, and reunion memory built in.",sugs:['Perfect'],
+    a:()=>{bSelSpaces.add('event');document.querySelector('[data-bspace="event"]')?.classList.add('sel');bActiveSpace='event';sharedCores.monetization=true;renderBTabs();renderBConfig();updatePreview()}},
+  'what spaces do i need':{r:"Work = internal team. Community = ongoing member engagement. Event = ticketed occasions. Provider = client services. Most orgs use 2-3 together.",sugs:['Configure my plan']},
+  'explain the modules':{r:"Marketing Core adds email, landing pages, forms and social. Monetization Core adds ticketing, dues, donations, shop, and digital products. Both are shared across all your spaces.",sugs:['Configure my plan']},
+};
+let bFitzVisible=true;
+function toggleBFitz(){
+  bFitzVisible=!bFitzVisible;
+  const fitz=document.getElementById('b-fside-wrap');
+  const tog=document.getElementById('bfitz-tog');
+  const showBtn=document.getElementById('show-fitz-btn');
+  const grid=document.getElementById('builder-grid');
+  if(fitz) fitz.style.display=bFitzVisible?'flex':'none';
+  if(tog) tog.textContent=bFitzVisible?'Hide':'Show Fitz';
+  if(showBtn) showBtn.style.display=bFitzVisible?'none':'flex';
+  if(grid) grid.style.gridTemplateColumns=bFitzVisible?'1fr 300px':'1fr';
+}
+function bFMsg(txt,role){
+  const b=document.getElementById('b-fbody');
+  if(!b)return;
+  const d=document.createElement('div');
+  d.className=`fm ${role}`;
+  d.innerHTML=txt;
+  if(role==='user') d.style.alignSelf='flex-end';
+  b.appendChild(d);
+  b.scrollTop=b.scrollHeight;
+}
+function bFSugs(items){const b=document.getElementById('b-fbody');if(!b)return;const w=document.createElement('div');w.className='fs-sugs';items.forEach(item=>{const btn=document.createElement('button');btn.className='fs-sug';btn.textContent=item;btn.onclick=()=>bFSug(item);w.appendChild(btn)});b.appendChild(w);b.scrollTop=b.scrollHeight}
+function bFSug(txt){bFMsg(txt,'user');const key=txt.toLowerCase().trim();const sc=BFS[key];if(sc){setTimeout(()=>{if(sc.a)sc.a();bFMsg(sc.r,'fitz');if(sc.sugs)setTimeout(()=>bFSugs(sc.sugs),200)},400);}else{setTimeout(()=>bFMsg("Try 'configure my plan' to start.",'fitz'),400);}}
+function bFSend(){const i=document.getElementById('b-finp');if(!i)return;const q=i.value.trim();if(!q)return;i.value='';bFSug(q)}
+
+function updatePreview(){
+  const spaces=[...bSelSpaces];
+  const cores=Object.keys(sharedCores).filter(c=>sharedCores[c]);
+  /* Update bottom summary chips */
+  const chipsEl=document.getElementById('b-sum-chips');
+  const priceEl=document.getElementById('b-demo-price');
+  if(chipsEl){
+    if(spaces.length===0){
+      chipsEl.innerHTML='<span style="font-size:12px;color:var(--hint);font-style:italic">No spaces selected</span>';
+    } else {
+      chipsEl.innerHTML=spaces.map(s=>`<span style="font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid ${SP[s].color};color:${SP[s].color};background:${SP[s].bg}">${SP[s].nm}</span>`).join('');
+      if(cores.length) chipsEl.innerHTML+=cores.map(c=>`<span style="font-size:11px;padding:2px 8px;border-radius:4px;border:1px solid rgba(232,98,26,.3);color:var(--accent);background:rgba(232,98,26,.07)">${c==='marketing'?'Marketing Core':'Monetization Core'}</span>`).join('');
     }
+  }
+  if(priceEl){
+    let price=spaces.length===0?'':spaces.length===1?'~$49/mo (demo)':spaces.length===2||cores.length>0?'~$99/mo (demo)':'~$199/mo (demo)';
+    if(spaces.length>=3||cores.length>=2)price='~$199/mo (demo)';
+    priceEl.textContent=price;
+  }
+}
 
-    function animateLetterOut(cw, i) {
-      setTimeout(function () {
-        cw[i].className = "letter out";
-      }, i * 80);
-    }
+/* Mobile nav */
+const mtog=document.getElementById('mtog'),drawer=document.getElementById('mob-drawer');
+mtog.addEventListener('click',()=>{const o=drawer.classList.toggle('open');mtog.classList.toggle('open',o);document.body.classList.toggle('nav-open',o)});
+drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawer.classList.remove('open');mtog.classList.remove('open');document.body.classList.remove('nav-open')})});
 
-    function animateLetterIn(nw, i) {
-      setTimeout(function () {
-        nw[i].className = "letter in";
-      }, 340 + i * 80);
-    }
-
-    function splitLetters(word) {
-      var content = word.innerHTML;
-      word.innerHTML = "";
-      var letters = [];
-      for (var i = 0; i < content.length; i++) {
-        var letter = document.createElement("span");
-        letter.className = "letter";
-        letter.innerHTML = content.charAt(i);
-        word.appendChild(letter);
-        letters.push(letter);
-      }
-
-      wordArray.push(letters);
-    }
-
-    changeWord();
-    setInterval(changeWord, 4000);
-  </script>
-  </body>
+readParams();
+renderCusGrid();
+</script>
+</body>
 </html>

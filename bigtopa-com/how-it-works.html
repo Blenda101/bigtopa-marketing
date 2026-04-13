@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigTopa — How It Works</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+<style>
+:root{
+  --ink:#080C14;--ink2:#0D1220;--ink3:#141B2D;
+  --edge:#1E2840;--rule:#FFFFFF0F;--rule2:#FFFFFF18;
+  --white:#FAFBFF;--muted:#8892A4;--hint:#4D5A70;
+  --accent:#E8621A;--accent2:#FF7A35;
+  --teal:#2ABFBF;--violet:#7B5CF0;--lime:#A8C840;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;border-bottom:1px solid var(--rule);backdrop-filter:blur(20px);background:rgba(8,12,20,.88)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:60px;max-width:1400px;margin:0 auto}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nl{display:flex;gap:2px}
+.nlink{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:6px;transition:color .15s,background .15s}
+.nlink:hover{color:var(--white);background:var(--rule)}
+.nlink.act{color:var(--accent)}
+.nr{display:flex;gap:10px;align-items:center}
+.nsign{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 12px}
+.nsign:hover{color:var(--white)}
+.nbtn{background:var(--accent);color:var(--white);padding:8px 20px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;transition:background .2s}
+.nbtn:hover{background:var(--accent2)}
+
+/* LAYOUT */
+.hero{padding:120px 60px 56px;text-align:center;position:relative;max-width:1400px;margin:0 auto}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(232,98,26,.07) 0%,transparent 70%);pointer-events:none}
+.section{padding:48px 60px;max-width:1400px;margin:0 auto}
+.section-alt{background:var(--ink2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.section-alt .section{padding:48px 60px}
+.divider{height:1px;background:var(--rule);margin:0 60px}
+
+/* TYPOGRAPHY */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule2);border-radius:100px;padding:5px 16px;margin-bottom:20px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,5vw,68px);line-height:.96;letter-spacing:-.03em;color:var(--white);margin-bottom:16px}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:16px;line-height:1.75;font-weight:300;color:var(--muted);max-width:500px;margin:0 auto 28px}
+.sec-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec-rule{width:18px;height:1.5px;background:var(--accent)}
+.sec-lbl{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,3vw,40px);line-height:1.06;letter-spacing:-.02em;color:var(--white);margin-bottom:8px}
+h2 em{color:var(--accent);font-style:italic}
+.sec-p{font-size:14px;line-height:1.8;color:var(--muted);max-width:520px;margin-bottom:32px;font-weight:300}
+
+/* BUTTONS */
+.btn-acc{background:var(--accent);color:var(--white);padding:11px 24px;border-radius:7px;font-size:13px;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.btn-acc:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-out{background:none;border:1px solid var(--edge);color:var(--muted);padding:11px 24px;border-radius:7px;font-size:13px;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.btn-out:hover{border-color:rgba(255,255,255,.2);color:var(--white)}
+.hero-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* ══ CORE INTERACTIVE DIAGRAM ══ */
+
+/* CHANGE 1: narrower left diagram — 380px fixed, detail panel takes the rest */
+.core-outer{display:grid;grid-template-columns:380px 1fr;gap:16px;align-items:start}
+
+.core-diagram{border:1px solid var(--edge);border-radius:14px;overflow:hidden;background:var(--ink2)}
+.cd-header{padding:11px 18px;background:var(--ink3);border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between}
+.cd-header-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.cd-body{padding:14px}
+
+/* Spaces — Major Core block */
+.spaces-block{border:2px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-bottom:8px;cursor:pointer;transition:border-color .2s}
+.spaces-block:hover{border-color:rgba(255,255,255,.25)}
+.spaces-block.active{border-color:var(--accent)}
+.sb-head{padding:10px 14px;background:rgba(255,255,255,.04);display:flex;align-items:center;gap:10px}
+.sb-head-icon{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);flex-shrink:0}
+.sb-major-badge{font-size:9px;padding:2px 7px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--muted);letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+.sb-label{font-size:13px;font-weight:600;color:var(--white);flex:1}
+.sb-hint{font-size:10px;color:var(--hint)}
+
+/* Streams + Meetups side by side */
+.sb-children{padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+/* Unified block height */
+.block-h{min-height:64px}
+
+.sub-block{border-radius:7px;padding:10px 12px;cursor:pointer;transition:all .18s;border:1px solid;display:flex;align-items:center;gap:10px}
+.sub-block.streams{border-color:rgba(42,191,191,.2);background:rgba(42,191,191,.05)}
+.sub-block.streams:hover,.sub-block.streams.active{border-color:rgba(42,191,191,.5);background:rgba(42,191,191,.1)}
+.sub-block.meetups{border-color:rgba(232,98,26,.2);background:rgba(232,98,26,.04)}
+.sub-block.meetups:hover,.sub-block.meetups.active{border-color:rgba(232,98,26,.5);background:rgba(232,98,26,.08)}
+
+.sub-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sub-text{flex:1}
+.sb-name{font-size:12px;font-weight:600;display:block;margin-bottom:3px}
+.sb-badge{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;display:inline-block}
+.badge-on{background:rgba(42,191,191,.12);color:var(--teal);border:1px solid rgba(42,191,191,.2)}
+.badge-opt{background:rgba(232,98,26,.1);color:var(--accent);border:1px solid rgba(232,98,26,.2)}
+
+/* CHANGE 2: Core modules — 2x2 grid instead of 4 across */
+.core-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+.core-chip{border-radius:7px;padding:10px 8px;cursor:pointer;border:1px solid var(--edge);background:var(--ink3);transition:all .18s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px}
+.core-chip:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
+.core-chip.active{border-color:var(--active-color);background:rgba(var(--active-rgb),.08)}
+.cc-icon-wrap{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cc-name{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.2px;line-height:1.3}
+.cc-type{font-size:9px;color:var(--hint)}
+
+/* Detail panel */
+.detail-panel{background:var(--ink2);border:1px solid var(--edge);border-radius:14px;overflow:hidden;position:sticky;top:88px}
+.dp-top{padding:14px 18px;border-bottom:1px solid var(--edge);display:flex;align-items:flex-start;gap:12px}
+.dp-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.dp-badge{font-size:9px;padding:2px 8px;border-radius:100px;letter-spacing:.6px;text-transform:uppercase;font-weight:700;margin-bottom:5px;display:inline-block}
+.dp-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);line-height:1.1}
+.dp-body{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.dp-section-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);font-weight:600;margin-bottom:7px}
+.dp-desc{font-size:12px;line-height:1.7;color:rgba(250,251,255,.6)}
+.dp-chips{display:flex;flex-wrap:wrap;gap:4px}
+.dp-chip{font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--edge);color:var(--muted);background:var(--ink3)}
+.dp-divider{height:1px;background:var(--rule)}
+
+/* ══ FLOW DIAGRAM ══ */
+.flow-diagram{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+.flow-col{padding:24px 22px;background:var(--ink2)}
+.flow-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;width:44px;background:var(--ink3);border-left:1px solid var(--edge);border-right:1px solid var(--edge);gap:4px}
+.fa-up{font-size:11px;color:var(--accent)}
+.fa-down{font-size:11px;color:var(--teal)}
+.fa-label{font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:var(--hint);writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);line-height:1}
+.flow-level{font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.flow-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:6px}
+.flow-desc{font-size:12px;line-height:1.65;color:var(--muted);margin-bottom:12px}
+.flow-items{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.flow-item{font-size:11px;color:rgba(250,251,255,.4);display:flex;align-items:flex-start;gap:5px}
+.flow-item::before{content:'·';color:var(--accent);flex-shrink:0;margin-top:-1px;font-size:14px}
+.flow-tag{font-size:10px;padding:5px 9px;border-radius:5px;display:inline-flex;align-items:center;gap:5px;margin-top:6px;line-height:1.3}
+.flow-types{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;padding:14px 16px;background:var(--ink2);border:1px solid var(--edge);border-radius:10px}
+.ft{text-align:center;padding:8px;border-radius:7px;border:1px solid var(--edge);background:var(--ink3)}
+.ft-arrow{font-size:16px;margin-bottom:4px;display:block}
+.ft-name{font-size:10px;font-weight:600;color:var(--white);margin-bottom:3px}
+.ft-desc{font-size:10px;color:var(--hint);line-height:1.4}
+
+/* CTA */
+.cta-wrap{background:var(--ink2);border:1px solid var(--edge);border-radius:16px;padding:40px;text-align:center;margin-top:48px}
+.cta-wrap h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,3vw,40px);color:var(--white);margin-bottom:10px}
+.cta-wrap h2 em{color:var(--accent);font-style:italic}
+.cta-wrap p{font-size:14px;color:var(--muted);margin-bottom:24px;font-weight:300}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* SCROLL REVEAL */
+.sr{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.sr.in{opacity:1;transform:none}
+.sr-d1{transition-delay:.08s}.sr-d2{transition-delay:.16s}
+
+/* FOOTER */
+footer{background:var(--ink2);border-top:1px solid var(--rule);padding:24px 60px}
+.fi{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.flogo{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(250,251,255,.3)}
+.flogo span{color:rgba(232,98,26,.4)}
+.flinks{display:flex;gap:20px}
+.flinks a{font-size:12px;color:var(--hint);text-decoration:none;transition:color .15s}
+.flinks a:hover{color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .nav-i{padding:0 24px}
+  .nl,.nsign,.nbtn{display:none}
+  .hero,.section{padding-left:24px;padding-right:24px}
+  .section-alt .section{padding:40px 24px}
+  .divider{margin:0 24px}
+  .core-outer{grid-template-columns:1fr}
+  .detail-panel{position:static}
+  .flow-diagram{grid-template-columns:1fr;gap:1px}
+  .flow-arrow{width:100%;height:36px;flex-direction:row;border:none;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+  .fa-label{writing-mode:horizontal-tb;transform:none}
+  .flow-types{grid-template-columns:repeat(2,1fr)}
+  footer{padding:18px 24px}
+}
+@media(max-width:600px){
+  h1{font-size:clamp(36px,9vw,50px)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
+    <div class="nl">
+      <a href="platform.html" class="nlink">Platform</a>
+      <a href="how-it-works.html" class="nlink act">How It Works</a>
+      <a href="solutions.html" class="nlink">Solutions</a>
+      <a href="pricing.html" class="nlink">Pricing</a>
+    </div>
+    <div class="nr">
+      <a href="#" class="nsign">Sign in</a>
+      <a href="bigtopa-index.html#cta" class="nbtn">Request Access</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow"><span style="width:5px;height:5px;border-radius:50%;background:var(--accent);display:inline-block"></span>Platform Overview</div>
+  <h1>One platform.<br><em>Built to adapt.</em></h1>
+  <p class="hero-sub">BigTopa is organized around three principles — Core, Fit, and Flow. Click anything below to explore how each piece works.</p>
+  <div class="hero-ctas">
+    <a href="pricing.html?view=custom" class="btn-acc">Configure your plan &#8250;</a>
+    <a href="pricing.html" class="btn-out">See pricing</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CORE INTERACTIVE -->
+<div class="section sr">
+  <div class="sec-tag"><div class="sec-rule"></div><span class="sec-lbl">The building blocks</span></div>
+  <h2>Core — what every<br><em>plan is built from.</em></h2>
+  <p class="sec-p">Click any block to learn what it does, what's always on, what's optional, and what features it includes.</p>
+
+  <div class="core-outer">
+    <!-- LEFT: narrow diagram -->
+    <div>
+      <div class="core-diagram">
+        <div class="cd-header">
+          <span class="cd-header-label">Core</span>
+          <span style="font-size:11px;color:var(--hint)">Click to explore</span>
+        </div>
+        <div class="cd-body">
+
+          <div class="spaces-block active" data-block="spaces">
+            <div class="sb-head">
+              <div class="sb-head-icon"><i class="ph ph-squares-four"></i></div>
+              <span class="sb-label">Spaces</span>
+              <span class="sb-major-badge">Major Core</span>
+            </div>
+            <div class="sb-children">
+              <div class="sub-block streams block-h" data-block="streams">
+                <div class="sub-icon" style="background:rgba(42,191,191,.12)">
+                  <i class="ph ph-activity" style="color:var(--teal)"></i>
+                </div>
+                <div class="sub-text">
+                  <span class="sb-name" style="color:var(--teal)">Streams</span>
+                  <span class="sb-badge badge-on">Always on</span>
+                </div>
+              </div>
+              <div class="sub-block meetups block-h" data-block="meetups">
+                <div class="sub-icon" style="background:rgba(232,98,26,.1)">
+                  <i class="ph ph-video-camera" style="color:var(--accent)"></i>
+                </div>
+                <div class="sub-text">
+                  <span class="sb-name" style="color:var(--accent)">Meetups</span>
+                  <span class="sb-badge badge-opt">Optional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);font-weight:600;margin:8px 0 6px">Core modules &amp; capabilities</div>
+
+          <!-- 2×2 grid -->
+          <div class="core-row">
+            <div class="core-chip block-h" data-block="marketing" style="--active-color:var(--accent);--active-rgb:232,98,26">
+              <div class="cc-icon-wrap" style="background:rgba(232,98,26,.1)">
+                <i class="ph ph-megaphone" style="color:var(--accent)"></i>
+              </div>
+              <div class="cc-name">Marketing</div>
+              <div class="cc-type">Optional</div>
+            </div>
+            <div class="core-chip block-h" data-block="monetization" style="--active-color:#5A8A10;--active-rgb:90,138,16">
+              <div class="cc-icon-wrap" style="background:rgba(90,138,16,.1)">
+                <i class="ph ph-currency-dollar" style="color:#5A8A10"></i>
+              </div>
+              <div class="cc-name">Monetization</div>
+              <div class="cc-type">Optional</div>
+            </div>
+            <div class="core-chip block-h" data-block="access" style="--active-color:var(--violet);--active-rgb:123,92,240">
+              <div class="cc-icon-wrap" style="background:rgba(123,92,240,.1)">
+                <i class="ph ph-shield" style="color:var(--violet)"></i>
+              </div>
+              <div class="cc-name">Access &amp; Security</div>
+              <div class="cc-type">Always on</div>
+            </div>
+            <div class="core-chip block-h" data-block="participants" style="--active-color:var(--teal);--active-rgb:42,191,191">
+              <div class="cc-icon-wrap" style="background:rgba(42,191,191,.1)">
+                <i class="ph ph-users" style="color:var(--teal)"></i>
+              </div>
+              <div class="cc-name">Participants</div>
+              <div class="cc-type">Always on</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: detail panel — wider now -->
+    <div class="detail-panel" id="detail-panel"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOUR SPACES -->
+<div class="section-alt sr sr-d1">
+  <div class="section">
+    <div class="sec-tag"><div class="sec-rule"></div><span class="sec-lbl">Space types</span></div>
+    <h2>Four spaces —<br><em>every relationship covered.</em></h2>
+    <p class="sec-p">Most platforms serve one engagement type well. BigTopa serves four simultaneously — each with its own access model, features, and purpose.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:14px;overflow:hidden;border:1px solid var(--edge)">
+      <div style="padding:26px 20px;background:var(--ink2);position:relative;transition:background .22s" onmouseenter="this.style.background='var(--ink3)'" onmouseleave="this.style.background='var(--ink2)'">
+        <div style="font-family:'DM Serif Display',serif;font-size:52px;line-height:1;opacity:.05;position:absolute;top:12px;right:14px;color:var(--violet)">01</div>
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(123,92,240,.12);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px"><i class="ph ph-briefcase"></i></div>
+        <div style="font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--violet);margin-bottom:3px">Work Space</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);margin-bottom:6px">Your Team</div>
+        <div style="font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px">Internal collaboration. The private engine behind your organization.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px">
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(123,92,240,.3);color:var(--violet)">Invite only</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(123,92,240,.3);color:var(--violet)">Persistent</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(123,92,240,.3);color:var(--violet)">No marketing core</span>
+        </div>
+      </div>
+      <div style="padding:26px 20px;background:var(--ink2);position:relative;transition:background .22s;border-left:1px solid var(--edge)" onmouseenter="this.style.background='var(--ink3)'" onmouseleave="this.style.background='var(--ink2)'">
+        <div style="font-family:'DM Serif Display',serif;font-size:52px;line-height:1;opacity:.05;position:absolute;top:12px;right:14px;color:var(--teal)">02</div>
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(42,191,191,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px"><i class="ph ph-users-three"></i></div>
+        <div style="font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--teal);margin-bottom:3px">Community Space</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);margin-bottom:6px">Your Members</div>
+        <div style="font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px">Member engagement, community building, and ongoing connection.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px">
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(42,191,191,.3);color:var(--teal)">Public + gated</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(42,191,191,.3);color:var(--teal)">Persistent</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(42,191,191,.3);color:var(--teal)">Webinars</span>
+        </div>
+      </div>
+      <div style="padding:26px 20px;background:var(--ink2);position:relative;transition:background .22s;border-left:1px solid var(--edge)" onmouseenter="this.style.background='var(--ink3)'" onmouseleave="this.style.background='var(--ink2)'">
+        <div style="font-family:'DM Serif Display',serif;font-size:52px;line-height:1;opacity:.05;position:absolute;top:12px;right:14px;color:var(--accent)">03</div>
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(232,98,26,.12);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px"><i class="ph ph-ticket"></i></div>
+        <div style="font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:3px">Event Space</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);margin-bottom:6px">Your Audience</div>
+        <div style="font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px">Ticketed events, in-person and virtual. Built for the occasion and the next one.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px">
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,98,26,.3);color:var(--accent)">Ticketed</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,98,26,.3);color:var(--accent)">Time-bound</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,98,26,.3);color:var(--accent)">Broadcast</span>
+        </div>
+      </div>
+      <div style="padding:26px 20px;background:var(--ink2);position:relative;transition:background .22s;border-left:1px solid var(--edge)" onmouseenter="this.style.background='var(--ink3)'" onmouseleave="this.style.background='var(--ink2)'">
+        <div style="font-family:'DM Serif Display',serif;font-size:52px;line-height:1;opacity:.05;position:absolute;top:12px;right:14px;color:#5A8A10">04</div>
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(168,200,64,.12);color:#5A8A10;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px"><i class="ph ph-handshake"></i></div>
+        <div style="font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:#5A8A10;margin-bottom:3px">Provider Space</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);margin-bottom:6px">Your Clients</div>
+        <div style="font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px">One-on-one services, booking, and managed client relationships.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px">
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(168,200,64,.3);color:#5A8A10">Managed</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(168,200,64,.3);color:#5A8A10">Persistent</span>
+          <span style="font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid rgba(168,200,64,.3);color:#5A8A10">Booking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FLOW -->
+<div class="section sr sr-d2">
+  <div class="sec-tag"><div class="sec-rule"></div><span class="sec-lbl">The movement principle</span></div>
+  <h2>Flow — content and revenue<br><em>move where they should.</em></h2>
+  <p class="sec-p">BigTopa has built-in flow between Rooms, Spaces, and the Hub. Some things flow up naturally. Some flow down by design. Participants move both ways. You control the direction.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-col">
+      <div class="flow-level" style="color:var(--hint)">Origin</div>
+      <div class="flow-name">Room</div>
+      <div class="flow-desc">Where activity begins. Focused, contextual, intimate. Every ticket sold, every conversation started — it begins here.</div>
+      <div class="flow-items">
+        <div class="flow-item">Project discussions</div>
+        <div class="flow-item">Event channels</div>
+        <div class="flow-item">Client threads</div>
+        <div class="flow-item">Committee rooms</div>
+      </div>
+      <div class="flow-tag" style="background:rgba(232,98,26,.08);border:1px solid rgba(232,98,26,.18);color:rgba(232,98,26,.8)">&#8593; Revenue originates — tickets, dues, orders</div>
+    </div>
+    <div class="flow-arrow">
+      <span class="fa-up">&#8593;</span>
+      <span class="fa-label">content flows</span>
+      <span class="fa-down">&#8595;</span>
+    </div>
+    <div class="flow-col">
+      <div class="flow-level" style="color:var(--muted)">Aggregation</div>
+      <div class="flow-name">Space</div>
+      <div class="flow-desc">Where rooms aggregate. The stream surfaces activity from all rooms. Hub-distributed content and settings flow down from above.</div>
+      <div class="flow-items">
+        <div class="flow-item">Activity feed from all rooms</div>
+        <div class="flow-item">Space-wide announcements</div>
+        <div class="flow-item">Member directory</div>
+        <div class="flow-item">Space event calendar</div>
+      </div>
+      <div class="flow-tag" style="background:rgba(255,255,255,.03);border:1px solid var(--edge);color:var(--hint)">&#8597; Participants move freely up and down</div>
+    </div>
+    <div class="flow-arrow">
+      <span class="fa-up">&#8593;</span>
+      <span class="fa-label">revenue flows</span>
+      <span class="fa-down">&#8595;</span>
+    </div>
+    <div class="flow-col" style="background:rgba(232,98,26,.03)">
+      <div class="flow-level" style="color:var(--accent)">Hub</div>
+      <div class="flow-name">Tenant Hub</div>
+      <div class="flow-desc">The authority level. All revenue consolidates here. Products, settings, and content pushed from Hub flow down to spaces and rooms.</div>
+      <div class="flow-items">
+        <div class="flow-item">Unified financial summary</div>
+        <div class="flow-item">Cross-space dashboard</div>
+        <div class="flow-item">Organization-wide settings</div>
+        <div class="flow-item">Hub-to-Hub connector (future)</div>
+      </div>
+      <div class="flow-tag" style="background:rgba(168,200,64,.08);border:1px solid rgba(168,200,64,.2);color:rgba(168,200,64,.85)">&#8593; All revenue flows here — tenantFinancialSummary</div>
+    </div>
+  </div>
+
+  <div style="margin-top:10px">
+    <div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--hint);font-weight:600;margin-bottom:8px">Configurable flow types — you control what moves and where</div>
+    <div class="flow-types">
+      <div class="ft"><span class="ft-arrow">&#8593;</span><div class="ft-name">Flow Up</div><div class="ft-desc">Child content surfaces to parent. Room deliverables roll up to space.</div></div>
+      <div class="ft"><span class="ft-arrow">&#8595;</span><div class="ft-name">Flow Down</div><div class="ft-desc">Hub distributes to spaces. Training materials push to project rooms.</div></div>
+      <div class="ft"><span class="ft-arrow">&#8597;</span><div class="ft-name">Full Flow</div><div class="ft-desc">Content syncs in both directions. Updates appear everywhere.</div></div>
+      <div class="ft"><span class="ft-arrow">&#8722;</span><div class="ft-name">No Flow</div><div class="ft-desc">Content stays local. Each shelf is independent — no sharing.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="cta-wrap">
+    <h2>Ready to configure<br>your <em>perfect plan?</em></h2>
+    <p>Let Fitz interview you and build a custom plan, or browse standard tiers on the pricing page.</p>
+    <div class="cta-btns">
+      <a href="pricing.html?view=custom" class="btn-acc">&#10022; Ask Fitz to configure my plan</a>
+      <a href="pricing.html" class="btn-out">See standard plans</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fi">
+    <div class="flogo">Big<span>Topa</span></div>
+    <div class="flinks">
+      <a href="platform.html">Platform</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#">Privacy</a><a href="#">Terms</a>
+    </div>
+    <div style="font-size:11px;color:var(--hint)">&#169; 2026 BigTopa</div>
+  </div>
+</footer>
+
+<script>
+const BLOCKS={
+  spaces:{icon:'ph-squares-four',iconBg:'rgba(255,255,255,.08)',iconColor:'var(--white)',badge:'Major Core',badgeBg:'rgba(255,255,255,.08)',badgeColor:'var(--muted)',name:'Spaces',desc:'Spaces are the primary building block of BigTopa. Every tenant has one or more spaces — each configured for a different engagement relationship. Streams, Meetups, and all other features live inside a Space.',relatedCores:['Streams','Meetups','Marketing Core','Monetization Core'],types:['Work Space','Community Space','Event Space','Provider Space'],features:['Rooms','Activity streams','Member management','Space settings','Access controls','Roles & permissions'],extensions:['RSVP','Photo Album','Voting','Matching','Booking','Courses']},
+  streams:{icon:'ph-activity',iconBg:'rgba(42,191,191,.12)',iconColor:'var(--teal)',badge:'Always On',badgeBg:'rgba(42,191,191,.1)',badgeColor:'var(--teal)',name:'Streams',desc:'The real-time activity feed within every space. Posts, updates, discussions, and content all surface here. Streams are always active — they are the lifeblood of a space and cannot be disabled.',relatedCores:['Spaces','Rooms','Participants'],types:['Text posts','Media posts','Shared content','Announcements'],features:['Real-time activity feed','Post creation & editing','Reactions & comments','Content aggregation from rooms','Stream filtering','Pinned announcements'],extensions:[]},
+  meetups:{icon:'ph-video-camera',iconBg:'rgba(232,98,26,.1)',iconColor:'var(--accent)',badge:'Optional + Composable',badgeBg:'rgba(232,98,26,.1)',badgeColor:'var(--accent)',name:'Meetups',desc:'Live video and audio for your spaces. Meetups are enabled per plan and the depth (which types you get) is individually composable. Not every org needs broadcast streaming — you only pay for what you use.',relatedCores:['Spaces','Streams'],types:['Meet Now — instant call','Meet — scheduled 1-on-1','Meetings — multi-participant','Webinars — host to audience','Broadcast — studio streaming'],features:['Video & audio sessions','Screen sharing','Recording','Scheduling & calendar sync','Attendance tracking','Session notes'],extensions:['Shelves in meetups','Breakout rooms']},
+  marketing:{icon:'ph-megaphone',iconBg:'rgba(232,98,26,.12)',iconColor:'var(--accent)',badge:'Core Module — Optional',badgeBg:'rgba(232,98,26,.1)',badgeColor:'var(--accent)',name:'Marketing Core',desc:'Promotion tools built directly into your spaces. Enable once and Marketing Core activates across all your spaces simultaneously. Available in Community, Event, and Provider spaces.',relatedCores:['Monetization Core','Spaces'],types:['Email campaigns','Landing pages','Registration forms','Social scheduling'],features:['Email marketing','Custom landing pages','Registration & RSVP forms','Social post scheduling','Content marketing tools','Affiliate referral links','Campaign analytics'],extensions:[]},
+  monetization:{icon:'ph-currency-dollar',iconBg:'rgba(90,138,16,.12)',iconColor:'#5A8A10',badge:'Core Module — Optional',badgeBg:'rgba(90,138,16,.1)',badgeColor:'#5A8A10',name:'Monetization Core',desc:'Revenue tools wired directly into your platform. Tickets, dues, donations, shop, print-on-demand — all through Stripe Connect. Enable once and it works across all your spaces.',relatedCores:['Marketing Core','Spaces','Hub'],types:['Event ticketing','Member dues','Donations','Shop & Print on demand'],features:['Event ticketing & registration','Member dues & subscriptions','Donations & fundraising','Shop (physical & digital products)','Print on demand (Printify)','Virtual card','Revenue dashboard'],extensions:[]},
+  access:{icon:'ph-shield',iconBg:'rgba(123,92,240,.12)',iconColor:'var(--violet)',badge:'Always On',badgeBg:'rgba(123,92,240,.1)',badgeColor:'var(--violet)',name:'Access & Security',desc:'Every space has configurable access controls — open, public, secret, or invitation-only. Access rules apply at the space, room, and content level independently.',relatedCores:['Participants','Roles & Permissions','Spaces'],types:['Open access','Public (discoverable)','Secret (hidden)','Invitation only'],features:['Space access configuration','Room-level access controls','Content-level permissions','Role-based access','Participant invitations','Access audit log'],extensions:['SSO','Advanced encryption']},
+  participants:{icon:'ph-users',iconBg:'rgba(42,191,191,.12)',iconColor:'var(--teal)',badge:'Always On',badgeBg:'rgba(42,191,191,.1)',badgeColor:'var(--teal)',name:'Participants',desc:'The people layer. Every space has participants — members, guests, moderators, and more. Participants flow both up and down the space hierarchy (room → space → hub), and roles are context-aware per space.',relatedCores:['Access & Security','Roles','Spaces'],types:['Owner','Admin','Organizer','Facilitator','Moderator','Member','Guest'],features:['Role assignment & management','Participant directory','Member invitations','Guest access','Cross-space visibility','Participant flow (room ↕ hub)'],extensions:['Advanced matching','Attendance tracking']}
+};
+
+function renderPanel(key){
+  const b=BLOCKS[key];if(!b)return;
+  const dp=document.getElementById('detail-panel');
+  let h=`<div class="dp-top"><div class="dp-icon" style="background:${b.iconBg}"><i class="ph ${b.icon}" style="color:${b.iconColor};font-size:16px"></i></div><div><span class="dp-badge" style="background:${b.badgeBg};color:${b.badgeColor};border:1px solid ${b.badgeColor}33">${b.badge}</span><div class="dp-name">${b.name}</div></div></div><div class="dp-body"><div><div class="dp-section-label">Description</div><div class="dp-desc">${b.desc}</div></div>`;
+  if(b.relatedCores?.length)h+=`<div class="dp-divider"></div><div><div class="dp-section-label">Related Core</div><div class="dp-chips">${b.relatedCores.map(c=>`<span class="dp-chip">${c}</span>`).join('')}</div></div>`;
+  if(b.types?.length)h+=`<div class="dp-divider"></div><div><div class="dp-section-label">Types</div><div class="dp-chips">${b.types.map(t=>`<span class="dp-chip">${t}</span>`).join('')}</div></div>`;
+  if(b.features?.length)h+=`<div class="dp-divider"></div><div><div class="dp-section-label">Features</div><div class="dp-chips">${b.features.map(f=>`<span class="dp-chip">${f}</span>`).join('')}</div></div>`;
+  if(b.extensions?.length)h+=`<div class="dp-divider"></div><div><div class="dp-section-label">Extensions</div><div class="dp-chips">${b.extensions.map(e=>`<span class="dp-chip">${e}</span>`).join('')}</div></div>`;
+  h+=`</div>`;dp.innerHTML=h;
+}
+
+function setActive(key){
+  document.querySelectorAll('[data-block]').forEach(el=>el.classList.remove('active'));
+  const el=document.querySelector(`[data-block="${key}"]`);
+  if(el)el.classList.add('active');
+  if(key==='streams'||key==='meetups')document.querySelector('[data-block="spaces"]').classList.add('active');
+  renderPanel(key);
+}
+
+document.querySelectorAll('[data-block]').forEach(el=>{
+  el.addEventListener('click',e=>{e.stopPropagation();setActive(el.dataset.block)});
+});
+
+setActive('spaces');
+
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.07});
+document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
