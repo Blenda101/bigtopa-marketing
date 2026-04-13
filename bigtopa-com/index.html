@@ -23,42 +23,21 @@ a{color:inherit;text-decoration:none}
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 
-/* ══ TYPOGRAPHY ══ */
 .serif{font-family:'DM Serif Display',serif}
 .serif-i{font-family:'DM Serif Display',serif;font-style:italic}
 
 /* ══ NAV ══ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;
-  border-bottom:1px solid var(--rule);
-  backdrop-filter:blur(20px);
-  background:rgba(8,12,20,.88);
-}
-.nav-i{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 60px;height:60px;max-width:1400px;margin:0 auto;
-}
-.nav-logo{
-  font-family:'DM Serif Display',serif;
-  font-size:22px;color:var(--white);text-decoration:none;
-  letter-spacing:-.3px;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;border-bottom:1px solid var(--rule);backdrop-filter:blur(20px);background:rgba(8,12,20,.88)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:60px;max-width:1400px;margin:0 auto}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);letter-spacing:-.3px}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2px;align-items:center}
-.nav-link{
-  font-size:13px;font-weight:400;color:var(--muted);
-  text-decoration:none;padding:6px 14px;border-radius:6px;
-  transition:color .15s,background .15s;white-space:nowrap;
-}
+.nav-link{font-size:13px;font-weight:400;color:var(--muted);padding:6px 14px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap}
 .nav-link:hover{color:var(--white);background:var(--rule)}
 .nav-r{display:flex;gap:10px;align-items:center}
-.nav-ghost{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 12px;transition:color .15s}
+.nav-ghost{font-size:13px;color:var(--muted);padding:6px 12px;transition:color .15s}
 .nav-ghost:hover{color:var(--white)}
-.nav-btn{
-  background:var(--accent);color:var(--white);
-  padding:8px 20px;border-radius:6px;font-size:13px;font-weight:500;
-  text-decoration:none;transition:background .2s;white-space:nowrap;
-}
+.nav-btn{background:var(--accent);color:var(--white);padding:8px 20px;border-radius:6px;font-size:13px;font-weight:500;transition:background .2s;white-space:nowrap}
 .nav-btn:hover{background:var(--accent2)}
 .mob-toggle{display:none;flex-direction:column;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;align-items:center;justify-content:center}
 .mob-toggle span{display:block;height:1.5px;width:22px;background:var(--white);transition:transform .25s,opacity .25s;border-radius:2px}
@@ -67,448 +46,189 @@ nav{
 .mob-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .mob-drawer{position:fixed;top:60px;left:0;right:0;bottom:0;z-index:200;background:var(--ink2);transform:translateX(100%);transition:transform .28s ease;padding:24px;overflow-y:auto}
 .mob-drawer.open{transform:translateX(0)}
-.mob-nav-link{display:block;padding:16px 0;font-size:17px;color:var(--white);text-decoration:none;border-bottom:1px solid var(--rule);opacity:.8}
-.mob-nav-cta{display:block;margin-top:24px;background:var(--accent);color:var(--white);padding:16px;border-radius:8px;font-size:16px;font-weight:500;text-align:center;text-decoration:none}
+.mob-nav-link{display:block;padding:16px 0;font-size:17px;color:var(--white);border-bottom:1px solid var(--rule);opacity:.8}
+.mob-nav-cta{display:block;margin-top:24px;background:var(--accent);color:var(--white);padding:16px;border-radius:8px;font-size:16px;font-weight:500;text-align:center}
 body.nav-open{overflow:hidden}
 
 /* ══ HERO ══ */
-.hero{
-  min-height:100vh;
-  padding:120px 60px 60px;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center;
-}
-
-/* Grid texture background */
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--rule) 1px,transparent 1px),
-    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 0%,transparent 70%);
-}
-
-/* Accent glow */
-.hero::after{
-  content:'';position:absolute;
-  width:600px;height:600px;
-  top:50%;left:50%;transform:translate(-50%,-60%);
-  background:radial-gradient(circle,rgba(232,98,26,.12) 0%,transparent 65%);
-  pointer-events:none;
-}
-
+.hero{min-height:100vh;padding:120px 60px 60px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-60%);background:radial-gradient(circle,rgba(232,98,26,.12) 0%,transparent 65%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
-
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid var(--rule2);border-radius:100px;
-  padding:5px 14px;margin-bottom:32px;
-  font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);
-  animation:fadeUp .6s ease both;
-}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule2);border-radius:100px;padding:5px 14px;margin-bottom:32px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);animation:fadeUp .6s ease both}
 .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
-
-h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(52px,6.5vw,96px);
-  line-height:.97;letter-spacing:-.03em;
-  color:var(--white);margin-bottom:28px;
-  max-width:900px;
-  animation:fadeUp .6s .08s ease both;
-}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(52px,6.5vw,96px);line-height:.97;letter-spacing:-.03em;color:var(--white);margin-bottom:28px;max-width:900px;animation:fadeUp .6s .08s ease both}
 h1 em{color:var(--accent);font-style:italic}
-
-.hero-sub{
-  font-size:18px;line-height:1.7;font-weight:300;
-  color:var(--muted);max-width:520px;margin-bottom:44px;
-  animation:fadeUp .6s .16s ease both;
-}
-
+.hero-sub{font-size:18px;line-height:1.7;font-weight:300;color:var(--muted);max-width:520px;margin-bottom:44px;animation:fadeUp .6s .16s ease both}
 .hero-ctas{display:flex;gap:14px;align-items:center;animation:fadeUp .6s .22s ease both}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--accent);color:var(--white);
-  padding:14px 28px;border-radius:8px;font-size:15px;font-weight:500;
-  text-decoration:none;transition:all .22s;
-}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--white);padding:14px 28px;border-radius:8px;font-size:15px;font-weight:500;transition:all .22s}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,98,26,.25)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  color:var(--muted);font-size:14px;text-decoration:none;
-  padding:14px 4px;transition:color .2s;
-}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;padding:14px 4px;transition:color .2s}
 .btn-ghost:hover{color:var(--white)}
-
-/* Hero stat strip */
-.hero-stats{
-  display:flex;gap:48px;margin-top:72px;
-  padding-top:36px;border-top:1px solid var(--rule);
-  animation:fadeUp .6s .3s ease both;
-}
+.hero-stats{display:flex;gap:48px;margin-top:72px;padding-top:36px;border-top:1px solid var(--rule);animation:fadeUp .6s .3s ease both}
 .hstat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--white);margin-bottom:3px}
 .hstat-label{font-size:12px;color:var(--hint);letter-spacing:.5px}
-
-/* Image placeholder styles */
-.img-placeholder{
-  background:var(--ink3);
-  border:1px dashed var(--edge);
-  border-radius:12px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:10px;padding:24px;text-align:center;
-}
+.img-placeholder{background:var(--ink3);border:1px dashed var(--edge);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center}
 .img-placeholder-label{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--accent);opacity:.7}
 .img-placeholder-spec{font-size:11px;color:var(--hint);line-height:1.5}
 .img-placeholder-icon{color:var(--edge);font-size:32px}
 
-/* ══ SECTION SHARED ══ */
+/* ══ SECTIONS ══ */
 .section{padding:100px 60px}
 .section-inner{max-width:1400px;margin:0 auto}
-.sec-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:20px;
-}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
 .sec-rule{width:20px;height:1px;background:var(--accent)}
-h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(36px,4vw,58px);
-  line-height:1.05;letter-spacing:-.02em;
-  margin-bottom:16px;
-}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(36px,4vw,58px);line-height:1.05;letter-spacing:-.02em;margin-bottom:16px}
 h2 em{color:var(--accent);font-style:italic}
 .sec-lead{font-size:17px;line-height:1.8;font-weight:300;color:var(--muted);max-width:560px}
 
-/* ══ PROBLEM SECTION ══ */
+/* PROBLEM */
 .problem{background:var(--ink);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
-.problem-text h2{color:var(--white)}
-.problem-visual{position:relative}
-
-/* Fragmentation diagram */
 .frag-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.frag-app{
-  background:var(--ink3);border:1px solid var(--edge);
-  border-radius:8px;padding:12px 10px;text-align:center;
-  font-size:11px;color:var(--hint);
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  transition:border-color .2s;
-}
+.frag-app{background:var(--ink3);border:1px solid var(--edge);border-radius:8px;padding:12px 10px;text-align:center;font-size:11px;color:var(--hint);display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s}
 .frag-app:hover{border-color:var(--accent);color:var(--muted)}
 .frag-app i{font-size:18px;color:var(--hint)}
 .frag-label{font-size:10px;letter-spacing:.5px}
 .frag-vs{text-align:center;margin:28px 0;font-size:13px;color:var(--hint)}
-.frag-vs span{
-  display:inline-block;padding:6px 18px;
-  border:1px solid var(--rule2);border-radius:100px;
-  color:var(--accent);font-size:11px;letter-spacing:1px;text-transform:uppercase;
-}
-
-/* Pain points */
+.frag-vs span{display:inline-block;padding:6px 18px;border:1px solid var(--rule2);border-radius:100px;color:var(--accent);font-size:11px;letter-spacing:1px;text-transform:uppercase}
 .pain-list{margin-top:32px;display:flex;flex-direction:column;gap:12px}
-.pain-item{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:14px 16px;background:rgba(232,98,26,.05);
-  border:1px solid rgba(232,98,26,.15);border-radius:8px;
-}
+.pain-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(232,98,26,.05);border:1px solid rgba(232,98,26,.15);border-radius:8px}
 .pain-item i{color:var(--accent);font-size:16px;flex-shrink:0;margin-top:1px}
 .pain-text{font-size:14px;line-height:1.6;color:rgba(250,251,255,.65)}
 .pain-text strong{color:var(--white);font-weight:500}
 
-/* ══ FOUR SPACES ══ */
+/* SPACES */
 .spaces{background:var(--cream);color:var(--text-dark);border-top:none}
 .spaces h2{color:var(--text-dark)}
 .spaces .sec-lead{color:var(--muted-dark)}
-.spaces-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:0;margin-top:60px;
-  border:1px solid var(--creamed);border-radius:16px;overflow:hidden;
-}
-.space-card{
-  padding:36px 28px;
-  border-right:1px solid var(--creamed);
-  position:relative;transition:background .25s;
-  background:var(--cream);
-}
+.spaces-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;border:1px solid var(--creamed);border-radius:16px;overflow:hidden}
+.space-card{padding:36px 28px;border-right:1px solid var(--creamed);position:relative;transition:background .25s;background:var(--cream)}
 .space-card:last-child{border-right:none}
 .space-card:hover{background:var(--white)}
-
-/* Colored top accent bar per space */
-.space-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;
-  height:3px;
-}
+.space-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .sc-work::before{background:var(--violet)}
 .sc-community::before{background:var(--teal)}
 .sc-event::before{background:var(--accent)}
 .sc-provider::before{background:var(--lime)}
-
-.space-icon-wrap{
-  width:44px;height:44px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;margin-bottom:18px;
-}
+.space-icon-wrap{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
 .si-work{background:rgba(123,92,240,.12);color:var(--violet)}
 .si-community{background:rgba(42,191,191,.12);color:var(--teal)}
 .si-event{background:rgba(232,98,26,.12);color:var(--accent)}
 .si-provider{background:rgba(168,200,64,.15);color:#5A8A10}
-
-.space-type-tag{
-  font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;
-  margin-bottom:10px;
-}
-.st-work{color:var(--violet)}
-.st-community{color:var(--teal)}
-.st-event{color:var(--accent)}
-.st-provider{color:#5A8A10}
-
-.space-name{
-  font-family:'DM Serif Display',serif;
-  font-size:22px;color:var(--text-dark);margin-bottom:10px;line-height:1.1;
-}
+.space-type-tag{font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.st-work{color:var(--violet)}.st-community{color:var(--teal)}.st-event{color:var(--accent)}.st-provider{color:#5A8A10}
+.space-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--text-dark);margin-bottom:10px;line-height:1.1}
 .space-desc{font-size:13px;line-height:1.7;color:var(--muted-dark);margin-bottom:20px}
 .space-uses{display:flex;flex-direction:column;gap:6px}
 .space-use{font-size:12px;color:rgba(26,31,46,.6);display:flex;align-items:center;gap:7px}
 .space-use i{font-size:12px}
-
-.space-footer{
-  margin-top:24px;padding-top:16px;
-  border-top:1px solid var(--creamed);
-  font-size:12px;color:var(--muted-dark);
-  display:flex;align-items:center;gap:6px;
-}
+.space-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--creamed);font-size:12px;color:var(--muted-dark);display:flex;align-items:center;gap:6px}
 .sf-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 
-/* ══ FIT SECTION ══ */
+/* FIT */
 .fit{background:var(--ink2);border-top:1px solid var(--rule)}
 .fit h2{color:var(--white)}
 .fit-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
-
-/* Composition diagram */
 .comp-diagram{position:relative}
-.comp-hub{
-  background:var(--ink3);border:1px solid var(--edge);
-  border-radius:14px;padding:20px 24px;margin-bottom:16px;
-  display:flex;align-items:center;gap:14px;
-}
+.comp-hub{background:var(--ink3);border:1px solid var(--edge);border-radius:14px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
 .comp-hub-label{font-size:12px;color:var(--hint);letter-spacing:.5px;margin-bottom:3px}
 .comp-hub-name{font-size:15px;font-weight:500;color:var(--white)}
-.comp-hub-icon{
-  width:40px;height:40px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;
-}
+.comp-hub-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
 .comp-plans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.comp-plan{
-  background:var(--ink3);border:1px solid var(--edge);
-  border-radius:10px;padding:16px;
-  transition:border-color .2s,transform .2s;cursor:default;
-}
+.comp-plan{background:var(--ink3);border:1px solid var(--edge);border-radius:10px;padding:16px;transition:border-color .2s,transform .2s;cursor:default}
 .comp-plan:hover{border-color:var(--accent);transform:translateY(-2px)}
 .cp-market{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 .cp-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:10px}
 .cp-modules{display:flex;flex-wrap:wrap;gap:4px}
-.cp-mod{
-  font-size:10px;padding:2px 8px;border-radius:100px;
-  background:rgba(255,255,255,.06);color:var(--muted);
-}
+.cp-mod{font-size:10px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--muted)}
 .cp-mod.active{background:rgba(232,98,26,.15);color:var(--accent)}
-
 .fit-points{display:flex;flex-direction:column;gap:24px}
 .fit-point{display:flex;gap:16px;align-items:flex-start}
-.fp-icon{
-  width:40px;height:40px;border-radius:8px;
-  border:1px solid var(--edge);
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:var(--accent);flex-shrink:0;
-  background:rgba(232,98,26,.06);
-}
+.fp-icon{width:40px;height:40px;border-radius:8px;border:1px solid var(--edge);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);flex-shrink:0;background:rgba(232,98,26,.06)}
 .fp-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:5px}
 .fp-desc{font-size:13px;line-height:1.7;color:var(--muted)}
 
-/* ══ FLOW SECTION ══ */
+/* FLOW */
 .flow{background:var(--cream);color:var(--text-dark)}
 .flow h2{color:var(--text-dark)}
 .flow .sec-lead{color:var(--muted-dark)}
 .flow-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
-
-/* Flow diagram */
 .flow-diagram{position:relative}
 .flow-nodes{display:flex;flex-direction:column;gap:0}
-.flow-node{
-  display:flex;align-items:center;gap:16px;
-  padding:14px 18px;
-  background:var(--white);
-  border:1px solid var(--creamed);
-  border-radius:10px;margin-bottom:2px;
-  transition:border-color .2s;
-}
+.flow-node{display:flex;align-items:center;gap:16px;padding:14px 18px;background:var(--white);border:1px solid var(--creamed);border-radius:10px;margin-bottom:2px;transition:border-color .2s}
 .flow-node:hover{border-color:var(--accent)}
-.fn-icon{
-  width:34px;height:34px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;flex-shrink:0;
-}
+.fn-icon{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .fn-label{font-size:13px;font-weight:500;color:var(--text-dark)}
 .fn-sub{font-size:11px;color:var(--muted-dark)}
-.flow-arrow{
-  display:flex;align-items:center;padding:4px 0 4px 26px;
-  font-size:11px;color:var(--muted-dark);gap:6px;
-}
+.flow-arrow{display:flex;align-items:center;padding:4px 0 4px 26px;font-size:11px;color:var(--muted-dark);gap:6px}
 .flow-arrow i{color:var(--accent);font-size:14px}
-
 .flow-points{display:flex;flex-direction:column;gap:24px}
 .flow-point{display:flex;gap:16px;align-items:flex-start}
-.flo-num{
-  font-family:'DM Serif Display',serif;
-  font-size:28px;color:rgba(26,31,46,.12);
-  line-height:1;width:36px;flex-shrink:0;margin-top:-2px;
-  font-weight:700;
-}
+.flo-num{font-family:'DM Serif Display',serif;font-size:28px;color:rgba(26,31,46,.12);line-height:1;width:36px;flex-shrink:0;margin-top:-2px;font-weight:700}
 .flo-title{font-size:15px;font-weight:500;color:var(--text-dark);margin-bottom:5px}
 .flo-desc{font-size:13px;line-height:1.7;color:var(--muted-dark)}
 
-/* ══ VERTICALS SECTION ══ */
+/* VERTICALS */
 .verticals{background:var(--ink);border-top:1px solid var(--rule)}
 .verticals h2{color:var(--white)}
 .vert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px}
-.vert-card{
-  background:var(--ink2);border:1px solid var(--edge);
-  border-radius:14px;overflow:hidden;
-  transition:border-color .25s,transform .25s;
-}
+.vert-card{background:var(--ink2);border:1px solid var(--edge);border-radius:14px;overflow:hidden;transition:border-color .25s,transform .25s}
 .vert-card:hover{border-color:rgba(232,98,26,.4);transform:translateY(-4px)}
-
-/* Image placeholder in vert cards */
 .vert-img{height:180px;position:relative}
-.vert-img .img-placeholder{
-  height:100%;border-radius:0;border:none;border-bottom:1px dashed var(--edge);
-}
-
+.vert-img .img-placeholder{height:100%;border-radius:0;border:none;border-bottom:1px dashed var(--edge)}
 .vert-body{padding:22px}
-.vert-domain{
-  font-size:10px;letter-spacing:1px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:8px;
-}
-.vert-name{
-  font-family:'DM Serif Display',serif;
-  font-size:20px;color:var(--white);margin-bottom:8px;
-}
+.vert-domain{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.vert-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);margin-bottom:8px}
 .vert-desc{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:16px}
-.vert-link{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:12px;color:var(--accent);text-decoration:none;
-  transition:gap .2s;
-}
+.vert-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--accent);transition:gap .2s}
 .vert-link:hover{gap:9px}
-.vert-more{
-  background:rgba(255,255,255,.03);border:1px dashed var(--edge);
-  border-radius:14px;padding:36px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;gap:12px;
-}
-.vert-more-icon{
-  width:48px;height:48px;border-radius:50%;border:1px dashed var(--edge);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:var(--hint);
-}
+.vert-more{background:rgba(255,255,255,.03);border:1px dashed var(--edge);border-radius:14px;padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.vert-more-icon{width:48px;height:48px;border-radius:50%;border:1px dashed var(--edge);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--hint)}
 .vert-more-text{font-size:13px;color:var(--hint);line-height:1.6}
 .vert-more-sub{font-size:11px;color:var(--hint);opacity:.6}
-
-/* Powered badge */
-.powered-strip{
-  margin-top:60px;padding:24px 32px;
-  background:var(--ink2);border:1px solid var(--edge);border-radius:12px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-}
+.powered-strip{margin-top:60px;padding:24px 32px;background:var(--ink2);border:1px solid var(--edge);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .powered-text{font-size:13px;color:var(--muted);max-width:460px;line-height:1.6}
-.powered-badge{
-  display:flex;align-items:center;gap:10px;
-  background:var(--ink3);border:1px solid var(--edge);
-  border-radius:8px;padding:10px 16px;flex-shrink:0;
-}
+.powered-badge{display:flex;align-items:center;gap:10px;background:var(--ink3);border:1px solid var(--edge);border-radius:8px;padding:10px 16px;flex-shrink:0}
 .pb-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .pb-text{font-size:12px;color:var(--muted)}
 .pb-text strong{color:var(--white);font-weight:500}
 
-/* ══ INVESTORS ══ */
-.investors{
-  background:var(--ink2);
-  border-top:1px solid var(--rule);
-  padding:80px 60px;
-}
-.investors-inner{
-  max-width:1400px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
+/* INVESTORS */
+.investors{background:var(--ink2);border-top:1px solid var(--rule);padding:80px 60px}
+.investors-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .inv-text h2{color:var(--white)}
 .inv-text .sec-lead{color:var(--muted)}
 .inv-points{display:flex;flex-direction:column;gap:14px;margin-top:32px}
-.inv-point{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:14px 16px;
-  background:rgba(255,255,255,.03);border:1px solid var(--rule);
-  border-radius:8px;
-}
+.inv-point{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid var(--rule);border-radius:8px}
 .inv-point i{color:var(--accent);font-size:16px;flex-shrink:0;margin-top:1px}
 .inv-point-text{font-size:13px;color:var(--muted);line-height:1.6}
 .inv-point-text strong{color:var(--white);font-weight:500}
-
 .inv-visual{display:flex;flex-direction:column;gap:14px}
-.inv-metric{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
-  background:var(--ink3);border:1px solid var(--edge);border-radius:10px;
-}
+.inv-metric{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--ink3);border:1px solid var(--edge);border-radius:10px}
 .im-label{font-size:12px;color:var(--hint)}
 .im-val{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white)}
 .im-val.accent{color:var(--accent)}
 
-/* ══ CTA ══ */
-.cta-section{
-  padding:120px 60px;
-  background:var(--ink);
-  position:relative;overflow:hidden;
-  text-align:center;
-}
-.cta-section::before{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--rule) 1px,transparent 1px),
-    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 60% 80% at 50% 50%,black 0%,transparent 70%);
-}
-.cta-glow{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:700px;height:400px;
-  background:radial-gradient(ellipse,rgba(232,98,26,.1) 0%,transparent 65%);
-  pointer-events:none;
-}
+/* CTA */
+.cta-section{padding:120px 60px;background:var(--ink);position:relative;overflow:hidden;text-align:center}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 60% 80% at 50% 50%,black 0%,transparent 70%)}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(232,98,26,.1) 0%,transparent 65%);pointer-events:none}
 .cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
 .cta-section h2{font-size:clamp(42px,5vw,72px);color:var(--white);margin-bottom:16px}
 .cta-sub{font-size:17px;color:var(--muted);margin-bottom:40px;font-weight:300}
 .cta-note{font-size:12px;color:var(--hint);margin-top:16px}
 
-/* ══ FOOTER ══ */
-footer{
-  background:var(--ink2);border-top:1px solid var(--rule);
-  padding:32px 60px;
-}
-.footer-inner{
-  max-width:1400px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:16px;
-}
-.footer-logo{
-  font-family:'DM Serif Display',serif;
-  font-size:18px;color:rgba(250,251,255,.3);
-}
+/* FOOTER */
+footer{background:var(--ink2);border-top:1px solid var(--rule);padding:32px 60px}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(250,251,255,.3)}
 .footer-logo span{color:rgba(232,98,26,.4)}
 .footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:var(--hint);text-decoration:none;transition:color .15s}
+.footer-links a{font-size:12px;color:var(--hint);transition:color .15s}
 .footer-links a:hover{color:var(--muted)}
 .footer-right{font-size:11px;color:var(--hint)}
 
-/* ══ ANIMATIONS ══ */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
@@ -516,11 +236,9 @@ footer{
 .reveal:nth-child(3){transition-delay:.15s}
 .reveal:nth-child(4){transition-delay:.22s}
 
-/* ══ RESPONSIVE ══ */
 @media(max-width:1024px){
   .nav-links{display:none}
-  .nav-r .nav-ghost{display:none}
-  .nav-btn{display:none}
+  .nav-r .nav-ghost,.nav-btn{display:none}
   .mob-toggle{display:flex}
   .hero{padding:100px 24px 60px}
   .problem-grid{grid-template-columns:1fr;gap:48px}
@@ -528,18 +246,13 @@ footer{
   .space-card{border-right:none;border-bottom:1px solid var(--creamed)}
   .space-card:nth-child(odd){border-right:1px solid var(--creamed)}
   .space-card:nth-last-child(-n+2){border-bottom:none}
-  .fit-inner{grid-template-columns:1fr;gap:48px}
-  .flow-inner{grid-template-columns:1fr;gap:48px}
+  .fit-inner,.flow-inner{grid-template-columns:1fr;gap:48px}
   .vert-grid{grid-template-columns:1fr 1fr}
   .investors-inner{grid-template-columns:1fr;gap:48px}
   .powered-strip{flex-direction:column;align-items:flex-start}
   .section{padding:72px 24px}
   .investors{padding:72px 24px}
-  footer{padding:24px}
-  /* Solutions journey cards — stack on tablet */
-  #solutions > .section-inner > div[style*="repeat(3"]{grid-template-columns:1fr !important}
 }
-
 @media(max-width:600px){
   .nav-i{padding:0 18px;height:56px}
   .mob-drawer{top:56px}
@@ -555,91 +268,95 @@ footer{
   .cta-section{padding:80px 18px}
   footer{padding:20px 18px;flex-direction:column;align-items:flex-start}
   .footer-links{display:none}
-  .fitz-panel{width:100% !important;border-radius:16px 16px 0 0;border-right:1px solid rgba(232,98,26,.25)}
+}
+
+/* FITZ */
+.fitz-trigger{position:fixed;bottom:28px;right:28px;z-index:400;display:flex;align-items:center;gap:8px;background:var(--accent);color:white;padding:10px 18px;border-radius:100px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;box-shadow:0 8px 24px rgba(232,98,26,.35);transition:all .2s}
+.fitz-trigger:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,98,26,.45)}
+.fitz-trigger i{font-size:15px}
+.fitz-panel{position:fixed;bottom:0;right:0;z-index:500;width:360px;height:520px;background:#0D1220;border:1px solid rgba(232,98,26,.25);border-bottom:none;border-right:none;border-radius:16px 0 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-8px -8px 40px rgba(0,0,0,.4)}
+.fitz-panel.open{transform:translateY(0)}
+.fitz-header{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.fitz-avatar{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,rgba(232,98,26,.8),rgba(123,92,240,.8));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fitz-header-text{flex:1}
+.fitz-name{font-size:14px;font-weight:500;color:var(--white);line-height:1}
+.fitz-status{font-size:11px;color:rgba(232,98,26,.7);margin-top:2px}
+.fitz-close{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;cursor:pointer;color:var(--muted);padding:5px 7px;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.fitz-close:hover{background:rgba(255,255,255,.15);color:var(--white)}
+.fitz-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.fitz-msg{max-width:88%;font-size:13px;line-height:1.6}
+.fitz-msg.fitz{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:0 10px 10px 10px;padding:10px 13px;color:rgba(250,251,255,.85);align-self:flex-start}
+.fitz-msg.user{background:rgba(232,98,26,.15);border:1px solid rgba(232,98,26,.25);border-radius:10px 0 10px 10px;padding:10px 13px;color:var(--white);align-self:flex-end}
+.fitz-suggestions{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.fitz-sug{background:none;border:1px solid rgba(232,98,26,.25);border-radius:7px;padding:7px 11px;font-size:12px;color:var(--accent);cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;transition:all .15s}
+.fitz-sug:hover{background:rgba(232,98,26,.08);border-color:rgba(232,98,26,.5)}
+.fitz-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.fitz-input-row{display:flex;gap:8px;align-items:center}
+.fitz-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--white);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+.fitz-input::placeholder{color:var(--hint)}
+.fitz-input:focus{border-color:rgba(232,98,26,.4)}
+.fitz-send{width:34px;height:34px;border-radius:7px;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.fitz-send:hover{background:var(--accent2)}
+.fitz-send i{color:white;font-size:15px}
+.fitz-powered{font-size:10px;color:var(--hint);text-align:center;margin-top:8px}
+@media(max-width:600px){
+  .fitz-panel{width:100%;border-radius:16px 16px 0 0;border-right:1px solid rgba(232,98,26,.25)}
   .fitz-trigger{bottom:20px;right:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
 <nav>
   <div class="nav-i">
-    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:8px;"><img src="assets/logo_only.svg" alt="" style="height:28px;width:auto;">Big<span>Topa</span></a>
+    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
     <div class="nav-links">
       <a href="platform.html" class="nav-link">Platform</a>
       <a href="how-it-works.html" class="nav-link">How It Works</a>
       <a href="#solutions" class="nav-link">Solutions</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
     </div>
     <div class="nav-r">
       <a href="#" class="nav-ghost">Sign in</a>
       <a href="#cta" class="nav-btn">Request Access</a>
-      <button class="mob-toggle" id="mob-toggle">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="mob-toggle" id="mob-toggle"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
-<!-- Mobile drawer -->
 <div class="mob-drawer" id="mob-drawer">
   <a href="platform.html" class="mob-nav-link">Platform</a>
   <a href="how-it-works.html" class="mob-nav-link">How It Works</a>
   <a href="#solutions" class="mob-nav-link">Solutions</a>
+  <a href="pricing.html" class="mob-nav-link">Pricing</a>
   <a href="#" class="mob-nav-link" style="opacity:.5;font-weight:300">Sign in</a>
   <a href="#cta" class="mob-nav-cta">Request Early Access</a>
 </div>
 
-<!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <div class="eyebrow-dot"></div>
-      Unified Engagement Platform
-    </div>
-
+    <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Unified Engagement Platform</div>
     <h1>One platform.<br>Every way your<br>organization <em>engages.</em></h1>
-
     <p class="hero-sub">Your team collaborates. Your members connect. Your audience attends. Your clients consult. BigTopa brings every engagement mode into one adaptive platform — without switching tools.</p>
-
     <div class="hero-ctas">
-      <a href="#cta" class="btn-primary">
-        Request Early Access
-        <i class="ph ph-arrow-right" style="font-size:16px"></i>
-      </a>
-      <a href="#spaces" class="btn-ghost">
-        See the platform
-        <i class="ph ph-arrow-down" style="font-size:14px"></i>
-      </a>
+      <a href="#cta" class="btn-primary">Request Early Access <i class="ph ph-arrow-right" style="font-size:16px"></i></a>
+      <a href="#spaces" class="btn-ghost">See the platform <i class="ph ph-arrow-down" style="font-size:14px"></i></a>
     </div>
-
     <div class="hero-stats">
-      <div>
-        <div class="hstat-num">4</div>
-        <div class="hstat-label">Space types</div>
-      </div>
-      <div>
-        <div class="hstat-num">1</div>
-        <div class="hstat-label">Platform</div>
-      </div>
-      <div>
-        <div class="hstat-num serif-i" style="color:var(--accent)">∞</div>
-        <div class="hstat-label">Market compositions</div>
-      </div>
+      <div><div class="hstat-num">4</div><div class="hstat-label">Space types</div></div>
+      <div><div class="hstat-num">1</div><div class="hstat-label">Platform</div></div>
+      <div><div class="hstat-num serif-i" style="color:var(--accent)">∞</div><div class="hstat-label">Market compositions</div></div>
     </div>
   </div>
-
-  <!-- Hero image placeholder -->
-  <div style="position:absolute;right:60px;top:50%;transform:translateY(-50%);width:420px;opacity:.4;pointer-events:none" class="hero-img-ph">
+  <div style="position:absolute;right:60px;top:50%;transform:translateY(-50%);width:420px;opacity:.4;pointer-events:none">
     <div class="img-placeholder" style="height:320px">
       <i class="ph ph-layout img-placeholder-icon"></i>
       <span class="img-placeholder-label">Hero Visual</span>
-      <span class="img-placeholder-spec">Platform UI mockup or abstract architectural visualization<br>Recommended: 840×640px · Generate: Ideogram or product screenshot</span>
+      <span class="img-placeholder-spec">Platform UI mockup or abstract architectural visualization<br>Recommended: 840×640px</span>
     </div>
   </div>
 </section>
 
-<!-- ══ PROBLEM ══ -->
 <section class="section problem" id="problem">
   <div class="section-inner">
     <div class="sec-tag"><div class="sec-rule"></div>The problem</div>
@@ -647,23 +364,12 @@ footer{
       <div class="problem-text">
         <h2>Organizations run on<br><em>seven tools</em> to do<br>what one should.</h2>
         <p class="sec-lead" style="margin-top:16px">Team chat here. Community there. Events somewhere else. Every transition costs context. Every tool switch loses momentum. Your organization's engagement is fragmented across platforms that were never designed to work together.</p>
-
         <div class="pain-list" style="margin-top:32px">
-          <div class="pain-item reveal">
-            <i class="ph ph-shuffle"></i>
-            <div class="pain-text"><strong>Context switching</strong> — decisions made in one tool never reach the people who need them in another</div>
-          </div>
-          <div class="pain-item reveal">
-            <i class="ph ph-puzzle-piece"></i>
-            <div class="pain-text"><strong>Bolt-on integrations</strong> — platforms add features through plugins that feel foreign to the core experience</div>
-          </div>
-          <div class="pain-item reveal">
-            <i class="ph ph-buildings"></i>
-            <div class="pain-text"><strong>Enterprise overhead</strong> — powerful platforms built for large organizations overwhelm smaller ones with complexity they don't need</div>
-          </div>
+          <div class="pain-item reveal"><i class="ph ph-shuffle"></i><div class="pain-text"><strong>Context switching</strong> — decisions made in one tool never reach the people who need them in another</div></div>
+          <div class="pain-item reveal"><i class="ph ph-puzzle-piece"></i><div class="pain-text"><strong>Bolt-on integrations</strong> — platforms add features through plugins that feel foreign to the core experience</div></div>
+          <div class="pain-item reveal"><i class="ph ph-buildings"></i><div class="pain-text"><strong>Enterprise overhead</strong> — powerful platforms built for large organizations overwhelm smaller ones with complexity they don't need</div></div>
         </div>
       </div>
-
       <div class="problem-visual reveal">
         <div class="frag-grid">
           <div class="frag-app"><i class="ph ph-chat-circle-text"></i><span class="frag-label">Slack</span></div>
@@ -678,415 +384,217 @@ footer{
         </div>
         <div class="frag-vs"><span>vs. one platform that adapts</span></div>
         <div style="background:var(--ink3);border:1px solid rgba(232,98,26,.3);border-radius:10px;padding:20px 24px;display:flex;align-items:center;gap:14px">
-          <div style="width:40px;height:40px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center">
-            <i class="ph-bold ph-lightning" style="color:white;font-size:18px"></i>
-          </div>
-          <div>
-            <div style="font-size:14px;font-weight:500;color:var(--white)">BigTopa</div>
-            <div style="font-size:12px;color:var(--muted)">Work · Community · Events · Providers</div>
-          </div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center"><i class="ph-bold ph-lightning" style="color:white;font-size:18px"></i></div>
+          <div><div style="font-size:14px;font-weight:500;color:var(--white)">BigTopa</div><div style="font-size:12px;color:var(--muted)">Work · Community · Events · Providers</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ FOUR SPACES ══ -->
 <section class="section spaces" id="spaces">
   <div class="section-inner">
     <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>The platform</div>
     <h2>Four ways organizations <em style="color:var(--accentd)">engage.</em><br>One place to manage all of them.</h2>
-    <p class="sec-lead">Every organization has multiple engagement relationships. BigTopa gives each one its own purpose-built space — so your team's workspace doesn't bleed into your community, and your events don't get buried in internal chat.</p>
-
+    <p class="sec-lead">Every organization has multiple engagement relationships. BigTopa gives each one its own purpose-built space.</p>
     <div class="spaces-grid">
-
-      <!-- Work Space -->
       <div class="space-card sc-work reveal">
-        <div class="space-icon-wrap si-work">
-          <i class="ph ph-briefcase"></i>
-        </div>
+        <div class="space-icon-wrap si-work"><i class="ph ph-briefcase"></i></div>
         <div class="space-type-tag st-work">Work Space</div>
         <div class="space-name">Your team</div>
-        <p class="space-desc">Internal collaboration without the noise. Focused streams, structured meetings, and shared tools — built for the way teams actually work, not the way enterprise software assumes they do.</p>
+        <p class="space-desc">Internal collaboration without the noise. Focused streams, structured meetings, and shared tools — built for the way teams actually work.</p>
         <div class="space-uses">
           <div class="space-use"><i class="ph ph-check" style="color:var(--violet)"></i>Project rooms and focused channels</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--violet)"></i>Meetings, standups, and async updates</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--violet)"></i>Tasks, notes, and shared documents</div>
         </div>
-        <div class="space-footer">
-          <div class="sf-dot" style="background:var(--violet)"></div>
-          Like Slack — but without the subscription fatigue
-        </div>
+        <div class="space-footer"><div class="sf-dot" style="background:var(--violet)"></div>Like Slack — but without the subscription fatigue</div>
       </div>
-
-      <!-- Community Space -->
       <div class="space-card sc-community reveal">
-        <div class="space-icon-wrap si-community">
-          <i class="ph ph-users-three"></i>
-        </div>
+        <div class="space-icon-wrap si-community"><i class="ph ph-users-three"></i></div>
         <div class="space-type-tag st-community">Community Space</div>
         <div class="space-name">Your members</div>
-        <p class="space-desc">Where your community lives between events and meetings. Engagement-first streams, member directories, announcements, and discussion — all in a space that grows with your community.</p>
+        <p class="space-desc">Where your community lives between events and meetings. Engagement-first streams, member directories, and discussion — all in one space.</p>
         <div class="space-uses">
           <div class="space-use"><i class="ph ph-check" style="color:var(--teal)"></i>Member hub with profiles and directory</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--teal)"></i>Community discussions and announcements</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--teal)"></i>Webinars and community events</div>
         </div>
-        <div class="space-footer">
-          <div class="sf-dot" style="background:var(--teal)"></div>
-          Like Circle — but part of the same platform as your team
-        </div>
+        <div class="space-footer"><div class="sf-dot" style="background:var(--teal)"></div>Like Circle — but part of the same platform as your team</div>
       </div>
-
-      <!-- Event Space -->
       <div class="space-card sc-event reveal">
-        <div class="space-icon-wrap si-event">
-          <i class="ph ph-ticket"></i>
-        </div>
+        <div class="space-icon-wrap si-event"><i class="ph ph-ticket"></i></div>
         <div class="space-type-tag st-event">Event Space</div>
         <div class="space-name">Your audience</div>
-        <p class="space-desc">In-person, virtual, or hybrid — events with full ticketing, registration, payments, and onsite coordination. For annual events or one-off occasions, the platform stays ready between them.</p>
+        <p class="space-desc">In-person, virtual, or hybrid — events with full ticketing, registration, payments, and onsite coordination.</p>
         <div class="space-uses">
           <div class="space-use"><i class="ph ph-check" style="color:var(--accent)"></i>Ticketing, registration, and payments</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--accent)"></i>In-person, virtual, and hybrid support</div>
           <div class="space-use"><i class="ph ph-check" style="color:var(--accent)"></i>Swag shop, donations, and fundraising</div>
         </div>
-        <div class="space-footer">
-          <div class="sf-dot" style="background:var(--accent)"></div>
-          Like Eventbrite — built into your platform, not bolted on
-        </div>
+        <div class="space-footer"><div class="sf-dot" style="background:var(--accent)"></div>Like Eventbrite — built into your platform, not bolted on</div>
       </div>
-
-      <!-- Provider Space -->
       <div class="space-card sc-provider reveal">
-        <div class="space-icon-wrap si-provider">
-          <i class="ph ph-handshake"></i>
-        </div>
+        <div class="space-icon-wrap si-provider"><i class="ph ph-handshake"></i></div>
         <div class="space-type-tag st-provider">Provider Space</div>
         <div class="space-name">Your clients</div>
-        <p class="space-desc">The engagement dimension most platforms miss entirely. Dedicated spaces for one-on-one consultation, client services, and professional delivery — intimate, focused, and separate from everything else.</p>
+        <p class="space-desc">Dedicated spaces for one-on-one consultation, client services, and professional delivery — intimate, focused, separate from everything else.</p>
         <div class="space-uses">
           <div class="space-use"><i class="ph ph-check" style="color:#5A8A10"></i>One-on-one consultation spaces</div>
           <div class="space-use"><i class="ph ph-check" style="color:#5A8A10"></i>Client communication and delivery</div>
           <div class="space-use"><i class="ph ph-check" style="color:#5A8A10"></i>Scheduling, sessions, and follow-up</div>
         </div>
-        <div class="space-footer">
-          <div class="sf-dot" style="background:var(--lime)"></div>
-          The client engagement layer no other platform offers
-        </div>
+        <div class="space-footer"><div class="sf-dot" style="background:var(--lime)"></div>The client engagement layer no other platform offers</div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ FIT ══ -->
 <section class="section fit" id="fit">
   <div class="section-inner">
     <div class="sec-tag"><div class="sec-rule"></div>Fit</div>
     <div class="fit-inner">
-
       <div class="fit-points">
         <h2 style="margin-bottom:8px">The platform <em>adapts</em><br>to your organization.<br>Not the other way around.</h2>
-        <p class="sec-lead" style="color:var(--muted);margin-bottom:36px">Most platforms make you adapt to them. BigTopa's entitlement system composes a different platform for every organization type — same infrastructure, completely different experience.</p>
-
-        <div class="fit-point reveal">
-          <div class="fp-icon"><i class="ph ph-sliders"></i></div>
-          <div>
-            <div class="fp-title">Composable entitlements</div>
-            <p class="fp-desc">Features are assembled per organization, not bundled into rigid tiers. A Greek chapter gets different capabilities than a reunion organizer — even if they're on the same plan level.</p>
-          </div>
-        </div>
-
-        <div class="fit-point reveal">
-          <div class="fp-icon"><i class="ph ph-swap"></i></div>
-          <div>
-            <div class="fp-title">Zero code changes per market</div>
-            <p class="fp-desc">Adding a new market vertical doesn't require a new codebase. The entitlement registry changes. The application code is identical across every market.</p>
-          </div>
-        </div>
-
-        <div class="fit-point reveal">
-          <div class="fp-icon"><i class="ph ph-cube"></i></div>
-          <div>
-            <div class="fp-title">Hundreds of compositions possible</div>
-            <p class="fp-desc">From a simple chat-only family hub to a full creator platform with monetization and broadcasting — even nomenclature-only changes create distinct products for distinct markets.</p>
-          </div>
-        </div>
-
-        <!-- Fitz callout -->
+        <p class="sec-lead" style="color:var(--muted);margin-bottom:36px">Most platforms make you adapt to them. BigTopa's entitlement system composes a different platform for every organization type.</p>
+        <div class="fit-point reveal"><div class="fp-icon"><i class="ph ph-sliders"></i></div><div><div class="fp-title">Composable entitlements</div><p class="fp-desc">Features are assembled per organization, not bundled into rigid tiers. A Greek chapter gets different capabilities than a reunion organizer — even on the same plan level.</p></div></div>
+        <div class="fit-point reveal"><div class="fp-icon"><i class="ph ph-swap"></i></div><div><div class="fp-title">Zero code changes per market</div><p class="fp-desc">Adding a new market vertical doesn't require a new codebase. The entitlement registry changes. The application code is identical across every market.</p></div></div>
+        <div class="fit-point reveal"><div class="fp-icon"><i class="ph ph-cube"></i></div><div><div class="fp-title">Hundreds of compositions possible</div><p class="fp-desc">From a simple chat-only family hub to a full creator platform with monetization and broadcasting — even nomenclature-only changes create distinct products.</p></div></div>
         <div class="reveal" style="margin-top:28px;background:rgba(232,98,26,.06);border:1px solid rgba(232,98,26,.2);border-radius:12px;padding:20px 22px;display:flex;align-items:flex-start;gap:14px">
-          <div style="width:38px;height:38px;border-radius:9px;background:rgba(232,98,26,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <i class="ph ph-sparkle" style="color:var(--accent);font-size:18px"></i>
-          </div>
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(232,98,26,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ph ph-sparkle" style="color:var(--accent);font-size:18px"></i></div>
           <div>
             <div style="font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px">Meet Fitz — BigTopa's plan assistant</div>
-            <p style="font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:12px">Fitz is named after the Fit principle. Ask him anything about the platform, or let him interview you to configure a plan that fits your organization perfectly.</p>
-            <button onclick="openFitz()" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;background:var(--accent);border:none;color:white;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s" onmouseenter="this.style.background='var(--accent2)'" onmouseleave="this.style.background='var(--accent)'">
-              <i class="ph ph-sparkle" style="font-size:12px"></i>
-              Ask Fitz
-            </button>
+            <p style="font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:12px">Named after the Fit principle. Ask him anything or let him configure a plan that fits your organization perfectly.</p>
+            <button onclick="openFitz()" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;background:var(--accent);border:none;color:white;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s" onmouseenter="this.style.background='var(--accent2)'" onmouseleave="this.style.background='var(--accent)'"><i class="ph ph-sparkle" style="font-size:12px"></i>Ask Fitz</button>
           </div>
         </div>
       </div>
-
       <div class="comp-diagram reveal">
         <div style="font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--hint);margin-bottom:12px">Same platform — different compositions</div>
-
         <div class="comp-hub">
-          <div class="comp-hub-icon" style="background:rgba(232,98,26,.1)">
-            <i class="ph ph-lightning" style="color:var(--accent)"></i>
-          </div>
-          <div>
-            <div class="comp-hub-label">Core Platform</div>
-            <div class="comp-hub-name">Spaces · Streams · Meetups · Participants</div>
-          </div>
+          <div class="comp-hub-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-lightning" style="color:var(--accent)"></i></div>
+          <div><div class="comp-hub-label">Core Platform</div><div class="comp-hub-name">Spaces · Streams · Meetups · Participants</div></div>
         </div>
-
-        <div style="font-size:11px;color:var(--hint);margin-bottom:10px;padding-left:2px">
-          <i class="ph ph-arrow-down" style="color:var(--accent);font-size:12px"></i>
-          Assembled differently per market
-        </div>
-
+        <div style="font-size:11px;color:var(--hint);margin-bottom:10px;padding-left:2px"><i class="ph ph-arrow-down" style="color:var(--accent);font-size:12px"></i> Assembled differently per market</div>
         <div class="comp-plans">
-          <div class="comp-plan">
-            <div class="cp-market">Greek Life</div>
-            <div class="cp-name">GreekHouse</div>
-            <div class="cp-modules">
-              <span class="cp-mod active">Events</span>
-              <span class="cp-mod active">Finances</span>
-              <span class="cp-mod active">Community</span>
-              <span class="cp-mod">Broadcast</span>
-              <span class="cp-mod active">Shop</span>
-            </div>
-          </div>
-          <div class="comp-plan">
-            <div class="cp-market">Reunions</div>
-            <div class="cp-name">GatherAgain</div>
-            <div class="cp-modules">
-              <span class="cp-mod active">Events</span>
-              <span class="cp-mod active">Finances</span>
-              <span class="cp-mod active">Shop</span>
-              <span class="cp-mod active">Donations</span>
-              <span class="cp-mod">Community</span>
-            </div>
-          </div>
-          <div class="comp-plan">
-            <div class="cp-market">Creators</div>
-            <div class="cp-name">Creator Platform</div>
-            <div class="cp-modules">
-              <span class="cp-mod active">Marketing</span>
-              <span class="cp-mod active">Monetization</span>
-              <span class="cp-mod active">Broadcast</span>
-              <span class="cp-mod active">Courses</span>
-              <span class="cp-mod active">Shop</span>
-            </div>
-          </div>
-          <div class="comp-plan" style="border-style:dashed;opacity:.6">
-            <div class="cp-market">Coming soon</div>
-            <div class="cp-name">Your Market</div>
-            <div class="cp-modules">
-              <span class="cp-mod">+5 more verticals</span>
-            </div>
-          </div>
+          <div class="comp-plan"><div class="cp-market">Greek Life</div><div class="cp-name">GreekHouse</div><div class="cp-modules"><span class="cp-mod active">Events</span><span class="cp-mod active">Finances</span><span class="cp-mod active">Community</span><span class="cp-mod">Broadcast</span><span class="cp-mod active">Shop</span></div></div>
+          <div class="comp-plan"><div class="cp-market">Reunions</div><div class="cp-name">GatherAgain</div><div class="cp-modules"><span class="cp-mod active">Events</span><span class="cp-mod active">Finances</span><span class="cp-mod active">Shop</span><span class="cp-mod active">Donations</span><span class="cp-mod">Community</span></div></div>
+          <div class="comp-plan"><div class="cp-market">Creators</div><div class="cp-name">Creator Platform</div><div class="cp-modules"><span class="cp-mod active">Marketing</span><span class="cp-mod active">Monetization</span><span class="cp-mod active">Broadcast</span><span class="cp-mod active">Courses</span><span class="cp-mod active">Shop</span></div></div>
+          <div class="comp-plan" style="border-style:dashed;opacity:.6"><div class="cp-market">Coming soon</div><div class="cp-name">Your Market</div><div class="cp-modules"><span class="cp-mod">+5 more verticals</span></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ FLOW ══ -->
 <section class="section flow" id="flow">
   <div class="section-inner">
     <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>Flow</div>
     <div class="flow-inner">
-
       <div class="flow-diagram reveal">
         <div style="font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted-dark);margin-bottom:16px">Information moves naturally through your organization</div>
-
         <div class="flow-nodes">
-          <div class="flow-node">
-            <div class="fn-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-door" style="color:var(--violet);font-size:16px"></i></div>
-            <div><div class="fn-label">Room</div><div class="fn-sub">Where conversations start</div></div>
-          </div>
+          <div class="flow-node"><div class="fn-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-door" style="color:var(--violet);font-size:16px"></i></div><div><div class="fn-label">Room</div><div class="fn-sub">Where conversations start</div></div></div>
           <div class="flow-arrow"><i class="ph ph-arrow-down"></i> Content surfaces upward automatically</div>
-          <div class="flow-node">
-            <div class="fn-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-layout" style="color:var(--teal);font-size:16px"></i></div>
-            <div><div class="fn-label">Space</div><div class="fn-sub">Aggregated hub of the team or community</div></div>
-          </div>
+          <div class="flow-node"><div class="fn-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-layout" style="color:var(--teal);font-size:16px"></i></div><div><div class="fn-label">Space</div><div class="fn-sub">Aggregated hub of the team or community</div></div></div>
           <div class="flow-arrow"><i class="ph ph-arrow-down"></i> Important updates reach the organization</div>
-          <div class="flow-node">
-            <div class="fn-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-buildings" style="color:var(--accent);font-size:16px"></i></div>
-            <div><div class="fn-label">Hub</div><div class="fn-sub">Tenant-level organizational view</div></div>
-          </div>
-        </div>
-
-        <!-- Image placeholder for flow diagram visual -->
-        <div style="margin-top:20px">
-          <div class="img-placeholder" style="height:120px">
-            <i class="ph ph-flow-arrow img-placeholder-icon" style="font-size:24px"></i>
-            <span class="img-placeholder-label">Flow Diagram Illustration</span>
-            <span class="img-placeholder-spec">Visual showing content/activity flow through hierarchy · Generate: Ideogram</span>
-          </div>
+          <div class="flow-node"><div class="fn-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-buildings" style="color:var(--accent);font-size:16px"></i></div><div><div class="fn-label">Hub</div><div class="fn-sub">Tenant-level organizational view</div></div></div>
         </div>
       </div>
-
       <div class="flow-points">
         <h2 style="margin-bottom:8px;color:var(--text-dark)">Context doesn't get <em style="color:var(--accentd)">lost</em> when<br>people move.</h2>
-        <p class="sec-lead" style="margin-bottom:36px">In most platforms, when you transition from one tool to another, you start over. BigTopa preserves context as activity moves through the platform — so nothing important falls through the cracks.</p>
-
-        <div class="flow-point reveal">
-          <div class="flo-num">01</div>
-          <div>
-            <div class="flo-title">Information Flow</div>
-            <p class="flo-desc">Conversations that start in a project room surface important updates to the space hub — without broadcasting noise to everyone. The right people see what they need to see.</p>
-          </div>
-        </div>
-
-        <div class="flow-point reveal">
-          <div class="flo-num">02</div>
-          <div>
-            <div class="flo-title">Activity Flow</div>
-            <p class="flo-desc">Moving from async discussion to a live meeting, or from planning a reunion to running it, happens within the same continuous platform — not by switching tools and losing thread.</p>
-          </div>
-        </div>
-
-        <div class="flow-point reveal">
-          <div class="flo-num">03</div>
-          <div>
-            <div class="flo-title">Context Flow</div>
-            <p class="flo-desc">A meeting that started from a discussion stays connected to it. Decisions remain tied to their originating context. Revenue flows room-up to the hub. The platform remembers.</p>
-          </div>
-        </div>
+        <p class="sec-lead" style="margin-bottom:36px">In most platforms, when you transition from one tool to another, you start over. BigTopa preserves context as activity moves through the platform.</p>
+        <div class="flow-point reveal"><div class="flo-num">01</div><div><div class="flo-title">Information Flow</div><p class="flo-desc">Conversations that start in a project room surface important updates to the space hub — without broadcasting noise to everyone.</p></div></div>
+        <div class="flow-point reveal"><div class="flo-num">02</div><div><div class="flo-title">Activity Flow</div><p class="flo-desc">Moving from async discussion to a live meeting happens within the same continuous platform — not by switching tools and losing thread.</p></div></div>
+        <div class="flow-point reveal"><div class="flo-num">03</div><div><div class="flo-title">Context Flow</div><p class="flo-desc">A meeting that started from a discussion stays connected to it. Decisions remain tied to their originating context. Revenue flows room-up to the hub.</p></div></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ SOLUTIONS ══ -->
 <section class="section" id="solutions" style="background:var(--ink2);border-top:1px solid var(--rule)">
   <div class="section-inner">
     <div class="sec-tag"><div class="sec-rule"></div>Solutions</div>
     <h2>Three ways to find<br>your <em>perfect plan.</em></h2>
-    <p class="sec-lead" style="color:var(--muted);margin-bottom:56px">Whether you want a guided AI conversation, hands-on configuration, or a plan pre-built for your domain — every path leads to a pricing page that fits.</p>
-
+    <p class="sec-lead" style="color:var(--muted);margin-bottom:56px">Whether you want a guided AI conversation, hands-on configuration, or a plan pre-built for your domain.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px">
-
-      <!-- AI Configurator -->
-      <a href="how-it-works.html#fitz" style="text-decoration:none" class="reveal">
+      <a href="how-it-works.html" class="reveal" style="display:block">
         <div style="background:var(--ink3);border:1px solid var(--edge);border-radius:16px;overflow:hidden;height:100%;transition:border-color .25s,transform .25s" onmouseenter="this.style.borderColor='rgba(123,92,240,.5)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.transform='none'">
           <div style="padding:28px 28px 22px">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px">
-              <div style="width:44px;height:44px;border-radius:10px;background:rgba(123,92,240,.12);display:flex;align-items:center;justify-content:center">
-                <i class="ph ph-sparkle" style="color:var(--violet);font-size:20px"></i>
-              </div>
+              <div style="width:44px;height:44px;border-radius:10px;background:rgba(123,92,240,.12);display:flex;align-items:center;justify-content:center"><i class="ph ph-sparkle" style="color:var(--violet);font-size:20px"></i></div>
               <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(123,92,240,.1);color:var(--violet);border:1px solid rgba(123,92,240,.2)">AI guided</span>
             </div>
             <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:8px">AI Configurator</div>
-            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">Tell Fitz about your organization. He'll ask the right questions and recommend three tailored plan options — with the right spaces, modules, and features already configured.</p>
+            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">Tell Fitz about your organization. He'll ask the right questions and recommend tailored plan options — with the right spaces, modules, and features configured.</p>
             <div style="display:flex;flex-direction:column;gap:5px">
               <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--violet);font-size:11px"></i>Conversational plan discovery</div>
               <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--violet);font-size:11px"></i>Three recommended options</div>
-              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--violet);font-size:11px"></i>Outputs to your pricing page</div>
             </div>
           </div>
-          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between">
-            <span style="font-size:12px;color:var(--hint)">Powered by Fitz</span>
-            <span style="font-size:12px;color:var(--violet);display:flex;align-items:center;gap:4px">Start interview <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
-          </div>
+          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;color:var(--hint)">Powered by Fitz</span><span style="font-size:12px;color:var(--violet);display:flex;align-items:center;gap:4px">Start <i class="ph ph-arrow-right" style="font-size:11px"></i></span></div>
         </div>
       </a>
-
-      <!-- Plan Builder -->
-      <a href="how-it-works.html" style="text-decoration:none" class="reveal">
+      <a href="pricing.html?view=custom" class="reveal" style="display:block">
         <div style="background:var(--ink3);border:1px solid var(--edge);border-radius:16px;overflow:hidden;height:100%;transition:border-color .25s,transform .25s" onmouseenter="this.style.borderColor='rgba(42,191,191,.5)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.transform='none'">
           <div style="padding:28px 28px 22px">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px">
-              <div style="width:44px;height:44px;border-radius:10px;background:rgba(42,191,191,.12);display:flex;align-items:center;justify-content:center">
-                <i class="ph ph-sliders" style="color:var(--teal);font-size:20px"></i>
-              </div>
+              <div style="width:44px;height:44px;border-radius:10px;background:rgba(42,191,191,.12);display:flex;align-items:center;justify-content:center"><i class="ph ph-sliders" style="color:var(--teal);font-size:20px"></i></div>
               <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(42,191,191,.1);color:var(--teal);border:1px solid rgba(42,191,191,.2)">Full control</span>
             </div>
             <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:8px">Plan Builder</div>
-            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">The à la carte configurator. Select your space types, toggle core modules, enable the extensions you need. Compose exactly the platform your organization needs — then see your pricing page.</p>
+            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">Select your space types, toggle core modules, enable extensions. Compose exactly the platform your organization needs — then see your pricing.</p>
             <div style="display:flex;flex-direction:column;gap:5px">
               <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--teal);font-size:11px"></i>Select spaces, modules, extensions</div>
               <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--teal);font-size:11px"></i>Live composition preview</div>
-              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:var(--teal);font-size:11px"></i>Outputs to your pricing page</div>
             </div>
           </div>
-          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between">
-            <span style="font-size:12px;color:var(--hint)">Interactive — try it now</span>
-            <span style="font-size:12px;color:var(--teal);display:flex;align-items:center;gap:4px">Open builder <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
-          </div>
+          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between"><span style="font-size:12px;color:var(--hint)">Interactive — try it now</span><span style="font-size:12px;color:var(--teal);display:flex;align-items:center;gap:4px">Open <i class="ph ph-arrow-right" style="font-size:11px"></i></span></div>
         </div>
       </a>
-
-      <!-- Domain Plans -->
-      <a href="solutions.html" style="text-decoration:none" class="reveal">
+      <a href="pricing.html" class="reveal" style="display:block">
         <div style="background:var(--ink3);border:1px solid var(--edge);border-radius:16px;overflow:hidden;height:100%;transition:border-color .25s,transform .25s" onmouseenter="this.style.borderColor='rgba(168,200,64,.5)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.transform='none'">
           <div style="padding:28px 28px 22px">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px">
-              <div style="width:44px;height:44px;border-radius:10px;background:rgba(168,200,64,.1);display:flex;align-items:center;justify-content:center">
-                <i class="ph ph-puzzle-piece" style="color:#6A9A20;font-size:20px"></i>
-              </div>
+              <div style="width:44px;height:44px;border-radius:10px;background:rgba(168,200,64,.1);display:flex;align-items:center;justify-content:center"><i class="ph ph-puzzle-piece" style="color:#6A9A20;font-size:20px"></i></div>
               <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(168,200,64,.1);color:#6A9A20;border:1px solid rgba(168,200,64,.2)">Purpose-built</span>
             </div>
-            <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:8px">Domain Plans</div>
-            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">Plans pre-configured for specific domains — Greek organizations, reunions, faith communities, and more. Domain-exclusive features included. Add to the plan in the builder, but the foundation stays intact.</p>
+            <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:8px">Standard Plans</div>
+            <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:20px">Straightforward tiers for organizations that know what they need. Starter, Standard, and Pro — with clear pricing and everything included.</p>
             <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:#6A9A20;font-size:11px"></i>Pre-configured for your niche</div>
-              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:#6A9A20;font-size:11px"></i>Domain-exclusive features</div>
-              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:#6A9A20;font-size:11px"></i>Additive editing only</div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:#6A9A20;font-size:11px"></i>Clear monthly pricing</div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,251,255,.55)"><i class="ph ph-check" style="color:#6A9A20;font-size:11px"></i>No hidden fees</div>
             </div>
           </div>
-          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-            <span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(107,30,46,.2);color:#E8A0AC;border:1px solid rgba(107,30,46,.3)">Greek Life</span>
-            <span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(26,49,40,.3);color:rgba(90,200,140,.8);border:1px solid rgba(26,49,40,.5)">Reunions</span>
-            <span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.04);color:var(--hint);border:1px solid var(--edge)">+5 more</span>
-            <span style="margin-left:auto;font-size:12px;color:#6A9A20;display:flex;align-items:center;gap:4px">Browse <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
-          </div>
+          <div style="padding:14px 28px;border-top:1px solid var(--edge);display:flex;gap:6px;flex-wrap:wrap;align-items:center"><span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Starter</span><span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Standard</span><span style="font-size:11px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Pro</span><span style="margin-left:auto;font-size:12px;color:#6A9A20;display:flex;align-items:center;gap:4px">See pricing <i class="ph ph-arrow-right" style="font-size:11px"></i></span></div>
         </div>
       </a>
-
     </div>
-
     <div class="powered-strip reveal">
       <div class="powered-text">Every domain plan is powered by BigTopa's composable entitlement system. The "Powered by BigTopa" badge on any domain site brings you here — where you can understand the platform and find the plan that fits your organization.</div>
-      <div class="powered-badge">
-        <div class="pb-dot"></div>
-        <div class="pb-text">Powered by <strong>BigTopa</strong></div>
-      </div>
+      <div class="powered-badge"><div class="pb-dot"></div><div class="pb-text">Powered by <strong>BigTopa</strong></div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ══ CTA ══ -->
 <section class="cta-section" id="cta">
   <div class="cta-glow"></div>
   <div class="cta-inner">
     <div class="sec-tag" style="justify-content:center;margin-bottom:24px"><div class="sec-rule"></div>Get early access<div class="sec-rule"></div></div>
     <h2 class="serif">Ready to bring your<br>organization <em>together?</em></h2>
     <p class="cta-sub">BigTopa is in early access. Request your spot and we'll be in touch when your market is ready.</p>
-    <a href="#" class="btn-primary" style="display:inline-flex;font-size:16px;padding:16px 36px">
-      Request Early Access
-      <i class="ph ph-arrow-right" style="font-size:18px"></i>
-    </a>
+    <a href="#" class="btn-primary" style="display:inline-flex;font-size:16px;padding:16px 36px">Request Early Access <i class="ph ph-arrow-right" style="font-size:18px"></i></a>
     <p class="cta-note">No commitment. No credit card. We'll reach out directly.</p>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">Big<span>Topa</span></div>
     <div class="footer-links">
       <a href="platform.html">Platform</a>
       <a href="how-it-works.html">How It Works</a>
-      <a href="solutions.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
       <a href="#">Contact</a>
@@ -1095,157 +603,40 @@ footer{
   </div>
 </footer>
 
-<!-- ══ FITZ — GLOBAL AI ASSISTANT ══ -->
-<style>
-.fitz-trigger{
-  position:fixed;bottom:28px;right:28px;z-index:400;
-  display:flex;align-items:center;gap:8px;
-  background:var(--accent);color:white;
-  padding:10px 18px;border-radius:100px;
-  border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
-  font-size:13px;font-weight:500;
-  box-shadow:0 8px 24px rgba(232,98,26,.35);
-  transition:all .2s;
-}
-.fitz-trigger:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,98,26,.45)}
-.fitz-trigger i{font-size:15px}
+<button class="fitz-trigger" id="fitz-trigger" onclick="openFitz()"><i class="ph ph-sparkle"></i>Ask Fitz</button>
 
-.fitz-panel{
-  position:fixed;bottom:0;right:0;z-index:500;
-  width:360px;height:520px;
-  background:#0D1220;
-  border:1px solid rgba(232,98,26,.25);
-  border-bottom:none;border-right:none;
-  border-radius:16px 0 0 0;
-  display:flex;flex-direction:column;
-  transform:translateY(100%);
-  transition:transform .3s cubic-bezier(.4,0,.2,1);
-  box-shadow:-8px -8px 40px rgba(0,0,0,.4);
-}
-.fitz-panel.open{transform:translateY(0)}
-
-.fitz-header{
-  padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);
-  display:flex;align-items:center;gap:10px;flex-shrink:0;
-}
-.fitz-avatar{
-  width:34px;height:34px;border-radius:8px;
-  background:linear-gradient(135deg,rgba(232,98,26,.8),rgba(123,92,240,.8));
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.fitz-header-text{flex:1}
-.fitz-name{font-size:14px;font-weight:500;color:var(--white);line-height:1}
-.fitz-status{font-size:11px;color:rgba(232,98,26,.7);margin-top:2px}
-.fitz-close{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:6px;
-  cursor:pointer;
-  color:var(--muted);
-  padding:5px 7px;
-  transition:all .15s;
-  display:flex;align-items:center;justify-content:center;
-}
-.fitz-close:hover{background:rgba(255,255,255,.15);color:var(--white)}
-
-.fitz-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
-.fitz-msg{max-width:88%;font-size:13px;line-height:1.6}
-.fitz-msg.fitz{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
-  border-radius:0 10px 10px 10px;padding:10px 13px;color:rgba(250,251,255,.85);
-  align-self:flex-start;
-}
-.fitz-msg.user{
-  background:rgba(232,98,26,.15);border:1px solid rgba(232,98,26,.25);
-  border-radius:10px 0 10px 10px;padding:10px 13px;color:var(--white);
-  align-self:flex-end;
-}
-.fitz-suggestions{display:flex;flex-direction:column;gap:5px;margin-top:4px}
-.fitz-sug{
-  background:none;border:1px solid rgba(232,98,26,.25);border-radius:7px;
-  padding:7px 11px;font-size:12px;color:var(--accent);
-  cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;
-  transition:all .15s;
-}
-.fitz-sug:hover{background:rgba(232,98,26,.08);border-color:rgba(232,98,26,.5)}
-
-.fitz-footer{
-  padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0;
-}
-.fitz-input-row{display:flex;gap:8px;align-items:center}
-.fitz-input{
-  flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;padding:9px 12px;font-size:13px;color:var(--white);
-  font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;
-}
-.fitz-input::placeholder{color:var(--hint)}
-.fitz-input:focus{border-color:rgba(232,98,26,.4)}
-.fitz-send{
-  width:34px;height:34px;border-radius:7px;background:var(--accent);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .15s;flex-shrink:0;
-}
-.fitz-send:hover{background:var(--accent2)}
-.fitz-send i{color:white;font-size:15px}
-.fitz-powered{font-size:10px;color:var(--hint);text-align:center;margin-top:8px}
-@media(max-width:600px){
-  .fitz-panel{width:100%;border-radius:16px 16px 0 0;border-right:1px solid rgba(232,98,26,.25)}
-  .fitz-trigger{bottom:20px;right:20px}
-}
-</style>
-
-<!-- Fitz trigger button -->
-<button class="fitz-trigger" id="fitz-trigger" onclick="openFitz()">
-  <i class="ph ph-sparkle"></i>
-  Ask Fitz
-</button>
-
-<!-- Fitz panel -->
 <div class="fitz-panel" id="fitz-panel">
   <div class="fitz-header">
     <div class="fitz-avatar"><i class="ph ph-sparkle" style="color:white;font-size:16px"></i></div>
-    <div class="fitz-header-text">
-      <div class="fitz-name">Fitz</div>
-      <div class="fitz-status">BigTopa Plan Assistant</div>
-    </div>
+    <div class="fitz-header-text"><div class="fitz-name">Fitz</div><div class="fitz-status">BigTopa Plan Assistant</div></div>
     <button class="fitz-close" onclick="closeFitz()"><i class="ph ph-x" style="font-size:16px"></i></button>
   </div>
-
   <div class="fitz-body" id="fitz-body">
-    <div class="fitz-msg fitz">
-      Hi, I'm <strong>Fitz</strong> — BigTopa's plan assistant, named after the Fit principle that powers everything here.
-    </div>
-    <div class="fitz-msg fitz">
-      I can help you two ways:<br><br>
-      <strong>Got questions?</strong> Ask me anything about BigTopa's spaces, modules, features, or how it all works.<br><br>
-      <strong>Ready to configure?</strong> Tell me about your organization and I'll interview you to build a plan that fits perfectly.
-    </div>
+    <div class="fitz-msg fitz">Hi, I'm <strong>Fitz</strong> — BigTopa's plan assistant, named after the Fit principle that powers everything here.</div>
+    <div class="fitz-msg fitz">I can help you two ways:<br><br><strong>Got questions?</strong> Ask me anything about BigTopa.<br><br><strong>Ready to configure?</strong> Tell me about your organization and I'll build a plan that fits perfectly.</div>
     <div class="fitz-suggestions">
       <button class="fitz-sug" onclick="fitzAsk('What is BigTopa?')">What is BigTopa?</button>
       <button class="fitz-sug" onclick="fitzAsk('What space types are available?')">What space types are available?</button>
       <button class="fitz-sug" onclick="fitzAsk('Configure my plan')">Configure my plan →</button>
     </div>
   </div>
-
   <div class="fitz-footer">
     <div class="fitz-input-row">
       <input class="fitz-input" id="fitz-input" placeholder="Ask Fitz anything..." onkeydown="if(event.key==='Enter')fitzSend()">
       <button class="fitz-send" onclick="fitzSend()"><i class="ph ph-paper-plane-tilt"></i></button>
     </div>
-    <div class="fitz-powered">Powered by BigTopa · <a href="how-it-works.html" style="color:var(--accent);text-decoration:none">Configure a plan →</a></div>
+    <div class="fitz-powered">Powered by BigTopa · <a href="pricing.html" style="color:var(--accent)">See pricing →</a></div>
   </div>
 </div>
 
 <script>
-const io = new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})
-},{threshold:.1});
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-const toggle = document.getElementById('mob-toggle');
-const drawer = document.getElementById('mob-drawer');
+const toggle=document.getElementById('mob-toggle');
+const drawer=document.getElementById('mob-drawer');
 toggle.addEventListener('click',()=>{
-  const open = drawer.classList.toggle('open');
+  const open=drawer.classList.toggle('open');
   toggle.classList.toggle('open',open);
   document.body.classList.toggle('nav-open',open);
 });
@@ -1257,69 +648,45 @@ drawer.querySelectorAll('a').forEach(a=>{
   });
 });
 
-/* ── Fitz ── */
-const FITZ_QA = {
-  'what is bigtopa': 'BigTopa is a Unified Engagement Platform — adaptive virtual spaces where your team, community, audience, and clients can all engage. One platform, composed differently for every organization type.',
-  'what space types are available': 'BigTopa has four space types: Work Spaces (your team), Community Spaces (your members), Event Spaces (your audience — in-person and virtual), and Provider Spaces (your clients). Most organizations use two or three together.',
-  'what is fit': 'Fit is BigTopa\'s principle of adaptive composition. The platform assembles a different set of features for each organization type — same infrastructure, configured differently. That\'s why a Greek chapter and a reunion organizer get completely different experiences from the same platform.',
-  'what is flow': 'Flow is how information moves through BigTopa — naturally, from room to space to hub. Conversations surface important updates without noise. Context stays connected as people move between different types of engagement.',
-  'who is fitz': 'I\'m Fitz — BigTopa\'s plan assistant, named after the Fit principle. I can answer questions about the platform or interview you to configure a plan that fits your organization perfectly.',
-  'configure my plan': null, /* routes to How It Works */
+const FITZ_QA={
+  'what is bigtopa':'BigTopa is a Unified Engagement Platform — adaptive virtual spaces where your team, community, audience, and clients can all engage. One platform, composed differently for every organization type.',
+  'what space types are available':'BigTopa has four space types: Work Spaces (your team), Community Spaces (your members), Event Spaces (your audience), and Provider Spaces (your clients). Most organizations use two or three together.',
+  'what is fit':'Fit is BigTopa\'s principle of adaptive composition. The platform assembles a different set of features for each organization type — same infrastructure, configured differently.',
+  'what is flow':'Flow is how information moves through BigTopa — naturally, from room to space to hub. Context stays connected as people move between different types of engagement.',
 };
 
-function openFitz(){
-  document.getElementById('fitz-panel').classList.add('open');
-  document.getElementById('fitz-trigger').style.display='none';
-}
-function closeFitz(){
-  document.getElementById('fitz-panel').classList.remove('open');
-  document.getElementById('fitz-trigger').style.display='flex';
-}
-
-/* Close on Escape key */
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') closeFitz();
+function openFitz(){document.getElementById('fitz-panel').classList.add('open');document.getElementById('fitz-trigger').style.display='none'}
+function closeFitz(){document.getElementById('fitz-panel').classList.remove('open');document.getElementById('fitz-trigger').style.display='flex'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFitz()});
+document.addEventListener('click',e=>{
+  const panel=document.getElementById('fitz-panel');
+  const trigger=document.getElementById('fitz-trigger');
+  if(panel.classList.contains('open')&&!panel.contains(e.target)&&!trigger.contains(e.target))closeFitz();
 });
-
-/* Click outside panel to close */
-document.addEventListener('click', e => {
-  const panel = document.getElementById('fitz-panel');
-  const trigger = document.getElementById('fitz-trigger');
-  if(panel.classList.contains('open') &&
-     !panel.contains(e.target) &&
-     !trigger.contains(e.target)) {
-    closeFitz();
-  }
-});
-function fitzAddMsg(text, role){
-  const body = document.getElementById('fitz-body');
-  const msg = document.createElement('div');
-  msg.className = 'fitz-msg ' + role;
-  msg.innerHTML = text;
+function fitzAddMsg(text,role){
+  const body=document.getElementById('fitz-body');
+  const msg=document.createElement('div');
+  msg.className='fitz-msg '+role;
+  msg.innerHTML=text;
   body.appendChild(msg);
-  body.scrollTop = body.scrollHeight;
+  body.scrollTop=body.scrollHeight;
 }
 function fitzAsk(q){
-  if(q === 'Configure my plan'){
-    fitzAddMsg('Configure my plan', 'user');
-    setTimeout(()=>{
-      fitzAddMsg('Great — let\'s build your plan. I\'ll take you to the Plan Builder where I can interview you step by step and configure the right spaces and features for your organization.', 'fitz');
-      setTimeout(()=>{ window.location.href='how-it-works.html#fitz'; }, 1800);
-    }, 400);
+  if(q==='Configure my plan'){
+    fitzAddMsg('Configure my plan','user');
+    setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);
     return;
   }
-  fitzAddMsg(q, 'user');
-  const key = q.toLowerCase().replace(/[^a-z ]/g,'');
-  const answer = Object.entries(FITZ_QA).find(([k]) => key.includes(k));
-  setTimeout(()=>{
-    fitzAddMsg(answer ? answer[1] : 'Great question. For the most detailed answer, I\'d suggest exploring the Platform page or the How It Works builder. Want me to take you there?', 'fitz');
-  }, 500);
+  fitzAddMsg(q,'user');
+  const key=q.toLowerCase().replace(/[^a-z ]/g,'');
+  const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));
+  setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);
 }
 function fitzSend(){
-  const input = document.getElementById('fitz-input');
-  const q = input.value.trim();
-  if(!q) return;
-  input.value = '';
+  const input=document.getElementById('fitz-input');
+  const q=input.value.trim();
+  if(!q)return;
+  input.value='';
   fitzAsk(q);
 }
 </script>
