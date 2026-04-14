@@ -149,22 +149,6 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .pb-text { font-size: 12px; color: var(--muted); }
 .pb-text strong { color: var(--white); font-weight: 500; }
 
-/* ── INVESTORS ── */
-.investors { background: var(--ink2); border-top: 1px solid var(--rule); padding: 80px 60px; }
-.investors-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.inv-text h2 { color: var(--white); }
-.inv-text .sec-lead { color: var(--muted); }
-.inv-points { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
-.inv-point { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: rgba(255,255,255,.03); border: 1px solid var(--rule); border-radius: 8px; }
-.inv-point i { color: var(--accent); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.inv-point-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.inv-point-text strong { color: var(--white); font-weight: 500; }
-.inv-visual { display: flex; flex-direction: column; gap: 14px; }
-.inv-metric { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--ink3); border: 1px solid var(--edge); border-radius: 10px; }
-.im-label { font-size: 12px; color: var(--hint); }
-.im-val { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); }
-.im-val.accent { color: var(--accent); }
-
 /* ── CTA ── */
 .cta-section { padding: 120px 60px; background: var(--ink); position: relative; overflow: hidden; text-align: center; }
 .cta-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, black 0%, transparent 70%); }
@@ -174,7 +158,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .cta-sub { font-size: 17px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
 .cta-note { font-size: 12px; color: var(--hint); margin-top: 16px; }
 
-/* ── SOLUTIONS CARDS — extracted from inline styles ── */
+/* ── SOLUTIONS CARDS ── */
 .idx-sol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 40px; }
 .idx-sol-card { display: block; }
 .idx-sol-inner { background: var(--ink3); border: 1px solid var(--edge); border-radius: 16px; overflow: hidden; height: 100%; transition: border-color .25s, transform .25s; }
@@ -198,7 +182,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .idx-sol-check { display: flex; align-items: center; gap: 7px; font-size: 12px; color: rgba(250,251,255,.55); }
 .idx-sol-footer { padding: 14px 28px; border-top: 1px solid var(--edge); display: flex; align-items: center; justify-content: space-between; }
 
-/* ── FITZ — page-specific class names (JS creates .fitz-msg dynamically) ── */
+/* ── FITZ message classes (created dynamically by JS) ── */
 .fitz-msg { max-width: 88%; font-size: 13px; line-height: 1.6; }
 .fitz-msg.fitz { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 0 10px 10px 10px; padding: 10px 13px; color: rgba(250,251,255,.85); align-self: flex-start; }
 .fitz-msg.user { background: rgba(232,98,26,.15); border: 1px solid rgba(232,98,26,.25); border-radius: 10px 0 10px 10px; padding: 10px 13px; color: var(--white); align-self: flex-end; }
@@ -216,7 +200,6 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 @media (max-width: 1024px) {
   .hero { padding: 100px 24px 60px; }
   .section { padding: 72px 24px; }
-  .investors { padding: 72px 24px; }
   .problem-grid { grid-template-columns: 1fr; gap: 48px; }
   .spaces-grid { grid-template-columns: 1fr 1fr; }
   .space-card { border-right: none; border-bottom: 1px solid var(--creamed); }
@@ -224,7 +207,6 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   .space-card:nth-last-child(-n+2) { border-bottom: none; }
   .fit-inner, .flow-inner { grid-template-columns: 1fr; gap: 48px; }
   .vert-grid { grid-template-columns: 1fr 1fr; }
-  .investors-inner { grid-template-columns: 1fr; gap: 48px; }
   .powered-strip { flex-direction: column; align-items: flex-start; }
   .idx-sol-grid { grid-template-columns: 1fr; }
 }
@@ -246,7 +228,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 
 <nav>
   <div class="nav-i">
-    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:8px;"><img src="assets/logo_only.svg" alt="" style="height:28px;width:auto;">Big<span>Topa</span></a>
     <div class="nav-links">
       <a href="platform.html" class="nav-link">Platform</a>
       <a href="how-it-works.html" class="nav-link">How It Works</a>
@@ -274,7 +256,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   <div class="hero-inner">
     <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Unified Engagement Platform</div>
     <h1>One platform.<br>Every way your<br>organization <em>engages.</em></h1>
-    <p class="hero-sub">Your team collaborates. Your members connect. Your audience attends. Your clients consult. BigTopa brings every engagement mode into one adaptive platform — without switching tools.</p>
+    <p class="hero-sub">Your team collaborates. Your members connect. Your audience attends. Your clients are consulted. BigTopa brings every engagement mode into one adaptive platform — without switching tools.</p>
     <div class="hero-ctas">
       <a href="#cta" class="btn-primary">Request Early Access <i class="ph ph-arrow-right" style="font-size:16px"></i></a>
       <a href="#spaces" class="btn-ghost">See the platform <i class="ph ph-arrow-down" style="font-size:14px"></i></a>
@@ -333,7 +315,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   <div class="section-inner">
     <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>The platform</div>
     <h2>Four ways organizations <em style="color:var(--accentd)">engage.</em><br>One place to manage all of them.</h2>
-    <p class="sec-lead">Every organization has multiple engagement relationships. BigTopa gives each one its own purpose-built space.</p>
+    <p class="sec-lead">Organizations have multiple engagement relationships. BigTopa gives each one its own purpose-built space. Pick and pay for only the spaces you need.</p>
     <div class="spaces-grid">
       <div class="space-card sc-work reveal">
         <div class="space-icon-wrap si-work"><i class="ph ph-briefcase"></i></div>
@@ -565,63 +547,18 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 <script>
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
 const toggle=document.getElementById('mob-toggle');
 const drawer=document.getElementById('mob-drawer');
-toggle.addEventListener('click',()=>{
-  const open=drawer.classList.toggle('open');
-  toggle.classList.toggle('open',open);
-  document.body.classList.toggle('nav-open',open);
-});
-drawer.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    drawer.classList.remove('open');
-    toggle.classList.remove('open');
-    document.body.classList.remove('nav-open');
-  });
-});
-
-const FITZ_QA={
-  'what is bigtopa':'BigTopa is a Unified Engagement Platform — adaptive virtual spaces where your team, community, audience, and clients can all engage. One platform, composed differently for every organization type.',
-  'what space types are available':'BigTopa has four space types: Work Spaces (your team), Community Spaces (your members), Event Spaces (your audience), and Provider Spaces (your clients). Most organizations use two or three together.',
-  'what is fit':'Fit is BigTopa\'s principle of adaptive composition. The platform assembles a different set of features for each organization type — same infrastructure, configured differently.',
-  'what is flow':'Flow is how information moves through BigTopa — naturally, from room to space to hub. Context stays connected as people move between different types of engagement.',
-};
-
+toggle.addEventListener('click',()=>{const open=drawer.classList.toggle('open');toggle.classList.toggle('open',open);document.body.classList.toggle('nav-open',open);});
+drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');});});
+const FITZ_QA={'what is bigtopa':'BigTopa is a Unified Engagement Platform — adaptive virtual spaces where your team, community, audience, and clients can all engage. One platform, composed differently for every organization type.','what space types are available':'BigTopa has four space types: Work Spaces (your team), Community Spaces (your members), Event Spaces (your audience), and Provider Spaces (your clients). Most organizations use two or three together.','what is fit':'Fit is BigTopa\'s principle of adaptive composition. The platform assembles a different set of features for each organization type — same infrastructure, configured differently.','what is flow':'Flow is how information moves through BigTopa — naturally, from room to space to hub. Context stays connected as people move between different types of engagement.'};
 function openFitz(){document.getElementById('fitz-panel').classList.add('open');document.getElementById('fitz-trigger').style.display='none'}
 function closeFitz(){document.getElementById('fitz-panel').classList.remove('open');document.getElementById('fitz-trigger').style.display='flex'}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFitz()});
-document.addEventListener('click',e=>{
-  const panel=document.getElementById('fitz-panel');
-  const trigger=document.getElementById('fitz-trigger');
-  if(panel.classList.contains('open')&&!panel.contains(e.target)&&!trigger.contains(e.target))closeFitz();
-});
-function fitzAddMsg(text,role){
-  const body=document.getElementById('fitz-body');
-  const msg=document.createElement('div');
-  msg.className='fitz-msg '+role;
-  msg.innerHTML=text;
-  body.appendChild(msg);
-  body.scrollTop=body.scrollHeight;
-}
-function fitzAsk(q){
-  if(q==='Configure my plan'){
-    fitzAddMsg('Configure my plan','user');
-    setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);
-    return;
-  }
-  fitzAddMsg(q,'user');
-  const key=q.toLowerCase().replace(/[^a-z ]/g,'');
-  const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));
-  setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);
-}
-function fitzSend(){
-  const input=document.getElementById('fitz-input');
-  const q=input.value.trim();
-  if(!q)return;
-  input.value='';
-  fitzAsk(q);
-}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFitz();});
+document.addEventListener('click',e=>{const panel=document.getElementById('fitz-panel');const trigger=document.getElementById('fitz-trigger');if(panel.classList.contains('open')&&!panel.contains(e.target)&&!trigger.contains(e.target))closeFitz();});
+function fitzAddMsg(text,role){const body=document.getElementById('fitz-body');const msg=document.createElement('div');msg.className='fitz-msg '+role;msg.innerHTML=text;body.appendChild(msg);body.scrollTop=body.scrollHeight;}
+function fitzAsk(q){if(q==='Configure my plan'){fitzAddMsg('Configure my plan','user');setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);return;}fitzAddMsg(q,'user');const key=q.toLowerCase().replace(/[^a-z ]/g,'');const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);}
+function fitzSend(){const input=document.getElementById('fitz-input');const q=input.value.trim();if(!q)return;input.value='';fitzAsk(q);}
 </script>
 </body>
 </html>
