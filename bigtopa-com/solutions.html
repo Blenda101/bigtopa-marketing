@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigTopa Solutions — Find your plan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+<style>
+/* ── PAGE HEADER ── */
+.page-hero {
+  padding: 120px 60px 72px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 70%);
+}
+.page-hero::after {
+  content: ''; position: absolute;
+  width: 500px; height: 400px; top: 0; left: 50%; transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(232,98,26,.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-hero-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+.page-hero h1 { font-size: clamp(40px, 5vw, 68px); margin-bottom: 18px; }
+.page-hero .sec-lead { max-width: 540px; margin: 0 auto; }
+
+/* ── THREE PATHS ── */
+.paths-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.path-card {
+  background: var(--ink2); border: 1px solid var(--edge);
+  border-radius: 16px; overflow: hidden;
+  transition: border-color .25s, transform .25s;
+  display: flex; flex-direction: column;
+}
+.path-card:hover { transform: translateY(-4px); }
+.path-card.path-ai:hover    { border-color: rgba(123,92,240,.5); }
+.path-card.path-build:hover { border-color: rgba(42,191,191,.5); }
+.path-card.path-std:hover   { border-color: rgba(168,200,64,.5); }
+
+.path-body { padding: 32px 28px 24px; flex: 1; }
+.path-icon-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.path-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.path-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+}
+.path-name { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--white); margin-bottom: 10px; }
+.path-desc { font-size: 13px; line-height: 1.75; color: var(--muted); margin-bottom: 24px; }
+.path-checks { display: flex; flex-direction: column; gap: 7px; }
+.path-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(250,251,255,.55); }
+.path-check i { font-size: 12px; }
+
+.path-footer {
+  padding: 16px 28px; border-top: 1px solid var(--edge);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.path-footer-label { font-size: 12px; color: var(--hint); }
+.path-footer-link  { font-size: 12px; display: flex; align-items: center; gap: 4px; transition: gap .2s; }
+.path-footer-link:hover { gap: 7px; }
+
+/* Color variants */
+.path-ai .path-icon    { background: rgba(123,92,240,.12); color: var(--violet); }
+.path-ai .path-badge   { background: rgba(123,92,240,.1); color: var(--violet); border: 1px solid rgba(123,92,240,.2); }
+.path-ai .path-check i { color: var(--violet); }
+.path-ai .path-footer-link { color: var(--violet); }
+
+.path-build .path-icon    { background: rgba(42,191,191,.12); color: var(--teal); }
+.path-build .path-badge   { background: rgba(42,191,191,.1); color: var(--teal); border: 1px solid rgba(42,191,191,.2); }
+.path-build .path-check i { color: var(--teal); }
+.path-build .path-footer-link { color: var(--teal); }
+
+.path-std .path-icon    { background: rgba(168,200,64,.1); color: #6A9A20; }
+.path-std .path-badge   { background: rgba(168,200,64,.1); color: #6A9A20; border: 1px solid rgba(168,200,64,.2); }
+.path-std .path-check i { color: #6A9A20; }
+.path-std .path-footer-link { color: #6A9A20; }
+
+/* ── DOMAIN VERTICALS ── */
+.verticals-section { background: var(--ink2); border-top: 1px solid var(--rule); }
+
+.vert-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center; margin-bottom: 56px;
+}
+.powered-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink3); border: 1px solid var(--edge);
+  border-radius: 8px; padding: 8px 14px;
+  font-size: 12px; color: var(--muted);
+}
+.pb-dot { width: 6px; height: 6px; border-radius: 50%; background: #E8621A; }
+.pb-strong { color: var(--white); font-weight: 500; }
+
+.vert-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.vert-card {
+  background: var(--ink3); border: 1px solid var(--edge);
+  border-radius: 14px; overflow: hidden;
+  transition: border-color .25s, transform .25s;
+}
+.vert-card.live:hover { border-color: rgba(232,98,26,.4); transform: translateY(-3px); }
+.vert-card.coming { opacity: .5; cursor: default; }
+
+.vc-top { padding: 24px 22px 18px; border-bottom: 1px solid var(--edge); }
+.vc-domain { font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; color: #E8621A; margin-bottom: 6px; }
+.vc-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
+.vc-desc { font-size: 12px; line-height: 1.65; color: var(--muted); }
+
+.vc-modules { padding: 14px 22px; display: flex; flex-wrap: wrap; gap: 5px; border-bottom: 1px solid var(--edge); }
+.vc-mod { font-size: 10px; padding: 3px 9px; border-radius: 100px; font-weight: 500; }
+.vc-mod.on  { background: rgba(232,98,26,.12); color: #E8621A; border: 1px solid rgba(232,98,26,.2); }
+.vc-mod.off { background: rgba(255,255,255,.04); color: var(--hint); border: 1px solid var(--edge); }
+
+.vc-footer {
+  padding: 12px 22px; display: flex; align-items: center; justify-content: space-between;
+}
+.vc-status { font-size: 11px; display: flex; align-items: center; gap: 6px; }
+.vc-status-dot { width: 5px; height: 5px; border-radius: 50%; }
+.vc-link { font-size: 11px; display: flex; align-items: center; gap: 4px; transition: gap .2s; }
+.vc-link:hover { gap: 7px; }
+
+.vert-more {
+  background: rgba(255,255,255,.02); border: 1px dashed var(--edge);
+  border-radius: 14px; padding: 32px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; gap: 12px;
+}
+.vert-more-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px dashed var(--edge);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--hint);
+}
+
+/* ── HOW COMPOSITION WORKS ── */
+.how-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: start;
+}
+
+/* Composition diagram */
+.comp-stack { display: flex; flex-direction: column; gap: 3px; }
+.comp-layer {
+  border-radius: 8px; padding: 13px 16px;
+  display: flex; align-items: center; gap: 14px;
+  transition: transform .2s; cursor: default;
+}
+.comp-layer:hover { transform: translateX(6px); }
+.cl-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.cl-name  { font-size: 13px; font-weight: 500; color: var(--white); }
+.cl-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.cl-badge { font-size: 9px; padding: 2px 8px; border-radius: 100px; margin-left: auto; flex-shrink: 0; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+
+.cl-always { background: rgba(42,191,191,.08); border: 1px solid rgba(42,191,191,.2); }
+.cl-badge-always { background: rgba(42,191,191,.15); color: var(--teal); }
+.cl-core   { background: rgba(232,98,26,.08); border: 1px solid rgba(232,98,26,.2); }
+.cl-badge-core { background: rgba(232,98,26,.15); color: #E8621A; }
+.cl-ext    { background: rgba(123,92,240,.08); border: 1px solid rgba(123,92,240,.2); }
+.cl-badge-ext { background: rgba(123,92,240,.15); color: var(--violet); }
+.cl-market { background: rgba(168,200,64,.08); border: 1px solid rgba(168,200,64,.2); }
+.cl-badge-market { background: rgba(168,200,64,.15); color: #6A9A20; }
+.cl-arrow  { text-align: center; font-size: 11px; color: var(--hint); padding: 3px 0; }
+
+.how-points { display: flex; flex-direction: column; gap: 28px; }
+.how-point { display: flex; gap: 16px; align-items: flex-start; }
+.hp-num {
+  font-family: 'DM Serif Display', serif; font-size: 30px;
+  color: rgba(255,255,255,.08); line-height: 1;
+  width: 36px; flex-shrink: 0; margin-top: -2px;
+}
+.hp-title { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 5px; }
+.hp-desc  { font-size: 13px; line-height: 1.7; color: var(--muted); }
+
+/* ── CTA ── */
+.cta-strip {
+  background: var(--ink2); border-top: 1px solid var(--rule);
+  padding: 72px 60px; text-align: center;
+}
+.cta-strip h2 { font-size: clamp(32px, 4vw, 52px); color: var(--white); margin-bottom: 12px; }
+.cta-strip p  { font-size: 16px; color: var(--muted); margin-bottom: 32px; font-weight: 300; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .page-hero { padding: 100px 24px 56px; }
+  .paths-grid { grid-template-columns: 1fr; }
+  .vert-intro { grid-template-columns: 1fr; gap: 40px; }
+  .vert-grid { grid-template-columns: 1fr 1fr; }
+  .how-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cta-strip { padding: 56px 24px; }
+}
+@media (max-width: 600px) {
+  .page-hero { padding: 88px 18px 48px; }
+  .vert-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-i">
+    <a href="index.html" class="nav-logo">Big<span>Topa</span></a>
+    <div class="nav-links">
+      <a href="platform.html" class="nav-link">Platform</a>
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="solutions.html" class="nav-link active">Solutions</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+    </div>
+    <div class="nav-r">
+      <a href="#" class="nav-ghost">Sign in</a>
+      <a href="index.html#cta" class="nav-btn">Request Access</a>
+      <button class="mob-toggle" id="mob-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mob-drawer">
+  <a href="platform.html" class="mob-nav-link">Platform</a>
+  <a href="how-it-works.html" class="mob-nav-link">How It Works</a>
+  <a href="solutions.html" class="mob-nav-link">Solutions</a>
+  <a href="pricing.html" class="mob-nav-link">Pricing</a>
+  <a href="index.html#cta" class="mob-nav-cta">Request Access</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Find your plan</div>
+    <h1>Three ways to find your <em>perfect fit.</em></h1>
+    <p class="sec-lead">Whether you want a guided AI conversation, hands-on configuration, or a plan pre-built for your domain — every path leads to a pricing page that fits your organization.</p>
+  </div>
+</div>
+
+<!-- THREE PATHS -->
+<div class="section sr">
+  <div class="sec-tag"><div class="sec-rule"></div>Configure your plan</div>
+  <h2>Choose your path.</h2>
+  <p class="sec-p">All three paths end at the same place — a custom pricing page built for your organization. Pick the approach that fits how you think.</p>
+
+  <div class="paths-grid">
+
+    <!-- AI Configurator -->
+    <a href="how-it-works.html" class="path-card path-ai reveal">
+      <div class="path-body">
+        <div class="path-icon-row">
+          <div class="path-icon"><i class="ph ph-sparkle"></i></div>
+          <span class="path-badge">AI guided</span>
+        </div>
+        <div class="path-name">AI Configurator</div>
+        <p class="path-desc">Tell Fitz about your organization. He'll ask the right questions and recommend three tailored plan options — with the right spaces, modules, and features already configured. No decisions required upfront.</p>
+        <div class="path-checks">
+          <div class="path-check"><i class="ph ph-check"></i>Conversational plan discovery</div>
+          <div class="path-check"><i class="ph ph-check"></i>Three recommended configurations</div>
+          <div class="path-check"><i class="ph ph-check"></i>Outputs directly to your pricing page</div>
+          <div class="path-check"><i class="ph ph-check"></i>Best if you're not sure where to start</div>
+        </div>
+      </div>
+      <div class="path-footer">
+        <span class="path-footer-label">Powered by Fitz</span>
+        <span class="path-footer-link" style="color:var(--violet)">Start interview <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
+      </div>
+    </a>
+
+    <!-- Plan Builder -->
+    <a href="pricing.html?view=custom" class="path-card path-build reveal">
+      <div class="path-body">
+        <div class="path-icon-row">
+          <div class="path-icon"><i class="ph ph-sliders"></i></div>
+          <span class="path-badge">Full control</span>
+        </div>
+        <div class="path-name">Plan Builder</div>
+        <p class="path-desc">The à la carte configurator. Select your space types, toggle core modules, enable the extensions you need. A live preview updates your composition as you build — then see your pricing page.</p>
+        <div class="path-checks">
+          <div class="path-check"><i class="ph ph-check"></i>Select spaces, modules, extensions</div>
+          <div class="path-check"><i class="ph ph-check"></i>Live composition preview</div>
+          <div class="path-check"><i class="ph ph-check"></i>Outputs directly to your pricing page</div>
+          <div class="path-check"><i class="ph ph-check"></i>Best if you know what you need</div>
+        </div>
+      </div>
+      <div class="path-footer">
+        <span class="path-footer-label">Interactive — try it now</span>
+        <span class="path-footer-link" style="color:var(--teal)">Open builder <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
+      </div>
+    </a>
+
+    <!-- Standard Plans -->
+    <a href="pricing.html" class="path-card path-std reveal">
+      <div class="path-body">
+        <div class="path-icon-row">
+          <div class="path-icon"><i class="ph ph-list-checks"></i></div>
+          <span class="path-badge">Simple tiers</span>
+        </div>
+        <div class="path-name">Standard Plans</div>
+        <p class="path-desc">Clear tiers for organizations that know what they need. Starter, Standard, and Pro — each with a defined set of spaces, modules, and participant limits. No configuration required.</p>
+        <div class="path-checks">
+          <div class="path-check"><i class="ph ph-check"></i>Three clear tiers</div>
+          <div class="path-check"><i class="ph ph-check"></i>Transparent monthly pricing</div>
+          <div class="path-check"><i class="ph ph-check"></i>Upgrade or customize anytime</div>
+          <div class="path-check"><i class="ph ph-check"></i>Best if you want the simplest option</div>
+        </div>
+      </div>
+      <div class="path-footer">
+        <div style="display:flex;gap:5px">
+          <span style="font-size:10px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Starter</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Standard</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--hint);border:1px solid var(--edge)">Pro</span>
+        </div>
+        <span class="path-footer-link" style="color:#6A9A20">See pricing <i class="ph ph-arrow-right" style="font-size:11px"></i></span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DOMAIN VERTICALS -->
+<div class="verticals-section">
+<div class="section sr sr-d1">
+
+  <div class="vert-intro">
+    <div>
+      <div class="sec-tag"><div class="sec-rule"></div>Domain plans</div>
+      <h2>Pre-configured for<br>your <em>specific world.</em></h2>
+      <p class="sec-lead" style="margin-top:8px">Some organizations don't need to configure from scratch. Domain plans are purpose-built for specific niches — all the right features, terminology, and defaults already set. Extend further in the Plan Builder, but never strip below the baseline.</p>
+    </div>
+    <div>
+      <div class="powered-badge" style="margin-bottom:20px">
+        <span class="pb-dot"></span>
+        <span>Powered by <span class="pb-strong">BigTopa</span></span>
+      </div>
+      <p style="font-size:13px;line-height:1.75;color:var(--muted);margin-bottom:20px">Every domain site carries a "Powered by BigTopa" badge. That badge links back here — so your members, attendees, and clients can discover the platform behind the experience.</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><i class="ph ph-check" style="color:#E8621A;font-size:13px"></i>Domain-exclusive features and terminology</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><i class="ph ph-check" style="color:#E8621A;font-size:13px"></i>Pre-configured spaces, modules, and defaults</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><i class="ph ph-check" style="color:#E8621A;font-size:13px"></i>Additive editing in Plan Builder — baseline protected</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><i class="ph ph-check" style="color:#E8621A;font-size:13px"></i>Separate branded domain (e.g. greekhouse.io)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vert-grid">
+
+    <!-- GreekHouse -->
+    <a href="https://greekhouse.io" target="_blank" class="vert-card live reveal">
+      <div class="vc-top">
+        <div class="vc-domain">Greek Life · Live</div>
+        <div class="vc-name">GreekHouse</div>
+        <p class="vc-desc">Complete chapter management for Greek organizations. Events, dues collection, brotherhood/sisterhood community, and rush coordination in one platform.</p>
+      </div>
+      <div class="vc-modules">
+        <span class="vc-mod on">Events</span>
+        <span class="vc-mod on">Dues & Finances</span>
+        <span class="vc-mod on">Community</span>
+        <span class="vc-mod on">Shop</span>
+        <span class="vc-mod off">Broadcast</span>
+      </div>
+      <div class="vc-footer">
+        <div class="vc-status">
+          <span class="vc-status-dot" style="background:#5A8A10"></span>
+          <span style="font-size:11px;color:#5A8A10">Live at greekhouse.io</span>
+        </div>
+        <span class="vc-link" style="color:#E8621A">Visit <i class="ph ph-arrow-up-right" style="font-size:11px"></i></span>
+      </div>
+    </a>
+
+    <!-- GatherAgain -->
+    <a href="https://gatheragain.co" target="_blank" class="vert-card live reveal">
+      <div class="vc-top">
+        <div class="vc-domain">Reunions · Live</div>
+        <div class="vc-name">GatherAgain</div>
+        <p class="vc-desc">The reunion platform. Family, class, and military reunions — ticketing, budget tracking, swag shop, scholarship funds, and a memory vault between events.</p>
+      </div>
+      <div class="vc-modules">
+        <span class="vc-mod on">Events</span>
+        <span class="vc-mod on">Finances</span>
+        <span class="vc-mod on">Shop</span>
+        <span class="vc-mod on">Donations</span>
+        <span class="vc-mod off">Community</span>
+      </div>
+      <div class="vc-footer">
+        <div class="vc-status">
+          <span class="vc-status-dot" style="background:#5A8A10"></span>
+          <span style="font-size:11px;color:#5A8A10">Live at gatheragain.co</span>
+        </div>
+        <span class="vc-link" style="color:#E8621A">Visit <i class="ph ph-arrow-up-right" style="font-size:11px"></i></span>
+      </div>
+    </a>
+
+    <!-- Faith Communities — Coming Soon -->
+    <div class="vert-card coming">
+      <div class="vc-top">
+        <div class="vc-domain">Faith Communities · Coming Soon</div>
+        <div class="vc-name">FaithGather</div>
+        <p class="vc-desc">Ministry management, congregation engagement, event coordination, and giving — purpose-built for faith organizations of any size.</p>
+      </div>
+      <div class="vc-modules">
+        <span class="vc-mod on">Community</span>
+        <span class="vc-mod on">Events</span>
+        <span class="vc-mod on">Giving</span>
+        <span class="vc-mod off">Broadcast</span>
+        <span class="vc-mod off">Shop</span>
+      </div>
+      <div class="vc-footer">
+        <div class="vc-status">
+          <span class="vc-status-dot" style="background:var(--hint)"></span>
+          <span style="font-size:11px;color:var(--hint)">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Associations — Coming Soon -->
+    <div class="vert-card coming">
+      <div class="vc-top">
+        <div class="vc-domain">Associations · Coming Soon</div>
+        <div class="vc-name">AssocHub</div>
+        <p class="vc-desc">Membership management, professional development events, publications, and advocacy coordination for professional associations and trade groups.</p>
+      </div>
+      <div class="vc-modules">
+        <span class="vc-mod on">Community</span>
+        <span class="vc-mod on">Events</span>
+        <span class="vc-mod on">Marketing</span>
+        <span class="vc-mod on">Dues</span>
+        <span class="vc-mod off">Broadcast</span>
+      </div>
+      <div class="vc-footer">
+        <div class="vc-status">
+          <span class="vc-status-dot" style="background:var(--hint)"></span>
+          <span style="font-size:11px;color:var(--hint)">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creators — Coming Soon -->
+    <div class="vert-card coming">
+      <div class="vc-top">
+        <div class="vc-domain">Creators · Coming Soon</div>
+        <div class="vc-name">CreatorSpace</div>
+        <p class="vc-desc">Audience monetization, live streams, courses, merch shop, and community management for creators, coaches, and independent educators.</p>
+      </div>
+      <div class="vc-modules">
+        <span class="vc-mod on">Broadcast</span>
+        <span class="vc-mod on">Monetization</span>
+        <span class="vc-mod on">Community</span>
+        <span class="vc-mod on">Shop</span>
+        <span class="vc-mod on">Courses</span>
+      </div>
+      <div class="vc-footer">
+        <div class="vc-status">
+          <span class="vc-status-dot" style="background:var(--hint)"></span>
+          <span style="font-size:11px;color:var(--hint)">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- More coming -->
+    <div class="vert-more">
+      <div class="vert-more-icon"><i class="ph ph-plus"></i></div>
+      <div style="font-size:15px;font-weight:500;color:var(--muted)">More verticals coming</div>
+      <div style="font-size:13px;color:var(--hint);line-height:1.6">Sports leagues, alumni associations, nonprofit chapters, co-working communities, and more. Each one a distinct product, all on the same platform.</div>
+      <a href="index.html#cta" class="btn-outline" style="margin-top:4px">Request your vertical</a>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW COMPOSITION WORKS -->
+<div class="section sr sr-d2">
+  <div class="sec-tag"><div class="sec-rule"></div>How it works</div>
+  <h2>Every plan is assembled<br>from the same <em>building blocks.</em></h2>
+  <p class="sec-p">Domain plans and custom configurations are just different arrangements of the same core infrastructure. The code is identical — what changes is what gets unlocked.</p>
+
+  <div class="how-grid" style="margin-top:48px">
+
+    <!-- Left: Composition diagram -->
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--hint);margin-bottom:14px">Platform layers — always composed in this order</div>
+      <div class="comp-stack">
+
+        <div class="comp-layer cl-always">
+          <div class="cl-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-squares-four" style="color:var(--teal)"></i></div>
+          <div><div class="cl-name">Spaces + Streams</div><div class="cl-desc">The foundation — every plan includes this</div></div>
+          <span class="cl-badge cl-badge-always">Always on</span>
+        </div>
+        <div class="cl-arrow">↓</div>
+
+        <div class="comp-layer cl-always">
+          <div class="cl-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-users" style="color:var(--teal)"></i></div>
+          <div><div class="cl-name">Participants &amp; Access</div><div class="cl-desc">Roles, permissions, and member management</div></div>
+          <span class="cl-badge cl-badge-always">Always on</span>
+        </div>
+        <div class="cl-arrow">↓</div>
+
+        <div class="comp-layer cl-core">
+          <div class="cl-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-video-camera" style="color:#E8621A"></i></div>
+          <div><div class="cl-name">Meetups (composable depth)</div><div class="cl-desc">Meet Now → Meet → Meetings → Webinars → Broadcast</div></div>
+          <span class="cl-badge cl-badge-core">Composable</span>
+        </div>
+        <div class="cl-arrow">↓</div>
+
+        <div class="comp-layer cl-core">
+          <div class="cl-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-currency-dollar" style="color:#E8621A"></i></div>
+          <div><div class="cl-name">Monetization Core</div><div class="cl-desc">Tickets, dues, donations, shop, print-on-demand</div></div>
+          <span class="cl-badge cl-badge-core">Optional</span>
+        </div>
+        <div class="cl-arrow">↓</div>
+
+        <div class="comp-layer cl-market">
+          <div class="cl-icon" style="background:rgba(168,200,64,.1)"><i class="ph ph-megaphone" style="color:#6A9A20"></i></div>
+          <div><div class="cl-name">Marketing Core</div><div class="cl-desc">Email, landing pages, forms, social, affiliates</div></div>
+          <span class="cl-badge cl-badge-market">Optional</span>
+        </div>
+        <div class="cl-arrow">↓</div>
+
+        <div class="comp-layer cl-ext">
+          <div class="cl-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-puzzle-piece" style="color:var(--violet)"></i></div>
+          <div><div class="cl-name">Extensions &amp; Add-ons</div><div class="cl-desc">RSVP, voting, courses, matching, booking, and more</div></div>
+          <span class="cl-badge cl-badge-ext">Add-ons</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: Three principles -->
+    <div class="how-points">
+      <h3 style="color:var(--white);margin-bottom:8px">The Fit principle in action.</h3>
+      <p style="font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:36px">BigTopa's entitlement system doesn't change the code — it changes what each organization gets access to. That's why a Greek chapter and a creator can share the same infrastructure without sharing any of the same experience.</p>
+
+      <div class="how-point reveal">
+        <div class="hp-num">01</div>
+        <div>
+          <div class="hp-title">Same code, different experience</div>
+          <p class="hp-desc">Every organization runs on the same application. Entitlements determine which features are visible, which terminology is used, and which workflows are unlocked — without any code changes.</p>
+        </div>
+      </div>
+
+      <div class="how-point reveal">
+        <div class="hp-num">02</div>
+        <div>
+          <div class="hp-title">Domain plans are additive baselines</div>
+          <p class="hp-desc">A domain plan sets a minimum floor — the features your niche needs, pre-configured. The Plan Builder lets you add above that floor. You can never remove what the domain requires.</p>
+        </div>
+      </div>
+
+      <div class="how-point reveal">
+        <div class="hp-num">03</div>
+        <div>
+          <div class="hp-title">Nomenclature is part of Fit</div>
+          <p class="hp-desc">Greek chapters call events "Chapter Events." Reunion organizers call them "Gatherings." The underlying feature is identical — only the label changes. This is configured at the plan level, not the code level.</p>
+        </div>
+      </div>
+
+      <div class="how-point reveal">
+        <div class="hp-num">04</div>
+        <div>
+          <div class="hp-title">Revenue always flows to the hub</div>
+          <p class="hp-desc">Regardless of how a plan is composed, all financial activity from rooms and spaces aggregates to the Tenant Admin Hub — a single financial summary across every space your organization runs.</p>
+        </div>
+      </div>
+
+      <a href="how-it-works.html" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#E8621A;margin-top:8px;transition:gap .2s" onmouseenter="this.style.gap='11px'" onmouseleave="this.style.gap='7px'">
+        Deep dive into Core, Fit &amp; Flow <i class="ph ph-arrow-right" style="font-size:12px"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Not sure which path is right?</h2>
+  <p>Ask Fitz. He'll figure it out in two minutes.</p>
+  <div class="cta-row" style="justify-content:center">
+    <button onclick="openFitz()" class="btn-primary">
+      <i class="ph ph-sparkle"></i> Ask Fitz to configure my plan
+    </button>
+    <a href="pricing.html" class="btn-outline">See standard pricing</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-i">
+    <div class="footer-logo">Big<span>Topa</span></div>
+    <div class="footer-links">
+      <a href="platform.html">Platform</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <div class="footer-copy">© 2026 BigTopa</div>
+  </div>
+</footer>
+
+<button class="fitz-trigger" id="fitz-trigger" onclick="openFitz()">
+  <i class="ph ph-sparkle"></i> Ask Fitz
+</button>
+
+<div class="fitz-panel" id="fitz-panel">
+  <div class="fitz-header">
+    <div class="fitz-avatar"><i class="ph ph-sparkle" style="color:white;font-size:16px"></i></div>
+    <div class="fitz-header-text"><div class="fitz-name">Fitz</div><div class="fitz-status">BigTopa Plan Assistant</div></div>
+    <button class="fitz-close" onclick="closeFitz()"><i class="ph ph-x" style="font-size:16px"></i></button>
+  </div>
+  <div class="fitz-body" id="fitz-body">
+    <div class="fm fitz">Hi, I'm <strong>Fitz</strong> — BigTopa's plan assistant. I can help you figure out which path is right for your organization.</div>
+    <div class="fm fitz">Tell me a bit about what you're building and I'll recommend the right starting point — or configure a full plan for you.</div>
+    <div class="fs-sugs">
+      <button class="fs-sug" onclick="fitzAsk('We run a Greek chapter')">We run a Greek chapter</button>
+      <button class="fs-sug" onclick="fitzAsk('We organize family reunions')">We organize family reunions</button>
+      <button class="fs-sug" onclick="fitzAsk('Configure my plan')">Just configure my plan →</button>
+    </div>
+  </div>
+  <div class="fitz-footer">
+    <div class="fs-inp-row">
+      <input class="fs-inp" id="fitz-input" placeholder="Describe your organization..." onkeydown="if(event.key==='Enter')fitzSend()">
+      <button class="fitz-send" onclick="fitzSend()"><i class="ph ph-paper-plane-tilt"></i></button>
+    </div>
+    <div class="fitz-powered">Powered by BigTopa · <a href="pricing.html" style="color:#E8621A">See pricing →</a></div>
+  </div>
+</div>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); });
+}, { threshold: .08 });
+document.querySelectorAll('.sr, .reveal').forEach(el => io.observe(el));
+
+// Mobile nav
+const toggle = document.getElementById('mob-toggle');
+const drawer = document.getElementById('mob-drawer');
+toggle.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  toggle.classList.toggle('open', open);
+  document.body.classList.toggle('nav-open', open);
+});
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    drawer.classList.remove('open');
+    toggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+  });
+});
+
+// Fitz
+function openFitz()  { document.getElementById('fitz-panel').classList.add('open');    document.getElementById('fitz-trigger').style.display = 'none'; }
+function closeFitz() { document.getElementById('fitz-panel').classList.remove('open'); document.getElementById('fitz-trigger').style.display = 'flex'; }
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeFitz(); });
+document.addEventListener('click', e => {
+  const panel = document.getElementById('fitz-panel');
+  const trigger = document.getElementById('fitz-trigger');
+  if(panel.classList.contains('open') && !panel.contains(e.target) && !trigger.contains(e.target)) closeFitz();
+});
+
+const RESPONSES = {
+  'greek chapter': 'GreekHouse is your starting point — it\'s our domain plan purpose-built for Greek organizations. Events, dues, brotherhood community, rush coordination. Live at greekhouse.io. Want me to take you there?',
+  'family reunion': 'GatherAgain is built exactly for that — ticketing, budget tracking, swag shop, scholarship funds, and reunion memories. Live at gatheragain.co. Want me to show you?',
+  'organize family reunions': 'GatherAgain is built exactly for that — ticketing, budget tracking, swag shop, scholarship funds, and reunion memories. Live at gatheragain.co. Want me to show you?',
+  'we run a greek chapter': 'GreekHouse is your starting point — it\'s our domain plan purpose-built for Greek organizations. Events, dues, brotherhood community, rush coordination. Live at greekhouse.io. Want me to take you there?',
+  'configure my plan': null,
+};
+
+function fitzAddMsg(text, role) {
+  const body = document.getElementById('fitz-body');
+  const msg = document.createElement('div');
+  msg.className = 'fm ' + role;
+  msg.innerHTML = text;
+  body.appendChild(msg);
+  body.scrollTop = body.scrollHeight;
+}
+
+function fitzAsk(q) {
+  if(q === 'Configure my plan') {
+    fitzAddMsg('Configure my plan', 'user');
+    setTimeout(() => {
+      fitzAddMsg('Taking you to the Plan Builder now.', 'fitz');
+      setTimeout(() => { window.location.href = 'pricing.html?view=custom'; }, 1500);
+    }, 400);
+    return;
+  }
+  fitzAddMsg(q, 'user');
+  const key = q.toLowerCase();
+  const match = Object.entries(RESPONSES).find(([k]) => key.includes(k));
+  setTimeout(() => {
+    fitzAddMsg(match ? match[1] : 'Tell me more about your organization — what type of community or group is it, and what does engagement look like for you?', 'fitz');
+  }, 500);
+}
+
+function fitzSend() {
+  const input = document.getElementById('fitz-input');
+  const q = input.value.trim();
+  if(!q) return;
+  input.value = '';
+  fitzAsk(q);
+}
+</script>
+</body>
+</html>
