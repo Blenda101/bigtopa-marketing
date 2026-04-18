@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
 import { X, Upload } from 'lucide-react';
-import { App, AppCategory } from '../../types';
+import { App, AppCategory, KNOWN_SITES } from '../../types';
 import { APP_CATEGORIES, getCategoryDescription } from '../../data/categories';
 import { useDropzone } from 'react-dropzone';
 
@@ -17,6 +17,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
     logo: '',
     costPerUser: 0,
     category: 'Other',
+    sites: [],
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -27,6 +28,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
         logo: editApp.logo,
         costPerUser: editApp.costPerUser,
         category: editApp.category,
+        sites: editApp.sites || [],
       });
     }
   }, [editApp]);
@@ -230,6 +232,47 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
           </div>
         </div>
         
+        {/* Site visibility */}
+        <div className="mt-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Show on sites
+          </label>
+          <p className="text-xs text-gray-500 mb-2">
+            Leave all unchecked to show on every site.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {KNOWN_SITES.map(site => {
+              const checked = (formData.sites || []).includes(site.id)
+              return (
+                <label
+                  key={site.id}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md border cursor-pointer transition-colors select-none ${
+                    checked
+                      ? 'border-[#FD5108] bg-orange-50 text-[#FD5108]'
+                      : 'border-gray-300 text-gray-600 hover:border-gray-400'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    className="accent-[#FD5108]"
+                    checked={checked}
+                    onChange={() => {
+                      const current = formData.sites || []
+                      setFormData(prev => ({
+                        ...prev,
+                        sites: checked
+                          ? current.filter(s => s !== site.id)
+                          : [...current, site.id]
+                      }))
+                    }}
+                  />
+                  <span className="text-sm font-medium">{site.label}</span>
+                </label>
+              )
+            })}
+          </div>
+        </div>
+
         <div className="mt-8 flex justify-end gap-3">
           <button
             type="button"

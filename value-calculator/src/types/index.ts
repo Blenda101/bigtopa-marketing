@@ -4,8 +4,15 @@ export interface App {
   logo: string;
   costPerUser: number;
   category: AppCategory;
+  sites?: string[];
   created_at?: string;
 }
+
+export const KNOWN_SITES = [
+  { id: 'bigtopa',    label: 'BigTopa' },
+  { id: 'greekhouse', label: 'GreekHouse' },
+  { id: 'gatheragain', label: 'GatherAgain' },
+] as const;
 
 export type AppCategory = 
   | 'Communication'

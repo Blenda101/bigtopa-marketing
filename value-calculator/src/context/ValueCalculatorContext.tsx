@@ -203,6 +203,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
           logo: app.logo,
           costPerUser: parseFloat(app.cost_per_user),
           category: app.category,
+          sites: app.sites || [],
           created_at: app.created_at
         }));
         console.log('Apps loaded successfully:', formattedApps);
@@ -285,7 +286,8 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         name: appData.name,
         logo: appData.logo,
         cost_per_user: parseFloat(appData.costPerUser.toString()),
-        category: appData.category
+        category: appData.category,
+        sites: appData.sites || []
       };
 
       const { data, error } = await supabase
@@ -340,7 +342,8 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         name: updatedApp.name,
         logo: updatedApp.logo,
         cost_per_user: parseFloat(updatedApp.costPerUser.toString()),
-        category: updatedApp.category
+        category: updatedApp.category,
+        sites: updatedApp.sites || []
       };
 
       console.log('Sending update to database:', {
@@ -372,6 +375,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         logo: updatedData.logo,
         costPerUser: parseFloat(updatedData.cost_per_user),
         category: updatedData.category,
+        sites: updatedData.sites || [],
         created_at: updatedData.created_at
       };
 
