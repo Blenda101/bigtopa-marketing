@@ -311,6 +311,15 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   </div>
 </section>
 
+<section class="section" id="savings" style="background:var(--ink2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="section-inner" style="display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div class="sec-tag"><div class="sec-rule"></div>The cost</div>
+    <h2 style="max-width:560px">See what your<br>current stack <em>costs you.</em></h2>
+    <p class="sec-lead" style="max-width:520px;margin-bottom:48px">Select the tools your organization currently uses and find out exactly how much you're spending — and what you'd save by consolidating on BigTopa.</p>
+    <div data-bt-calculator data-site="bigtopa" data-theme="dark" data-accent="#E8621A" style="width:100%;max-width:640px"></div>
+  </div>
+</section>
+
 <section class="section spaces" id="spaces">
   <div class="section-inner">
     <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>The platform</div>
@@ -560,5 +569,6 @@ function fitzAddMsg(text,role){const body=document.getElementById('fitz-body');c
 function fitzAsk(q){if(q==='Configure my plan'){fitzAddMsg('Configure my plan','user');setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);return;}fitzAddMsg(q,'user');const key=q.toLowerCase().replace(/[^a-z ]/g,'');const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);}
 function fitzSend(){const input=document.getElementById('fitz-input');const q=input.value.trim();if(!q)return;input.value='';fitzAsk(q);}
 </script>
+<script src="https://bt-value-calculator.netlify.app/embed.js"></script>
 </body>
 </html>
