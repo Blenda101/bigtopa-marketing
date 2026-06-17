@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing — Reach every cohort | AlumniHub</title>
+<meta name="description" content="Turn attention into participation. Email, SMS, landing pages, forms, social, and peer-to-peer fundraising — the outreach that drives alumni giving.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.sec{padding:84px 60px}
+.sec.alt{background:var(--cream2);border-top:1px solid var(--cream3);border-bottom:1px solid var(--cream3)}
+.sec.dark{background:var(--navy);color:#fff}
+.sec.dark .sec-title{color:#fff}.sec.dark .sec-title em{color:var(--gold-light)}
+.sec.dark .sec-lead{color:rgba(246,234,208,.62)}
+
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.tcd{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:16px;padding:26px;transition:border-color .25s,transform .25s}
+.tcd:hover{border-color:rgba(201,154,46,.4);transform:translateY(-3px)}
+.tcd.lead{grid-column:span 3;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:linear-gradient(120deg,#fff,rgba(246,234,208,.55));border-color:rgba(201,154,46,.5)}
+.tcd-ic{width:48px;height:48px;border-radius:11px;background:rgba(201,154,46,.12);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.tcd.lead .tcd-ic{width:64px;height:64px;font-size:30px;margin-bottom:0}
+.tcd-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:3px 11px;border-radius:100px;margin-bottom:10px}
+.tcd-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.tcd.lead .tcd-name{font-size:27px}
+.tcd-desc{font-size:13.5px;line-height:1.7;color:rgba(30,42,64,.64)}
+
+.flow2{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:50px;border:1px solid rgba(26,43,76,.1);border-radius:16px;overflow:hidden}
+.fst{background:var(--white);padding:30px 26px;border-right:1px solid rgba(26,43,76,.08)}
+.fst:last-child{border-right:none}
+.fst-n{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:rgba(26,43,76,.1);line-height:1;margin-bottom:12px}
+.fst-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.fst-desc{font-size:13.5px;line-height:1.7;color:rgba(30,42,64,.62)}
+
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.fitbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px}
+.fitbox h4{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px}
+.fit-row{display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.fit-row:last-child{border-bottom:none}
+.fit-row .on{color:var(--gold-light);font-weight:600;font-size:12px}
+.fit-row .off{color:rgba(246,234,208,.35);font-size:12px}
+.fit-row .nm{color:rgba(246,234,208,.85)}
+
+.p3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.p3c{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px}
+.p3c-ic{font-size:24px;margin-bottom:10px}
+.p3c-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.p3c-desc{font-size:13px;line-height:1.6;color:rgba(246,234,208,.6);margin-bottom:10px}
+.p3c .more{color:var(--gold-light)}
+
+.cta{padding:92px 60px;text-align:center;background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 40%,rgba(201,154,46,.12) 0%,transparent 64%)}
+.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.6vw,56px);font-weight:700;line-height:1.08;margin-bottom:16px}
+.cta h2 em{font-style:italic;color:var(--gold-light)}
+.cta-sub{font-size:17px;color:rgba(246,234,208,.66);margin-bottom:30px;font-weight:300}
+.cta .btnp{background:var(--gold);color:var(--ink)}.cta .btnp:hover{background:var(--gold-light)}
+
+@media(max-width:900px){
+  .sec,.cta{padding-left:24px;padding-right:24px}
+  .tools{grid-template-columns:1fr}
+  .tcd.lead{grid-column:span 1;grid-template-columns:1fr}
+  .flow2{grid-template-columns:1fr}
+  .fst{border-right:none;border-bottom:1px solid rgba(26,43,76,.08)}
+  .fit{grid-template-columns:1fr;gap:36px}
+  .p3{grid-template-columns:1fr}
+}
+@media(max-width:600px){.sec,.cta{padding-top:60px;padding-bottom:60px;padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="ni">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1A2B4C"/><path d="M32 14 L52 24 L32 34 L12 24 Z" fill="#D4A535"/><path d="M20 30 v9 c0 4 5 7 12 7 s12-3 12-7 v-9 L32 36 Z" fill="#D4A535" opacity="0.62"/><rect x="50" y="24" width="2.4" height="12" rx="1.2" fill="#D4A535"/></svg>
+      Alumni<span>Hub</span>
+    </a>
+    <div class="nl">
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Platform</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="monetization.html"><b>Monetization</b><span>Donations, recurring giving, merch &amp; more</span></a>
+          <a class="ndd-item" href="engagement.html"><b>Engagement</b><span>Members, chapters, events &amp; reunions</span></a>
+          <a class="ndd-item" href="marketing.html"><b>Marketing</b><span>Campaigns, email, landing pages &amp; outreach</span></a>
+          <a class="ndd-item" href="chapter-hub-flow.html"><b>Chapter Hub Flow</b><span>Connect chapters — National · Regional · Local</span></a>
+        </div>
+      </div>
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Who it's for</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="university-alumni-associations.html"><b>University Alumni Associations</b><span>Regional chapters, conferences &amp; giving</span></a>
+          <a class="ndd-item" href="alumni-class-networks.html"><b>Alumni Class Networks</b><span>Independent class hubs &amp; reunions</span></a>
+          <a class="ndd-item" href="high-school-alumni.html"><b>High School Alumni</b><span>Associations &amp; class networks alike</span></a>
+          <a class="ndd-item" href="booster-clubs.html"><b>Booster Clubs</b><span>Athletics, arts &amp; band fundraising</span></a>
+        </div>
+      </div>
+      <a href="index.html#tiers" class="nlink">Pricing</a>
+    </div>
+    <div class="nr">
+      <a href="#" class="nghost">Sign in</a>
+      <a href="index.html#access" class="nbtn">Request Early Access</a>
+      <button class="mob-toggle" id="mob-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mob-drawer">
+  <div class="mob-group">Platform</div>
+  <a href="monetization.html" class="mob-nav-link">Monetization</a>
+  <a href="engagement.html" class="mob-nav-link">Engagement</a>
+  <a href="marketing.html" class="mob-nav-link">Marketing</a>
+  <a href="chapter-hub-flow.html" class="mob-nav-link">Chapter Hub Flow</a>
+  <div class="mob-group">Who it's for</div>
+  <a href="university-alumni-associations.html" class="mob-nav-link">University Alumni Associations</a>
+  <a href="alumni-class-networks.html" class="mob-nav-link">Alumni Class Networks</a>
+  <a href="high-school-alumni.html" class="mob-nav-link">High School Alumni</a>
+  <a href="booster-clubs.html" class="mob-nav-link">Booster Clubs</a>
+  <div class="mob-group">More</div>
+  <a href="index.html#tiers" class="mob-nav-link">Pricing</a>
+  <a href="index.html#access" class="mob-nav-cta">Request Early Access</a>
+</div>
+
+<!-- HERO -->
+<section class="phero">
+  <div class="phero-bg"></div>
+  <div class="phero-inner">
+    <div class="crumb"><a href="index.html">Home</a> › Platform › Marketing</div>
+    <h1>Reach every<br><em>cohort.</em></h1>
+    <p class="lead">A gift starts with an ask that lands. Marketing is the outreach engine — email, landing pages, and peer-to-peer campaigns that turn alumni attention into participation, and participation into giving.</p>
+    <a href="index.html#access" class="btnp">Request Early Access</a>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">The outreach toolkit</span></div>
+    <h2 class="sec-title">Every channel your<br>appeal <em>needs.</em></h2>
+    <p class="sec-lead">Reach alumni where they are — and let alumni reach each other. Peer-to-peer turns your most engaged grads into your best fundraisers.</p>
+    <div class="tools">
+      <div class="tcd lead">
+        <div class="tcd-ic">🤝</div>
+        <div>
+          <span class="tcd-badge">Strongest for alumni</span>
+          <div class="tcd-name">Peer-to-peer fundraising</div>
+          <p class="tcd-desc">Turn class agents and ambassadors into fundraisers. Each volunteer gets their own page and link, rallies their network, and the gifts roll up to the campaign — the affiliate model, built for giving.</p>
+        </div>
+      </div>
+      <div class="tcd"><div class="tcd-ic">✉️</div><div class="tcd-name">Email</div><p class="tcd-desc">Appeals, newsletters, and year-end campaigns — segmented by class, region, or giving history.</p></div>
+      <div class="tcd"><div class="tcd-ic">💬</div><div class="tcd-name">SMS</div><p class="tcd-desc">Time-sensitive nudges for giving days and deadlines, where they actually get seen.</p></div>
+      <div class="tcd"><div class="tcd-ic">🖥️</div><div class="tcd-name">Landing pages</div><p class="tcd-desc">Branded campaign pages for each class gift, fund, or appeal — no developer required.</p></div>
+      <div class="tcd"><div class="tcd-ic">📝</div><div class="tcd-name">Form builder</div><p class="tcd-desc">Pledge forms, surveys, RSVPs, and volunteer sign-ups, wired straight into your data.</p></div>
+      <div class="tcd"><div class="tcd-ic">📱</div><div class="tcd-name">Social media</div><p class="tcd-desc">Publish and schedule across channels to keep campaigns visible to every cohort.</p></div>
+      <div class="tcd"><div class="tcd-ic">🪧</div><div class="tcd-name">Banners</div><p class="tcd-desc">On-site promos that surface the active campaign across your chapter hubs.</p></div>
+      <div class="tcd"><div class="tcd-ic">🏷️</div><div class="tcd-name">Coupons</div><p class="tcd-desc">Promo codes for merch and event tickets — perfect for member perks and early-bird drives.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW: ATTENTION -> GIVING -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">From attention to giving</span></div>
+    <h2 class="sec-title">Marketing that ends<br>in a <em>gift.</em></h2>
+    <div class="flow2">
+      <div class="fst"><div class="fst-n">01</div><div class="fst-name">Reach</div><p class="fst-desc">Segment by class, region, or lapsed status, then reach each group by email, SMS, and social — with peer-to-peer amplifying through your ambassadors.</p></div>
+      <div class="fst"><div class="fst-n">02</div><div class="fst-name">Convert</div><p class="fst-desc">Send them to a branded landing page or form built for the appeal — every path leading to a clear, simple ask.</p></div>
+      <div class="fst"><div class="fst-n">03</div><div class="fst-name">Give</div><p class="fst-desc">The ask hands off to Monetization — donation captured, receipt sent, gift tracked against the campaign goal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="fit">
+      <div>
+        <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Powered by Fit</span></div>
+        <h2 class="sec-title">The channels alumni<br>teams <em>reach for.</em></h2>
+        <p class="sec-lead">A complete marketing suite sits underneath. <b style="color:#fff;font-weight:600">Fit</b> turns on what alumni outreach needs — and keeps the rest out of the way.</p>
+      </div>
+      <div class="fitbox">
+        <h4>Marketing · alumni profile</h4>
+        <div class="fit-row"><span class="nm">Email</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">SMS</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Landing pages</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Form builder</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Social media</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Affiliate → peer-to-peer</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Banners &amp; coupons</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Chat bot</span><span class="off">○ Off for this market</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-PILLAR -->
+<section class="sec dark" style="border-top:1px solid rgba(255,255,255,.08)">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">One hub, three pillars</span></div>
+    <h2 class="sec-title">Outreach that drives<br>the <em>giving.</em></h2>
+    <div class="p3">
+      <div class="p3c"><div class="p3c-ic">🎁</div><div class="p3c-name">Monetization</div><p class="p3c-desc">Where the ask becomes a gift — donations at the center.</p><a href="monetization.html" class="more">Explore Monetization</a></div>
+      <div class="p3c"><div class="p3c-ic">🎓</div><div class="p3c-name">Engagement</div><p class="p3c-desc">The community and events your campaigns speak to.</p><a href="engagement.html" class="more">Explore Engagement</a></div>
+      <div class="p3c"><div class="p3c-ic">🔗</div><div class="p3c-name">Chapter Hub Flow</div><p class="p3c-desc">Cascade a national campaign down to every chapter.</p><a href="chapter-hub-flow.html" class="more">How it works</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <h2>Make every appeal<br><em>land.</em></h2>
+    <p class="cta-sub">Reach every cohort, rally your ambassadors, and turn attention into giving.</p>
+    <a href="index.html#access" class="btnp">Request Early Access</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="flogo">Alumni<span>Hub</span></div>
+      <p>The platform for organized alumni giving.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Platform</h4>
+      <a href="monetization.html">Monetization</a>
+      <a href="engagement.html">Engagement</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="chapter-hub-flow.html">Chapter Hub Flow</a>
+    </div>
+    <div class="foot-col">
+      <h4>Who it's for</h4>
+      <a href="university-alumni-associations.html">University Associations</a>
+      <a href="alumni-class-networks.html">Alumni Class Networks</a>
+      <a href="high-school-alumni.html">High School Alumni</a>
+      <a href="booster-clubs.html">Booster Clubs</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="index.html#tiers">Pricing</a>
+      <a href="index.html#access">Early access</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 AlumniHub. All rights reserved.</div>
+    <div class="pwrd">Powered by <a href="https://bigtopa.com" target="_blank" rel="noopener"><strong>BigTopa</strong></a></div>
+  </div>
+</footer>
+
+<script>
+const toggle=document.getElementById('mob-toggle'),drawer=document.getElementById('mob-drawer');
+toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);});
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
+</script>
+</body>
+</html>

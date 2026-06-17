@@ -1,0 +1,79 @@
+# AlumniHub.co — Decisions Made
+
+Living record of decisions taken while building the site, per the handoff rule to document anything not fully specified in `task1_create_alumnihub.md`. Updated after the discovery/discussion rounds with Gabriel (June 2026), which significantly reshaped the original brief.
+
+---
+
+## Site model (as refined in discussion)
+
+AlumniHub is a multi-page vertical. **Giving stays the headline** (per Gabriel), but a chapter does three things, and the platform is federated.
+
+**A chapter is a hub that unifies three pillars:** Engagement · Marketing · Monetization. For alumni, **Fit** turns on the subset that suits the market — with **Donations as the highlighted monetization method** — and leaves the rest (e.g. hourly billing, usage metering) off.
+
+**Engagement pillar scope (for the Stage-2 `engagement.html`):** four clusters —
+1. **Community & conversations** — Stream feed (announcements, posts, discussions, reactions). This *is* the "conversations and content" layer; it travels via Chapter Hub Flow's **Content** domain. Important nuance (Gabriel): **conversations *flow*** (they surface across connected chapters automatically) and are **not** "shared"; **content can flow *and* be deliberately *shared*** (brand kits, templates cascaded down). Copy must use "flow" for conversations, never "share."
+2. **Meetups (live)** — Fit subset for alumni is **Webinar, Broadcast, and Meeting only** (Meet, Meet Now, Go Live, Co-browsing **off**).
+3. **Events, conferences & reunions** — registration here; ticketing/sponsorship pulled from Monetization.
+4. **Members & chapters** — directory across classes/regions, profiles, roles, committee/working-group spaces.
+Plus three confirmed extras: **photo galleries/albums**, **document library / chapter archive**, and **notifications & digests** (weekly chapter digest, engagement-oriented).
+
+**Chapters federate via two named features:**
+- **Chapter Hub Flow** — movement of four domains (Financial · Content · Events · People); happens *within* a chapter always, and *between* chapters once connected.
+- **Chapter Hub Connect** — premium feature that links chapters into a family so flow can cross between them. Opt-in per domain, consented on both sides, connections known. Privacy/security standards stated.
+- Hierarchy: **National → Regional → Local**, max 3 levels. Platform-internal names are "Hub Flow / Hub Connect"; the vertical says "Chapter Hub Flow / Connect"; "tenant" stays internal.
+- **University relationship is a configurable edge:** dotted line (independent 501(c)(3) raising *for* the school) or solid line (integrated under Advancement).
+
+**Tier mapping for flow:**
+
+| Capability | Role / Level | Tier |
+|---|---|---|
+| Chapter Hub Flow — within a chapter | Any chapter | All tiers (incl. Annual) |
+| Chapter Hub Connect — link up to a parent | Child / Level 1 | Campaign + |
+| Chapter Hub Flow — be the parent hub | Parent / Level 2–3 (regional, national) | Endowment only |
+
+---
+
+## Page architecture (doerfy-style: teaser on home, deep page per topic — better SEO)
+
+Home teases each concept with a "Learn more →"; each key topic gets its own page with shared nav/footer + its own hero + CTA. Two nav axes:
+- **Platform ▾** → Monetization · Engagement · Marketing · Chapter Hub Flow
+- **Who it's for ▾** → University Alumni Associations · Alumni Class Networks · High School Alumni · Booster Clubs
+
+**Build is staged.** Stage 1 (this batch) locks the pattern with four pages:
+- `index.html` — restructured home (hero → 3-pillar hub → org types → Chapter Hub Flow/Connect teaser → transparency → payments → tiers → early access → CTA)
+- `chapter-hub-flow.html` — federation deep page (Flow vs Connect, family diagram, 4 opt-in domains, privacy/security, dotted/solid university line, tier table)
+- `monetization.html` — lead pillar; donations highlighted; Fit panel showing what's on/off for alumni
+- `university-alumni-associations.html` — richest org page; regional chapter directory (echoes the NHAA example), conferences/events, chapter family + Connect, independent-501(c)(3) framing
+
+**Stage 2 (built):** `engagement.html`, `marketing.html`, `alumni-class-networks.html`, `high-school-alumni.html`, `booster-clubs.html`. All nine pages now live; all internal links resolve; navy/gold only; BigTopa appears once per page (footer badge).
+
+**Marketing Fit subset (decided while building `marketing.html`):** On — Email, SMS, Landing Pages, Form Builder, Social Media, Affiliate→peer-to-peer, Banners, Coupons. Off — Chat Bot. Peer-to-peer is featured as the strongest alumni fit.
+
+---
+
+## Decided
+
+1. **Tier names** — Annual / Campaign / Endowment (Option B, per brief recommendation). Campaign is "Most popular."
+2. **Positioning** — giving-first retained (Gabriel's call), with Engagement (events/conferences/reunions) and Marketing as the two pillars that drive giving. Resolves the earlier events-vs-giving tension.
+3. **Org-type cards** — University Alumni Associations · Alumni Class Networks · High School Alumni · Booster Clubs. **HBCU card removed** — replaced by Alumni Class Networks (each class an independent hub; reunion planning a key focus); the structural point is universal, so no single market is singled out. **"High School Alumni Foundations" renamed to "High School Alumni"** (Gabriel) — "Foundation" presumed a specific legal entity, and the "small/volunteer-run" copy was an assumption; the card now spans both official associations with boards/501(c)(3) and individual class networks (reunion/giving). Generic "foundation" wording also cleared from the Endowment tier tagline and the early-access form.
+4. **Associations are independent organizations** — copy reflects separate 501(c)(3) reality; dotted/solid university line throughout.
+5. **Visual identity** — navy `#1A2B4C` + gold `#C99A2E`/`#D4A535` + cream; Cormorant Garamond (display) + Inter (body). Distinct from BigTopa orange, GatherAgain, GreekHouse. No `shared.css` dependency.
+6. **Naming locked** — Chapter Hub Flow / Chapter Hub Connect (Hub Flow / Hub Connect = platform-level).
+7. **Shared local stylesheet** — `assets/site.css` holds the vertical's design system (tokens, nav+dropdown, footer, helpers). Each page links it + a small page-specific `<style>` block — mirrors bigtopa-com's shared.css pattern, scoped to this vertical, with no bigtopa-com dependency. (Multi-page site made inlining everything 8× impractical.)
+8. **Fit demonstration** — Monetization page shows an explicit on/off panel (donations highlighted; hourly billing & usage metering off for this market).
+
+---
+
+## Done since Stage 2
+
+9. **Privacy & Terms** — `privacy.html` + `terms.html` built in the AlumniHub style and wired into every footer. **Template only** — both carry a visible "review with legal counsel" banner and `[bracketed]` placeholders (entity name, jurisdiction, contact, effective date, Stripe). Set `noindex`.
+10. **Clean URLs** — `netlify.toml` now 301s `/:page.html` → `/:page` (force). Internal links keep `.html` so local `file://` preview works; live site serves canonical clean URLs. **Verify on first deploy** (Netlify pretty-URL serving).
+11. **Marketing Fit subset** — locked: Email, SMS, Landing Pages, Form Builder, Social, Affiliate→peer-to-peer, Banners, Coupons on; Chat Bot off.
+
+## Still open (need human sign-off)
+
+1. **Pricing figures** — none shown anywhere. Need real price points before public launch.
+2. **Legal review** — privacy/terms templates must be reviewed by counsel and all `[brackets]` filled before launch.
+3. **Form backend** — early-access form is front-end only (confirmation state); needs wiring to a real endpoint.
+4. **Deploy verification** — confirm clean-URL redirect behaves on Netlify; link the site in Netlify (base dir `alumnihub-co`).
+5. **Git commit** — work is saved to the folder but not committed (sandbox can't write `.git`); commit/push from the host.

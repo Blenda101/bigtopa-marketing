@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engagement — Community, events &amp; conversations | AlumniHub</title>
+<meta name="description" content="The people and the moments. Members, chapters, conversations, events, conferences, and reunions — the community that alumni giving grows from.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.sec{padding:84px 60px}
+.sec.alt{background:var(--cream2);border-top:1px solid var(--cream3);border-bottom:1px solid var(--cream3)}
+.sec.dark{background:var(--navy);color:#fff}
+.sec.dark .sec-title{color:#fff}.sec.dark .sec-title em{color:var(--gold-light)}
+.sec.dark .sec-lead{color:rgba(246,234,208,.62)}
+.cluster{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:50px}
+.cl{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:16px;padding:30px;transition:border-color .25s,transform .25s}
+.cl:hover{border-color:rgba(201,154,46,.4);transform:translateY(-3px)}
+.cl-ic{width:50px;height:50px;border-radius:12px;background:rgba(201,154,46,.12);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.cl-name{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:9px}
+.cl-desc{font-size:14.5px;line-height:1.72;color:rgba(30,42,64,.64);margin-bottom:14px}
+.cl-list{display:flex;flex-wrap:wrap;gap:7px}
+.cl-list span{font-size:12px;color:rgba(30,42,64,.7);background:var(--cream2);border:1px solid rgba(26,43,76,.08);border-radius:100px;padding:4px 11px}
+.cl-note{font-size:12.5px;color:var(--muted);margin-top:12px}
+.cl-note a{color:var(--gold);font-weight:600;text-decoration:none}
+
+/* meetups fit */
+.mfit{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.fitbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px}
+.fitbox h4{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px}
+.fit-row{display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.fit-row:last-child{border-bottom:none}
+.fit-row .on{color:var(--gold-light);font-weight:600;font-size:12px}
+.fit-row .off{color:rgba(246,234,208,.35);font-size:12px}
+.fit-row .nm{color:rgba(246,234,208,.85)}
+
+/* extras */
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.ex{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:14px;padding:26px}
+.ex-ic{font-size:24px;margin-bottom:12px}
+.ex-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.ex-desc{font-size:13.5px;line-height:1.7;color:rgba(30,42,64,.62)}
+
+/* pillars cross-links */
+.p3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.p3c{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px}
+.p3c-ic{font-size:24px;margin-bottom:10px}
+.p3c-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.p3c-desc{font-size:13px;line-height:1.6;color:rgba(246,234,208,.6);margin-bottom:10px}
+.p3c .more{color:var(--gold-light)}
+
+.cta{padding:92px 60px;text-align:center;background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 40%,rgba(201,154,46,.12) 0%,transparent 64%)}
+.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.6vw,56px);font-weight:700;line-height:1.08;margin-bottom:16px}
+.cta h2 em{font-style:italic;color:var(--gold-light)}
+.cta-sub{font-size:17px;color:rgba(246,234,208,.66);margin-bottom:30px;font-weight:300}
+.cta .btnp{background:var(--gold);color:var(--ink)}.cta .btnp:hover{background:var(--gold-light)}
+
+@media(max-width:900px){
+  .sec,.cta{padding-left:24px;padding-right:24px}
+  .cluster,.mfit{grid-template-columns:1fr;gap:36px}
+  .extras,.p3{grid-template-columns:1fr}
+}
+@media(max-width:600px){.sec,.cta{padding-top:60px;padding-bottom:60px;padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="ni">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1A2B4C"/><path d="M32 14 L52 24 L32 34 L12 24 Z" fill="#D4A535"/><path d="M20 30 v9 c0 4 5 7 12 7 s12-3 12-7 v-9 L32 36 Z" fill="#D4A535" opacity="0.62"/><rect x="50" y="24" width="2.4" height="12" rx="1.2" fill="#D4A535"/></svg>
+      Alumni<span>Hub</span>
+    </a>
+    <div class="nl">
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Platform</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="monetization.html"><b>Monetization</b><span>Donations, recurring giving, merch &amp; more</span></a>
+          <a class="ndd-item" href="engagement.html"><b>Engagement</b><span>Members, chapters, events &amp; reunions</span></a>
+          <a class="ndd-item" href="marketing.html"><b>Marketing</b><span>Campaigns, email, landing pages &amp; outreach</span></a>
+          <a class="ndd-item" href="chapter-hub-flow.html"><b>Chapter Hub Flow</b><span>Connect chapters — National · Regional · Local</span></a>
+        </div>
+      </div>
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Who it's for</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="university-alumni-associations.html"><b>University Alumni Associations</b><span>Regional chapters, conferences &amp; giving</span></a>
+          <a class="ndd-item" href="alumni-class-networks.html"><b>Alumni Class Networks</b><span>Independent class hubs &amp; reunions</span></a>
+          <a class="ndd-item" href="high-school-alumni.html"><b>High School Alumni</b><span>Associations &amp; class networks alike</span></a>
+          <a class="ndd-item" href="booster-clubs.html"><b>Booster Clubs</b><span>Athletics, arts &amp; band fundraising</span></a>
+        </div>
+      </div>
+      <a href="index.html#tiers" class="nlink">Pricing</a>
+    </div>
+    <div class="nr">
+      <a href="#" class="nghost">Sign in</a>
+      <a href="index.html#access" class="nbtn">Request Early Access</a>
+      <button class="mob-toggle" id="mob-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mob-drawer">
+  <div class="mob-group">Platform</div>
+  <a href="monetization.html" class="mob-nav-link">Monetization</a>
+  <a href="engagement.html" class="mob-nav-link">Engagement</a>
+  <a href="marketing.html" class="mob-nav-link">Marketing</a>
+  <a href="chapter-hub-flow.html" class="mob-nav-link">Chapter Hub Flow</a>
+  <div class="mob-group">Who it's for</div>
+  <a href="university-alumni-associations.html" class="mob-nav-link">University Alumni Associations</a>
+  <a href="alumni-class-networks.html" class="mob-nav-link">Alumni Class Networks</a>
+  <a href="high-school-alumni.html" class="mob-nav-link">High School Alumni</a>
+  <a href="booster-clubs.html" class="mob-nav-link">Booster Clubs</a>
+  <div class="mob-group">More</div>
+  <a href="index.html#tiers" class="mob-nav-link">Pricing</a>
+  <a href="index.html#access" class="mob-nav-cta">Request Early Access</a>
+</div>
+
+<!-- HERO -->
+<section class="phero">
+  <div class="phero-bg"></div>
+  <div class="phero-inner">
+    <div class="crumb"><a href="index.html">Home</a> › Platform › Engagement</div>
+    <h1>The people, and<br>the <em>moments.</em></h1>
+    <p class="lead">Giving grows from community. Engagement is everything that keeps alumni connected — the conversations between events, the events themselves, and the members and chapters who show up for them.</p>
+    <a href="index.html#access" class="btnp">Request Early Access</a>
+  </div>
+</section>
+
+<!-- CLUSTERS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">What engagement covers</span></div>
+    <h2 class="sec-title">Four ways to keep<br>alumni <em>connected.</em></h2>
+    <p class="sec-lead">From the daily feed to the headline reunion — one place for the community that giving depends on.</p>
+    <div class="cluster">
+      <div class="cl">
+        <div class="cl-ic">💬</div>
+        <div class="cl-name">Community &amp; conversations</div>
+        <p class="cl-desc">The chapter feed — announcements, discussions, posts, and reactions that keep alumni talking between the big moments.</p>
+        <div class="cl-list"><span>Announcements</span><span>Discussions</span><span>Posts &amp; media</span><span>Reactions &amp; mentions</span></div>
+        <p class="cl-note">Conversations flow within a chapter — and across the family via <a href="chapter-hub-flow.html">Chapter Hub Flow</a>.</p>
+      </div>
+      <div class="cl">
+        <div class="cl-ic">🎥</div>
+        <div class="cl-name">Meetups, live</div>
+        <p class="cl-desc">Bring alumni together on screen — speaker series and info sessions, livestreamed galas, and the board and committee meetings that run the organization.</p>
+        <div class="cl-list"><span>Webinars</span><span>Broadcast</span><span>Meetings</span></div>
+        <p class="cl-note">Fit enables the formats alumni actually use — see below.</p>
+      </div>
+      <div class="cl">
+        <div class="cl-ic">📅</div>
+        <div class="cl-name">Events, conferences &amp; reunions</div>
+        <p class="cl-desc">The in-person and hybrid calendar — the national conference, regional galas, homecoming, and class reunions. Registration here; ticketing and sponsorship come from Monetization.</p>
+        <div class="cl-list"><span>Registration</span><span>Conferences</span><span>Reunions</span><span>Hybrid events</span></div>
+        <p class="cl-note">Ticketing &amp; sponsorship: <a href="monetization.html">Monetization</a>.</p>
+      </div>
+      <div class="cl">
+        <div class="cl-ic">👥</div>
+        <div class="cl-name">Members &amp; chapters</div>
+        <p class="cl-desc">A living directory across class years and regions, with profiles, roles, and dedicated spaces for committees and working groups.</p>
+        <div class="cl-list"><span>Member directory</span><span>Profiles &amp; roles</span><span>Chapter spaces</span><span>Committees</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEETUPS FIT -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="mfit">
+      <div>
+        <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Powered by Fit</span></div>
+        <h2 class="sec-title">Just the meetups<br>alumni <em>actually use.</em></h2>
+        <p class="sec-lead">The platform supports a full range of live formats. <b style="color:#fff;font-weight:600">Fit</b> turns on the three that suit alumni work — webinars, broadcasts, and meetings — and leaves the rest off, so the toolset stays focused.</p>
+      </div>
+      <div class="fitbox">
+        <h4>Meetups · alumni profile</h4>
+        <div class="fit-row"><span class="nm">Webinar — speaker series, info sessions</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Broadcast — livestreamed galas</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Meeting — board &amp; committee</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Meet</span><span class="off">○ Off for this market</span></div>
+        <div class="fit-row"><span class="nm">Meet Now</span><span class="off">○ Off for this market</span></div>
+        <div class="fit-row"><span class="nm">Go Live</span><span class="off">○ Off for this market</span></div>
+        <div class="fit-row"><span class="nm">Co-browsing</span><span class="off">○ Off for this market</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">And the things that last</span></div>
+    <h2 class="sec-title">Memory, records,<br>and gentle <em>reminders.</em></h2>
+    <div class="extras">
+      <div class="ex">
+        <div class="ex-ic">📸</div>
+        <div class="ex-name">Photo galleries</div>
+        <p class="ex-desc">Reunion and event albums alumni can browse, add to, and relive — the memories that bring people back next year.</p>
+      </div>
+      <div class="ex">
+        <div class="ex-ic">📚</div>
+        <div class="ex-name">Document library &amp; archive</div>
+        <p class="ex-desc">Bylaws, minutes, newsletters, and chapter history — a permanent home for the records every association needs to keep.</p>
+      </div>
+      <div class="ex">
+        <div class="ex-ic">🔔</div>
+        <div class="ex-name">Notifications &amp; digests</div>
+        <p class="ex-desc">A weekly chapter digest tuned for engagement, not noise — so members stay in the loop without inbox fatigue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-PILLAR -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">One hub, three pillars</span></div>
+    <h2 class="sec-title">Engagement feeds<br>the <em>giving.</em></h2>
+    <p class="sec-lead">Community isn't separate from fundraising — it's what makes fundraising work. Engagement sits alongside Marketing and Monetization in every chapter hub.</p>
+    <div class="p3">
+      <div class="p3c"><div class="p3c-ic">🎁</div><div class="p3c-name">Monetization</div><p class="p3c-desc">Donations at the center, with recurring giving and merch.</p><a href="monetization.html" class="more">Explore Monetization</a></div>
+      <div class="p3c"><div class="p3c-ic">📣</div><div class="p3c-name">Marketing</div><p class="p3c-desc">Appeals and outreach that turn engagement into participation.</p><a href="marketing.html" class="more">Explore Marketing</a></div>
+      <div class="p3c"><div class="p3c-ic">🔗</div><div class="p3c-name">Chapter Hub Flow</div><p class="p3c-desc">Connect chapters so conversations and content flow.</p><a href="chapter-hub-flow.html" class="more">How it works</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <h2>Keep your alumni<br><em>connected.</em></h2>
+    <p class="cta-sub">Community all year, the events that matter, and the giving that follows.</p>
+    <a href="index.html#access" class="btnp">Request Early Access</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="flogo">Alumni<span>Hub</span></div>
+      <p>The platform for organized alumni giving.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Platform</h4>
+      <a href="monetization.html">Monetization</a>
+      <a href="engagement.html">Engagement</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="chapter-hub-flow.html">Chapter Hub Flow</a>
+    </div>
+    <div class="foot-col">
+      <h4>Who it's for</h4>
+      <a href="university-alumni-associations.html">University Associations</a>
+      <a href="alumni-class-networks.html">Alumni Class Networks</a>
+      <a href="high-school-alumni.html">High School Alumni</a>
+      <a href="booster-clubs.html">Booster Clubs</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="index.html#tiers">Pricing</a>
+      <a href="index.html#access">Early access</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 AlumniHub. All rights reserved.</div>
+    <div class="pwrd">Powered by <a href="https://bigtopa.com" target="_blank" rel="noopener"><strong>BigTopa</strong></a></div>
+  </div>
+</footer>
+
+<script>
+const toggle=document.getElementById('mob-toggle'),drawer=document.getElementById('mob-drawer');
+toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);});
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
+</script>
+</body>
+</html>

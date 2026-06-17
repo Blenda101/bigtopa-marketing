@@ -1,0 +1,13 @@
+[build]
+  command = "mkdir -p _build/shared/assets/icons && rsync -a --exclude=_build . _build/ && rsync -a ../shared/assets/icons/ _build/shared/assets/icons/"
+  publish = "_build"
+
+# Clean URLs: 301 /monetization.html -> /monetization (Netlify pretty-URLs then
+# serve the .html file at the extensionless path). Internal links keep the .html
+# suffix so local file:// preview still works; on the live site they redirect to
+# the canonical clean URL. Verify on first deploy.
+[[redirects]]
+  from = "/:page.html"
+  to = "/:page"
+  status = 301
+  force = true

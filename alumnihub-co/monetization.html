@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monetization — Donations &amp; alumni giving | AlumniHub</title>
+<meta name="description" content="Giving, built in. Donations lead for alumni — with recurring giving, alumni merch, digital goods, and checkout add-ons. Tuned by Fit for the way alumni give back.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.phero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.donate-card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 26px 64px rgba(14,26,48,.28)}
+.dc-top{padding:22px;border-bottom:1px solid rgba(255,255,255,.08)}
+.dc-eye{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+.dc-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff}
+.dc-amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:18px 22px}
+.dc-amt{text-align:center;padding:12px 4px;border-radius:10px;border:1px solid rgba(246,234,208,.18);font-size:15px;font-weight:600;color:rgba(246,234,208,.85)}
+.dc-amt.sel{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.dc-rec{margin:0 22px 16px;display:flex;align-items:center;gap:10px;background:rgba(201,154,46,.1);border:1px solid rgba(201,154,46,.24);border-radius:10px;padding:12px 14px}
+.dc-rec .toggle{width:34px;height:19px;border-radius:100px;background:var(--gold);position:relative;flex-shrink:0}
+.dc-rec .toggle::after{content:'';position:absolute;top:2px;right:2px;width:15px;height:15px;border-radius:50%;background:#fff}
+.dc-rec span{font-size:13px;color:rgba(246,234,208,.85)}
+.dc-rec b{color:var(--gold-light)}
+.dc-btn{margin:0 22px 22px;background:var(--gold);color:var(--ink);text-align:center;padding:13px;border-radius:100px;font-weight:600;font-size:14px}
+
+.sec{padding:84px 60px}
+.sec.alt{background:var(--cream2);border-top:1px solid var(--cream3);border-bottom:1px solid var(--cream3)}
+.sec.dark{background:var(--navy);color:#fff}
+.sec.dark .sec-title{color:#fff}.sec.dark .sec-title em{color:var(--gold-light)}
+.sec.dark .sec-lead{color:rgba(246,234,208,.62)}
+
+.methods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+.mc{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:16px;padding:28px;transition:border-color .25s,transform .25s}
+.mc:hover{border-color:rgba(201,154,46,.4);transform:translateY(-3px)}
+.mc.lead{grid-column:span 3;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:linear-gradient(120deg,#fff,rgba(246,234,208,.55));border-color:rgba(201,154,46,.5)}
+.mc-ic{width:50px;height:50px;border-radius:12px;background:rgba(201,154,46,.14);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.mc.lead .mc-ic{width:64px;height:64px;font-size:30px;margin-bottom:0}
+.mc-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:3px 11px;border-radius:100px;margin-bottom:10px}
+.mc-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.mc.lead .mc-name{font-size:28px}
+.mc-desc{font-size:14px;line-height:1.7;color:rgba(30,42,64,.64)}
+.mc-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.mc-list span{font-size:12px;color:rgba(30,42,64,.7);background:var(--cream2);border:1px solid rgba(26,43,76,.08);border-radius:100px;padding:4px 10px}
+
+/* Fit note */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.fit-ic{font-size:30px;margin-bottom:8px}
+.fitbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px}
+.fitbox h4{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px}
+.fit-row{display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.fit-row:last-child{border-bottom:none}
+.fit-row .on{color:var(--gold-light);font-weight:600;font-size:12px}
+.fit-row .off{color:rgba(246,234,208,.35);font-size:12px}
+.fit-row .nm{color:rgba(246,234,208,.85)}
+
+/* Transparency mini */
+.trans-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ledger{background:var(--card);border-radius:16px;padding:26px 28px;box-shadow:0 22px 56px rgba(14,26,48,.22)}
+.ledger-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px}
+.lr{display:flex;justify-content:space-between;font-size:13.5px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.lr:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.lr-key{color:rgba(246,234,208,.6)}.lr-val{color:rgba(246,234,208,.92);font-weight:600}.lr-val.pos{color:var(--gold-light)}
+.trans-feats{display:flex;flex-direction:column;gap:13px;margin-top:8px}
+.tf{display:flex;gap:12px}.tf-ck{width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tf-text{font-size:14px;line-height:1.6;color:rgba(30,42,64,.72)}.tf-text b{color:var(--navy);font-weight:600}
+
+.pay-inner{max-width:900px;margin:0 auto;text-align:center}
+.pay-k{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pay-sub{font-size:16px;color:rgba(30,42,64,.62);font-weight:300;margin-bottom:26px}
+.pay-icons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.pay-icons img{display:block;height:44px}
+.pay-note{font-size:12px;color:var(--muted);margin-top:18px}
+
+.cta{padding:92px 60px;text-align:center;background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 40%,rgba(201,154,46,.12) 0%,transparent 64%)}
+.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.6vw,56px);font-weight:700;line-height:1.08;margin-bottom:16px}
+.cta h2 em{font-style:italic;color:var(--gold-light)}
+.cta-sub{font-size:17px;color:rgba(246,234,208,.66);margin-bottom:30px;font-weight:300}
+.cta .btnp{background:var(--gold);color:var(--ink)}.cta .btnp:hover{background:var(--gold-light)}
+
+@media(max-width:1024px){.phero-inner{grid-template-columns:1fr;gap:40px}}
+@media(max-width:900px){
+  .sec,.cta{padding-left:24px;padding-right:24px}
+  .methods{grid-template-columns:1fr}
+  .mc.lead{grid-column:span 1;grid-template-columns:1fr}
+  .fit,.trans-inner{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:600px){.sec,.cta{padding-top:60px;padding-bottom:60px;padding-left:18px;padding-right:18px}.dc-amounts{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="ni">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1A2B4C"/><path d="M32 14 L52 24 L32 34 L12 24 Z" fill="#D4A535"/><path d="M20 30 v9 c0 4 5 7 12 7 s12-3 12-7 v-9 L32 36 Z" fill="#D4A535" opacity="0.62"/><rect x="50" y="24" width="2.4" height="12" rx="1.2" fill="#D4A535"/></svg>
+      Alumni<span>Hub</span>
+    </a>
+    <div class="nl">
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Platform</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="monetization.html"><b>Monetization</b><span>Donations, recurring giving, merch &amp; more</span></a>
+          <a class="ndd-item" href="engagement.html"><b>Engagement</b><span>Members, chapters, events &amp; reunions</span></a>
+          <a class="ndd-item" href="marketing.html"><b>Marketing</b><span>Campaigns, email, landing pages &amp; outreach</span></a>
+          <a class="ndd-item" href="chapter-hub-flow.html"><b>Chapter Hub Flow</b><span>Connect chapters — National · Regional · Local</span></a>
+        </div>
+      </div>
+      <div class="ndd">
+        <button class="nlink ndd-toggle">Who it's for</button>
+        <div class="ndd-panel">
+          <a class="ndd-item" href="university-alumni-associations.html"><b>University Alumni Associations</b><span>Regional chapters, conferences &amp; giving</span></a>
+          <a class="ndd-item" href="alumni-class-networks.html"><b>Alumni Class Networks</b><span>Independent class hubs &amp; reunions</span></a>
+          <a class="ndd-item" href="high-school-alumni.html"><b>High School Alumni</b><span>Associations &amp; class networks alike</span></a>
+          <a class="ndd-item" href="booster-clubs.html"><b>Booster Clubs</b><span>Athletics, arts &amp; band fundraising</span></a>
+        </div>
+      </div>
+      <a href="index.html#tiers" class="nlink">Pricing</a>
+    </div>
+    <div class="nr">
+      <a href="#" class="nghost">Sign in</a>
+      <a href="index.html#access" class="nbtn">Request Early Access</a>
+      <button class="mob-toggle" id="mob-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mob-drawer">
+  <div class="mob-group">Platform</div>
+  <a href="monetization.html" class="mob-nav-link">Monetization</a>
+  <a href="engagement.html" class="mob-nav-link">Engagement</a>
+  <a href="marketing.html" class="mob-nav-link">Marketing</a>
+  <a href="chapter-hub-flow.html" class="mob-nav-link">Chapter Hub Flow</a>
+  <div class="mob-group">Who it's for</div>
+  <a href="university-alumni-associations.html" class="mob-nav-link">University Alumni Associations</a>
+  <a href="alumni-class-networks.html" class="mob-nav-link">Alumni Class Networks</a>
+  <a href="high-school-alumni.html" class="mob-nav-link">High School Alumni</a>
+  <a href="booster-clubs.html" class="mob-nav-link">Booster Clubs</a>
+  <div class="mob-group">More</div>
+  <a href="index.html#tiers" class="mob-nav-link">Pricing</a>
+  <a href="index.html#access" class="mob-nav-cta">Request Early Access</a>
+</div>
+
+<!-- HERO -->
+<section class="phero">
+  <div class="phero-bg"></div>
+  <div class="phero-inner">
+    <div>
+      <div class="crumb"><a href="index.html">Home</a> › Platform › Monetization</div>
+      <h1>Giving, <em>built in.</em></h1>
+      <p class="lead">For alumni, donations lead. AlumniHub puts giving at the center of every chapter — then surrounds it with the tools to turn a one-time gift into lasting support.</p>
+      <a href="index.html#access" class="btnp">Request Early Access</a>
+    </div>
+    <div class="donate-card">
+      <div class="dc-top">
+        <div class="dc-eye">Class of 2005 — 20th Reunion Gift</div>
+        <div class="dc-title">Make your gift</div>
+      </div>
+      <div class="dc-amounts">
+        <div class="dc-amt">$50</div>
+        <div class="dc-amt sel">$200</div>
+        <div class="dc-amt">$500</div>
+        <div class="dc-amt">$1k</div>
+      </div>
+      <div class="dc-rec"><div class="toggle"></div><span>Make it <b>monthly</b> — become a sustaining donor</span></div>
+      <div class="dc-btn">Give $200 →</div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Ways to give &amp; raise</span></div>
+    <h2 class="sec-title">Donations first —<br>then everything <em>around</em> them.</h2>
+    <p class="sec-lead">One monetization engine, tuned for alumni. Donations are the headline; the rest exists to grow participation and deepen support.</p>
+    <div class="methods">
+      <div class="mc lead">
+        <div class="mc-ic">🎁</div>
+        <div>
+          <span class="mc-badge">Highlighted for alumni</span>
+          <div class="mc-name">Donations</div>
+          <p class="mc-desc">One-time gifts, class gifts, scholarship and memorial funds, matching and challenge gifts, in-honor and in-memory giving — with tax receipts and live goal tracking built in.</p>
+          <div class="mc-list"><span>One-time &amp; class gifts</span><span>Matching gifts</span><span>In honor / in memory</span><span>Goal &amp; participation tracking</span><span>Tax receipts</span></div>
+        </div>
+      </div>
+      <div class="mc">
+        <div class="mc-ic">🔁</div>
+        <div class="mc-name">Recurring giving</div>
+        <p class="mc-desc">Turn one gift into monthly support. Sustaining donors, pledges, and installment plans keep the fund growing year-round.</p>
+        <div class="mc-list"><span>Monthly sustainers</span><span>Pledges</span></div>
+      </div>
+      <div class="mc">
+        <div class="mc-ic">🛍️</div>
+        <div class="mc-name">Alumni merch</div>
+        <p class="mc-desc">Sell branded gear and reunion merchandise — print-on-demand or your own stock. Set prices to cover cost or to fundraise.</p>
+        <div class="mc-list"><span>E-commerce shop</span><span>Print-on-demand</span></div>
+      </div>
+      <div class="mc">
+        <div class="mc-ic">⬇️</div>
+        <div class="mc-name">Digital &amp; downloads</div>
+        <p class="mc-desc">Offer digital goods — yearbook archives, class directories, event recordings — as perks, premiums, or paid downloads.</p>
+        <div class="mc-list"><span>Digital goods</span><span>Gated content</span></div>
+      </div>
+      <div class="mc">
+        <div class="mc-ic">➕</div>
+        <div class="mc-name">Checkout add-ons</div>
+        <p class="mc-desc">Let donors round up, add a gift, or buy merch at checkout — product add-ons that lift the average gift without extra work.</p>
+        <div class="mc-list"><span>Add-a-gift</span><span>Round up</span></div>
+      </div>
+      <div class="mc">
+        <div class="mc-ic">🎟️</div>
+        <div class="mc-name">Ticketing</div>
+        <p class="mc-desc">Sell tickets and sponsorships for galas, reunions, and giving-day events — every dollar tied back to the campaign.</p>
+        <div class="mc-list"><span>Event tickets</span><span>Sponsorships</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="fit">
+      <div>
+        <div class="fit-ic">🎚️</div>
+        <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Powered by Fit</span></div>
+        <h2 class="sec-title">The full suite.<br>Tuned for <em>alumni.</em></h2>
+        <p class="sec-lead">AlumniHub runs on a complete monetization platform. <b style="color:#fff;font-weight:600">Fit</b> turns on what suits alumni giving — and leaves billing models built for other markets switched off, so your team only sees what it needs.</p>
+      </div>
+      <div class="fitbox">
+        <h4>Monetization · alumni profile</h4>
+        <div class="fit-row"><span class="nm">Donations</span><span class="on">● On — highlighted</span></div>
+        <div class="fit-row"><span class="nm">Recurring billing → recurring giving</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">E-commerce → alumni merch</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Downloads → digital goods</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Product add-ons</span><span class="on">● On</span></div>
+        <div class="fit-row"><span class="nm">Hourly billing</span><span class="off">○ Off for this market</span></div>
+        <div class="fit-row"><span class="nm">Usage metering</span><span class="off">○ Off for this market</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="trans-inner">
+      <div>
+        <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Built-in trust</span></div>
+        <h2 class="sec-title">Every dollar,<br><em>accounted</em> for.</h2>
+        <p class="sec-lead">Money raised is other people's trust. AlumniHub keeps the books clear for donors and organizers alike.</p>
+        <div class="trans-feats">
+          <div class="tf"><div class="tf-ck">✓</div><div class="tf-text"><b>Donors see impact.</b> The goal, the total, and exactly what their gift supports.</div></div>
+          <div class="tf"><div class="tf-ck">✓</div><div class="tf-text"><b>Organizers stay accountable.</b> A full ledger of gifts in and funds disbursed.</div></div>
+          <div class="tf"><div class="tf-ck">✓</div><div class="tf-text"><b>Clean handoff.</b> One report shows what to transfer to the institution, and when.</div></div>
+        </div>
+      </div>
+      <div class="ledger">
+        <div class="ledger-label">📂 &nbsp; Class of 2005 Gift — fund summary</div>
+        <div class="lr"><span class="lr-key">Gifts received</span><span class="lr-val pos">$148,200</span></div>
+        <div class="lr"><span class="lr-key">Processing fees</span><span class="lr-val">−$3,210</span></div>
+        <div class="lr"><span class="lr-key">Matched (employer)</span><span class="lr-val pos">+$22,500</span></div>
+        <div class="lr"><span class="lr-key">Disbursed to Westfield U.</span><span class="lr-val">$120,000</span></div>
+        <div class="lr"><span class="lr-key">Available to transfer</span><span class="lr-val pos">$47,490</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENTS -->
+<section class="sec" style="padding-top:52px;padding-bottom:52px">
+  <div class="pay-inner">
+    <p class="pay-k">Accepted payments</p>
+    <p class="pay-sub">Cards, digital wallets, or pay over time — every alumnus gives the way they prefer</p>
+    <div class="pay-icons">
+      <img src="../shared/assets/icons/1_credit-debit.svg" alt="Credit and Debit">
+      <img src="../shared/assets/icons/2_apple-pay.svg" alt="Apple Pay">
+      <img src="../shared/assets/icons/3_google-pay.svg" alt="Google Pay">
+      <img src="../shared/assets/icons/4_cash-app.svg" alt="Cash App">
+      <img src="../shared/assets/icons/5_link.svg" alt="Link">
+      <img src="../shared/assets/icons/6_cypto.svg" alt="Crypto">
+      <img src="../shared/assets/icons/7_klarna.svg" alt="Klarna">
+      <img src="../shared/assets/icons/8_affirm.svg" alt="Affirm">
+    </div>
+    <p class="pay-note">Powered by Stripe · PCI compliant · SSL encrypted · Tax receipts built in</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <h2>Put giving at the <em>center.</em></h2>
+    <p class="cta-sub">See how AlumniHub turns your next campaign into lasting support.</p>
+    <a href="index.html#access" class="btnp">Request Early Access</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="flogo">Alumni<span>Hub</span></div>
+      <p>The platform for organized alumni giving.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Platform</h4>
+      <a href="monetization.html">Monetization</a>
+      <a href="engagement.html">Engagement</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="chapter-hub-flow.html">Chapter Hub Flow</a>
+    </div>
+    <div class="foot-col">
+      <h4>Who it's for</h4>
+      <a href="university-alumni-associations.html">University Associations</a>
+      <a href="alumni-class-networks.html">Alumni Class Networks</a>
+      <a href="high-school-alumni.html">High School Alumni</a>
+      <a href="booster-clubs.html">Booster Clubs</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="index.html#tiers">Pricing</a>
+      <a href="index.html#access">Early access</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 AlumniHub. All rights reserved.</div>
+    <div class="pwrd">Powered by <a href="https://bigtopa.com" target="_blank" rel="noopener"><strong>BigTopa</strong></a></div>
+  </div>
+</footer>
+
+<script>
+const toggle=document.getElementById('mob-toggle'),drawer=document.getElementById('mob-drawer');
+toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);});
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
+</script>
+</body>
+</html>
+                                                                                      
