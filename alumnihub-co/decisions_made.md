@@ -73,6 +73,10 @@ Home teases each concept with a "Learn more →"; each key topic gets its own pa
 
 12. **"University Alumni Associations" → "Collegiate Alumni Associations"** (Gabriel) — broader than "University," covers colleges + universities, pairs with the High School card by education level. Page renamed `university-alumni-associations.html` → `collegiate-alumni-associations.html`; old slug kept as a noindex redirect stub (sandbox can't delete it) plus server-side 301s in `netlify.toml`. On the host, the stub file can simply be deleted if preferred.
 
+14. **Hero repositioned to the operator (Gabriel)** — the old H1 "Support the place that supported you" spoke to the *donor*, but the buyer is the person running the giving function. New hero: **"Nurture your community of givers."** with an operator subhead (engage alumni, nurture donors, run campaigns & events). The donor-facing line was *relocated* (not lost) to the closing CTA. Title tag updated to match. Giving-first preserved.
+
+15. **Comparison page — approach-based, not named (Gabriel)** — added `why-alumnihub.html` ("Why us" in nav, "Why AlumniHub" in footer, teaser on home before pricing). Contrasts *approaches* (generic community platform · generic giving platform · point-tool stack · legacy advancement suite · AlumniHub) with a capability matrix — deliberately no named competitors pre-launch (substantiation/legal risk). Post-launch, add "AlumniHub vs [X]" pages on sourced data for comparison-intent SEO.
+
 ## Still open (need human sign-off)
 
 1. **Pricing figures** — none shown anywhere. Need real price points before public launch.
