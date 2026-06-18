@@ -2,3 +2,14 @@ _build/
 .DS_Store
 Thumbs.db
 *.zip
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Netlify CLI local state
+.netlify/
+
+# Local editor / tooling settings
+.claude/settings.local.json
