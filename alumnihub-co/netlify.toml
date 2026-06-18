@@ -45,4 +45,3 @@
   from = "/:page.html"
   to = "/:page"
   status = 301
-  force = true
