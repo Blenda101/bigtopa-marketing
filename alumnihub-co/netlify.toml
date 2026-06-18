@@ -2,10 +2,45 @@
   command = "mkdir -p _build/shared/assets/icons && rsync -a --exclude=_build . _build/ && rsync -a ../shared/assets/icons/ _build/shared/assets/icons/"
   publish = "_build"
 
-# Clean URLs: 301 /monetization.html -> /monetization (Netlify pretty-URLs then
-# serve the .html file at the extensionless path). Internal links keep the .html
-# suffix so local file:// preview still works; on the live site they redirect to
-# the canonical clean URL. Verify on first deploy.
+# --- Renamed pages (301 old slugs). Specific rules MUST precede the generic
+#     .html rule below — Netlify uses first match. ---
+
+# University -> Collegiate
+[[redirects]]
+  from = "/university-alumni-associations"
+  to = "/collegiate-alumni-associations"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/university-alumni-associations.html"
+  to = "/collegiate-alumni-associations"
+  status = 301
+  force = true
+
+# High School Alumni / Associations -> Organizations
+[[redirects]]
+  from = "/high-school-alumni"
+  to = "/high-school-alumni-organizations"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/high-school-alumni.html"
+  to = "/high-school-alumni-organizations"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/high-school-alumni-associations"
+  to = "/high-school-alumni-organizations"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/high-school-alumni-associations.html"
+  to = "/high-school-alumni-organizations"
+  status = 301
+  force = true
+
+# --- Clean URLs: 301 /page.html -> /page ---
+# Internal links keep .html for local file:// preview; live site is canonical clean.
 [[redirects]]
   from = "/:page.html"
   to = "/:page"

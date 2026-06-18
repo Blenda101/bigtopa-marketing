@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booster Clubs — AlumniHub</title>
-<meta name="description" content="Athletics, arts, and band programs powered by the people who love them. Run focused drives, sell merch, and fund the programs that don't fund themselves.">
+<title>High School Alumni Organizations — AlumniHub</title>
+<meta name="description" content="From an official alumni association with its own board to individual class networks raising for a reunion — high school alumni give back in every form. AlumniHub fits each one.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,21 @@
 .sec.dark .sec-title{color:#fff}.sec.dark .sec-title em{color:var(--gold-light)}
 .sec.dark .sec-lead{color:rgba(246,234,208,.62)}
 
-.progs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.prog{background:var(--white);border:1px solid rgba(26,43,76,.1);border-radius:14px;padding:24px;text-align:center;transition:border-color .2s,transform .2s}
-.prog:hover{border-color:rgba(201,154,46,.45);transform:translateY(-3px)}
-.prog-em{font-size:30px;margin-bottom:10px;display:block}
-.prog-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px}
-.prog-desc{font-size:13px;line-height:1.6;color:rgba(30,42,64,.62)}
+/* two shapes */
+.shapes{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:50px}
+.shape{background:var(--white);border:1px solid rgba(26,43,76,.1);border-radius:16px;padding:32px;transition:border-color .25s,transform .25s}
+.shape:hover{border-color:rgba(201,154,46,.45);transform:translateY(-3px)}
+.shape-ic{width:52px;height:52px;border-radius:12px;background:rgba(201,154,46,.12);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:16px}
+.shape-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:9px}
+.shape-desc{font-size:14.5px;line-height:1.72;color:rgba(30,42,64,.64);margin-bottom:14px}
+.shape-list{display:flex;flex-direction:column;gap:7px}
+.shape-item{font-size:13.5px;color:rgba(30,42,64,.68);display:flex;align-items:center;gap:8px}
+.shape-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-.feat{margin-top:48px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.fc2{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:16px;padding:28px;display:flex;gap:18px;align-items:flex-start}
-.fc2-ic{width:48px;height:48px;border-radius:12px;background:rgba(201,154,46,.12);display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0}
-.fc2-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.feat{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fc2{background:var(--white);border:1px solid rgba(26,43,76,.09);border-radius:14px;padding:26px}
+.fc2-ic{font-size:24px;margin-bottom:12px}
+.fc2-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px}
 .fc2-desc{font-size:13.5px;line-height:1.7;color:rgba(30,42,64,.62)}
 
 .p3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
@@ -47,7 +51,7 @@
 
 @media(max-width:900px){
   .sec,.cta{padding-left:24px;padding-right:24px}
-  .progs{grid-template-columns:1fr}
+  .shapes{grid-template-columns:1fr}
   .feat,.p3{grid-template-columns:1fr}
 }
 @media(max-width:600px){.sec,.cta{padding-top:60px;padding-bottom:60px;padding-left:18px;padding-right:18px}}
@@ -110,37 +114,57 @@
 <section class="phero">
   <div class="phero-bg"></div>
   <div class="phero-inner">
-    <div class="crumb"><a href="index.html">Home</a> › Who it's for › Booster Clubs</div>
-    <h1>Power the programs<br>you <em>love.</em></h1>
-    <p class="lead">Athletics, arts, and band run on the parents, alumni, and fans who show up for them. AlumniHub gives your booster club one place to run focused drives, sell merch, and fund the programs that don't fund themselves.</p>
+    <div class="crumb"><a href="index.html">Home</a> › Who it's for › High School Alumni Organizations</div>
+    <h1>Your school's alumni,<br><em>organized.</em></h1>
+    <p class="lead">Whether you're an official high-school alumni association with a board and 501(c)(3), or a collective of motivated supporters with a vision — AlumniHub gives you the tools to organize, raise, and bring your school's alumni together.</p>
     <a href="index.html#access" class="btnp">Request Early Access</a>
   </div>
 </section>
 
-<!-- PROGRAMS -->
+<!-- TWO SHAPES -->
 <section class="sec">
   <div class="wrap">
-    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">For every program</span></div>
-    <h2 class="sec-title">The teams and troupes<br>worth <em>backing.</em></h2>
-    <p class="sec-lead">Whatever you rally behind, the drive runs the same way — a clear goal, an easy ask, and every dollar accounted for.</p>
-    <div class="progs">
-      <div class="prog"><span class="prog-em">🏈</span><div class="prog-name">Athletics</div><p class="prog-desc">Uniforms, travel, equipment, and facility upgrades for the teams.</p></div>
-      <div class="prog"><span class="prog-em">🎭</span><div class="prog-name">Arts &amp; theater</div><p class="prog-desc">Productions, sets, and scholarships for the performing arts.</p></div>
-      <div class="prog"><span class="prog-em">🎺</span><div class="prog-name">Band &amp; music</div><p class="prog-desc">Instruments, competition travel, and new-uniform drives.</p></div>
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">No two are alike</span></div>
+    <h2 class="sec-title">However your alumni<br>are <em>organized.</em></h2>
+    <p class="sec-lead">Some schools have a formal alumni association; others are a handful of motivated supporters with a vision. AlumniHub fits both — and grows with you. Organizing class by class instead? See <a href="alumni-class-networks.html" style="color:var(--gold);font-weight:600;text-decoration:none">Alumni Class Networks</a>.</p>
+    <div class="shapes">
+      <div class="shape">
+        <div class="shape-ic">🏛️</div>
+        <div class="shape-name">An official alumni association</div>
+        <p class="shape-desc">A single hub with a board and (often) 501(c)(3) status, running the scholarship fund and school-wide events across every graduating class.</p>
+        <div class="shape-list">
+          <div class="shape-item">School-wide scholarship fund</div>
+          <div class="shape-item">Board roles &amp; governance</div>
+          <div class="shape-item">All-class directory &amp; events</div>
+        </div>
+      </div>
+      <div class="shape">
+        <div class="shape-ic">🤝</div>
+        <div class="shape-name">A collective of supporters</div>
+        <p class="shape-desc">Motivated alumni with a vision but no formal entity yet — rallying support for the school and growing into an organization at their own pace.</p>
+        <div class="shape-list">
+          <div class="shape-item">Rally early support</div>
+          <div class="shape-item">A shared vision &amp; goals</div>
+          <div class="shape-item">Grow into a formal org</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- WHAT THEY DO -->
 <section class="sec alt">
   <div class="wrap">
-    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Built for the drive</span></div>
-    <h2 class="sec-title">Focused fundraising,<br>without the <em>hassle.</em></h2>
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">What it gives you</span></div>
+    <h2 class="sec-title">Big-school tools.<br>Right-sized for <em>you.</em></h2>
+    <p class="sec-lead">Whether you're a full foundation or three volunteers and a spreadsheet, you get the same trusted toolkit — only the parts you need turned on.</p>
     <div class="feat">
-      <div class="fc2"><div class="fc2-ic">🎯</div><div><div class="fc2-name">Goal-driven drives</div><p class="fc2-desc">Set a target for the season — new uniforms, a trip, a facility — and let supporters watch it fill in real time.</p></div></div>
-      <div class="fc2"><div class="fc2-ic">👕</div><div><div class="fc2-name">Merch &amp; spirit wear</div><p class="fc2-desc">Sell team gear and spirit wear — print-on-demand or your own stock — and turn fans into funding.</p></div></div>
-      <div class="fc2"><div class="fc2-ic">🎟️</div><div><div class="fc2-name">Events &amp; tickets</div><p class="fc2-desc">Run banquets, tournaments, and showcases — sell tickets and sponsorships, all in one place.</p></div></div>
-      <div class="fc2"><div class="fc2-ic">📊</div><div><div class="fc2-name">Clear books</div><p class="fc2-desc">Every dollar in and out, visible to the board and the families — trust built in, season after season.</p></div></div>
+      <div class="fc2"><div class="fc2-ic">🎁</div><div class="fc2-name">Scholarship &amp; annual giving</div><p class="fc2-desc">Run the scholarship fund or an annual appeal for the school, with receipts and live goal tracking built in.</p></div>
+      <div class="fc2"><div class="fc2-ic">🎉</div><div class="fc2-name">Reunions &amp; events</div><p class="fc2-desc">Plan reunions and homecomings, sell tickets, and save the photos for next time.</p></div>
+      <div class="fc2"><div class="fc2-ic">📇</div><div class="fc2-name">Find your classmates</div><p class="fc2-desc">A directory that helps you track down the class and keep everyone reachable.</p></div>
+      <div class="fc2"><div class="fc2-ic">💳</div><div class="fc2-name">Clean, simple money</div><p class="fc2-desc">Collect online, see every dollar, and hand off a clear report — no shoebox of receipts.</p></div>
+      <div class="fc2"><div class="fc2-ic">📣</div><div class="fc2-name">Spread the word</div><p class="fc2-desc">Email and social outreach to rally the class behind the next drive or gathering.</p></div>
+      <div class="fc2"><div class="fc2-ic">🔗</div><div class="fc2-name">Grow when ready</div><p class="fc2-desc">Start as a collective and formalize into an association when you're ready — and connect your class networks underneath.</p></div>
     </div>
   </div>
 </section>
@@ -149,11 +173,11 @@
 <section class="sec dark">
   <div class="wrap">
     <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">One hub, three pillars</span></div>
-    <h2 class="sec-title">Everything the club<br>needs to <em>run.</em></h2>
+    <h2 class="sec-title">Everything in <em>one</em> place.</h2>
     <div class="p3">
-      <div class="p3c"><div class="p3c-ic">🎁</div><div class="p3c-name">Monetization</div><p class="p3c-desc">Donations, merch, and tickets — funding the program.</p><a href="monetization.html" class="more">Explore Monetization</a></div>
-      <div class="p3c"><div class="p3c-ic">🎓</div><div class="p3c-name">Engagement</div><p class="p3c-desc">Families, fans, events, and the booster community.</p><a href="engagement.html" class="more">Explore Engagement</a></div>
-      <div class="p3c"><div class="p3c-ic">📣</div><div class="p3c-name">Marketing</div><p class="p3c-desc">Rally supporters behind every seasonal drive.</p><a href="marketing.html" class="more">Explore Marketing</a></div>
+      <div class="p3c"><div class="p3c-ic">🎁</div><div class="p3c-name">Monetization</div><p class="p3c-desc">Scholarship and class gifts, donations at the center.</p><a href="monetization.html" class="more">Explore Monetization</a></div>
+      <div class="p3c"><div class="p3c-ic">🎓</div><div class="p3c-name">Engagement</div><p class="p3c-desc">Reunions, events, and the class directory.</p><a href="engagement.html" class="more">Explore Engagement</a></div>
+      <div class="p3c"><div class="p3c-ic">📣</div><div class="p3c-name">Marketing</div><p class="p3c-desc">Email and outreach to rally every class.</p><a href="marketing.html" class="more">Explore Marketing</a></div>
     </div>
   </div>
 </section>
@@ -162,8 +186,8 @@
 <section class="cta">
   <div class="cta-glow"></div>
   <div class="cta-inner">
-    <h2>Fund the program<br>that <em>can't fund itself.</em></h2>
-    <p class="cta-sub">One place for the drive, the merch, and the books — so you can focus on the kids.</p>
+    <h2>Give back to the<br>school that <em>shaped you.</em></h2>
+    <p class="cta-sub">However your alumni are organized, AlumniHub fits — from a single class to the whole school.</p>
     <a href="index.html#access" class="btnp">Request Early Access</a>
   </div>
 </section>
@@ -205,8 +229,4 @@
 
 <script>
 const toggle=document.getElementById('mob-toggle'),drawer=document.getElementById('mob-drawer');
-toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);});
-drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
-</script>
-</body>
-</html>
+toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.bod
