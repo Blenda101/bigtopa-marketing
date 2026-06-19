@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GatherAgain — Plan your reunion. Remember everything. Do it again.</title>
+<title>GatherAgain — Plan the reunion. Hibernate or stay connected. Your call.</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -177,6 +177,63 @@ h1 em{font-style:italic;color:var(--amber)}
 .cta-sub{font-size:17px;color:rgba(44,24,16,.55);margin-bottom:36px;font-weight:300}
 .cta-note{font-size:13px;color:var(--muted);margin-top:14px}
 
+/* ══ TWO WAYS (two cards) ══ */
+.tways{padding:80px 60px;background:var(--warm)}
+.tw-intro{font-size:17px;line-height:1.8;font-weight:300;color:rgba(44,24,16,.6);max-width:600px;margin:-30px 0 44px}
+.tw-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.twm{background:var(--white);border:1px solid rgba(26,49,40,.1);border-radius:18px;padding:34px 32px;box-shadow:0 16px 40px rgba(26,49,40,.07);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.twm:hover{transform:translateY(-3px);box-shadow:0 22px 52px rgba(26,49,40,.11)}
+.twm.ongoing{border-color:rgba(196,113,58,.32)}
+.twm-tag{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:16px}
+.twm.ongoing .twm-tag{color:var(--amber)}
+.twm-tag::before{content:'';width:18px;height:1px;background:currentColor}
+.twm-h{font-family:'Lora',serif;font-size:clamp(24px,2.6vw,30px);font-weight:700;line-height:1.15;color:var(--forest);margin-bottom:14px}
+.twm-h em{font-style:italic;color:var(--amber)}
+.twm-desc{font-size:15px;line-height:1.75;font-weight:300;color:rgba(44,24,16,.65);margin-bottom:24px}
+.twm-for{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(44,24,16,.45);margin-bottom:10px}
+.tw-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tw-chip{font-size:13px;color:rgba(44,24,16,.7);background:var(--warm);border:1px solid rgba(26,49,40,.1);border-radius:100px;padding:6px 14px}
+.twm.ongoing .tw-chip{background:var(--amber-pale);border-color:rgba(196,113,58,.22)}
+.twm-state{background:var(--warm);border-radius:12px;padding:6px;margin-bottom:24px}
+.twms-bar{display:flex;align-items:center;gap:9px;padding:13px 14px 10px}
+.twms-dot{width:8px;height:8px;border-radius:50%}
+.twms-title{font-size:12px;font-weight:600;color:var(--forest)}
+.twms-row{display:flex;align-items:center;gap:11px;padding:9px 14px;font-size:13px;color:rgba(44,24,16,.72);line-height:1.4}
+.twms-row strong{color:var(--forest);font-weight:600}
+.twms-ico{font-size:15px;width:18px;text-align:center;flex-shrink:0}
+.twm-tier{margin-top:auto;display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;color:rgba(44,24,16,.72);border-radius:10px;padding:11px 15px}
+.twm-tier strong{color:var(--forest);font-weight:700}
+.twm.episodic .twm-tier{background:rgba(61,107,87,.08);border:1px solid rgba(61,107,87,.2)}
+.twm.ongoing .twm-tier{background:var(--amber-pale);border:1px solid rgba(196,113,58,.22)}
+.tw-foot{margin-top:32px;font-size:14px;color:rgba(44,24,16,.55);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.tw-foot a{color:var(--amber);font-weight:600;text-decoration:none}
+.tw-foot a:hover{text-decoration:underline}
+
+/* ══ PRICING ══ */
+.pricing{padding:80px 60px;background:var(--warm2);border-top:1px solid var(--warm3)}
+.pr-sub{font-size:17px;line-height:1.8;font-weight:300;color:rgba(44,24,16,.6);max-width:540px;margin:-30px 0 44px}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.pr-card{background:var(--white);border:1px solid rgba(26,49,40,.1);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s}
+.pr-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(26,49,40,.12)}
+.pr-card.feature{border-color:var(--amber);box-shadow:0 20px 48px rgba(196,113,58,.16)}
+.pr-flag{position:absolute;top:-12px;left:26px;background:var(--amber);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 13px;border-radius:100px}
+.pr-name{font-family:'Lora',serif;font-size:21px;font-weight:700;color:var(--forest);margin-bottom:6px}
+.pr-price{font-family:'Lora',serif;font-size:40px;font-weight:700;color:var(--forest);line-height:1;margin-bottom:4px}
+.pr-price span{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:400;color:var(--muted)}
+.pr-pitch{font-size:13px;line-height:1.6;color:rgba(44,24,16,.6);margin:10px 0 20px;min-height:42px}
+.pr-divide{height:1px;background:rgba(26,49,40,.08);margin-bottom:18px}
+.pr-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;flex:1}
+.pr-feat{font-size:13.5px;color:rgba(44,24,16,.72);line-height:1.45;display:flex;align-items:flex-start;gap:9px}
+.pr-feat::before{content:'✓';color:var(--sage);font-weight:700;flex-shrink:0}
+.pr-feat.star{color:var(--forest);font-weight:600}
+.pr-feat.star::before{content:'★';color:var(--amber)}
+.pr-cta{display:block;text-align:center;padding:13px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s}
+.pr-cta.ghost{background:var(--warm);color:var(--forest);border:1px solid rgba(26,49,40,.14)}
+.pr-cta.ghost:hover{background:var(--warm3)}
+.pr-cta.solid{background:var(--amber);color:var(--white)}
+.pr-cta.solid:hover{background:var(--amber-light)}
+.pr-note{text-align:center;font-size:13px;color:var(--muted);margin-top:28px}
+
 /* ══ FOOTER ══ */
 footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center;justify-content:space-between}
 .flogo{font-family:'Lora',serif;font-size:18px;font-weight:700;color:rgba(247,242,236,.35)}
@@ -212,6 +269,11 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
   .dormant{padding:60px 24px}
   .lifecycle{gap:0}
   .lc-step{padding:0 10px}
+  .tways{padding:60px 24px}
+  .tw-grid{grid-template-columns:1fr;gap:18px}
+  .pricing{padding:60px 24px}
+  .pr-grid{grid-template-columns:1fr;gap:16px}
+  .pr-card.feature{order:-1}
   .cta{padding:60px 24px}
   footer{padding:20px 24px;flex-wrap:wrap;gap:12px}
   .flinks{display:none}
@@ -242,9 +304,9 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
   <div class="ni">
     <a href="#" class="logo">Gather<span>Again</span></a>
     <div class="nl">
-      <a href="#" class="nlink">Features</a>
       <a href="#how" class="nlink">How It Works</a>
-      <a href="#" class="nlink">Pricing</a>
+      <a href="#two-ways" class="nlink">Two Ways</a>
+      <a href="#pricing" class="nlink">Pricing</a>
     </div>
     <div class="nr">
       <a href="#" class="nghost">Sign in</a>
@@ -259,9 +321,9 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
 <!-- Mobile drawer -->
 <div class="mob-drawer" id="mob-drawer">
   <div class="mob-nav-links">
-    <a href="#" class="mob-nav-link">Features</a>
     <a href="#how" class="mob-nav-link">How It Works</a>
-    <a href="#" class="mob-nav-link">Pricing</a>
+    <a href="#two-ways" class="mob-nav-link">Two Ways</a>
+    <a href="#pricing" class="mob-nav-link">Pricing</a>
     <a href="#" class="mob-sign">Sign in</a>
   </div>
   <a href="#" class="mob-nav-cta">Start Your Reunion</a>
@@ -273,7 +335,7 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
   <div class="hl">
     <div class="eyebrow"><div class="eyr"></div><span class="eyt">Reunion planning made easy</span></div>
     <h1>One stop from<br>planning to <em>fun.</em></h1>
-    <p class="hero-sub">Plan it once. Rinse and repeat forever.</p>
+    <p class="hero-sub">Plan it. Celebrate it. Then hibernate until next time — or keep everyone connected between reunions. Your call.</p>
     <div class="hero-ctas">
       <a href="#" class="btnp">Start Your Reunion</a>
       <a href="#how" class="btnt">See how it works</a>
@@ -366,6 +428,57 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
       </div>
     </div>
   </div>
+</section>
+
+<!-- ══ TWO WAYS TO USE GATHERAGAIN ══ -->
+<section class="tways" id="two-ways">
+  <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Two ways to use it</span></div>
+  <h2 class="sec-title" style="color:var(--forest)">One reunion.<br><em style="color:var(--amber)">Two ways to keep it going.</em></h2>
+  <p class="tw-intro">Some groups gather, celebrate, and go quiet until next time. Others want to stay close all year. GatherAgain does both — start with the reunion, add ongoing community whenever your group is ready.</p>
+
+  <div class="tw-grid">
+    <!-- Mode 1 -->
+    <div class="twm episodic sf">
+      <div class="twm-tag">Mode 1 · Reunion memory</div>
+      <h3 class="twm-h">Gather, celebrate, then <em>hibernate.</em></h3>
+      <p class="twm-desc">Plan the reunion, run the weekend, and let the space go dormant until it's time again. Everything that made this one work — attendee lists, budgets, venue notes, and photos — waits quietly for next time.</p>
+      <div class="twm-for">Perfect for</div>
+      <div class="tw-chips">
+        <span class="tw-chip">Family reunions</span>
+        <span class="tw-chip">Class reunions (every 5–10 yrs)</span>
+        <span class="tw-chip">Groups that gather, then scatter</span>
+      </div>
+      <div class="twm-state">
+        <div class="twms-bar"><div class="twms-dot" style="background:var(--sage)"></div><div class="twms-title">Between events — dormant</div></div>
+        <div class="twms-row"><div class="twms-ico">👥</div><div><strong>Attendee list</strong> saved — ready to re-invite</div></div>
+        <div class="twms-row"><div class="twms-ico">📊</div><div><strong>Budget &amp; expenses</strong> carried forward</div></div>
+        <div class="twms-row"><div class="twms-ico">📷</div><div><strong>Photos &amp; venue notes</strong> archived</div></div>
+      </div>
+      <div class="twm-tier">📦 &nbsp;Included from <strong>Reunion Starter</strong> — $59/mo</div>
+    </div>
+
+    <!-- Mode 2 -->
+    <div class="twm ongoing sf">
+      <div class="twm-tag">Mode 2 · Ongoing community</div>
+      <h3 class="twm-h">Keep the group <em>alive</em> all year.</h3>
+      <p class="twm-desc">Add a Community Space and your reunion never really ends. Members talk between events, share photos, post announcements, and stay connected — so planning the next gathering starts with a group that's already engaged.</p>
+      <div class="twm-for">Perfect for</div>
+      <div class="tw-chips">
+        <span class="tw-chip">Military units &amp; reunions</span>
+        <span class="tw-chip">Active alumni groups</span>
+        <span class="tw-chip">Large classes with year-round buzz</span>
+      </div>
+      <div class="twm-state">
+        <div class="twms-bar"><div class="twms-dot" style="background:var(--amber)"></div><div class="twms-title">Between events — connected</div></div>
+        <div class="twms-row"><div class="twms-ico">💬</div><div><strong>Ongoing discussions</strong> &amp; member streams</div></div>
+        <div class="twms-row"><div class="twms-ico">📇</div><div><strong>Member directory</strong> that stays current</div></div>
+        <div class="twms-row"><div class="twms-ico">📣</div><div><strong>Announcements</strong> &amp; group sharing</div></div>
+      </div>
+      <div class="twm-tier">🌿 &nbsp;Unlocks with <strong>Community Space</strong> on Reunion Standard — $99/mo</div>
+    </div>
+  </div>
+
+  <p class="tw-foot">Start with Mode 1, grow into Mode 2 whenever you're ready. <a href="#pricing">See where Community Space unlocks →</a></p>
 </section>
 
 <!-- ══ HOW IT WORKS ══ -->
@@ -502,7 +615,7 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
       <div class="sec-eyr"></div><span class="sec-eyl" style="color:var(--amber-light)">Built for the cycle</span>
     </div>
     <h2 class="dormant-title">Pick up right<br>where you <em>left off.</em></h2>
-    <p class="dormant-sub">Reunions happen once a year. Sometimes every five years. GatherAgain is designed for that — active when you need it, dormant when you don't, and ready the moment someone says "it's time."</p>
+    <p class="dormant-sub">Reunions happen once a year. Sometimes every five years. GatherAgain is designed for that — active when you need it, and after the weekend you choose: stay connected year-round, or go dormant until someone says "it's time." Either way, nothing's lost.</p>
 
     <div class="lifecycle sf">
       <div class="lc-step">
@@ -512,17 +625,17 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
       <div class="lc-arrow">→</div>
       <div class="lc-step">
         <div class="lc-dot lc-active">🎉</div>
-        <div class="lc-label">Reunite</div>
+        <div class="lc-label">Celebrate</div>
       </div>
       <div class="lc-arrow">→</div>
       <div class="lc-step">
-        <div class="lc-dot lc-dormant">💤</div>
-        <div class="lc-label">Dormant</div>
+        <div class="lc-dot lc-active">🌿</div>
+        <div class="lc-label">Stay connected<br>or go dormant</div>
       </div>
       <div class="lc-arrow">→</div>
       <div class="lc-step">
         <div class="lc-dot lc-active">🔁</div>
-        <div class="lc-label">Do it again</div>
+        <div class="lc-label">Welcome the<br>next reunion</div>
       </div>
     </div>
 
@@ -602,6 +715,71 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
   <div data-bt-calculator data-site="gatheragain" data-theme="light" data-accent="#C4713A" style="max-width:640px"></div>
 </section>
 
+<!-- ══ PRICING ══ -->
+<section class="pricing" id="pricing">
+  <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Pricing</span></div>
+  <h2 class="sec-title" style="color:var(--forest);margin-bottom:16px">Start with the reunion.<br><em style="color:var(--amber)">Add community when you're ready.</em></h2>
+  <p class="pr-sub">Every plan keeps your reunion memory between events. Step up when you want your group connected all year — Community Space unlocks at Reunion Standard.</p>
+
+  <!-- PLACEHOLDER: static tiers below. To be replaced by the dynamic headless pricing token
+       (same embed pattern as the calculator). Style hooks: .pr-grid / .pr-card / .pr-card.feature
+       / .pr-flag / .pr-feat.star. Tier data current as of Jun 2026: Starter $59 / Standard $99 / Pro $149. -->
+  <div class="pr-grid">
+    <!-- Starter -->
+    <div class="pr-card">
+      <div class="pr-name">Reunion Starter</div>
+      <div class="pr-price">$59<span> /mo</span></div>
+      <p class="pr-pitch">For episodic reunions — gather, celebrate, and pick up right where you left off next time.</p>
+      <div class="pr-divide"></div>
+      <div class="pr-feats">
+        <div class="pr-feat">1 Event Space · up to 100 attendees</div>
+        <div class="pr-feat">Streams, Rooms, Messages, Shelf, Participants</div>
+        <div class="pr-feat">Photo Album &amp; Events extensions</div>
+        <div class="pr-feat">10 meetup hours/mo</div>
+        <div class="pr-feat">Ticketing</div>
+        <div class="pr-feat">5 GB storage</div>
+      </div>
+      <a href="#" class="pr-cta ghost">Start Your Reunion</a>
+    </div>
+
+    <!-- Standard (feature) -->
+    <div class="pr-card feature">
+      <div class="pr-flag">Adds Community</div>
+      <div class="pr-name">Reunion Standard</div>
+      <div class="pr-price">$99<span> /mo</span></div>
+      <p class="pr-pitch">For groups that want to stay connected between reunions, not just during them.</p>
+      <div class="pr-divide"></div>
+      <div class="pr-feats">
+        <div class="pr-feat">Everything in Starter, plus —</div>
+        <div class="pr-feat star">Unlimited Community Spaces &amp; members</div>
+        <div class="pr-feat">Blog &amp; FAQ extensions</div>
+        <div class="pr-feat">Meetings · 50 meetup hours/mo</div>
+        <div class="pr-feat">Up to 500 participant quota</div>
+        <div class="pr-feat">Shop — print-on-demand &amp; digital</div>
+        <div class="pr-feat">25 GB storage</div>
+      </div>
+      <a href="#" class="pr-cta solid">Start with Standard</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="pr-card">
+      <div class="pr-name">Reunion Pro</div>
+      <div class="pr-price">$149<span> /mo</span></div>
+      <p class="pr-pitch">For large, active reunion organizations running year-round with unlimited everything.</p>
+      <div class="pr-divide"></div>
+      <div class="pr-feats">
+        <div class="pr-feat">Everything in Standard, plus —</div>
+        <div class="pr-feat star">Unlimited Event Spaces &amp; attendees</div>
+        <div class="pr-feat">Social Feed extension</div>
+        <div class="pr-feat">Unlimited meetup hours</div>
+        <div class="pr-feat">100 GB storage</div>
+      </div>
+      <a href="#" class="pr-cta ghost">Go Pro</a>
+    </div>
+  </div>
+  <p class="pr-note">All plans include reunion memory and built-in financial transparency. No long-term contract.</p>
+</section>
+
 <!-- ══ CTA ══ -->
 <section class="cta">
   <h2>Ready to bring<br>everyone <em>together?</em></h2>
@@ -613,8 +791,8 @@ footer{background:var(--card2);padding:24px 60px;display:flex;align-items:center
 <footer>
   <div class="flogo">GatherAgain</div>
   <div class="flinks">
-    <a href="#">Features</a>
-    <a href="#">Pricing</a>
+    <a href="#two-ways">Two Ways</a>
+    <a href="#pricing">Pricing</a>
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
   </div>
