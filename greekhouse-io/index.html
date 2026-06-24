@@ -457,6 +457,34 @@ h1 em{font-style:italic;color:var(--burgundy)}
 .wlbtn:hover{background:var(--bm);transform:translateY(-1px);box-shadow:0 8px 20px rgba(107,30,46,.22)}
 .wlnote{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
 
+/* ══ TIERS ══ */
+.tiers{padding:88px 60px;background:var(--cbg);color:var(--white)}
+.tiers .sec-ey{justify-content:center;margin-bottom:12px}
+.tiers .sec-eyr{background:var(--gold)}
+.tiers .sec-eyl{color:var(--gl)}
+.tiers-head{text-align:center;margin-bottom:52px}
+.tiers-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,54px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:14px}
+.tiers-head h2 em{font-style:italic;color:var(--gl)}
+.tiers-head p{font-size:16px;font-weight:300;color:rgba(253,250,246,.55);max-width:560px;margin:0 auto}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1060px;margin:0 auto}
+.tcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s}
+.tcard:hover{transform:translateY(-4px);border-color:rgba(184,146,58,.4)}
+.tcard.feature{background:linear-gradient(180deg,rgba(184,146,58,.13),rgba(255,255,255,.03));border-color:rgba(184,146,58,.5)}
+.tbadge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:100px;white-space:nowrap}
+.tname{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--white);margin-bottom:5px}
+.ttag{font-size:13px;color:var(--gl);font-weight:500;margin-bottom:18px}
+.tdesc{font-size:13.5px;line-height:1.65;color:rgba(253,250,246,.55);margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1)}
+.tfeats{display:flex;flex-direction:column;gap:11px;margin-bottom:26px;flex:1}
+.tfeat{font-size:13.5px;line-height:1.5;color:rgba(253,250,246,.82);display:flex;align-items:flex-start;gap:9px}
+.tfeat::before{content:'✓';color:var(--gl);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
+.tfeat.off{color:rgba(253,250,246,.35)}
+.tfeat.off::before{content:'—';color:rgba(253,250,246,.25)}
+.tcta{display:block;text-align:center;padding:13px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;background:rgba(255,255,255,.08);color:var(--white);border:1px solid rgba(255,255,255,.14);font-family:'Outfit',sans-serif}
+.tcta:hover{background:rgba(255,255,255,.14)}
+.tcard.feature .tcta{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.tcard.feature .tcta:hover{background:var(--gl)}
+.tiers-note{text-align:center;font-size:13px;color:rgba(253,250,246,.38);margin-top:32px;max-width:600px;margin-left:auto;margin-right:auto}
+
 /* ══ CTA + FOOTER ══ */
 .cta{padding:88px 60px;text-align:center;position:relative;overflow:hidden}
 .ctaglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(107,30,46,.06) 0%,transparent 70%);pointer-events:none}
@@ -958,7 +986,7 @@ body.nav-open{overflow:hidden}
         </div>
       </div>
 
-      <a href="#" class="nlink">Pricing</a>
+      <a href="#tiers" class="nlink">Pricing</a>
     </div>
 
     <div class="nr">
@@ -1108,7 +1136,7 @@ body.nav-open{overflow:hidden}
 
   <!-- Direct links -->
   <div class="mob-nav-links">
-    <a href="#" class="mob-nav-link">Pricing</a>
+    <a href="#tiers" class="mob-nav-link">Pricing</a>
     <a href="#wl" class="mob-nav-link">Join Community Waitlist</a>
     <a href="#" class="mob-nav-link" style="opacity:.6;font-weight:400">Sign in</a>
   </div>
@@ -1459,6 +1487,64 @@ body.nav-open{overflow:hidden}
     <a href="#" class="btnp">Claim Your House — Free</a>
     <a href="#who" class="btnt">Find your org type</a>
   </div>
+</section>
+
+<!-- ══ TIERS ══ -->
+<section class="tiers" id="tiers">
+  <div class="tiers-head">
+    <div class="sec-ey"><div class="sec-eyr"></div><span class="sec-eyl">Pricing</span></div>
+    <h2>Three tiers, built for<br>how your <em>chapter operates.</em></h2>
+    <p>Start with a single chapter and grow into a connected Greek family. Every tier includes member management, event tools, and the full chapter hub.</p>
+  </div>
+
+  <div class="tgrid">
+    <div class="tcard sf">
+      <div class="tname">Chapter</div>
+      <div class="ttag">For a single chapter</div>
+      <p class="tdesc">Everything one chapter needs to run communications, events, and member life in one place.</p>
+      <div class="tfeats">
+        <div class="tfeat">Member roster &amp; directory</div>
+        <div class="tfeat">Events &amp; calendar</div>
+        <div class="tfeat">Chapter communications</div>
+        <div class="tfeat">Video meetings</div>
+        <div class="tfeat off">Merch &amp; chapter store</div>
+        <div class="tfeat off">Council Connect</div>
+      </div>
+      <a href="#" class="tcta">Claim Your House</a>
+    </div>
+
+    <div class="tcard feature sf">
+      <div class="tbadge">Most popular</div>
+      <div class="tname">House</div>
+      <div class="ttag">Full chapter operations</div>
+      <p class="tdesc">The complete GreekHouse — finances, recruitment, events, and broadcast in one place.</p>
+      <div class="tfeats">
+        <div class="tfeat">Everything in Chapter</div>
+        <div class="tfeat">Dues, fees &amp; financial tracking</div>
+        <div class="tfeat">Recruitment pipeline</div>
+        <div class="tfeat">Merch &amp; chapter store</div>
+        <div class="tfeat">Webinars &amp; broadcast</div>
+        <div class="tfeat">Council Connect — link to parent</div>
+      </div>
+      <a href="#" class="tcta">Claim Your House</a>
+    </div>
+
+    <div class="tcard sf">
+      <div class="tname">Council</div>
+      <div class="ttag">For IFC, Panhellenic &amp; national orgs</div>
+      <p class="tdesc">Be the hub your chapters connect into — from a campus council to a national organization.</p>
+      <div class="tfeats">
+        <div class="tfeat">Multiple chapters under one council</div>
+        <div class="tfeat">Council-wide campaigns &amp; events</div>
+        <div class="tfeat">Full reporting &amp; audit suite</div>
+        <div class="tfeat">Broadcast studio for the network</div>
+        <div class="tfeat">Be the parent hub</div>
+        <div class="tfeat">Chapter Hub Flow across the family</div>
+      </div>
+      <a href="#" class="tcta">Claim Your House</a>
+    </div>
+  </div>
+  <p class="tiers-note">Founding chapters get early-access pricing locked in. Tier details are still being finalized — early partners help shape them.</p>
 </section>
 
 <footer>
