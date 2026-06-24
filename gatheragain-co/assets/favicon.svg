@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GatherAgain">
+  <!-- GatherAgain mark: people gathering around a center (cluster) -->
+  <rect width="64" height="64" rx="14" fill="#1A3128"/>
+  <!-- center -->
+  <circle cx="32" cy="32" r="7" fill="#C4713A"/>
+  <!-- gathered around (hexagonal cluster) -->
+  <circle cx="47" cy="32" r="4" fill="#F7F2EC"/>
+  <circle cx="39.5" cy="45" r="4" fill="#F7F2EC"/>
+  <circle cx="24.5" cy="45" r="4" fill="#F7F2EC"/>
+  <circle cx="17" cy="32" r="4" fill="#F7F2EC"/>
+  <circle cx="24.5" cy="19" r="4" fill="#F7F2EC"/>
+  <circle cx="39.5" cy="19" r="4" fill="#F7F2EC"/>
+</svg>

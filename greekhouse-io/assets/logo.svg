@@ -1,0 +1,17 @@
+<svg width="340" height="64" viewBox="0 0 340 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GreekHouse.io">
+  <!-- GreekHouse horizontal lockup — LIGHT backgrounds. For print/production, outline the wordmark glyphs. -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap');</style>
+  <!-- Mark: Greek temple on burgundy tile -->
+  <rect width="64" height="64" rx="14" fill="#6B1E2E"/>
+  <path d="M32 13 L55 29 L9 29 Z" fill="#D4AF6A"/>
+  <rect x="12" y="30.5" width="40" height="3.2" rx="1" fill="#D4AF6A"/>
+  <rect x="15" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="24.5" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="34" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="43.5" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="11" y="50" width="42" height="3.6" rx="1" fill="#D4AF6A"/>
+  <!-- Wordmark -->
+  <text x="80" y="44" font-family="'Fraunces', Georgia, 'Times New Roman', serif" font-weight="700" font-size="36">
+    <tspan fill="#6B1E2E">GreekHouse</tspan><tspan fill="#B8923A">.io</tspan>
+  </text>
+</svg>

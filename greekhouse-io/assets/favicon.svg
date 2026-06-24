@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GreekHouse">
+  <!-- GreekHouse mark: a Greek temple (house + Greek life) -->
+  <rect width="64" height="64" rx="14" fill="#6B1E2E"/>
+  <!-- pediment / roof -->
+  <path d="M32 13 L55 29 L9 29 Z" fill="#D4AF6A"/>
+  <!-- entablature -->
+  <rect x="12" y="30.5" width="40" height="3.2" rx="1" fill="#D4AF6A"/>
+  <!-- columns -->
+  <rect x="15" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="24.5" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="34" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <rect x="43.5" y="35" width="4" height="14" rx="1" fill="#D4AF6A"/>
+  <!-- stylobate / base -->
+  <rect x="11" y="50" width="42" height="3.6" rx="1" fill="#D4AF6A"/>
+</svg>
