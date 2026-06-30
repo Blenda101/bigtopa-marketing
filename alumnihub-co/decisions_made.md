@@ -45,17 +45,15 @@ Home teases each concept with a "Learn more →"; each key topic gets its own pa
 - `monetization.html` — lead pillar; donations highlighted; Fit panel showing what's on/off for alumni
 - `university-alumni-associations.html` — richest org page; regional chapter directory (echoes the NHAA example), conferences/events, chapter family + Connect, independent-501(c)(3) framing
 
-**Stage 2 (built):** `engagement.html`, `marketing.html`, `alumni-class-networks.html`, `high-school-alumni.html`, `booster-clubs.html`. All nine pages now live; all internal links resolve; navy/gold only; BigTopa appears once per page (footer badge).
-
-**Marketing Fit subset (decided while building `marketing.html`):** On — Email, SMS, Landing Pages, Form Builder, Social Media, Affiliate→peer-to-peer, Banners, Coupons. Off — Chat Bot. Peer-to-peer is featured as the strongest alumni fit.
-
----
-
-## Decided
-
-1. **Tier names** — Annual / Campaign / Endowment (Option B, per brief recommendation). Campaign is "Most popular."
-2. **Positioning** — giving-first retained (Gabriel's call), with Engagement (events/conferences/reunions) and Marketing as the two pillars that drive giving. Resolves the earlier events-vs-giving tension.
-3. **Org-type cards** — University Alumni Associations · Alumni Class Networks · High School Alumni · Booster Clubs. **HBCU card removed** — replaced by Alumni Class Networks (each class an independent hub; reunion planning a key focus); the structural point is universal, so no single market is singled out. **"High School Alumni Foundations" renamed to "High School Alumni"** (Gabriel) — "Foundation" presumed a specific legal entity, and the "small/volunteer-run" copy was an assumption; the card now spans both official associations with boards/501(c)(3) and individual class networks (reunion/giving). Generic "foundation" wording also cleared from the Endowment tier tagline and the early-access form.
+**Stage 2 (built):** `engagement.html`, `marketing.html`, `alumni-class-networks.html`, `high-school-alumni.html`, `booster-clubs.html`. All nine pages now live; all internal links resolve; navy
+## Giving dashboard — interactive (Public/Admin)
+- Single page `giving-dashboard.html` + `assets/dash.css` + `assets/dash.js` (split from one file to dodge ~25KB single-write truncation ceiling).
+- Two views via toggle: **Public** (shareable infographic — progress, momentum, hex map, recognition societies, top classes/chapters, latest gifts, matching challenge) and **Admin** (adds Fund Ledger & Health with LYBUNT/SYBUNT/pledged/recurring, full Donor table with PII, Export CSV).
+- Filters: scope (National / Northeast Region / Boston Chapter), metric (Dollars / Participation / Donors) re-tint the hex map; period selector; all driven by in-file DATA object (fake/demo data).
+- Hex map = NPR-style pointy-top cartogram, offset rows (odd rows +0.5 col), gold sequential fill scale. 50 states + DC.
+- Giving societies: Advocate $1k / Patron $5k / Benefactor $10k / Leadership Circle $25k / Legacy Society $100k.
+- Bug fixed: duplicate `donors` key (count vs table array) — array clobbered the count so the Donors KPI stringified the donor list. Table key renamed to `donorList`.
+ntity, and the "small/volunteer-run" copy was an assumption; the card now spans both official associations with boards/501(c)(3) and individual class networks (reunion/giving). Generic "foundation" wording also cleared from the Endowment tier tagline and the early-access form.
 4. **Associations are independent organizations** — copy reflects separate 501(c)(3) reality; dotted/solid university line throughout.
 5. **Visual identity** — navy `#1A2B4C` + gold `#C99A2E`/`#D4A535` + cream; Cormorant Garamond (display) + Inter (body). Distinct from BigTopa orange, GatherAgain, GreekHouse. No `shared.css` dependency.
 6. **Naming locked** — Chapter Hub Flow / Chapter Hub Connect (Hub Flow / Hub Connect = platform-level).
@@ -84,3 +82,11 @@ Home teases each concept with a "Learn more →"; each key topic gets its own pa
 3. **Form backend** — early-access form is front-end only (confirmation state); needs wiring to a real endpoint.
 4. **Deploy verification** — confirm clean-URL redirect behaves on Netlify; link the site in Netlify (base dir `alumnihub-co`).
 5. **Git commit** — work is saved to the folder but not committed (sandbox can't write `.git`); commit/push from the host.
+
+## Social / SEO metadata (OG + Twitter)
+- Built brand OG image `assets/og-image.png` (1200×630) + source `assets/og-image.source.html` + AI gen prompt `assets/og-image-genprompt.md`.
+- Wired full metadata into all 13 real pages: canonical (clean URLs), theme-color #1A2B4C, Open Graph (type/site_name/url/title/du/image+dims+alt), Twitter summary_large_image. og:title/description reuse each page's <title>/<meta description>.
+- Fixed index.html: existing OG tags pointed to nonexistent assets/og.jpg → now assets/og-image.png, added image dims/alt + canonical + twitter:image:alt.
+- noindex pages (privacy, terms, giving-dashboard) get OG/Twitter for nice share cards but no canonical.
+- Redirect stubs (high-school-alumni, high-school-alumni-associations, university-alumni-associations) intentionally skipped.
+- All pages share the one brand banner (standard practice); per-page OG variants not generated.

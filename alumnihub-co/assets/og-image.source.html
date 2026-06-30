@@ -1,0 +1,120 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>AlumniHub OG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1A2B4C; --navy-deep:#101d36; --navy-up:#24385e;
+    --gold:#C99A2E; --gold-mid:#D4A535; --gold-light:#E3BC5C; --cream:#FAF6EE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;
+    background:radial-gradient(120% 140% at 18% 8%, #294067 0%, var(--navy) 42%, var(--navy-deep) 100%);
+    font-family:'Inter',sans-serif;color:var(--cream)}
+  /* subtle gold grain hairlines top + bottom */
+  .frame{position:absolute;inset:30px;border:1px solid rgba(201,154,46,.22);border-radius:14px;pointer-events:none}
+  /* faint graduation cap watermark, large, low opacity, top-right */
+  .cap{position:absolute;top:-40px;right:-30px;width:430px;opacity:.07}
+  /* hex cluster motif, bottom-right faint */
+  .hexwrap{position:absolute;right:-30px;bottom:-40px;width:560px;opacity:.5}
+  /* content */
+  .content{position:absolute;left:78px;top:0;height:100%;width:640px;display:flex;flex-direction:column;justify-content:center;z-index:3}
+  .brandrow{display:flex;align-items:center;gap:13px;margin-bottom:30px}
+  .mark{width:42px;height:42px;flex:0 0 auto}
+  .wordmark{font-weight:700;font-size:26px;letter-spacing:.2px;color:var(--cream)}
+  .wordmark b{color:var(--gold-light);font-weight:700}
+  .eyebrow{font-size:14.5px;font-weight:600;letter-spacing:3.4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:22px}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--cream);font-size:74px;line-height:1.04;letter-spacing:.3px}
+  h1 .em{font-style:italic;color:var(--gold-light)}
+  .rule{width:96px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:30px 0 24px}
+  .sub{font-size:18px;font-weight:500;color:rgba(250,246,238,.78);letter-spacing:.2px}
+  .powered{position:absolute;left:78px;bottom:54px;font-size:13.5px;letter-spacing:.4px;color:rgba(250,246,238,.5);z-index:3}
+  .powered b{color:rgba(227,188,92,.85);font-weight:600}
+  /* fundraising visualization — rising bars + trend, right side */
+  .viz{position:absolute;right:74px;bottom:120px;width:380px;height:330px;z-index:2}
+</style></head>
+<body>
+<div class="og">
+  <div class="frame"></div>
+
+  <!-- graduation cap watermark (subtle, suits all markets) -->
+  <svg class="cap" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 18 L188 54 L100 90 L12 54 Z" fill="#E3BC5C"/>
+    <path d="M150 70 v34 c0 16 -22 26 -50 26 s-50 -10 -50 -26 v-34" stroke="#E3BC5C" stroke-width="7" fill="none"/>
+    <line x1="188" y1="54" x2="188" y2="104" stroke="#E3BC5C" stroke-width="6"/>
+    <circle cx="188" cy="112" r="9" fill="#E3BC5C"/>
+  </svg>
+
+  <!-- hex cluster motif (dashboard signature) -->
+  <svg class="hexwrap" viewBox="0 0 560 460" xmlns="http://www.w3.org/2000/svg">
+    <defs><g id="hx"><polygon points="40,0 80,23 80,69 40,92 0,69 0,23" /></g></defs>
+    <g>
+      <use href="#hx" x="150" y="40"  fill="rgba(201,154,46,.20)"/>
+      <use href="#hx" x="232" y="40"  fill="rgba(201,154,46,.32)"/>
+      <use href="#hx" x="314" y="40"  fill="rgba(201,154,46,.18)"/>
+      <use href="#hx" x="109" y="110" fill="rgba(201,154,46,.30)"/>
+      <use href="#hx" x="191" y="110" fill="rgba(201,154,46,.55)"/>
+      <use href="#hx" x="273" y="110" fill="rgba(201,154,46,.38)"/>
+      <use href="#hx" x="355" y="110" fill="rgba(201,154,46,.22)"/>
+      <use href="#hx" x="150" y="180" fill="rgba(201,154,46,.42)"/>
+      <use href="#hx" x="232" y="180" fill="rgba(227,188,92,.85)"/>
+      <use href="#hx" x="314" y="180" fill="rgba(201,154,46,.34)"/>
+      <use href="#hx" x="191" y="250" fill="rgba(201,154,46,.26)"/>
+      <use href="#hx" x="273" y="250" fill="rgba(201,154,46,.20)"/>
+    </g>
+  </svg>
+
+  <!-- fundraising growth visualization -->
+  <svg class="viz" viewBox="0 0 380 330" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#C99A2E"/><stop offset="1" stop-color="#E3BC5C"/>
+      </linearGradient>
+      <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="rgba(227,188,92,.30)"/><stop offset="1" stop-color="rgba(227,188,92,0)"/>
+      </linearGradient>
+    </defs>
+    <!-- baseline -->
+    <line x1="6" y1="300" x2="374" y2="300" stroke="rgba(250,246,238,.18)" stroke-width="2"/>
+    <!-- goal line -->
+    <line x1="6" y1="58" x2="374" y2="58" stroke="rgba(227,188,92,.45)" stroke-width="1.6" stroke-dasharray="5 6"/>
+    <text x="374" y="50" text-anchor="end" font-family="Inter" font-size="13" font-weight="600" fill="rgba(227,188,92,.85)">GOAL</text>
+    <!-- rising bars -->
+    <g>
+      <rect x="26"  y="232" width="40" height="68"  rx="6" fill="url(#bar)" opacity=".55"/>
+      <rect x="92"  y="196" width="40" height="104" rx="6" fill="url(#bar)" opacity=".68"/>
+      <rect x="158" y="150" width="40" height="150" rx="6" fill="url(#bar)" opacity=".82"/>
+      <rect x="224" y="108" width="40" height="192" rx="6" fill="url(#bar)" opacity=".92"/>
+      <rect x="290" y="68"  width="40" height="232" rx="6" fill="url(#bar)"/>
+    </g>
+    <!-- trend area + line over bar tops -->
+    <path d="M46,228 L112,192 L178,146 L244,104 L310,64 L310,300 L46,300 Z" fill="url(#area)"/>
+    <path d="M46,228 L112,192 L178,146 L244,104 L310,64" fill="none" stroke="#FAF6EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- gift dots -->
+    <circle cx="46" cy="228" r="5.5" fill="#FAF6EE"/>
+    <circle cx="178" cy="146" r="5.5" fill="#FAF6EE"/>
+    <circle cx="310" cy="64" r="7" fill="#FAF6EE" stroke="#C99A2E" stroke-width="3"/>
+  </svg>
+
+  <div class="content">
+    <div class="brandrow">
+      <svg class="mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="46" height="46" rx="11" fill="rgba(227,188,92,.12)" stroke="rgba(227,188,92,.5)" stroke-width="1.5"/>
+        <path d="M24 11 L40 18 L24 25 L8 18 Z" fill="#E3BC5C"/>
+        <path d="M33 21.5 v8 c0 4.4 -4 7 -9 7 s-9 -2.6 -9 -7 v-8" stroke="#E3BC5C" stroke-width="2.4" fill="none"/>
+        <line x1="40" y1="18" x2="40" y2="29" stroke="#E3BC5C" stroke-width="2.2"/>
+        <circle cx="40" cy="31.5" r="2.6" fill="#E3BC5C"/>
+      </svg>
+      <div class="wordmark">Alumni<b>Hub</b></div>
+    </div>
+    <div class="eyebrow">Community-Driven Alumni Giving</div>
+    <h1>Nurture your community.<br><span class="em">Grow your givers.</span></h1>
+    <div class="rule"></div>
+    <div class="sub">Engagement, marketing &amp; giving — in one platform.</div>
+  </div>
+
+  <div class="powered">Powered by <b>BigTopa</b></div>
+</div>
+</body></html>

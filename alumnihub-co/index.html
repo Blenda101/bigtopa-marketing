@@ -7,16 +7,22 @@
 <meta name="description" content="AlumniHub is the platform for organized alumni giving. Every chapter is a hub uniting engagement, marketing, and monetization — so your team can run campaigns, host events, and raise more for the institution that made you.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://alumnihub.co/">
+<meta name="theme-color" content="#1A2B4C">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AlumniHub">
 <meta property="og:url" content="https://alumnihub.co">
 <meta property="og:title" content="AlumniHub — Nurture your community, grow your givers.">
 <meta property="og:description" content="AlumniHub is the platform for organized alumni giving — uniting engagement, marketing, and monetization in one chapter hub.">
-<meta property="og:image" content="https://alumnihub.co/assets/og.jpg">
+<meta property="og:image" content="https://alumnihub.co/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AlumniHub — Nurture your community. Grow your givers.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AlumniHub — Nurture your community, grow your givers.">
 <meta name="twitter:description" content="AlumniHub is the platform for organized alumni giving — uniting engagement, marketing, and monetization in one chapter hub.">
-<meta name="twitter:image" content="https://alumnihub.co/assets/og.jpg">
+<meta name="twitter:image" content="https://alumnihub.co/assets/og-image.png">
+<meta name="twitter:image:alt" content="AlumniHub — Nurture your community. Grow your givers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -581,16 +587,16 @@
       <div class="ea-card">
         <div class="ea-spots"><span class="ea-spot-dot"></span><span><b>Founding cohort</b> — limited spots for the first campaigns</span></div>
         <div class="ea-ct">Get notified when we launch</div>
-        <form id="ea-form" onsubmit="return false">
+        <form id="ea-form" onsubmit="return false" data-poily-import="alumnihub-signup" data-poily-placement="signup_page">
           <div class="frow">
-            <div class="ff"><label for="fn">First name</label><input id="fn" type="text" placeholder="Jordan" autocomplete="given-name"></div>
-            <div class="ff"><label for="ln">Last name</label><input id="ln" type="text" placeholder="Mitchell" autocomplete="family-name"></div>
+            <div class="ff"><label for="fn">First name</label><input id="fn" name="first_name" type="text" placeholder="Jordan" autocomplete="given-name"></div>
+            <div class="ff"><label for="ln">Last name</label><input id="ln" name="last_name" type="text" placeholder="Mitchell" autocomplete="family-name"></div>
           </div>
-          <div class="ff"><label for="em">Email</label><input id="em" type="email" placeholder="jordan@example.com" autocomplete="email"></div>
-          <div class="ff"><label for="org">Organization name</label><input id="org" type="text" placeholder="e.g. Westfield University Alumni Association"></div>
+          <div class="ff"><label for="em">Email</label><input id="em" name="email" type="email" placeholder="jordan@example.com" autocomplete="email"></div>
+          <div class="ff"><label for="org">Organization name</label><input id="org" name="organization" type="text" placeholder="e.g. Westfield University Alumni Association"></div>
           <div class="frow">
             <div class="ff"><label for="ot">Organization type</label>
-              <select id="ot">
+              <select id="ot" name="organization_type">
                 <option>Collegiate Alumni Association</option>
                 <option>Alumni Class Network</option>
                 <option>High School Alumni Organization</option>
@@ -599,7 +605,7 @@
               </select>
             </div>
             <div class="ff"><label for="role">Your role</label>
-              <select id="role">
+              <select id="role" name="role">
                 <option>Class gift chair</option>
                 <option>Giving coordinator</option>
                 <option>Foundation / board volunteer</option>
@@ -612,6 +618,7 @@
           <button class="eabtn" id="eabtn" type="submit">Request Early Access →</button>
           <p class="eanote">No credit card. No spam. Just early access.</p>
         </form>
+        <script src="https://forms.alumnihub.co/sdk.js" async></script>
       </div>
     </div>
   </div>
