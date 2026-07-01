@@ -191,6 +191,12 @@
 .eabtn{width:100%;background:var(--navy);color:var(--white);border:none;padding:15px;border-radius:100px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s,transform .2s;margin-top:4px}
 .eabtn:hover{background:var(--gold);color:var(--ink);transform:translateY(-1px)}
 .eanote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
+.ea-upgrade{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;margin-top:16px;border:1.5px solid rgba(201,154,46,.45);border-radius:13px;background:rgba(201,154,46,.06);cursor:pointer;transition:border-color .2s,background .2s}
+.ea-upgrade:hover{border-color:rgba(201,154,46,.75);background:rgba(201,154,46,.1)}
+.ea-upgrade:has(input:checked){border-color:var(--gold);background:rgba(201,154,46,.14)}
+.ea-upgrade input{width:18px;height:18px;margin-top:2px;accent-color:#C99A2E;flex:none;cursor:pointer}
+.ea-up-t{font-size:13.5px;line-height:1.5;color:rgba(30,42,64,.6)}
+.ea-up-t b{display:block;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:2px}
 
 /* CTA */
 .cta{padding:92px 60px;text-align:center;background:var(--navy);color:var(--white);position:relative;overflow:hidden}
@@ -260,7 +266,7 @@
     </div>
     <div class="nr">
       <a href="#" class="nghost">Sign in</a>
-      <a href="#access" class="nbtn">Request Early Access</a>
+      <a href="#access" class="nbtn">Join the Waitlist</a>
       <button class="mob-toggle" id="mob-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -282,18 +288,18 @@
   <a href="why-alumnihub.html" class="mob-nav-link">Why AlumniHub</a>
   <a href="#tiers" class="mob-nav-link">Pricing</a>
   <a href="#" class="mob-sign">Sign in</a>
-  <a href="#access" class="mob-nav-cta">Request Early Access</a>
+  <a href="#access" class="mob-nav-cta">Join the Waitlist</a>
 </div>
 
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hl">
-    <div class="eyebrow"><div class="eyr"></div><span class="eyt">The platform for community-driven alumni giving</span></div>
+    <div class="eyebrow"><div class="eyr"></div><span class="eyt">Coming soon · The platform for community-driven alumni giving</span></div>
     <h1>Nurture your community —<br>and <em>grow your givers.</em></h1>
     <p class="hero-sub">AlumniHub gives your team one place to engage alumni, nurture donor relationships, and run the campaigns and events that turn a community into committed givers.</p>
     <div class="hero-ctas">
-      <a href="#access" class="btnp">Request Early Access</a>
+      <a href="#access" class="btnp">Join the Waitlist</a>
       <a href="#pillars" class="btnt">See how it works</a>
     </div>
     <div class="hero-trust"><b>Built for class leaders, giving coordinators &amp; booster volunteers</b></div>
@@ -534,7 +540,7 @@
         <div class="tfeat off">Webinars &amp; broadcast</div>
         <div class="tfeat off">Chapter Hub Connect</div>
       </div>
-      <a href="#access" class="tcta">Request Early Access</a>
+      <a href="#access" class="tcta">Join the Waitlist</a>
     </div>
 
     <div class="tcard feature sf">
@@ -550,7 +556,7 @@
         <div class="tfeat">Alumni merch shop</div>
         <div class="tfeat">Chapter Hub Connect — link up to a parent</div>
       </div>
-      <a href="#access" class="tcta">Request Early Access</a>
+      <a href="#access" class="tcta">Join the Waitlist</a>
     </div>
 
     <div class="tcard sf">
@@ -565,10 +571,10 @@
         <div class="tfeat">Be a parent hub (Regional / National)</div>
         <div class="tfeat">Chapter Hub Flow across the family</div>
       </div>
-      <a href="#access" class="tcta">Request Early Access</a>
+      <a href="#access" class="tcta">Join the Waitlist</a>
     </div>
   </div>
-  <p class="tiers-note">Founding organizations get early-access pricing locked in. Tier details are still being finalized — early partners help shape them.</p>
+  <p class="tiers-note">Founding organizations lock in their pricing for good. Tier details are still being finalized — early partners help shape them.</p>
 </section>
 
 <!-- ══ EARLY ACCESS ══ -->
@@ -616,8 +622,11 @@
               </select>
             </div>
           </div>
-          <button class="eabtn" id="eabtn" type="submit">Request Early Access →</button>
-          <p class="eanote">No credit card. No spam. Just early access.</p>
+          <label class="ea-upgrade">
+            <input type="checkbox" id="reqaccess" name="request_early_access" value="yes">
+            <span class="ea-up-t"><b>Go beyond the waitlist</b>Be among the first to give better.</span>
+          </label>
+          <button class="eabtn" id="eabtn" type="submit">Join the Waitlist →</button>
         </form>
         <script src="https://forms.alumnihub.co/sdk.js" async></script>
       </div>
@@ -631,8 +640,8 @@
   <div class="cta-inner">
     <h2>Support the place<br>that <em>supported you.</em></h2>
     <p class="cta-sub">Give your team the tools to engage, nurture, and rally your alumni — and deliver real impact for the place that made you.</p>
-    <a href="#access" class="btnp">Request Early Access</a>
-    <p class="cta-note">Founding organizations only · Limited early-access cohort</p>
+    <a href="#access" class="btnp">Join the Waitlist</a>
+    <p class="cta-note">Founding organizations only · Limited founding cohort</p>
   </div>
 </section>
 
@@ -661,7 +670,7 @@
       <h4>Company</h4>
       <a href="why-alumnihub.html">Why AlumniHub</a>
       <a href="#tiers">Pricing</a>
-      <a href="#access">Early access</a>
+      <a href="#access">Join the waitlist</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
     </div>
@@ -680,6 +689,8 @@ toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');tog
 drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
 const f=document.getElementById('ea-form');
 if(f)f.addEventListener('submit',()=>{const b=document.getElementById('eabtn');b.textContent="✓ You're on the list!";b.style.background='#C99A2E';b.style.color='#0E1A30';b.style.transform='none';});
+const ra=document.getElementById('reqaccess');
+if(ra){const sb=()=>{const b=document.getElementById('eabtn');if(b)b.textContent=(ra.checked?'Request Early Access':'Join the Waitlist')+' →';};ra.addEventListener('change',sb);sb();}
 </script>
 </body>
 </html>
