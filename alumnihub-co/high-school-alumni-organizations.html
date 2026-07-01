@@ -249,4 +249,8 @@
 
 <script>
 const toggle=document.getElementById('mob-toggle'),drawer=document.getElementById('mob-drawer');
-toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.bod
+toggle.addEventListener('click',()=>{const o=drawer.classList.toggle('open');toggle.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);});
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drawer.classList.remove('open');toggle.classList.remove('open');document.body.classList.remove('nav-open');}));
+</script>
+</body>
+</html>
