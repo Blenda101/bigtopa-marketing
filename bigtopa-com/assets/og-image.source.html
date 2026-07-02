@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>BigTopa OG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080C14; --ink2:#0D1220; --ink3:#141B2D; --edge:#1E2840;
+    --accent:#E8621A; --accent2:#FF7A35; --violet:#7B5CF0; --white:#FAFBFF; --muted:#8892A4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;
+    background:radial-gradient(120% 140% at 15% 4%, #16203a 0%, var(--ink2) 46%, var(--ink) 100%);
+    font-family:'DM Sans',sans-serif;color:var(--white)}
+  .frame{position:absolute;inset:30px;border:1px solid rgba(232,98,26,.22);border-radius:14px;pointer-events:none}
+  /* dual-tone glow behind the mark */
+  .glow{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:560px;height:560px;border-radius:50%;
+    background:radial-gradient(circle, rgba(232,98,26,.20) 0%, rgba(123,92,240,.12) 40%, transparent 66%);pointer-events:none}
+  .content{position:absolute;left:78px;top:0;height:100%;width:660px;display:flex;flex-direction:column;justify-content:center;z-index:3}
+  .brandrow{display:flex;align-items:center;gap:13px;margin-bottom:32px}
+  .mark{width:54px;height:33px;flex:0 0 auto}
+  .wordmark{font-family:'DM Serif Display',serif;font-size:32px;letter-spacing:.2px;color:var(--white)}
+  .wordmark b{color:var(--accent);font-weight:400}
+  .eyebrow{font-size:24px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:22px}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;color:var(--white);font-size:80px;line-height:.98;letter-spacing:-.02em}
+  h1 .em{font-style:italic;color:var(--accent2)}
+  .rule{width:96px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:30px 0 24px}
+  .sub{font-size:27px;font-weight:400;color:rgba(250,251,255,.80);letter-spacing:.1px}
+  .emblem{position:absolute;right:118px;top:50%;transform:translateY(-50%);width:360px;height:360px;z-index:2}
+</style></head>
+<body>
+<div class="og">
+  <div class="frame"></div>
+  <div class="glow"></div>
+
+  <svg class="emblem" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="180" cy="180" r="150" fill="none" stroke="rgba(232,98,26,.20)" stroke-width="2"/>
+    <circle cx="180" cy="180" r="134" fill="none" stroke="rgba(123,92,240,.16)" stroke-width="1.5"/>
+    <!-- twin-peak mark -->
+    <g transform="translate(30 90) scale(1.75)">
+      <path d="M82.8 32.5C82.8 32.5 69.4 58.9 47.6 76.5C18.8 99.7 0 103 0 103L52.2 101.3C52.2 101.3 72.9 71.1 82.8 32.5Z" fill="#E8621A"/>
+      <path d="M88.1 31.7998C88.1 31.7998 101.6 58.0997 123.4 75.6997C152.2 98.8997 171 102.2 171 102.2L118.8 100.6C118.8 100.6 98.1 70.3998 88.1 31.7998Z" fill="#E8621A"/>
+      <path d="M85.8 32.6001L67.9 101H102L85.8 32.6001Z" fill="#E8621A"/>
+      <path d="M90.3 21.3999C90.2901 22.2757 90.022 23.1291 89.5293 23.8532C89.0365 24.5773 88.341 25.1399 87.53 25.4705C86.7189 25.8011 85.8283 25.885 84.9698 25.7117C84.1113 25.5384 83.323 25.1156 82.7037 24.4963C82.0844 23.8769 81.6616 23.0887 81.4883 22.2301C81.315 21.3716 81.3989 20.481 81.7295 19.67C82.0601 18.8589 82.6227 18.1634 83.3468 17.6707C84.0709 17.1779 84.9242 16.9098 85.8 16.8999C86.3917 16.8974 86.9779 17.0121 87.525 17.2373C88.0721 17.4626 88.5693 17.794 88.9876 18.2123C89.406 18.6307 89.7374 19.1277 89.9626 19.6748C90.1879 20.2219 90.3025 20.8083 90.3 21.3999Z" fill="#CACAD9"/>
+      <path d="M87.1 38.2H84.1V0H87.1V38.2Z" fill="#CACAD9"/>
+      <path d="M85.3 6.59998L87.1 0H108.2L101.6 6.90002L106.7 12.2L86.3 12.7L85.3 6.59998Z" fill="#E8621A"/>
+    </g>
+  </svg>
+
+  <div class="content">
+    <div class="brandrow">
+      <svg class="mark" viewBox="0 0 171 103" xmlns="http://www.w3.org/2000/svg">
+        <path d="M82.8 32.5C82.8 32.5 69.4 58.9 47.6 76.5C18.8 99.7 0 103 0 103L52.2 101.3C52.2 101.3 72.9 71.1 82.8 32.5Z" fill="#E8621A"/>
+        <path d="M88.1 31.7998C88.1 31.7998 101.6 58.0997 123.4 75.6997C152.2 98.8997 171 102.2 171 102.2L118.8 100.6C118.8 100.6 98.1 70.3998 88.1 31.7998Z" fill="#E8621A"/>
+        <path d="M85.8 32.6001L67.9 101H102L85.8 32.6001Z" fill="#E8621A"/>
+        <path d="M87.1 38.2H84.1V0H87.1V38.2Z" fill="#CACAD9"/>
+        <path d="M85.3 6.59998L87.1 0H108.2L101.6 6.90002L106.7 12.2L86.3 12.7L85.3 6.59998Z" fill="#E8621A"/>
+      </svg>
+      <div class="wordmark">Big<b>Topa</b></div>
+    </div>
+    <div class="eyebrow">The Engagement Platform</div>
+    <h1>One platform.<br>Every <span class="em">engagement.</span></h1>
+    <div class="rule"></div>
+    <div class="sub">Chat, events, community &amp; giving — one platform.</div>
+  </div>
+</div>
+</body></html>
