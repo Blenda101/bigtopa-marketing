@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>GreekHouse OG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#6B1E2E; --bm:#8B2D40; --ink:#1C1410;
+    --gold:#B8923A; --gl:#D4AF6A; --gp:#F0E4C8; --stone:#FDFAF6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;
+    background:radial-gradient(120% 140% at 16% 6%, #7d2637 0%, var(--burgundy) 44%, var(--ink) 100%);
+    font-family:'Outfit',sans-serif;color:var(--stone)}
+  .frame{position:absolute;inset:30px;border:1px solid rgba(184,146,58,.24);border-radius:14px;pointer-events:none}
+  /* faint crest/shield watermark, top-right */
+  .crest{position:absolute;top:-46px;right:-40px;width:430px;opacity:.06}
+  /* content */
+  .content{position:absolute;left:78px;top:0;height:100%;width:660px;display:flex;flex-direction:column;justify-content:center;z-index:3}
+  .brandrow{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+  .mark{width:46px;height:46px;flex:0 0 auto}
+  .wordmark{font-family:'Fraunces',serif;font-weight:700;font-size:30px;letter-spacing:.2px;color:var(--stone)}
+  .wordmark b{color:var(--gl);font-weight:700}
+  .eyebrow{font-size:21px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gl);margin-bottom:20px}
+  h1{font-family:'Fraunces',serif;font-weight:700;color:var(--stone);font-size:76px;line-height:1.0;letter-spacing:.2px}
+  h1 .em{font-style:italic;color:var(--gl)}
+  .rule{width:96px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gl));border-radius:2px;margin:28px 0 22px}
+  .sub{font-size:25px;font-weight:500;color:rgba(253,250,246,.82);letter-spacing:.2px}
+  .powered{position:absolute;left:78px;bottom:50px;font-size:17px;letter-spacing:.4px;color:rgba(253,250,246,.55);z-index:3}
+  .powered b{color:rgba(212,175,106,.9);font-weight:600}
+  /* heraldic emblem — seal + temple, right side */
+  .emblem{position:absolute;right:96px;top:50%;transform:translateY(-50%);width:360px;height:360px;z-index:2}
+</style></head>
+<body>
+<div class="og">
+  <div class="frame"></div>
+
+  <!-- faint crest watermark -->
+  <svg class="crest" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 6 L186 34 V116 C186 168 146 200 100 214 C54 200 14 168 14 116 V34 Z" fill="#D4AF6A"/>
+  </svg>
+
+  <!-- heraldic seal: gold temple inside a ring, with laurel flourish -->
+  <svg class="emblem" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#E3C888"/><stop offset="1" stop-color="#B8923A"/>
+      </linearGradient>
+    </defs>
+    <!-- seal rings -->
+    <circle cx="180" cy="180" r="152" fill="none" stroke="rgba(212,175,106,.40)" stroke-width="2"/>
+    <circle cx="180" cy="180" r="140" fill="none" stroke="rgba(212,175,106,.22)" stroke-width="1.5"/>
+    <!-- temple -->
+    <g fill="url(#g)">
+      <!-- pediment -->
+      <path d="M180 92 L266 140 L94 140 Z"/>
+      <!-- entablature -->
+      <rect x="100" y="144" width="160" height="10" rx="2"/>
+      <!-- columns -->
+      <rect x="110" y="160" width="15" height="80" rx="2"/>
+      <rect x="141" y="160" width="15" height="80" rx="2"/>
+      <rect x="172" y="160" width="15" height="80" rx="2"/>
+      <rect x="203" y="160" width="15" height="80" rx="2"/>
+      <rect x="234" y="160" width="15" height="80" rx="2"/>
+      <!-- stylobate steps -->
+      <rect x="96" y="244" width="168" height="10" rx="2"/>
+      <rect x="86" y="256" width="188" height="8" rx="2"/>
+    </g>
+    <!-- laurel flourish under the temple -->
+    <g stroke="rgba(212,175,106,.75)" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M150 300 C120 296 104 282 98 262"/>
+      <path d="M210 300 C240 296 256 282 262 262"/>
+    </g>
+    <g fill="rgba(212,175,106,.7)">
+      <ellipse cx="104" cy="276" rx="5" ry="9" transform="rotate(-35 104 276)"/>
+      <ellipse cx="116" cy="288" rx="5" ry="9" transform="rotate(-25 116 288)"/>
+      <ellipse cx="131" cy="296" rx="5" ry="9" transform="rotate(-15 131 296)"/>
+      <ellipse cx="256" cy="276" rx="5" ry="9" transform="rotate(35 256 276)"/>
+      <ellipse cx="244" cy="288" rx="5" ry="9" transform="rotate(25 244 288)"/>
+      <ellipse cx="229" cy="296" rx="5" ry="9" transform="rotate(15 229 296)"/>
+    </g>
+    <!-- apex star -->
+    <circle cx="180" cy="80" r="6" fill="#E3C888"/>
+  </svg>
+
+  <div class="content">
+    <div class="brandrow">
+      <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="62" height="62" rx="14" fill="rgba(212,175,106,.12)" stroke="rgba(212,175,106,.5)" stroke-width="1.5"/>
+        <path d="M32 15 L54 30 L10 30 Z" fill="#D4AF6A"/>
+        <rect x="13" y="31.5" width="38" height="3" rx="1" fill="#D4AF6A"/>
+        <rect x="16" y="35" width="4" height="13" rx="1" fill="#D4AF6A"/>
+        <rect x="25" y="35" width="4" height="13" rx="1" fill="#D4AF6A"/>
+        <rect x="34" y="35" width="4" height="13" rx="1" fill="#D4AF6A"/>
+        <rect x="43" y="35" width="4" height="13" rx="1" fill="#D4AF6A"/>
+        <rect x="12" y="49" width="40" height="3.4" rx="1" fill="#D4AF6A"/>
+      </svg>
+      <div class="wordmark">GreekHouse<b>.io</b></div>
+    </div>
+    <div class="eyebrow">Built for Greek Life</div>
+    <h1>Your chapter's<br><span class="em">digital home.</span></h1>
+    <div class="rule"></div>
+    <div class="sub">Chapter management, events &amp; community — in one place.</div>
+  </div>
+
+  <div class="powered">Powered by <b>BigTopa</b></div>
+</div>
+</body></html>
