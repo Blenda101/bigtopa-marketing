@@ -1477,17 +1477,20 @@ body.nav-open{overflow:hidden}
       </div>
       <div class="wlct">Join the waitlist</div>
       <p class="wlcs">Early access orgs get founding pricing and first look at community features.</p>
+      <form id="wl-form" onsubmit="return false" data-poily-import="greekhouse-waitlist" data-poily-placement="waitlist_hero">
       <div class="frow">
-        <div class="ff2"><label>First name</label><input type="text" placeholder="Jordan"></div>
-        <div class="ff2"><label>Last name</label><input type="text" placeholder="Mitchell"></div>
+        <div class="ff2"><label for="wl-fn">First name</label><input id="wl-fn" name="first_name" type="text" placeholder="Jordan" autocomplete="given-name"></div>
+        <div class="ff2"><label for="wl-ln">Last name</label><input id="wl-ln" name="last_name" type="text" placeholder="Mitchell" autocomplete="family-name"></div>
       </div>
-      <div class="ff2"><label>Email</label><input type="email" placeholder="jordan@example.com"></div>
-      <div class="ff2"><label>Organization name</label><input type="text" placeholder="e.g. Alpha Phi Alpha — Beta Chapter Alumni Assoc."></div>
+      <div class="ff2"><label for="wl-em">Email</label><input id="wl-em" name="email" type="email" placeholder="jordan@example.com" autocomplete="email"></div>
+      <div class="ff2"><label for="wl-org">Organization name</label><input id="wl-org" name="organization" type="text" placeholder="e.g. Alpha Phi Alpha — Beta Chapter Alumni Assoc."></div>
       <div class="frow">
-        <div class="ff2"><label>Organization type</label><select><option>Undergraduate Chapter</option><option>Alumni Association</option><option>Graduate Chapter</option></select></div>
-        <div class="ff2"><label>Greek council</label><select><option>NPHC</option><option>IFC</option><option>Panhellenic</option><option>MGC</option><option>Other / Independent</option></select></div>
+        <div class="ff2"><label for="wl-ot">Organization type</label><select id="wl-ot" name="organization_type"><option value="Undergraduate Chapter">Undergraduate Chapter</option><option value="Alumni Association">Alumni Association</option><option value="Graduate Chapter">Graduate Chapter</option></select></div>
+        <div class="ff2"><label for="wl-gc">Greek council</label><select id="wl-gc" name="greek_council"><option value="NPHC">NPHC</option><option value="IFC">IFC</option><option value="Panhellenic">Panhellenic</option><option value="MGC">MGC</option><option value="Other / Independent">Other / Independent</option></select></div>
       </div>
-      <button class="wlbtn" id="wlb">Reserve My Spot →</button>
+      <button class="wlbtn" id="wlb" type="submit">Reserve My Spot →</button>
+      </form>
+      <script src="https://forms.greekhouse.io/sdk.js" async></script>
       <p class="wlnote">No credit card. No spam. Just early access.</p>
     </div>
   </div>
@@ -1575,8 +1578,10 @@ const io = new IntersectionObserver(e=>{
 },{threshold:.1});
 document.querySelectorAll('.sf').forEach(el=>io.observe(el));
 
-/* ── Waitlist button ── */
-document.getElementById('wlb').addEventListener('click',()=>{
+/* ── Waitlist form: success UX (fires on click + Enter). Poily captures the
+   submission via the form's data-poily-import; onsubmit="return false" only
+   stops the browser navigating — Poily's own submit listener still fires. ── */
+document.getElementById('wl-form').addEventListener('submit',()=>{
   const b=document.getElementById('wlb');
   b.textContent="✓ You're on the list!";
   b.style.background='#3D6B57';
