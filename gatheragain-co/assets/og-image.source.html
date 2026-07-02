@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>GatherAgain OG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1A3128; --sage:#3D6B57; --moss:#5A8A72; --ink:#0F1F16;
+    --amber:#C4713A; --al:#D98A55; --ap:#F5E6D8; --warm:#F7F2EC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;
+    background:radial-gradient(120% 140% at 16% 6%, #274733 0%, var(--forest) 46%, var(--ink) 100%);
+    font-family:'Plus Jakarta Sans',sans-serif;color:var(--warm)}
+  .frame{position:absolute;inset:30px;border:1px solid rgba(196,113,58,.26);border-radius:14px;pointer-events:none}
+  /* warm glow behind emblem */
+  .glow{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, rgba(196,113,58,.18) 0%, transparent 62%);pointer-events:none}
+  /* faint recurrence-loop watermark, top-right */
+  .wm{position:absolute;top:-40px;right:-30px;width:360px;opacity:.06}
+  .content{position:absolute;left:78px;top:0;height:100%;width:660px;display:flex;flex-direction:column;justify-content:center;z-index:3}
+  .brandrow{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+  .mark{width:46px;height:46px;flex:0 0 auto}
+  .wordmark{font-family:'Lora',serif;font-weight:700;font-size:30px;letter-spacing:.2px;color:var(--warm)}
+  .wordmark b{color:var(--al);font-weight:700}
+  .eyebrow{font-size:24px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;color:var(--al);margin-bottom:20px}
+  h1{font-family:'Lora',serif;font-weight:700;color:var(--warm);font-size:78px;line-height:1.0;letter-spacing:.2px}
+  h1 .em{font-style:italic;color:var(--al)}
+  .rule{width:96px;height:3px;background:linear-gradient(90deg,var(--amber),var(--al));border-radius:2px;margin:28px 0 22px}
+  .sub{font-size:29px;font-weight:500;color:rgba(247,242,236,.85);letter-spacing:.2px}
+  .powered{position:absolute;left:78px;bottom:50px;font-size:17px;letter-spacing:.4px;color:rgba(247,242,236,.55);z-index:3}
+  .powered b{color:rgba(217,138,85,.9);font-weight:600}
+  .emblem{position:absolute;right:96px;top:50%;transform:translateY(-50%);width:360px;height:360px;z-index:2}
+</style></head>
+<body>
+<div class="og">
+  <div class="frame"></div>
+  <div class="glow"></div>
+
+  <!-- faint recurrence loop watermark -->
+  <svg class="wm" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 20 a80 80 0 1 1 -56 23" stroke="#D98A55" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M100 4 L100 40 L128 22 Z" fill="#D98A55"/>
+  </svg>
+
+  <!-- gathering-cluster emblem: center + connected people, in a seal -->
+  <svg class="emblem" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="180" cy="180" r="152" fill="none" stroke="rgba(217,138,85,.38)" stroke-width="2"/>
+    <circle cx="180" cy="180" r="140" fill="none" stroke="rgba(217,138,85,.20)" stroke-width="1.5"/>
+    <!-- connecting lines center → satellites -->
+    <g stroke="rgba(217,138,85,.5)" stroke-width="3">
+      <line x1="180" y1="180" x2="180" y2="102"/>
+      <line x1="180" y1="180" x2="247" y2="141"/>
+      <line x1="180" y1="180" x2="247" y2="219"/>
+      <line x1="180" y1="180" x2="180" y2="258"/>
+      <line x1="180" y1="180" x2="113" y2="219"/>
+      <line x1="180" y1="180" x2="113" y2="141"/>
+    </g>
+    <!-- satellites (people gathering) -->
+    <g fill="var(--warm)">
+      <circle cx="180" cy="102" r="17"/>
+      <circle cx="247" cy="141" r="17"/>
+      <circle cx="247" cy="219" r="17"/>
+      <circle cx="180" cy="258" r="17"/>
+      <circle cx="113" cy="219" r="17"/>
+      <circle cx="113" cy="141" r="17"/>
+    </g>
+    <!-- center (the reunion) -->
+    <circle cx="180" cy="180" r="26" fill="#C4713A"/>
+    <circle cx="180" cy="180" r="26" fill="none" stroke="#F5E6D8" stroke-width="2" opacity=".5"/>
+  </svg>
+
+  <div class="content">
+    <div class="brandrow">
+      <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="62" height="62" rx="14" fill="rgba(217,138,85,.14)" stroke="rgba(217,138,85,.5)" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="7" fill="#C4713A"/>
+        <circle cx="47" cy="32" r="4" fill="#F7F2EC"/>
+        <circle cx="39.5" cy="45" r="4" fill="#F7F2EC"/>
+        <circle cx="24.5" cy="45" r="4" fill="#F7F2EC"/>
+        <circle cx="17" cy="32" r="4" fill="#F7F2EC"/>
+        <circle cx="24.5" cy="19" r="4" fill="#F7F2EC"/>
+        <circle cx="39.5" cy="19" r="4" fill="#F7F2EC"/>
+      </svg>
+      <div class="wordmark">Gather<b>Again</b></div>
+    </div>
+    <div class="eyebrow">Reunion planning made easy</div>
+    <h1>One stop from<br>planning to <span class="em">fun.</span></h1>
+    <div class="rule"></div>
+    <div class="sub">Hibernate or stay connected — your call.</div>
+  </div>
+
+  <div class="powered">Powered by <b>BigTopa</b></div>
+</div>
+</body></html>
