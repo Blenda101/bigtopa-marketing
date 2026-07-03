@@ -22,10 +22,11 @@ A premium, modern dark-tech social-share banner (2:1, will be trimmed to 1200x63
 with a soft dual-tone glow upper-right — warm orange (#E8621A) blending into electric violet
 (#7B5CF0) — fading to near-black. Anchored on the RIGHT: a bold, minimal orange "big-top tent"
 emblem (two swooping peaks meeting at a center pole topped with a small flag — abstract, iconic,
-geometric), sitting inside faint concentric orange/violet rings. Sophisticated, confident,
-premium SaaS aesthetic. Generous empty space on the LEFT HALF for a serif headline to be added
-later. Flat vector / refined editorial style, NOT photographic, no people, no real text, no
-logos, no literal circus imagery beyond the clean abstract tent mark.
+geometric) sitting ABOVE three interlocking orange outline rings (a clean, geometric nod to a
+3-ring circus). Sophisticated, confident, premium SaaS aesthetic — "the greatest show," not a
+clown show. Generous empty space on the LEFT HALF for a serif headline to be added later. Flat
+vector / refined editorial style, NOT photographic, no people, no real text, no logos, no
+clowns/confetti/popcorn.
 ```
 
 ## Negative prompt (if your tool supports it)
@@ -37,9 +38,16 @@ no heavy drop shadows, not busy, no literal circus/clown imagery, no confetti
 
 ## Tagline + type to overlay afterward (left half) — keep it LARGE
 - Wordmark: **BigTopa** — DM Serif Display, "Big" cream `#FAFBFF` + "Topa" orange `#E8621A`, with the tent mark
-- Eyebrow: **THE ENGAGEMENT PLATFORM** — DM Sans 500, letter-spaced, orange `#FF7A35`
-- Headline: **One platform.** / **Every engagement.** — DM Serif Display, cream `#FAFBFF`; "engagement." in *orange italic* `#FF7A35`
-- Thin orange rule beneath, then sub: *Chat, events, community & giving — one platform.*
+- Eyebrow: **ONE PLATFORM · THREE RINGS** — DM Sans 500, letter-spaced, orange `#FF7A35`
+- Headline: **You're the** / **ringmaster.** — DM Serif Display, cream `#FAFBFF`; "ringmaster." in *orange italic* `#FF7A35`
+- Thin orange rule beneath, then sub: *Engagement · Marketing · Monetization* (the three rings)
+
+## The metaphor (why this works)
+BigTopa = "Big Top." The mark is a circus tent; the three pillars (Engagement, Marketing,
+Monetization) are the **three rings**; the customer is the **ringmaster** who runs the show; the
+platform is the **big top / digital space** they perform in. Aspiration = "the greatest show on
+earth." Register: masterful spectacle and showmanship — NEVER clowns, chaos, or kitsch. The dark
+premium palette is the guardrail that keeps it grand instead of childish.
 
 ## Notes
 BigTopa is the parent/umbrella brand over GreekHouse, AlumniHub, and GatherAgain — keep it the
