@@ -58,6 +58,42 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .img-placeholder-spec { font-size: 11px; color: var(--hint); line-height: 1.5; }
 .img-placeholder-icon { color: var(--edge); font-size: 32px; }
 
+/* ── HERO VIDEO (right-side showcase card) ── */
+.hero-video-wrap { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); width: 552px; max-width: 46vw; border-radius: 16px; overflow: hidden; opacity: .94; border: 1px solid rgba(232,98,26,.45); box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 60px -10px rgba(232,98,26,.35); }
+.hero-video-wrap video { width: 100%; height: auto; display: block; }
+.hv-controls { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 8px; opacity: 0; transition: opacity .2s ease; }
+.hero-video-wrap:hover .hv-controls { opacity: 1; }
+.hv-btn { width: 38px; height: 38px; border-radius: 9px; background: rgba(8,12,20,.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.16); color: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: background .15s, border-color .15s; }
+.hv-btn:hover { background: rgba(232,98,26,.9); border-color: transparent; }
+@media (max-width: 1024px) { .hero-video-wrap { display: none; } }
+
+/* ── THREE RINGS (intro) ── */
+.rings-intro { background: var(--ink2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.rings-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 56px; }
+.ring-col { background: var(--ink); border: 1px solid var(--edge); border-radius: 16px; padding: 30px 28px; position: relative; overflow: hidden; transition: border-color .25s, transform .25s; }
+.ring-col:hover { border-color: rgba(232,98,26,.4); transform: translateY(-3px); }
+.ring-col::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.ring-1::before { background: var(--accent); } .ring-2::before { background: var(--teal); } .ring-3::before { background: var(--violet); }
+.ring-num { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--hint); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+.ring-ring { width: 14px; height: 14px; border-radius: 50%; border: 2px solid; flex-shrink: 0; }
+.ring-1 .ring-ring { border-color: var(--accent); } .ring-2 .ring-ring { border-color: var(--teal); } .ring-3 .ring-ring { border-color: var(--violet); }
+.ring-name { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--white); margin-bottom: 5px; line-height: 1.1; }
+.ring-tag { font-size: 13px; font-weight: 500; color: var(--accent2); margin-bottom: 16px; }
+.ring-desc { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 18px; }
+.ring-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.ring-chip { font-size: 12px; color: rgba(250,251,255,.72); background: rgba(255,255,255,.04); border: 1px solid var(--edge); border-radius: 100px; padding: 5px 12px; }
+
+/* ── RING DETAIL (Marketing / Monetization) ── */
+.ring-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px; }
+.rc { background: var(--ink2); border: 1px solid var(--edge); border-radius: 14px; padding: 26px 24px; display: flex; flex-direction: column; transition: border-color .25s, transform .25s; }
+.rc:hover { border-color: rgba(232,98,26,.35); transform: translateY(-3px); }
+.rc-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.rc-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--white); margin-bottom: 8px; }
+.rc-desc { font-size: 13.5px; line-height: 1.65; color: rgba(250,251,255,.6); margin-bottom: 16px; flex: 1; }
+.rc-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--muted); background: rgba(255,255,255,.04); border: 1px solid var(--edge); border-radius: 100px; padding: 4px 11px; }
+.rc-badge i { font-size: 10px; }
+@media (max-width: 900px) { .rings-grid, .ring-cards { grid-template-columns: 1fr; } }
+
 /* ── PROBLEM ── */
 .problem { background: var(--ink); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
@@ -275,9 +311,9 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Unified Engagement Platform</div>
-    <h1>One platform.<br>Every way your<br>organization <em>engages.</em></h1>
-    <p class="hero-sub">Your team collaborates. Your members connect. Your audience attends. Your clients are consulted. BigTopa brings every engagement mode into one adaptive platform — without switching tools.</p>
+    <div class="hero-eyebrow"><div class="eyebrow-dot"></div>One platform · Three rings</div>
+    <h1>You're the<br><em>ringmaster.</em></h1>
+    <p class="hero-sub">Engagement, marketing, and monetization — three rings, one big top. BigTopa gives you the digital space to run your greatest show.</p>
     <div class="hero-ctas">
       <a href="#cta" class="btn-primary">Join the Waitlist <i class="ph ph-arrow-right" style="font-size:16px"></i></a>
       <a href="#spaces" class="btn-ghost">See the platform <i class="ph ph-arrow-down" style="font-size:14px"></i></a>
@@ -288,11 +324,13 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
       <div><div class="hstat-num serif-i" style="color:var(--accent)">∞</div><div class="hstat-label">Market compositions</div></div>
     </div>
   </div>
-  <div style="position:absolute;right:60px;top:50%;transform:translateY(-50%);width:420px;opacity:.4;pointer-events:none">
-    <div class="img-placeholder" style="height:320px">
-      <i class="ph ph-layout img-placeholder-icon"></i>
-      <span class="img-placeholder-label">Hero Visual</span>
-      <span class="img-placeholder-spec">Platform UI mockup or abstract architectural visualization<br>Recommended: 840×640px</span>
+  <div class="hero-video-wrap">
+    <video id="heroVid" autoplay muted loop playsinline preload="auto">
+      <source src="assets/icons/gemini_generated_video_9df6721c.mp4" type="video/mp4">
+    </video>
+    <div class="hv-controls">
+      <button class="hv-btn" id="hvMute" type="button" aria-label="Unmute"><i class="ph ph-speaker-simple-x"></i></button>
+      <button class="hv-btn" id="hvFull" type="button" aria-label="Fullscreen"><i class="ph ph-corners-out"></i></button>
     </div>
   </div>
 </section>
@@ -318,9 +356,40 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   </div>
 </section>
 
+<section class="section rings-intro" id="rings">
+  <div class="section-inner">
+    <div class="sec-tag"><div class="sec-rule"></div>The three rings</div>
+    <h2>One big top.<br><em>Three rings</em> under it.</h2>
+    <p class="sec-lead">Every organization runs on three things: bringing people together, reaching them, and getting paid. BigTopa puts all three under one roof — you're the ringmaster.</p>
+    <div class="rings-grid">
+      <div class="ring-col ring-1 reveal">
+        <div class="ring-num"><span class="ring-ring"></span>Ring one</div>
+        <div class="ring-name">Engagement</div>
+        <div class="ring-tag">Bring people together</div>
+        <p class="ring-desc">Purpose-built spaces for every relationship you have — your team, your members, your audience, and your clients.</p>
+        <div class="ring-chips"><span class="ring-chip">Work</span><span class="ring-chip">Community</span><span class="ring-chip">Events</span><span class="ring-chip">Clients</span></div>
+      </div>
+      <div class="ring-col ring-2 reveal">
+        <div class="ring-num"><span class="ring-ring"></span>Ring two</div>
+        <div class="ring-name">Marketing</div>
+        <div class="ring-tag">Reach &amp; grow</div>
+        <p class="ring-desc">A full marketing toolkit built in — reach, engage, and grow your audience without a separate stack to stitch together.</p>
+        <div class="ring-chips"><span class="ring-chip">Email</span><span class="ring-chip">Landing pages</span><span class="ring-chip">Social</span><span class="ring-chip">Content</span></div>
+      </div>
+      <div class="ring-col ring-3 reveal">
+        <div class="ring-num"><span class="ring-ring"></span>Ring three</div>
+        <div class="ring-name">Monetization</div>
+        <div class="ring-tag">Get paid</div>
+        <p class="ring-desc">Revenue infrastructure that's built in, not bolted on — every way your organization collects money, powered by Stripe.</p>
+        <div class="ring-chips"><span class="ring-chip">Ticketing</span><span class="ring-chip">Dues</span><span class="ring-chip">Donations</span><span class="ring-chip">Merch</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section spaces" id="spaces">
   <div class="section-inner">
-    <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>The platform</div>
+    <div class="sec-tag" style="color:#8B6B20"><div class="sec-rule" style="background:#8B6B20"></div>Ring one · Engagement</div>
     <h2>Four ways organizations <em style="color:var(--accentd)">engage.</em><br>One place to manage all of them.</h2>
     <p class="sec-lead">Organizations have multiple engagement relationships. BigTopa gives each one its own purpose-built space. Pick and pay for only the spaces you need.</p>
     <div class="spaces-grid">
@@ -371,6 +440,98 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
           <div class="space-use"><i class="ph ph-check" style="color:#5A8A10"></i>Scheduling, sessions, and follow-up</div>
         </div>
         <div class="space-footer"><div class="sf-dot" style="background:var(--lime)"></div>The client engagement layer no other platform offers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ring-detail" id="marketing">
+  <div class="section-inner">
+    <div class="sec-tag"><div class="sec-rule"></div>Ring two · Marketing</div>
+    <h2>Grow your audience.<br><em>Communicate with purpose.</em></h2>
+    <p class="sec-lead">A complete marketing toolkit built into your spaces — reach, engage, and grow your audience without stitching together a separate marketing stack.</p>
+    <div class="ring-cards">
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-envelope-simple" style="color:var(--teal)"></i></div>
+        <div class="rc-name">Email</div>
+        <p class="rc-desc">Campaigns, announcements, newsletters, and automated sequences — real outbound marketing, not just transactional notifications.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces Mailchimp</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-browser" style="color:var(--violet)"></i></div>
+        <div class="rc-name">Landing Pages</div>
+        <p class="rc-desc">Public pages with their own URLs for events, community joins, and campaigns. SEO-indexed and shareable — no web-design skills needed.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces Squarespace</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-list-checks" style="color:var(--accent)"></i></div>
+        <div class="rc-name">Forms</div>
+        <p class="rc-desc">Pre-registration, interest surveys, onboarding, and feedback — with conditional logic and automatic tagging by response.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces Typeform</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(168,200,64,.12)"><i class="ph ph-share-network" style="color:#5A8A10"></i></div>
+        <div class="rc-name">Social Posts</div>
+        <p class="rc-desc">Compose once, schedule and publish to Instagram, Facebook, and LinkedIn simultaneously — with post performance tracking.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces Buffer</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-article" style="color:var(--accent)"></i></div>
+        <div class="rc-name">Content Marketing</div>
+        <p class="rc-desc">A full blog under your own domain, indexed by search engines — long-form content tied to your community or event space.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces WordPress</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-users-three" style="color:#9B95FF"></i></div>
+        <div class="rc-name">Affiliates</div>
+        <p class="rc-desc">Referral tracking for events and membership growth — unique links per member, automatic attribution, and reward management.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Replaces PartnerStack</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ring-detail" id="monetization" style="border-top:1px solid var(--rule)">
+  <div class="section-inner">
+    <div class="sec-tag"><div class="sec-rule"></div>Ring three · Monetization</div>
+    <h2>Built-in monetization.<br><em>Every way you collect money.</em></h2>
+    <p class="sec-lead">Revenue infrastructure that's part of the platform, not bolted on. Tickets, dues, donations, merch, and billing — most of it powered by Stripe.</p>
+    <div class="ring-cards">
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-ticket" style="color:var(--accent)"></i></div>
+        <div class="rc-name">Event Ticketing</div>
+        <p class="rc-desc">Multiple ticket types, capacity limits, discount codes, and QR check-in — with public, member-only, and VIP tiers.</p>
+        <span class="rc-badge"><i class="ph ph-lightning"></i>Stripe</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(42,191,191,.1)"><i class="ph ph-calendar-check" style="color:var(--teal)"></i></div>
+        <div class="rc-name">Dues &amp; Membership</div>
+        <p class="rc-desc">Recurring dues, one-time fees, and registration — annual, semester, or monthly — with status tracking and automatic reminders.</p>
+        <span class="rc-badge"><i class="ph ph-lightning"></i>Stripe</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-hand-heart" style="color:var(--violet)"></i></div>
+        <div class="rc-name">Donations &amp; Funds</div>
+        <p class="rc-desc">Scholarship funds, memorial gifts, and standalone fundraisers with goal tracking — optional at checkout, with tax receipts.</p>
+        <span class="rc-badge"><i class="ph ph-lightning"></i>Stripe</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(168,200,64,.12)"><i class="ph ph-storefront" style="color:#5A8A10"></i></div>
+        <div class="rc-name">Swag Shop</div>
+        <p class="rc-desc">Print-on-demand merch with no inventory — add your designs, set your price, and Printify ships direct to buyers.</p>
+        <span class="rc-badge"><i class="ph ph-shirt"></i>Printify POD</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(232,98,26,.1)"><i class="ph ph-receipt" style="color:var(--accent)"></i></div>
+        <div class="rc-name">Budget &amp; Expense</div>
+        <p class="rc-desc">Every dollar in and out — mobile receipt scanning, reimbursement requests, and a member-facing transparency view.</p>
+        <span class="rc-badge"><i class="ph ph-database"></i>Native</span>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-icon" style="background:rgba(123,92,240,.1)"><i class="ph ph-handshake" style="color:#9B95FF"></i></div>
+        <div class="rc-name">Provider Billing</div>
+        <p class="rc-desc">Charge for one-on-one sessions, service packages, and retainers — per-session or recurring, with automatic invoicing.</p>
+        <span class="rc-badge"><i class="ph ph-lightning"></i>Stripe</span>
       </div>
     </div>
   </div>
@@ -566,6 +727,8 @@ document.addEventListener('click',e=>{const panel=document.getElementById('fitz-
 function fitzAddMsg(text,role){const body=document.getElementById('fitz-body');const msg=document.createElement('div');msg.className='fitz-msg '+role;msg.innerHTML=text;body.appendChild(msg);body.scrollTop=body.scrollHeight;}
 function fitzAsk(q){if(q==='Configure my plan'){fitzAddMsg('Configure my plan','user');setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);return;}fitzAddMsg(q,'user');const key=q.toLowerCase().replace(/[^a-z ]/g,'');const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);}
 function fitzSend(){const input=document.getElementById('fitz-input');const q=input.value.trim();if(!q)return;input.value='';fitzAsk(q);}
+/* Hero video controls: unmute + fullscreen on hover */
+(function(){var v=document.getElementById('heroVid'),m=document.getElementById('hvMute'),f=document.getElementById('hvFull');if(!v||!m||!f)return;m.addEventListener('click',function(){v.muted=!v.muted;if(!v.muted){v.play();}m.querySelector('i').className=v.muted?'ph ph-speaker-simple-x':'ph ph-speaker-simple-high';m.setAttribute('aria-label',v.muted?'Unmute':'Mute');});f.addEventListener('click',function(){if(document.fullscreenElement){document.exitFullscreen();}else if(v.requestFullscreen){v.requestFullscreen();}else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}});})();
 </script>
 <script src="https://bt-value-calculator.netlify.app/embed.js"></script>
 </body>
