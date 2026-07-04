@@ -851,7 +851,9 @@ drawer.querySelectorAll('a').forEach(a=>{
     a.addEventListener('click',function(e){
       if(!window.__poilyOpenForm) return;              // embed not ready -> href opens hosted form
       e.preventDefault();
-      window.__poilyOpenForm(SLUG,'popup',ACCENT,undefined,a.getAttribute('data-placement')||'cta');
+      // force light theme — GatherAgain is a light-branded site, and the form's
+      // dark theme renders text the same color as the modal bg (invisible).
+      window.__poilyOpenForm(SLUG,'popup',ACCENT,'light',a.getAttribute('data-placement')||'cta');
     });
   });
 })();
