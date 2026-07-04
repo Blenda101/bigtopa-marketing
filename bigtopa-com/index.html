@@ -50,6 +50,14 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--rule2); border-radius: 100px; padding: 5px 14px; margin-bottom: 32px; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); animation: fadeUp .6s ease both; }
 .hero-sub { font-size: 18px; line-height: 1.7; font-weight: 300; color: var(--muted); max-width: 520px; margin-bottom: 44px; animation: fadeUp .6s .16s ease both; }
 .hero-ctas { display: flex; gap: 14px; align-items: center; animation: fadeUp .6s .22s ease both; }
+/* Hero ring chips — highlight the three rings */
+.ring-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; animation: fadeUp .6s .13s ease both; }
+.ring-pill { display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px; border-radius: 100px; border: 1px solid var(--edge); background: rgba(255,255,255,.03); color: var(--white); font-size: 14px; font-weight: 500; text-decoration: none; transition: border-color .2s, background .2s, transform .2s; }
+.ring-pill:hover { transform: translateY(-2px); background: rgba(255,255,255,.06); }
+.rp-dot { width: 11px; height: 11px; border-radius: 50%; border: 2px solid; flex-shrink: 0; }
+.rp-1 .rp-dot { border-color: var(--accent); } .rp-1:hover { border-color: rgba(232,98,26,.5); }
+.rp-2 .rp-dot { border-color: var(--teal); } .rp-2:hover { border-color: rgba(42,191,191,.5); }
+.rp-3 .rp-dot { border-color: var(--violet); } .rp-3:hover { border-color: rgba(123,92,240,.5); }
 .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 36px; border-top: 1px solid var(--rule); animation: fadeUp .6s .3s ease both; }
 .hstat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--white); margin-bottom: 3px; }
 .hstat-label { font-size: 12px; color: var(--hint); letter-spacing: .5px; }
@@ -313,7 +321,12 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
   <div class="hero-inner">
     <div class="hero-eyebrow"><div class="eyebrow-dot"></div>One platform · Three rings</div>
     <h1>You're the<br><em>ringmaster.</em></h1>
-    <p class="hero-sub">Engagement, marketing, and monetization — three rings, one big top. BigTopa gives you the digital space to run your greatest show.</p>
+    <div class="ring-pills">
+      <a href="#spaces" class="ring-pill rp-1"><span class="rp-dot"></span>Engagement</a>
+      <a href="#marketing" class="ring-pill rp-2"><span class="rp-dot"></span>Marketing</a>
+      <a href="#monetization" class="ring-pill rp-3"><span class="rp-dot"></span>Monetization</a>
+    </div>
+    <p class="hero-sub">Three rings, one big top. BigTopa gives you the digital space to run your greatest show.</p>
     <div class="hero-ctas">
       <a href="#cta" class="btn-primary">Join the Waitlist <i class="ph ph-arrow-right" style="font-size:16px"></i></a>
       <a href="#spaces" class="btn-ghost">See the platform <i class="ph ph-arrow-down" style="font-size:14px"></i></a>
