@@ -124,6 +124,34 @@
 .cta-box p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
 .cta-box-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
+/* ── MEETUPS — SIX WAYS ── */
+.mt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; border-radius: 14px; overflow: hidden; border: 1px solid var(--edge); margin-top: 18px; }
+.mt-card { padding: 26px 22px; background: var(--ink2); display: flex; flex-direction: column; transition: background .22s; }
+.mt-card:hover { background: var(--ink3); }
+.mt-ico { width: 40px; height: 40px; border-radius: 9px; background: rgba(232,98,26,.1); color: #E8621A; display: flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 14px; }
+.mt-name { font-family: 'DM Serif Display', serif; font-size: 21px; color: var(--white); margin-bottom: 7px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; line-height: 1.1; }
+.mt-badge { font-size: 8.5px; padding: 3px 8px; border-radius: 100px; letter-spacing: .5px; text-transform: uppercase; font-weight: 700; background: rgba(232,98,26,.12); color: #E8621A; border: 1px solid rgba(232,98,26,.3); }
+.mt-desc { font-size: 12.5px; line-height: 1.65; color: rgba(250,251,255,.6); margin-bottom: 14px; }
+.mt-best { margin-top: auto; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
+.mt-best b { display: block; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--hint); font-weight: 700; margin-bottom: 4px; }
+.mt-multi { display: flex; align-items: flex-start; gap: 15px; margin-top: 16px; padding: 20px 22px; border-radius: 12px; border: 1px solid rgba(232,98,26,.22); background: rgba(232,98,26,.05); }
+.mt-multi-ico { width: 36px; height: 36px; border-radius: 8px; background: rgba(232,98,26,.12); color: #E8621A; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.mt-multi-t { font-size: 13px; line-height: 1.6; color: rgba(250,251,255,.68); }
+.mt-multi-t b { color: var(--white); font-weight: 600; }
+.mt-plats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.mt-plat { font-size: 10.5px; padding: 4px 9px; border-radius: 5px; border: 1px solid var(--edge); background: var(--ink3); color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+.mt-plat i { font-size: 12px; color: var(--hint); }
+@media (max-width: 1100px) { .mt-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .mt-grid { grid-template-columns: 1fr; } }
+
+/* ── INSIDE EVERY SPACE — SHOWCASE ── */
+.pshow { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+.pshow-fig { margin: 0; }
+.pshow-img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--edge); box-shadow: 0 26px 64px rgba(0,0,0,.55); }
+.pshow-cap { margin-top: 13px; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+.pshow-cap b { color: var(--white); font-weight: 600; }
+@media (max-width: 800px) { .pshow { grid-template-columns: 1fr; gap: 26px; } }
+
 @media (max-width: 1100px) {
   .hero-hiw { padding: 100px 24px 48px; }
   .core-outer { grid-template-columns: 1fr; }
@@ -235,6 +263,87 @@
           <span class="sc-pill" style="border-color:rgba(168,200,64,.3);color:#5A8A10">Managed</span>
           <span class="sc-pill" style="border-color:rgba(168,200,64,.3);color:#5A8A10">Booking</span>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- INSIDE EVERY SPACE — STREAMS + MEETUPS SHOWCASE -->
+<div class="section sr">
+  <div class="sec-tag" style="color:#E8621A"><div class="sec-rule" style="background:#E8621A"></div><span>Inside every Space</span></div>
+  <h2>Streams keep it alive.<br><em>Meetups bring it together.</em></h2>
+  <p class="sec-p">Every Space runs on an always-on activity feed — and live video when you need to be face to face.</p>
+  <div class="pshow">
+    <figure class="pshow-fig">
+      <img class="pshow-img" src="assets/images/stream.jpg" alt="A BigTopa Space activity stream — member posts, composer, and profile sidebar" loading="lazy">
+      <figcaption class="pshow-cap"><b>Streams</b> · the always-on activity feed inside every Space</figcaption>
+    </figure>
+    <figure class="pshow-fig">
+      <img class="pshow-img" src="assets/images/broadcast.jpg" alt="A BigTopa Meetups broadcast studio — live production, assets, and layouts" loading="lazy">
+      <figcaption class="pshow-cap"><b>Meetups</b> · live video &amp; audio, up to studio-grade broadcast</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- MEETUPS — SIX WAYS TO MEET -->
+<div class="section sr">
+  <div class="sec-tag" style="color:#E8621A"><div class="sec-rule" style="background:#E8621A"></div><span>Meetups</span></div>
+  <h2>Six ways to meet — <em>one core.</em></h2>
+  <p class="sec-p">Meetups is the live video &amp; audio layer of every Space. Switch on only the formats you need — from a quiet 1-on-1 to a multistreamed production.</p>
+
+  <div class="mt-grid">
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-user"></i></div>
+      <div class="mt-name">Meet</div>
+      <div class="mt-desc">Scheduled 1-on-1 — a focused, private conversation.</div>
+      <div class="mt-best"><b>Best for</b>Office hours, mentoring, appointments</div>
+    </div>
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-users-three"></i></div>
+      <div class="mt-name">Meeting</div>
+      <div class="mt-desc">Multi-participant session where everyone can join in.</div>
+      <div class="mt-best"><b>Best for</b>Team syncs, working groups, committees</div>
+    </div>
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-presentation"></i></div>
+      <div class="mt-name">Webinar</div>
+      <div class="mt-desc">Host presents to your audience, with Q&amp;A and polls.</div>
+      <div class="mt-best"><b>Best for</b>Trainings, launches, live Q&amp;As</div>
+    </div>
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-broadcast"></i></div>
+      <div class="mt-name">Broadcast <span class="mt-badge">Multistream</span></div>
+      <div class="mt-desc">Studio-grade production for large-scale live streaming.</div>
+      <div class="mt-best"><b>Best for</b>Conferences, keynotes, ticketed events</div>
+    </div>
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-cursor-click"></i></div>
+      <div class="mt-name">Co-browsing</div>
+      <div class="mt-desc">Walk through a screen together, guiding as you go.</div>
+      <div class="mt-best"><b>Best for</b>Coaching, support, pair programming</div>
+    </div>
+    <div class="mt-card">
+      <div class="mt-ico"><i class="ph ph-record"></i></div>
+      <div class="mt-name">Go Live <span class="mt-badge">Multistream</span></div>
+      <div class="mt-desc">Go live instantly from any Space — no studio setup.</div>
+      <div class="mt-best"><b>Best for</b>Announcements, drop-ins, community moments</div>
+    </div>
+  </div>
+
+  <div class="mt-multi">
+    <div class="mt-multi-ico"><i class="ph ph-share-network"></i></div>
+    <div>
+      <div class="mt-multi-t"><b>Multistream</b> — Broadcast and Go Live push a single stream to several platforms at once, or any custom RTMP destination.</div>
+      <div class="mt-plats">
+        <span class="mt-plat"><i class="ph ph-youtube-logo"></i>YouTube</span>
+        <span class="mt-plat"><i class="ph ph-facebook-logo"></i>Facebook</span>
+        <span class="mt-plat"><i class="ph ph-linkedin-logo"></i>LinkedIn</span>
+        <span class="mt-plat"><i class="ph ph-twitch-logo"></i>Twitch</span>
+        <span class="mt-plat"><i class="ph ph-broadcast"></i>Custom RTMP</span>
       </div>
     </div>
   </div>
@@ -437,7 +546,7 @@
 const BLOCKS={
   spaces:{icon:'ph-squares-four',iconBg:'rgba(255,255,255,.08)',iconColor:'var(--white)',badge:'Main Core',badgeBg:'rgba(255,255,255,.08)',badgeColor:'var(--muted)',name:'Spaces',desc:'Spaces are the primary building block of BigTopa. Every tenant has one or more spaces — each configured for a different engagement relationship. Streams, Meetups, and all other features live inside a Space.',relatedCores:['Streams','Meetups','Marketing Core','Monetization Core'],types:['Work Space','Community Space','Event Space','Provider Space'],features:['Rooms','Activity streams','Member management','Space settings','Access controls','Roles & permissions'],extensions:['RSVP','Photo Album','Voting','Matching','Booking','Courses']},
   streams:{icon:'ph-activity',iconBg:'rgba(42,191,191,.12)',iconColor:'var(--teal)',badge:'Always On',badgeBg:'rgba(42,191,191,.1)',badgeColor:'var(--teal)',name:'Streams',desc:'The real-time activity feed within every space. Streams are always active — they are the lifeblood of a space and cannot be disabled.',relatedCores:['Spaces','Rooms','Participants'],types:['Text posts','Media posts','Shared content','Announcements'],features:['Real-time activity feed','Post creation & editing','Reactions & comments','Content aggregation from rooms','Stream filtering','Pinned announcements'],extensions:[]},
-  meetups:{icon:'ph-video-camera',iconBg:'rgba(232,98,26,.1)',iconColor:'#E8621A',badge:'Optional + Composable',badgeBg:'rgba(232,98,26,.1)',badgeColor:'#E8621A',name:'Meetups',desc:'Live video and audio for your spaces. Meetups are enabled per plan and the depth is individually composable — you only pay for what you use.',relatedCores:['Spaces','Streams'],types:['Meet Now — instant call','Meet — scheduled 1-on-1','Meetings — multi-participant','Webinars — host to audience','Broadcast — studio streaming'],features:['Video & audio sessions','Screen sharing','Recording','Scheduling & calendar sync','Attendance tracking','Session notes'],extensions:['Shelves in meetups','Breakout rooms']},
+  meetups:{icon:'ph-video-camera',iconBg:'rgba(232,98,26,.1)',iconColor:'#E8621A',badge:'Optional + Composable',badgeBg:'rgba(232,98,26,.1)',badgeColor:'#E8621A',name:'Meetups',desc:'Live video and audio for your spaces. Meetups are enabled per plan and the depth is individually composable — you only pay for what you use.',relatedCores:['Spaces','Streams'],types:['Meet — scheduled 1-on-1','Meeting — multi-participant','Webinar — host to audience','Broadcast — studio streaming (multistream)','Co-browsing — guided shared screen','Go Live — instant live stream (multistream)'],features:['Video & audio sessions','Screen sharing','Recording','Scheduling & calendar sync','Attendance tracking','Session notes'],extensions:['Shelves in meetups','Breakout rooms']},
   marketing:{icon:'ph-megaphone',iconBg:'rgba(232,98,26,.12)',iconColor:'#E8621A',badge:'Core Module — Optional',badgeBg:'rgba(232,98,26,.1)',badgeColor:'#E8621A',name:'Marketing Core',desc:'Promotion tools built directly into your spaces. Enable once and Marketing Core activates across all your spaces simultaneously.',relatedCores:['Monetization Core','Spaces'],types:['Email campaigns','Landing pages','Registration forms','Social scheduling'],features:['Email marketing','Custom landing pages','Registration & RSVP forms','Social post scheduling','Content marketing tools','Affiliate referral links','Campaign analytics'],extensions:[]},
   monetization:{icon:'ph-currency-dollar',iconBg:'rgba(90,138,16,.12)',iconColor:'#5A8A10',badge:'Core Module — Optional',badgeBg:'rgba(90,138,16,.1)',badgeColor:'#5A8A10',name:'Monetization Core',desc:'Revenue tools wired directly into your platform. Tickets, dues, donations, shop, print-on-demand — all through Stripe Connect.',relatedCores:['Marketing Core','Spaces','Hub'],types:['Event ticketing','Member dues','Donations','Shop & Print on demand'],features:['Event ticketing & registration','Member dues & subscriptions','Donations & fundraising','Shop (physical & digital products)','Print on demand (Printify)','Revenue dashboard'],extensions:[]},
   access:{icon:'ph-shield',iconBg:'rgba(123,92,240,.12)',iconColor:'var(--violet)',badge:'Always On',badgeBg:'rgba(123,92,240,.1)',badgeColor:'var(--violet)',name:'Access & Security',desc:'Every space has configurable access controls — open, public, secret, or invitation-only. Access rules apply at the space, room, and content level independently.',relatedCores:['Participants','Roles & Permissions','Spaces'],types:['Open access','Public (discoverable)','Secret (hidden)','Invitation only'],features:['Space access configuration','Room-level access controls','Content-level permissions','Role-based access','Participant invitations','Access audit log'],extensions:['SSO','Advanced encryption']},
