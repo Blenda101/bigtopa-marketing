@@ -37,10 +37,10 @@
 .demo-banner strong { color: var(--white); }
 
 /* PAGE HEADER */
-.ph { padding: 40px 60px 32px; max-width: 1400px; margin: 0 auto; }
-.ph-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+.price-head { padding: 40px 60px 32px; max-width: 1400px; margin: 0 auto; }
+.price-head-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
 h1 { font-size: clamp(36px, 4.5vw, 58px); margin-bottom: 8px; }
-.ph-sub { font-size: 14px; line-height: 1.7; font-weight: 300; color: var(--muted); max-width: 400px; }
+.price-head-sub { font-size: 14px; line-height: 1.7; font-weight: 300; color: var(--muted); max-width: 400px; }
 
 /* NAV LOGO with icon */
 .nav-logo { display: flex; align-items: center; gap: 8px; }
@@ -229,7 +229,7 @@ h1 { font-size: clamp(36px, 4.5vw, 58px); margin-bottom: 8px; }
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .demo-banner { padding: 9px 24px; }
-  .ph { padding: 32px 24px 24px; }
+  .price-head { padding: 32px 24px 24px; }
   .plan-section { padding: 0 24px 20px; }
   .plan-grid { grid-template-columns: 1fr; }
   .plan-grid.four-col { grid-template-columns: 1fr 1fr; }
@@ -239,7 +239,7 @@ h1 { font-size: clamp(36px, 4.5vw, 58px); margin-bottom: 8px; }
   .bottom-section { padding: 24px 24px 40px; }
 }
 @media (max-width: 600px) {
-  .ph-top { flex-direction: column; align-items: flex-start; }
+  .price-head-top { flex-direction: column; align-items: flex-start; }
   .plan-grid.four-col { grid-template-columns: 1fr; }
 }
 </style>
@@ -276,11 +276,11 @@ h1 { font-size: clamp(36px, 4.5vw, 58px); margin-bottom: 8px; }
   <p><strong>Pricing shown is for demonstration purposes only.</strong> Actual pricing will be available at launch. All plans and features are subject to change.</p>
 </div>
 
-<div class="ph">
-  <div class="ph-top">
+<div class="price-head">
+  <div class="price-head-top">
     <div>
       <h1>Find your<br><em>perfect plan.</em></h1>
-      <p class="ph-sub">Browse standard tiers or build a custom plan from scratch. All plans editable — nothing locked in.</p>
+      <p class="price-head-sub">Browse standard tiers or build a custom plan from scratch. All plans editable — nothing locked in.</p>
     </div>
     <div class="mode-toggle">
       <button class="mtab active" id="tab-std" onclick="setView('standard')">Standard Plans</button>
