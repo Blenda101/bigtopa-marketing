@@ -1,2 +1,13 @@
 [build]
   publish = "."
+
+# --- Blog (Poily managed-proxy, Tier B) ---
+# Poily renders each post to CloudFront at <custom_domain>/<slug>.html and stamps
+# the per-post canonical to bigtopa.com/blog/<slug>. This 200-rewrite serves it
+# under our domain (URL stays bigtopa.com/blog/<slug>). host must match Poily's
+# brand_kit.custom_domain exactly. See handoffs/admin_mkt/BIGTOPA_BLOG_PROVISIONING.md
+[[redirects]]
+  from = "/blog/*"
+  to = "https://d1kjbg4330oa4p.cloudfront.net/bigtopa.com/:splat.html"
+  status = 200
+  force = true

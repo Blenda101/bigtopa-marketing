@@ -2,6 +2,18 @@
   command = "mkdir -p _build/shared/assets/icons && rsync -a --exclude=_build . _build/ && rsync -a ../shared/assets/icons/ _build/shared/assets/icons/"
   publish = "_build"
 
+# --- Blog (Poily managed-proxy, Tier B) ---
+# Poily renders each post to CloudFront at <custom_domain>/<slug>.html and stamps
+# the per-post canonical to alumnihub.co/blog/<slug>. This 200-rewrite serves it
+# under our domain (URL stays alumnihub.co/blog/<slug>). host must match Poily's
+# brand_kit.custom_domain exactly. MUST stay above the generic .html rule below
+# (Netlify uses first match). See handoffs/admin_mkt/BIGTOPA_BLOG_PROVISIONING.md
+[[redirects]]
+  from = "/blog/*"
+  to = "https://d1kjbg4330oa4p.cloudfront.net/alumnihub.co/:splat.html"
+  status = 200
+  force = true
+
 # --- Renamed pages (301 old slugs). Specific rules MUST precede the generic
 #     .html rule below — Netlify uses first match. ---
 
