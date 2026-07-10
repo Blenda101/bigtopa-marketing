@@ -68,7 +68,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 
 /* ── HERO VIDEO (right-side showcase card) ── */
 .hero-video-wrap { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); width: 680px; max-width: 50vw; z-index: 3; border-radius: 16px; overflow: hidden; opacity: .94; border: 1px solid rgba(232,98,26,.45); box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 60px -10px rgba(232,98,26,.35); }
-.hero-video-wrap video { width: 100%; height: auto; display: block; }
+.hero-video-wrap video { width: 100%; height: auto; display: block; cursor: pointer; }
 .hv-controls { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 8px; opacity: .9; transition: opacity .2s ease; }
 .hero-video-wrap:hover .hv-controls { opacity: 1; }
 .hv-btn { width: 38px; height: 38px; border-radius: 9px; background: rgba(8,12,20,.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.16); color: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: background .15s, border-color .15s; }
@@ -817,8 +817,12 @@ document.addEventListener('click',e=>{const panel=document.getElementById('fitz-
 function fitzAddMsg(text,role){const body=document.getElementById('fitz-body');const msg=document.createElement('div');msg.className='fitz-msg '+role;msg.innerHTML=text;body.appendChild(msg);body.scrollTop=body.scrollHeight;}
 function fitzAsk(q){if(q==='Configure my plan'){fitzAddMsg('Configure my plan','user');setTimeout(()=>{fitzAddMsg('Great — let\'s build your plan. Taking you to the Plan Builder now.','fitz');setTimeout(()=>{window.location.href='pricing.html?view=custom'},1800)},400);return;}fitzAddMsg(q,'user');const key=q.toLowerCase().replace(/[^a-z ]/g,'');const answer=Object.entries(FITZ_QA).find(([k])=>key.includes(k));setTimeout(()=>{fitzAddMsg(answer?answer[1]:'Great question. For the most detailed answer, explore the Platform page or the How It Works builder.','fitz')},500);}
 function fitzSend(){const input=document.getElementById('fitz-input');const q=input.value.trim();if(!q)return;input.value='';fitzAsk(q);}
-/* Hero video controls: unmute + fullscreen on hover */
-(function(){var v=document.getElementById('heroVid'),m=document.getElementById('hvMute'),f=document.getElementById('hvFull');if(!v||!m||!f)return;m.addEventListener('click',function(){v.muted=!v.muted;if(!v.muted){v.play();}m.querySelector('i').className=v.muted?'ph ph-speaker-simple-x':'ph ph-speaker-simple-high';m.setAttribute('aria-label',v.muted?'Unmute':'Mute');});f.addEventListener('click',function(){if(document.fullscreenElement){document.exitFullscreen();}else if(v.requestFullscreen){v.requestFullscreen();}else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}});})();
+/* Hero video: tap video (or button) to toggle sound; button to fullscreen */
+(function(){var v=document.getElementById('heroVid'),m=document.getElementById('hvMute'),f=document.getElementById('hvFull');if(!v||!m||!f)return;
+function toggleMute(){v.muted=!v.muted;if(!v.muted){v.play();}m.querySelector('i').className=v.muted?'ph ph-speaker-simple-x':'ph ph-speaker-simple-high';m.setAttribute('aria-label',v.muted?'Unmute':'Mute');}
+v.addEventListener('click',toggleMute);
+m.addEventListener('click',function(e){e.stopPropagation();toggleMute();});
+f.addEventListener('click',function(e){e.stopPropagation();if(document.fullscreenElement){document.exitFullscreen();}else if(v.requestFullscreen){v.requestFullscreen();}else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}});})();
 </script>
 <script src="https://bt-value-calculator.netlify.app/embed.js"></script>
 </body>
