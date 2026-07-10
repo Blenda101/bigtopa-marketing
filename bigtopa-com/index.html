@@ -58,7 +58,7 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
 .rp-1 .rp-dot { border-color: var(--accent); } .rp-1:hover { border-color: rgba(232,98,26,.5); }
 .rp-2 .rp-dot { border-color: var(--teal); } .rp-2:hover { border-color: rgba(42,191,191,.5); }
 .rp-3 .rp-dot { border-color: var(--violet); } .rp-3:hover { border-color: rgba(123,92,240,.5); }
-.hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 36px; border-top: 1px solid var(--rule); animation: fadeUp .6s .3s ease both; }
+.hero-stats { display: flex; gap: 48px; margin: 72px auto 0; padding-top: 36px; border-top: 1px solid var(--rule); max-width: 1400px; width: 100%; animation: fadeUp .6s .3s ease both; }
 .hstat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--white); margin-bottom: 3px; }
 .hstat-label { font-size: 12px; color: var(--hint); letter-spacing: .5px; }
 .img-placeholder { background: var(--ink3); border: 1px dashed var(--edge); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; }
@@ -354,11 +354,6 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
       <a href="#cta" class="btn-primary">Join the Waitlist <i class="ph ph-arrow-right" style="font-size:16px"></i></a>
       <a href="#spaces" class="btn-ghost">See the platform <i class="ph ph-arrow-down" style="font-size:14px"></i></a>
     </div>
-    <div class="hero-stats">
-      <div><div class="hstat-num">4</div><div class="hstat-label">Space types</div></div>
-      <div><div class="hstat-num">1</div><div class="hstat-label">Platform</div></div>
-      <div><div class="hstat-num serif-i" style="color:var(--accent)">∞</div><div class="hstat-label">Market compositions</div></div>
-    </div>
   </div>
   <div class="hero-video-wrap">
     <video id="heroVid" autoplay muted loop playsinline preload="auto" poster="assets/icons/hero-poster.jpg">
@@ -368,6 +363,11 @@ h2 { font-size: clamp(36px, 4vw, 58px); }
       <button class="hv-btn" id="hvMute" type="button" aria-label="Unmute"><i class="ph ph-speaker-simple-x"></i></button>
       <button class="hv-btn" id="hvFull" type="button" aria-label="Fullscreen"><i class="ph ph-corners-out"></i></button>
     </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hstat-num">4</div><div class="hstat-label">Space types</div></div>
+    <div><div class="hstat-num">1</div><div class="hstat-label">Platform</div></div>
+    <div><div class="hstat-num serif-i" style="color:var(--accent)">∞</div><div class="hstat-label">Market compositions</div></div>
   </div>
 </section>
 
