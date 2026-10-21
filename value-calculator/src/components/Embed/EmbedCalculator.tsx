@@ -48,12 +48,23 @@ const THEMES: Record<string, Record<string, string>> = {
     '--bt-muted': '#6B5D50',
     '--bt-hint':  '#9E8E80',
   },
+  white: {
+    '--bt-ink':   'transparent',
+    '--bt-ink2':  '#F9FAFB',
+    '--bt-ink3':  '#FFFFFF',
+    '--bt-edge':  '#E5E7EB',
+    '--bt-rule':  '#EEF0F3',
+    '--bt-white': '#1F2937',
+    '--bt-muted': '#4B5563',
+    '--bt-hint':  '#9CA3AF',
+  },
 }
 
 // Background used when the calculator provides its own surface (not on a host page)
 export const PAGE_BG: Record<string, string> = {
   dark: '#080C14',
   light: '#F3EEE6',
+  white: '#F9FAFB',
 }
 
 export const DEFAULT_ACCENT = '#C4713A'

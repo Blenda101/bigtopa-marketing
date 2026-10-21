@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { X, Plus, Trash2, Edit2, Check, ChevronLeft, ChevronRight, Search, Copy, Link, ExternalLink } from 'lucide-react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
-import { App } from '../../types';
+import { App, SiteTheme } from '../../types';
 import { EmbedCalculator, PAGE_BG, DEFAULT_ACCENT } from '../Embed/EmbedCalculator';
 import { EMBED_CSS } from '../Embed/styles';
 
@@ -21,7 +21,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   } = useValueCalculator();
   const [basePrice, setBasePrice] = useState('');
   const [perUserPrice, setPerUserPrice] = useState('');
-  const [themeDraft, setThemeDraft] = useState<'light' | 'dark'>('light');
+  const [themeDraft, setThemeDraft] = useState<SiteTheme>('light');
   const [accentDraft, setAccentDraft] = useState(DEFAULT_ACCENT);
   const [settingsSaved, setSettingsSaved] = useState(false);
   const [newLabel, setNewLabel] = useState('');
@@ -351,7 +351,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
             <div>
               <label className="block text-xs font-medium text-gray-600 mb-1">Theme</label>
               <div className="flex rounded-md border border-gray-300 overflow-hidden">
-                {(['light', 'dark'] as const).map((t) => (
+                {(['light', 'dark', 'white'] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setThemeDraft(t)}

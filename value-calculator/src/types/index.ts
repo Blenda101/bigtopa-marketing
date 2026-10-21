@@ -8,13 +8,15 @@ export interface App {
   created_at?: string;
 }
 
+export type SiteTheme = 'light' | 'dark' | 'white';
+
 export interface Site {
   id: string;
   label: string;
   // null = use the default pricing row
   base_price?: number | null;
   price_per_user?: number | null;
-  theme?: 'light' | 'dark' | null;
+  theme?: SiteTheme | null;
   accent?: string | null;
 }
 
