@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { X, Plus, Trash2, Edit2, Check, ChevronLeft, ChevronRight, Search, Copy } from 'lucide-react';
+import { X, Plus, Trash2, Edit2, Check, ChevronLeft, ChevronRight, Search, Copy, Link, ExternalLink } from 'lucide-react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
 import { App } from '../../types';
 
@@ -24,7 +24,8 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const [dragOver, setDragOver] = useState<Side | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<'embed' | 'link' | null>(null);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     if (!sites.some((s) => s.id === activeId)) setActiveId(sites[0]?.id ?? '');
@@ -82,7 +83,16 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     run(() => deleteSite(activeSite.id));
   };
 
-  const snippet = `<div data-bt-calculator data-site="${activeId}" data-theme="light" data-accent="#C4713A"></div>\n<script src="https://bt-value-calculator.netlify.app/embed.js"></script>`;
+  const theme = darkTheme ? 'dark' : 'light';
+  const accent = darkTheme ? '#E8621A' : '#C4713A';
+  const snippet = `<div data-bt-calculator data-site="${activeId}" data-theme="${theme}" data-accent="${accent}"></div>\n<script src="https://bt-value-calculator.netlify.app/embed.js"></script>`;
+  const presentationLink = `${window.location.origin}/?site=${activeId}&theme=${theme}&accent=${encodeURIComponent(accent)}`;
+
+  const copy = (text: string, which: 'embed' | 'link') => {
+    navigator.clipboard.writeText(text);
+    setCopied(which);
+    setTimeout(() => setCopied(null), 1500);
+  };
 
   const renderColumn = (side: Side, list: App[], title: string) => (
     <div
@@ -280,17 +290,38 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 </button>
               </>
             )}
+            <label className="ml-auto flex items-center gap-2 text-sm text-gray-600 select-none cursor-pointer">
+              <input
+                type="checkbox"
+                className="accent-[#FD5108]"
+                checked={darkTheme}
+                onChange={(e) => setDarkTheme(e.target.checked)}
+              />
+              Dark theme
+            </label>
             <button
-              onClick={() => {
-                navigator.clipboard.writeText(snippet);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 1500);
-              }}
-              className="ml-auto flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
+              onClick={() => copy(snippet, 'embed')}
+              className="flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
             >
               <Copy size={14} />
-              {copied ? 'Copied' : 'Copy embed code'}
+              {copied === 'embed' ? 'Copied' : 'Copy embed code'}
             </button>
+            <button
+              onClick={() => copy(presentationLink, 'link')}
+              className="flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
+            >
+              <Link size={14} />
+              {copied === 'link' ? 'Copied' : 'Copy presentation link'}
+            </button>
+            <a
+              href={presentationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
+            >
+              <ExternalLink size={14} />
+              Open
+            </a>
           </div>
 
           <p className="text-xs text-gray-500 mb-3">
