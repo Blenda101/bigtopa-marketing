@@ -391,6 +391,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
           logo: data.logo,
           costPerUser: parseFloat(data.cost_per_user),
           category: data.category,
+          sites: data.sites || [],
           created_at: data.created_at
         };
         console.log('New app created:', newApp);
