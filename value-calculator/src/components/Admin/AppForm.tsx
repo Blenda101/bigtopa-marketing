@@ -86,8 +86,9 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
       newErrors.category = 'Category is required';
     }
     
-    if (formData.costPerUser <= 0) {
-      newErrors.costPerUser = 'Cost must be greater than 0';
+    // 0 is allowed for free apps
+    if (!(formData.costPerUser >= 0)) {
+      newErrors.costPerUser = 'Cost must be 0 or more (use 0 for free apps)';
     }
     
     setErrors(newErrors);
@@ -191,7 +192,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.costPerUser ? 'border-red-500' : 'border-gray-300'
               }`}
-              placeholder="e.g. 10"
+              placeholder="e.g. 10 (0 = free)"
             />
             {errors.costPerUser && <p className="mt-1 text-sm text-red-500">{errors.costPerUser}</p>}
           </div>
