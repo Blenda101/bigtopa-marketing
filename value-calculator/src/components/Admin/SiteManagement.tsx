@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { X, Plus, Trash2, Edit2, Check, ChevronLeft, ChevronRight, Search, Copy, Link, ExternalLink } from 'lucide-react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
 import { App } from '../../types';
+import { EmbedCalculator, PAGE_BG, DEFAULT_ACCENT } from '../Embed/EmbedCalculator';
+import { EMBED_CSS } from '../Embed/styles';
 
 interface SiteManagementProps {
   onClose: () => void;
@@ -14,12 +16,14 @@ const toSlug = (label: string) =>
 
 const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const {
-    apps, sites, addSite, renameSite, deleteSite, setAppSites, updateSitePricing,
+    apps, sites, addSite, renameSite, deleteSite, setAppSites, updateSiteSettings,
     activeSiteId: activeId, setActiveSiteId: setActiveId, state,
   } = useValueCalculator();
   const [basePrice, setBasePrice] = useState('');
   const [perUserPrice, setPerUserPrice] = useState('');
-  const [pricingSaved, setPricingSaved] = useState(false);
+  const [themeDraft, setThemeDraft] = useState<'light' | 'dark'>('light');
+  const [accentDraft, setAccentDraft] = useState(DEFAULT_ACCENT);
+  const [settingsSaved, setSettingsSaved] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [newSlug, setNewSlug] = useState('');
   const [slugTouched, setSlugTouched] = useState(false);
@@ -30,24 +34,34 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState<'embed' | 'link' | null>(null);
-  const [darkTheme, setDarkTheme] = useState(false);
 
   const activeSite = sites.find((s) => s.id === activeId);
 
   useEffect(() => {
     setBasePrice(activeSite?.base_price?.toString() ?? '');
     setPerUserPrice(activeSite?.price_per_user?.toString() ?? '');
-    setPricingSaved(false);
-  }, [activeSite?.id, activeSite?.base_price, activeSite?.price_per_user]);
+    setThemeDraft(activeSite?.theme ?? 'light');
+    setAccentDraft(activeSite?.accent ?? DEFAULT_ACCENT);
+    setSettingsSaved(false);
+  }, [activeSite?.id, activeSite?.base_price, activeSite?.price_per_user, activeSite?.theme, activeSite?.accent]);
 
   const parsePrice = (v: string) => (v.trim() === '' ? null : Math.max(0, parseFloat(v) || 0));
 
-  const handleSavePricing = () =>
+  const validAccent = /^#[0-9a-fA-F]{6}$/.test(accentDraft);
+
+  const handleSaveSettings = () => {
+    if (!validAccent) return setError('Accent must be a hex colour like #C4713A');
     run(async () => {
-      await updateSitePricing(activeId, parsePrice(basePrice), parsePrice(perUserPrice));
-      setPricingSaved(true);
-      setTimeout(() => setPricingSaved(false), 1500);
+      await updateSiteSettings(activeId, {
+        base_price: parsePrice(basePrice),
+        price_per_user: parsePrice(perUserPrice),
+        theme: themeDraft,
+        accent: accentDraft.toUpperCase(),
+      });
+      setSettingsSaved(true);
+      setTimeout(() => setSettingsSaved(false), 1500);
     });
+  };
 
   const { inApps, outApps } = useMemo(() => {
     const match = (app: App, q: string) => app.name.toLowerCase().includes(q.toLowerCase());
@@ -55,6 +69,9 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     const outApps = apps.filter((a) => !a.sites?.includes(activeId) && match(a, search.out));
     return { inApps, outApps };
   }, [apps, activeId, search]);
+
+  // Remounts the preview when membership changes so it refetches
+  const memberKey = apps.filter((a) => a.sites?.includes(activeId)).map((a) => a.id).join(',');
 
   const run = async (fn: () => Promise<void>) => {
     setBusy(true);
@@ -99,10 +116,9 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     run(() => deleteSite(activeSite.id));
   };
 
-  const theme = darkTheme ? 'dark' : 'light';
-  const accent = darkTheme ? '#E8621A' : '#C4713A';
-  const snippet = `<div data-bt-calculator data-site="${activeId}" data-theme="${theme}" data-accent="${accent}"></div>\n<script src="https://bt-value-calculator.netlify.app/embed.js"></script>`;
-  const presentationLink = `${window.location.origin}/?site=${activeId}&theme=${theme}&accent=${encodeURIComponent(accent)}`;
+  // Colours come from the saved collection settings, so links/snippets only need the ID
+  const snippet = `<div data-bt-calculator data-site="${activeId}"></div>\n<script src="https://bt-value-calculator.netlify.app/embed.js"></script>`;
+  const presentationLink = `${window.location.origin}/?site=${activeId}`;
 
   const copy = (text: string, which: 'embed' | 'link') => {
     navigator.clipboard.writeText(text);
@@ -306,18 +322,9 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 </button>
               </>
             )}
-            <label className="ml-auto flex items-center gap-2 text-sm text-gray-600 select-none cursor-pointer">
-              <input
-                type="checkbox"
-                className="accent-[#FD5108]"
-                checked={darkTheme}
-                onChange={(e) => setDarkTheme(e.target.checked)}
-              />
-              Dark theme
-            </label>
             <button
               onClick={() => copy(snippet, 'embed')}
-              className="flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
+              className="ml-auto flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-md"
             >
               <Copy size={14} />
               {copied === 'embed' ? 'Copied' : 'Copy embed code'}
@@ -341,6 +348,41 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
           </div>
 
           <div className="mb-5 flex flex-wrap items-end gap-3 bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Theme</label>
+              <div className="flex rounded-md border border-gray-300 overflow-hidden">
+                {(['light', 'dark'] as const).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => setThemeDraft(t)}
+                    className={`px-3 py-1.5 text-sm capitalize transition-colors ${
+                      themeDraft === t ? 'bg-[#FD5108] text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Accent colour</label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="color"
+                  value={validAccent ? accentDraft : DEFAULT_ACCENT}
+                  onChange={(e) => setAccentDraft(e.target.value.toUpperCase())}
+                  className="h-8 w-10 p-0.5 border border-gray-300 rounded-md cursor-pointer bg-white"
+                />
+                <input
+                  type="text"
+                  value={accentDraft}
+                  onChange={(e) => setAccentDraft(e.target.value.trim())}
+                  className={`w-24 px-2 py-1.5 border rounded-md font-mono text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108] ${
+                    validAccent ? 'border-gray-300' : 'border-red-400'
+                  }`}
+                />
+              </div>
+            </div>
             <div>
               <label className="block text-xs font-medium text-gray-600 mb-1">Price per user ($/annually)</label>
               <input
@@ -366,14 +408,14 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               />
             </div>
             <button
-              onClick={handleSavePricing}
+              onClick={handleSaveSettings}
               disabled={busy}
               className="px-4 py-1.5 bg-[#FD5108] hover:bg-[#E84A00] text-white text-sm rounded-md transition-colors disabled:opacity-50"
             >
-              {pricingSaved ? 'Saved' : 'Save pricing'}
+              {settingsSaved ? 'Saved' : 'Save settings'}
             </button>
             <p className="text-xs text-gray-500 basis-full">
-              Leave blank to use the default pricing.
+              Leave prices blank to use the default pricing. The preview below shows unsaved colours; prices apply after saving.
             </p>
           </div>
 
@@ -384,6 +426,18 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
           <div className={`grid md:grid-cols-2 gap-4 ${busy ? 'opacity-70 pointer-events-none' : ''}`}>
             {renderColumn('in', inApps, `In ${activeSite.label}`)}
             {renderColumn('out', outApps, 'Available apps')}
+          </div>
+
+          <h4 className="mt-8 mb-3 font-medium text-gray-800">Preview</h4>
+          <style>{EMBED_CSS}</style>
+          <div className="rounded-lg border border-gray-200 overflow-hidden" style={{ background: PAGE_BG[themeDraft] }}>
+            <EmbedCalculator
+              key={`${activeId}:${memberKey}:${activeSite.base_price}:${activeSite.price_per_user}`}
+              siteId={activeId}
+              theme={themeDraft}
+              accent={validAccent ? accentDraft : DEFAULT_ACCENT}
+              surface
+            />
           </div>
         </>
       )}

@@ -12,8 +12,8 @@ createRoot(document.getElementById('root')!).render(
     {site ? (
       <PresentationView
         siteId={site}
-        theme={params.get('theme') || 'light'}
-        accent={params.get('accent') || '#C4713A'}
+        theme={params.get('theme') || undefined}
+        accent={params.get('accent') || undefined}
       />
     ) : (
       <App />

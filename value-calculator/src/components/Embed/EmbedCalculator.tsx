@@ -50,13 +50,25 @@ const THEMES: Record<string, Record<string, string>> = {
   },
 }
 
-interface Props {
-  siteId: string
-  theme: string
-  accent: string
+// Background used when the calculator provides its own surface (not on a host page)
+export const PAGE_BG: Record<string, string> = {
+  dark: '#080C14',
+  light: '#F3EEE6',
 }
 
-export function EmbedCalculator({ siteId, theme, accent }: Props) {
+export const DEFAULT_ACCENT = '#C4713A'
+
+interface Props {
+  siteId: string
+  // Explicit values win; otherwise the site's saved theme/accent is used
+  theme?: string
+  accent?: string
+  surface?: boolean
+  onThemeResolved?: (theme: string) => void
+}
+
+export function EmbedCalculator({ siteId, theme: themeProp, accent: accentProp, surface, onThemeResolved }: Props) {
+  const [siteStyle, setSiteStyle] = useState<{ theme?: string | null; accent?: string | null }>({})
   const [apps, setApps] = useState<App[]>([])
   const [pricing, setPricing] = useState<Pricing>({ base_price: 499, price_per_user: 10 })
   const [loading, setLoading] = useState(true)
@@ -71,9 +83,17 @@ export function EmbedCalculator({ siteId, theme, accent }: Props) {
     return [...apps].sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name))
   }, [apps, sortMode])
 
+  const theme = themeProp || siteStyle.theme || 'light'
+  const accent = accentProp || siteStyle.accent || DEFAULT_ACCENT
+
+  useEffect(() => {
+    onThemeResolved?.(theme)
+  }, [theme])
+
   const themeVars = {
     ...(THEMES[theme] ?? THEMES.dark),
     '--bt-accent': accent,
+    ...(surface && { background: PAGE_BG[theme] ?? PAGE_BG.dark, padding: 24, borderRadius: 12 }),
   } as CSSProperties
 
   useEffect(() => {
@@ -93,8 +113,9 @@ export function EmbedCalculator({ siteId, theme, accent }: Props) {
   async function loadPricing() {
     const [{ data: defaults }, { data: site }] = await Promise.all([
       supabase.from('pricing').select('base_price, price_per_user').eq('id', 1).single(),
-      supabase.from('sites').select('base_price, price_per_user').eq('id', siteId).maybeSingle(),
+      supabase.from('sites').select('base_price, price_per_user, theme, accent').eq('id', siteId).maybeSingle(),
     ])
+    setSiteStyle({ theme: site?.theme, accent: site?.accent })
     setPricing(prev => ({
       base_price: site?.base_price ?? defaults?.base_price ?? prev.base_price,
       price_per_user: site?.price_per_user ?? defaults?.price_per_user ?? prev.price_per_user,

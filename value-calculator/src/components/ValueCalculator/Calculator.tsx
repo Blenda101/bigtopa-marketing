@@ -99,7 +99,7 @@ const Calculator: React.FC = () => {
       ) : (
         <div className="p-6">
           <style>{EMBED_CSS}</style>
-          <EmbedCalculator key={activeSiteId} siteId={activeSiteId} theme="light" accent="#FD5108" />
+          <EmbedCalculator key={activeSiteId} siteId={activeSiteId} surface />
         </div>
       )}
 

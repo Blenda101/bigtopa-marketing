@@ -65,7 +65,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif']
+      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.svg', '.webp']
     },
     maxSize: 5242880, // 5MB
     multiple: false

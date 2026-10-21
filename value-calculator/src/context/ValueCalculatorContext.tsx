@@ -7,7 +7,7 @@ interface ValueCalculatorContextType {
   sites: Site[];
   activeSiteId: string;
   setActiveSiteId: (id: string) => void;
-  updateSitePricing: (id: string, base_price: number | null, price_per_user: number | null) => Promise<void>;
+  updateSiteSettings: (id: string, settings: Partial<Omit<Site, 'id' | 'label'>>) => Promise<void>;
   addSite: (site: Site) => Promise<void>;
   renameSite: (id: string, label: string) => Promise<void>;
   deleteSite: (id: string) => Promise<void>;
@@ -242,7 +242,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
   const loadSites = async () => {
     const { data, error } = await supabase
       .from('sites')
-      .select('id, label, base_price, price_per_user')
+      .select('id, label, base_price, price_per_user, theme, accent')
       .order('label', { ascending: true });
 
     if (error) {
@@ -266,19 +266,13 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
     setSites((prev) => prev.map((s) => (s.id === id ? { ...s, label } : s)));
   };
 
-  const updateSitePricing = async (
+  const updateSiteSettings = async (
     id: string,
-    base_price: number | null,
-    price_per_user: number | null
+    settings: Partial<Omit<Site, 'id' | 'label'>>
   ) => {
-    const { error } = await supabase
-      .from('sites')
-      .update({ base_price, price_per_user })
-      .eq('id', id);
+    const { error } = await supabase.from('sites').update(settings).eq('id', id);
     if (error) throw error;
-    setSites((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, base_price, price_per_user } : s))
-    );
+    setSites((prev) => prev.map((s) => (s.id === id ? { ...s, ...settings } : s)));
   };
 
   // Removes the site and strips it from every app's membership list
@@ -513,7 +507,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         sites,
         activeSiteId,
         setActiveSiteId,
-        updateSitePricing,
+        updateSiteSettings,
         addSite,
         renameSite,
         deleteSite,

@@ -14,6 +14,8 @@ export interface Site {
   // null = use the default pricing row
   base_price?: number | null;
   price_per_user?: number | null;
+  theme?: 'light' | 'dark' | null;
+  accent?: string | null;
 }
 
 // Fallback when the `sites` table can't be read

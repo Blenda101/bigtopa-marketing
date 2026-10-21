@@ -16,8 +16,9 @@ function mount() {
   const containers = document.querySelectorAll<HTMLElement>('[data-bt-calculator]')
   containers.forEach(el => {
     const siteId  = el.getAttribute('data-site')   || 'bigtopa'
-    const theme   = el.getAttribute('data-theme')  || 'dark'
-    const accent  = el.getAttribute('data-accent') || '#E8621A'
+    // Optional overrides; otherwise the site's saved theme/accent is used
+    const theme   = el.getAttribute('data-theme')  || undefined
+    const accent  = el.getAttribute('data-accent') || undefined
     createRoot(el).render(
       <React.StrictMode>
         <EmbedCalculator siteId={siteId} theme={theme} accent={accent} />
