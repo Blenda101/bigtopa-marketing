@@ -84,7 +84,7 @@ export function EmbedCalculator({ siteId, theme, accent }: Props) {
     const { data, error } = await supabase.from('apps').select('*').order('name')
     if (error || !data) return
     const filtered = (data as App[]).filter(
-      app => !app.sites?.length || app.sites.includes(siteId)
+      app => app.sites?.includes(siteId)
     )
     setApps(filtered)
   }

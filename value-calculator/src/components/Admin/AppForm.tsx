@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
 import { X, Upload } from 'lucide-react';
-import { App, AppCategory, KNOWN_SITES } from '../../types';
+import { App, AppCategory } from '../../types';
 import { APP_CATEGORIES, getCategoryDescription } from '../../data/categories';
 import { useDropzone } from 'react-dropzone';
 
@@ -11,7 +11,7 @@ interface AppFormProps {
 }
 
 const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
-  const { addApp, updateApp } = useValueCalculator();
+  const { addApp, updateApp, sites } = useValueCalculator();
   const [formData, setFormData] = useState<Omit<App, 'id'>>({
     name: '',
     logo: '',
@@ -238,10 +238,10 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
             Show on sites
           </label>
           <p className="text-xs text-gray-500 mb-2">
-            Leave all unchecked to show on every site.
+            The app only appears on the sites checked here.
           </p>
           <div className="flex flex-wrap gap-3">
-            {KNOWN_SITES.map(site => {
+            {sites.map(site => {
               const checked = (formData.sites || []).includes(site.id)
               return (
                 <label

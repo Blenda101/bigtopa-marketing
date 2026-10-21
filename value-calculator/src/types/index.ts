@@ -8,11 +8,17 @@ export interface App {
   created_at?: string;
 }
 
-export const KNOWN_SITES = [
+export interface Site {
+  id: string;
+  label: string;
+}
+
+// Fallback when the `sites` table can't be read
+export const KNOWN_SITES: Site[] = [
   { id: 'bigtopa',    label: 'BigTopa' },
   { id: 'greekhouse', label: 'GreekHouse' },
   { id: 'gatheragain', label: 'GatherAgain' },
-] as const;
+];
 
 export type AppCategory = 
   | 'Communication'

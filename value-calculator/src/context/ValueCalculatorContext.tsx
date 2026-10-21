@@ -1,9 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { App, CalculatorState, BigTopaPricing } from '../types';
+import { App, CalculatorState, BigTopaPricing, Site, KNOWN_SITES } from '../types';
 import { supabase } from '../lib/supabase';
 
 interface ValueCalculatorContextType {
   apps: App[];
+  sites: Site[];
+  addSite: (site: Site) => Promise<void>;
+  renameSite: (id: string, label: string) => Promise<void>;
+  deleteSite: (id: string) => Promise<void>;
+  setAppSites: (appId: string, sites: string[]) => Promise<void>;
   state: CalculatorState;
   toggleAppSelection: (appId: string) => void;
   updateCompanySize: (size: number) => void;
@@ -25,6 +30,7 @@ const DEFAULT_PRICING = {
 
 export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [apps, setApps] = useState<App[]>([]);
+  const [sites, setSites] = useState<Site[]>(KNOWN_SITES);
   const [state, setState] = useState<CalculatorState>({
     selectedApps: [],
     companySize: 25,
@@ -47,7 +53,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
           }
         }
 
-        await Promise.all([loadApps(), loadPricing()]);
+        await Promise.all([loadApps(), loadPricing(), loadSites()]);
       } catch (error) {
         console.error('Error initializing data:', error);
       }
@@ -212,6 +218,55 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
     } catch (error) {
       console.error('Error loading apps:', error);
     }
+  };
+
+  const loadSites = async () => {
+    const { data, error } = await supabase
+      .from('sites')
+      .select('id, label')
+      .order('label', { ascending: true });
+
+    if (error) {
+      console.error('Error loading sites (using fallback list):', error);
+      return;
+    }
+    setSites(data as Site[]);
+  };
+
+  const addSite = async (site: Site) => {
+    const { error } = await supabase.from('sites').insert(site);
+    if (error) throw error;
+    setSites((prev) =>
+      [...prev, site].sort((a, b) => a.label.localeCompare(b.label))
+    );
+  };
+
+  const renameSite = async (id: string, label: string) => {
+    const { error } = await supabase.from('sites').update({ label }).eq('id', id);
+    if (error) throw error;
+    setSites((prev) => prev.map((s) => (s.id === id ? { ...s, label } : s)));
+  };
+
+  // Removes the site and strips it from every app's membership list
+  const deleteSite = async (id: string) => {
+    const members = apps.filter((app) => app.sites?.includes(id));
+    for (const app of members) {
+      await setAppSites(app.id, (app.sites || []).filter((s) => s !== id));
+    }
+    const { error } = await supabase.from('sites').delete().eq('id', id);
+    if (error) throw error;
+    setSites((prev) => prev.filter((s) => s.id !== id));
+  };
+
+  const setAppSites = async (appId: string, appSites: string[]) => {
+    const { error } = await supabase
+      .from('apps')
+      .update({ sites: appSites })
+      .eq('id', appId);
+    if (error) throw error;
+    setApps((prev) =>
+      prev.map((app) => (app.id === appId ? { ...app, sites: appSites } : app))
+    );
   };
 
   const toggleAppSelection = (appId: string) => {
@@ -421,6 +476,11 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
     <ValueCalculatorContext.Provider
       value={{
         apps,
+        sites,
+        addSite,
+        renameSite,
+        deleteSite,
+        setAppSites,
         state,
         toggleAppSelection,
         updateCompanySize,

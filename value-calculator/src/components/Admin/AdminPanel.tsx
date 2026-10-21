@@ -4,8 +4,9 @@ import AppList from './AppList';
 import AppForm from './AppForm';
 import PricingConfig from './PricingConfig';
 import CategoryManagement from './CategoryManagement';
+import SiteManagement from './SiteManagement';
 import LoginForm from '../Auth/LoginForm';
-import { Plus, ListPlus } from 'lucide-react';
+import { Plus, ListPlus, Globe } from 'lucide-react';
 import { App } from '../../types';
 import { supabase } from '../../lib/supabase';
 
@@ -13,6 +14,7 @@ const AdminPanel: React.FC = () => {
   const { apps } = useValueCalculator();
   const [showAddForm, setShowAddForm] = useState(false);
   const [showCategoryManagement, setShowCategoryManagement] = useState(false);
+  const [showSiteManagement, setShowSiteManagement] = useState(false);
   const [editingApp, setEditingApp] = useState<App | null>(null);
   const [session, setSession] = useState<any>(null);
 
@@ -53,9 +55,16 @@ const AdminPanel: React.FC = () => {
       <div className="mb-6 flex justify-between items-center">
         <h2 className="text-xl font-semibold text-gray-800">Admin Panel</h2>
         
-        {!showAddForm && !showCategoryManagement && (
+        {!showAddForm && !showCategoryManagement && !showSiteManagement && (
           <div className="flex gap-2">
-            <button 
+            <button
+              onClick={() => setShowSiteManagement(true)}
+              className="flex items-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-md transition-colors"
+            >
+              <Globe size={18} />
+              <span>Sites &amp; Collections</span>
+            </button>
+            <button
               onClick={() => setShowCategoryManagement(true)}
               className="flex items-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-md transition-colors"
             >
@@ -77,6 +86,10 @@ const AdminPanel: React.FC = () => {
         <AppForm 
           editApp={editingApp} 
           onCancel={handleCancelEdit} 
+        />
+      ) : showSiteManagement ? (
+        <SiteManagement
+          onClose={() => setShowSiteManagement(false)}
         />
       ) : showCategoryManagement ? (
         <CategoryManagement 
