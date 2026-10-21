@@ -11,13 +11,14 @@ interface App {
   name: string
   logo: string
   cost_per_user: number
+  pricing_type?: 'per_user' | 'flat'
   category: string
   sites?: string[] | null
 }
 
 interface Pricing {
-  base_price: number
-  price_per_user: number
+  flat_monthly: number
+  per_user_monthly: number
 }
 
 interface SavedCalc {
@@ -81,7 +82,7 @@ interface Props {
 export function EmbedCalculator({ siteId, theme: themeProp, accent: accentProp, surface, onThemeResolved }: Props) {
   const [siteStyle, setSiteStyle] = useState<{ theme?: string | null; accent?: string | null }>({})
   const [apps, setApps] = useState<App[]>([])
-  const [pricing, setPricing] = useState<Pricing>({ base_price: 499, price_per_user: 10 })
+  const [pricing, setPricing] = useState<Pricing>({ flat_monthly: 0, per_user_monthly: 0 })
   const [loading, setLoading] = useState(true)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [companySize, setCompanySize] = useState(25)
@@ -120,17 +121,17 @@ export function EmbedCalculator({ siteId, theme: themeProp, accent: accentProp, 
     setApps(filtered)
   }
 
-  // Site pricing overrides the default row field by field; NULL falls back
   async function loadPricing() {
-    const [{ data: defaults }, { data: site }] = await Promise.all([
-      supabase.from('pricing').select('base_price, price_per_user').eq('id', 1).single(),
-      supabase.from('sites').select('base_price, price_per_user, theme, accent').eq('id', siteId).maybeSingle(),
-    ])
+    const { data: site } = await supabase
+      .from('sites')
+      .select('flat_monthly, per_user_monthly, theme, accent')
+      .eq('id', siteId)
+      .maybeSingle()
     setSiteStyle({ theme: site?.theme, accent: site?.accent })
-    setPricing(prev => ({
-      base_price: site?.base_price ?? defaults?.base_price ?? prev.base_price,
-      price_per_user: site?.price_per_user ?? defaults?.price_per_user ?? prev.price_per_user,
-    }))
+    setPricing({
+      flat_monthly: Number(site?.flat_monthly ?? 0),
+      per_user_monthly: Number(site?.per_user_monthly ?? 0),
+    })
   }
 
   function toggleApp(id: string) {

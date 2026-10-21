@@ -4,10 +4,12 @@ interface App {
   id: string
   name: string
   cost_per_user: number
+  pricing_type?: 'per_user' | 'flat'
 }
 
 interface Pricing {
-  base_price: number
+  flat_monthly: number
+  per_user_monthly: number
 }
 
 interface Calculation {
@@ -38,11 +40,11 @@ export function EmbedResults({
 
   const calc = useMemo<Calculation>(() => {
     const totalMonthlyCost = selectedApps.reduce(
-      (sum, app) => sum + app.cost_per_user * companySize,
+      (sum, app) => sum + app.cost_per_user * (app.pricing_type === 'flat' ? 1 : companySize),
       0
     )
     const totalYearlyCost = totalMonthlyCost * 12
-    const bigTopaYearlyCost = pricing.base_price * companySize
+    const bigTopaYearlyCost = (pricing.flat_monthly + pricing.per_user_monthly * companySize) * 12
     const yearlySavings = totalYearlyCost - bigTopaYearlyCost
     const replacedCount = Math.min(
       Math.ceil(selectedApps.length * 0.8),

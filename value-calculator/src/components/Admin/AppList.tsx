@@ -49,7 +49,7 @@ const AppList: React.FC<AppListProps> = ({ onEditApp }) => {
                 </div>
               </td>
               <td className="p-4 border-b border-gray-200 text-gray-700">{app.category}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700">${app.costPerUser}/mo</td>
+              <td className="p-4 border-b border-gray-200 text-gray-700">${app.costPerUser}{app.pricingType === 'flat' ? '/mo flat' : '/user/mo'}</td>
               <td className="p-4 border-b border-gray-200">
                 <div className="flex justify-end gap-2">
                   <button 

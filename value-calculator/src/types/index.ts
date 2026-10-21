@@ -3,19 +3,23 @@ export interface App {
   name: string;
   logo: string;
   costPerUser: number;
+  pricingType?: PricingType;
   category: AppCategory;
   sites?: string[];
   created_at?: string;
 }
+
+// per_user = cost × people, flat = one cost for the whole org
+export type PricingType = 'per_user' | 'flat';
 
 export type SiteTheme = 'light' | 'dark' | 'white';
 
 export interface Site {
   id: string;
   label: string;
-  // null = use the default pricing row
-  base_price?: number | null;
-  price_per_user?: number | null;
+  // BigTopa price for this collection: (flat_monthly + per_user_monthly × people) × 12
+  flat_monthly?: number;
+  per_user_monthly?: number;
   theme?: SiteTheme | null;
   accent?: string | null;
 }

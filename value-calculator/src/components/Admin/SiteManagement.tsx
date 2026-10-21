@@ -17,7 +17,7 @@ const toSlug = (label: string) =>
 const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const {
     apps, sites, addSite, renameSite, deleteSite, setAppSites, updateSiteSettings,
-    activeSiteId: activeId, setActiveSiteId: setActiveId, state,
+    activeSiteId: activeId, setActiveSiteId: setActiveId,
   } = useValueCalculator();
   const [basePrice, setBasePrice] = useState('');
   const [perUserPrice, setPerUserPrice] = useState('');
@@ -38,12 +38,12 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const activeSite = sites.find((s) => s.id === activeId);
 
   useEffect(() => {
-    setBasePrice(activeSite?.base_price?.toString() ?? '');
-    setPerUserPrice(activeSite?.price_per_user?.toString() ?? '');
+    setBasePrice(activeSite?.flat_monthly?.toString() ?? '0');
+    setPerUserPrice(activeSite?.per_user_monthly?.toString() ?? '0');
     setThemeDraft(activeSite?.theme ?? 'light');
     setAccentDraft(activeSite?.accent ?? DEFAULT_ACCENT);
     setSettingsSaved(false);
-  }, [activeSite?.id, activeSite?.base_price, activeSite?.price_per_user, activeSite?.theme, activeSite?.accent]);
+  }, [activeSite?.id, activeSite?.flat_monthly, activeSite?.per_user_monthly, activeSite?.theme, activeSite?.accent]);
 
   const parsePrice = (v: string) => (v.trim() === '' ? NaN : parseFloat(v));
 
@@ -56,8 +56,8 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     if (!(base >= 0) || !(perUser >= 0)) return setError('Enter both prices (0 or more)');
     run(async () => {
       await updateSiteSettings(activeId, {
-        base_price: base,
-        price_per_user: perUser,
+        flat_monthly: base,
+        per_user_monthly: perUser,
         theme: themeDraft,
         accent: accentDraft.toUpperCase(),
       });
@@ -105,12 +105,12 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     if (!label || !id) return setError('Name cannot be empty');
     if (sites.some((s) => s.id === id)) return setError(`"${id}" already exists`);
     run(async () => {
-      // New collections start with the current fallback prices
+      // New collections copy the selected collection's prices
       await addSite({
         id,
         label,
-        base_price: state.bigTopaPricing.base_price,
-        price_per_user: state.bigTopaPricing.price_per_user,
+        flat_monthly: activeSite?.flat_monthly ?? 0,
+        per_user_monthly: activeSite?.per_user_monthly ?? 0,
       });
       setActiveId(id);
       setNewLabel('');
@@ -393,19 +393,19 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Price per user ($/annually)</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">BigTopa flat fee ($/month)</label>
               <input
                 type="number"
                 min="0"
                 step="0.01"
                 value={basePrice}
                 onChange={(e) => setBasePrice(e.target.value)}
-                placeholder="e.g. 100"
+                placeholder="e.g. 0"
                 className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Price per user ($/monthly)</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">BigTopa per user ($/month)</label>
               <input
                 type="number"
                 min="0"
@@ -424,7 +424,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               {settingsSaved ? 'Saved' : 'Save settings'}
             </button>
             <p className="text-xs text-gray-500 basis-full">
-              The preview below shows unsaved colours; prices apply after saving.
+              BigTopa yearly cost = (flat fee + per user × people) × 12. Set either to 0 if unused. The preview below shows unsaved colours; prices apply after saving.
             </p>
           </div>
 
@@ -441,7 +441,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
           <style>{EMBED_CSS}</style>
           <div className="rounded-lg border border-gray-200 overflow-hidden" style={{ background: PAGE_BG[themeDraft] }}>
             <EmbedCalculator
-              key={`${activeId}:${memberKey}:${activeSite.base_price}:${activeSite.price_per_user}`}
+              key={`${activeId}:${memberKey}:${activeSite.flat_monthly}:${activeSite.per_user_monthly}`}
               siteId={activeId}
               theme={themeDraft}
               accent={validAccent ? accentDraft : DEFAULT_ACCENT}

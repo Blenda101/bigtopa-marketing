@@ -16,6 +16,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
     name: '',
     logo: '',
     costPerUser: 0,
+    pricingType: 'per_user',
     category: 'Other',
     sites: [],
   });
@@ -27,6 +28,7 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
         name: editApp.name,
         logo: editApp.logo,
         costPerUser: editApp.costPerUser,
+        pricingType: editApp.pricingType || 'per_user',
         category: editApp.category,
         sites: editApp.sites || [],
       });
@@ -179,8 +181,22 @@ const AppForm: React.FC<AppFormProps> = ({ editApp, onCancel }) => {
           {/* Cost Per User */}
           <div>
             <label htmlFor="costPerUser" className="block text-sm font-medium text-gray-700 mb-1">
-              Cost Per User ($/month)
+              Cost ($/month)
             </label>
+            <div className="flex rounded-md border border-gray-300 overflow-hidden mb-2 w-fit">
+              {([['per_user', 'Per user'], ['flat', 'Flat (whole org)']] as const).map(([value, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setFormData((prev) => ({ ...prev, pricingType: value }))}
+                  className={`px-3 py-1.5 text-sm transition-colors ${
+                    formData.pricingType === value ? 'bg-[#FD5108] text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
             <input
               id="costPerUser"
               name="costPerUser"

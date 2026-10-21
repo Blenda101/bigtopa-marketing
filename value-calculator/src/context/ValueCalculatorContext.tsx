@@ -227,6 +227,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
           name: app.name,
           logo: app.logo,
           costPerUser: parseFloat(app.cost_per_user),
+          pricingType: app.pricing_type || 'per_user',
           category: app.category,
           sites: app.sites || [],
           created_at: app.created_at
@@ -242,7 +243,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
   const loadSites = async () => {
     const { data, error } = await supabase
       .from('sites')
-      .select('id, label, base_price, price_per_user, theme, accent')
+      .select('id, label, flat_monthly, per_user_monthly, theme, accent')
       .order('label', { ascending: true });
 
     if (error) {
@@ -369,6 +370,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         name: appData.name,
         logo: appData.logo,
         cost_per_user: parseFloat(appData.costPerUser.toString()),
+        pricing_type: appData.pricingType || 'per_user',
         category: appData.category,
         sites: appData.sites || []
       };
@@ -390,6 +392,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
           name: data.name,
           logo: data.logo,
           costPerUser: parseFloat(data.cost_per_user),
+          pricingType: data.pricing_type,
           category: data.category,
           sites: data.sites || [],
           created_at: data.created_at
@@ -426,6 +429,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         name: updatedApp.name,
         logo: updatedApp.logo,
         cost_per_user: parseFloat(updatedApp.costPerUser.toString()),
+        pricing_type: updatedApp.pricingType || 'per_user',
         category: updatedApp.category,
         sites: updatedApp.sites || []
       };
@@ -458,6 +462,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
         name: updatedData.name,
         logo: updatedData.logo,
         costPerUser: parseFloat(updatedData.cost_per_user),
+        pricingType: updatedData.pricing_type,
         category: updatedData.category,
         sites: updatedData.sites || [],
         created_at: updatedData.created_at
