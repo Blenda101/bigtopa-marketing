@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
-import AppSelector from './AppSelector';
-import CompanySize from './CompanySize';
-import Results from './Results';
 import AdminPanel from '../Admin/AdminPanel';
 import EmbedModal from './EmbedModal';
-import { ArrowLeft, Settings, MoreVertical, Copy, ArrowRight } from 'lucide-react';
+import { EmbedCalculator } from '../Embed/EmbedCalculator';
+import { EMBED_CSS } from '../Embed/styles';
+import { ArrowLeft, Settings, MoreVertical, Copy } from 'lucide-react';
 
 const Calculator: React.FC = () => {
-  const { state, toggleAdminMode } = useValueCalculator();
+  const { state, toggleAdminMode, sites, activeSiteId, setActiveSiteId } = useValueCalculator();
   const { isAdminMode } = state;
-  const [isYearly, setIsYearly] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [showEmbedModal, setShowEmbedModal] = useState(false);
 
@@ -47,28 +45,16 @@ const Calculator: React.FC = () => {
             )}
             
             {!isAdminMode && (
-              <div className="bg-white/10 rounded-lg p-1 flex">
-                <button
-                  onClick={() => setIsYearly(true)}
-                  className={`px-4 py-1 rounded-md text-sm transition-all ${
-                    isYearly 
-                      ? 'bg-white text-[#FD5108]' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  Yearly
-                </button>
-                <button
-                  onClick={() => setIsYearly(false)}
-                  className={`px-4 py-1 rounded-md text-sm transition-all ${
-                    !isYearly 
-                      ? 'bg-white text-[#FD5108]' 
-                      : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  Monthly
-                </button>
-              </div>
+              <select
+                value={activeSiteId}
+                onChange={(e) => setActiveSiteId(e.target.value)}
+                className="bg-white/10 text-white text-sm rounded-md px-3 py-1.5 border border-white/30 focus:outline-none [&>option]:text-gray-800"
+                aria-label="Active site or collection"
+              >
+                {sites.map((site) => (
+                  <option key={site.id} value={site.id}>{site.label}</option>
+                ))}
+              </select>
             )}
             
             <div className="relative">
@@ -111,26 +97,9 @@ const Calculator: React.FC = () => {
       {isAdminMode ? (
         <AdminPanel />
       ) : (
-        <div className="p-6 grid md:grid-cols-2 gap-6">
-          <div>
-            <AppSelector />
-          </div>
-          <div className="flex flex-col gap-6">
-            <CompanySize />
-            <Results isYearly={isYearly} />
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
-              <h3 className="text-xl font-semibold text-gray-800 mb-6">Collaborate and save with BigTopa Today!</h3>
-              <a 
-                href="https://www.bigtopa.com/pricing.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#FD5108] hover:bg-[#E84A00] transition-all duration-300 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center gap-2"
-              >
-                Start Your Free Trial
-                <ArrowRight size={18} />
-              </a>
-            </div>
-          </div>
+        <div className="p-6">
+          <style>{EMBED_CSS}</style>
+          <EmbedCalculator key={activeSiteId} siteId={activeSiteId} theme="light" accent="#FD5108" />
         </div>
       )}
 

@@ -89,13 +89,16 @@ export function EmbedCalculator({ siteId, theme, accent }: Props) {
     setApps(filtered)
   }
 
+  // Site pricing overrides the default row field by field; NULL falls back
   async function loadPricing() {
-    const { data } = await supabase
-      .from('pricing')
-      .select('base_price, price_per_user')
-      .eq('id', 1)
-      .single()
-    if (data) setPricing(data as Pricing)
+    const [{ data: defaults }, { data: site }] = await Promise.all([
+      supabase.from('pricing').select('base_price, price_per_user').eq('id', 1).single(),
+      supabase.from('sites').select('base_price, price_per_user').eq('id', siteId).maybeSingle(),
+    ])
+    setPricing(prev => ({
+      base_price: site?.base_price ?? defaults?.base_price ?? prev.base_price,
+      price_per_user: site?.price_per_user ?? defaults?.price_per_user ?? prev.price_per_user,
+    }))
   }
 
   function toggleApp(id: string) {

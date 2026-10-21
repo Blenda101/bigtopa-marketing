@@ -13,8 +13,13 @@ const toSlug = (label: string) =>
   label.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
-  const { apps, sites, addSite, renameSite, deleteSite, setAppSites } = useValueCalculator();
-  const [activeId, setActiveId] = useState<string>(sites[0]?.id ?? '');
+  const {
+    apps, sites, addSite, renameSite, deleteSite, setAppSites, updateSitePricing,
+    activeSiteId: activeId, setActiveSiteId: setActiveId, state,
+  } = useValueCalculator();
+  const [basePrice, setBasePrice] = useState('');
+  const [perUserPrice, setPerUserPrice] = useState('');
+  const [pricingSaved, setPricingSaved] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [newSlug, setNewSlug] = useState('');
   const [slugTouched, setSlugTouched] = useState(false);
@@ -27,11 +32,22 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const [copied, setCopied] = useState<'embed' | 'link' | null>(null);
   const [darkTheme, setDarkTheme] = useState(false);
 
-  useEffect(() => {
-    if (!sites.some((s) => s.id === activeId)) setActiveId(sites[0]?.id ?? '');
-  }, [sites, activeId]);
-
   const activeSite = sites.find((s) => s.id === activeId);
+
+  useEffect(() => {
+    setBasePrice(activeSite?.base_price?.toString() ?? '');
+    setPerUserPrice(activeSite?.price_per_user?.toString() ?? '');
+    setPricingSaved(false);
+  }, [activeSite?.id, activeSite?.base_price, activeSite?.price_per_user]);
+
+  const parsePrice = (v: string) => (v.trim() === '' ? null : Math.max(0, parseFloat(v) || 0));
+
+  const handleSavePricing = () =>
+    run(async () => {
+      await updateSitePricing(activeId, parsePrice(basePrice), parsePrice(perUserPrice));
+      setPricingSaved(true);
+      setTimeout(() => setPricingSaved(false), 1500);
+    });
 
   const { inApps, outApps } = useMemo(() => {
     const match = (app: App, q: string) => app.name.toLowerCase().includes(q.toLowerCase());
@@ -322,6 +338,43 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               <ExternalLink size={14} />
               Open
             </a>
+          </div>
+
+          <div className="mb-5 flex flex-wrap items-end gap-3 bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Price per user ($/annually)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={basePrice}
+                onChange={(e) => setBasePrice(e.target.value)}
+                placeholder={`Default: ${state.bigTopaPricing.base_price}`}
+                className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Price per user ($/monthly)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={perUserPrice}
+                onChange={(e) => setPerUserPrice(e.target.value)}
+                placeholder={`Default: ${state.bigTopaPricing.price_per_user}`}
+                className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
+              />
+            </div>
+            <button
+              onClick={handleSavePricing}
+              disabled={busy}
+              className="px-4 py-1.5 bg-[#FD5108] hover:bg-[#E84A00] text-white text-sm rounded-md transition-colors disabled:opacity-50"
+            >
+              {pricingSaved ? 'Saved' : 'Save pricing'}
+            </button>
+            <p className="text-xs text-gray-500 basis-full">
+              Leave blank to use the default pricing.
+            </p>
           </div>
 
           <p className="text-xs text-gray-500 mb-3">

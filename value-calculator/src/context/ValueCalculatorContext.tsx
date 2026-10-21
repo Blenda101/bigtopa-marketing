@@ -5,6 +5,9 @@ import { supabase } from '../lib/supabase';
 interface ValueCalculatorContextType {
   apps: App[];
   sites: Site[];
+  activeSiteId: string;
+  setActiveSiteId: (id: string) => void;
+  updateSitePricing: (id: string, base_price: number | null, price_per_user: number | null) => Promise<void>;
   addSite: (site: Site) => Promise<void>;
   renameSite: (id: string, label: string) => Promise<void>;
   deleteSite: (id: string) => Promise<void>;
@@ -22,6 +25,7 @@ interface ValueCalculatorContextType {
 const ValueCalculatorContext = createContext<ValueCalculatorContextType | undefined>(undefined);
 
 const STORAGE_KEY = 'bigTopa_calculator_data';
+const ACTIVE_SITE_KEY = 'bigTopa_active_site';
 
 const DEFAULT_PRICING = {
   base_price: 499,
@@ -31,6 +35,21 @@ const DEFAULT_PRICING = {
 export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [apps, setApps] = useState<App[]>([]);
   const [sites, setSites] = useState<Site[]>(KNOWN_SITES);
+  const [activeSiteId, setActiveSiteIdState] = useState<string>(
+    () => localStorage.getItem(ACTIVE_SITE_KEY) || KNOWN_SITES[0].id
+  );
+
+  const setActiveSiteId = (id: string) => {
+    setActiveSiteIdState(id);
+    localStorage.setItem(ACTIVE_SITE_KEY, id);
+  };
+
+  // Fall back to the first site if the remembered one was deleted
+  useEffect(() => {
+    if (sites.length && !sites.some((s) => s.id === activeSiteId)) {
+      setActiveSiteId(sites[0].id);
+    }
+  }, [sites, activeSiteId]);
   const [state, setState] = useState<CalculatorState>({
     selectedApps: [],
     companySize: 25,
@@ -223,7 +242,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
   const loadSites = async () => {
     const { data, error } = await supabase
       .from('sites')
-      .select('id, label')
+      .select('id, label, base_price, price_per_user')
       .order('label', { ascending: true });
 
     if (error) {
@@ -245,6 +264,21 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
     const { error } = await supabase.from('sites').update({ label }).eq('id', id);
     if (error) throw error;
     setSites((prev) => prev.map((s) => (s.id === id ? { ...s, label } : s)));
+  };
+
+  const updateSitePricing = async (
+    id: string,
+    base_price: number | null,
+    price_per_user: number | null
+  ) => {
+    const { error } = await supabase
+      .from('sites')
+      .update({ base_price, price_per_user })
+      .eq('id', id);
+    if (error) throw error;
+    setSites((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, base_price, price_per_user } : s))
+    );
   };
 
   // Removes the site and strips it from every app's membership list
@@ -477,6 +511,9 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
       value={{
         apps,
         sites,
+        activeSiteId,
+        setActiveSiteId,
+        updateSitePricing,
         addSite,
         renameSite,
         deleteSite,

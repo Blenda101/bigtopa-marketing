@@ -11,6 +11,9 @@ export interface App {
 export interface Site {
   id: string;
   label: string;
+  // null = use the default pricing row
+  base_price?: number | null;
+  price_per_user?: number | null;
 }
 
 // Fallback when the `sites` table can't be read
