@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useValueCalculator } from '../../context/ValueCalculatorContext';
 import AppList from './AppList';
 import AppForm from './AppForm';
-import PricingConfig from './PricingConfig';
 import CategoryManagement from './CategoryManagement';
 import SiteManagement from './SiteManagement';
 import LoginForm from '../Auth/LoginForm';
@@ -97,10 +96,6 @@ const AdminPanel: React.FC = () => {
         />
       ) : (
         <>
-          <PricingConfig />
-          
-          <div className="my-8 border-t border-gray-200" />
-          
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">App Management</h3>
             <p className="text-gray-600">

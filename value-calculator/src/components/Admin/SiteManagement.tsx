@@ -45,16 +45,19 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     setSettingsSaved(false);
   }, [activeSite?.id, activeSite?.base_price, activeSite?.price_per_user, activeSite?.theme, activeSite?.accent]);
 
-  const parsePrice = (v: string) => (v.trim() === '' ? null : Math.max(0, parseFloat(v) || 0));
+  const parsePrice = (v: string) => (v.trim() === '' ? NaN : parseFloat(v));
 
   const validAccent = /^#[0-9a-fA-F]{6}$/.test(accentDraft);
 
   const handleSaveSettings = () => {
     if (!validAccent) return setError('Accent must be a hex colour like #C4713A');
+    const base = parsePrice(basePrice);
+    const perUser = parsePrice(perUserPrice);
+    if (!(base >= 0) || !(perUser >= 0)) return setError('Enter both prices (0 or more)');
     run(async () => {
       await updateSiteSettings(activeId, {
-        base_price: parsePrice(basePrice),
-        price_per_user: parsePrice(perUserPrice),
+        base_price: base,
+        price_per_user: perUser,
         theme: themeDraft,
         accent: accentDraft.toUpperCase(),
       });
@@ -102,7 +105,13 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     if (!label || !id) return setError('Name cannot be empty');
     if (sites.some((s) => s.id === id)) return setError(`"${id}" already exists`);
     run(async () => {
-      await addSite({ id, label });
+      // New collections start with the current fallback prices
+      await addSite({
+        id,
+        label,
+        base_price: state.bigTopaPricing.base_price,
+        price_per_user: state.bigTopaPricing.price_per_user,
+      });
       setActiveId(id);
       setNewLabel('');
       setNewSlug('');
@@ -391,7 +400,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 step="0.01"
                 value={basePrice}
                 onChange={(e) => setBasePrice(e.target.value)}
-                placeholder={`Default: ${state.bigTopaPricing.base_price}`}
+                placeholder="e.g. 100"
                 className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
               />
             </div>
@@ -403,7 +412,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 step="0.01"
                 value={perUserPrice}
                 onChange={(e) => setPerUserPrice(e.target.value)}
-                placeholder={`Default: ${state.bigTopaPricing.price_per_user}`}
+                placeholder="e.g. 10"
                 className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
               />
             </div>
@@ -415,7 +424,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               {settingsSaved ? 'Saved' : 'Save settings'}
             </button>
             <p className="text-xs text-gray-500 basis-full">
-              Leave prices blank to use the default pricing. The preview below shows unsaved colours; prices apply after saving.
+              The preview below shows unsaved colours; prices apply after saving.
             </p>
           </div>
 
