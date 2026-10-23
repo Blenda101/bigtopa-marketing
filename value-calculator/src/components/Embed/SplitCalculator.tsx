@@ -1,6 +1,6 @@
 import { useMemo, useState, DragEvent } from 'react'
 import { BadgeGrid, DRAG_TYPE } from './BadgeGrid'
-import { calculate, CtaButton, Cta, Pricing, ResultsCard, TeamSizeCard } from './EmbedResults'
+import { calculate, CtaButton, Cta, Pricing } from './EmbedResults'
 import { SortMode } from './EmbedCalculator'
 
 interface App {
@@ -21,7 +21,8 @@ interface Props {
   cta?: Cta
 }
 
-// Side-by-side layout: available apps on the left, "Apps we use" + live summary on the right.
+// Side-by-side layout: available apps on the left, "Apps we use" on the right,
+// team size + live summary in a full-width footer below both.
 // Apps move by click or drag in either direction.
 export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, showPrice, cta }: Props) {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
@@ -51,7 +52,8 @@ export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, sho
   })
 
   return (
-    <div className="bt-split bt-fade">
+    <div className="bt-fade">
+    <div className="bt-split">
       <div className={`bt-panel${dragOver === 'available' ? ' bt-drop-active' : ''}`} {...dropZone('available', remove)}>
         <div className="bt-panel-head">
           <span className="bt-panel-title">Available apps</span>
@@ -80,7 +82,6 @@ export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, sho
         />
       </div>
 
-      <div className="bt-split-side">
         <div className={`bt-panel${dragOver === 'used' ? ' bt-drop-active' : ''}`} {...dropZone('used', add)}>
           <div className="bt-panel-head">
             <span className="bt-panel-title">Apps we use</span>
@@ -112,10 +113,54 @@ export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, sho
           )}
         </div>
 
-        <TeamSizeCard companySize={companySize} onChange={setCompanySize} />
-        <ResultsCard calc={calc} showPrice={showPrice} />
-        <CtaButton cta={cta} />
+    </div>
+
+    <div className="bt-summary-bar">
+      <div className="bt-summary-people">
+        <div className="bt-slider-row">
+          <span className="bt-slider-label">People in your org</span>
+          <span className="bt-slider-val">{companySize}</span>
+        </div>
+        <input
+          type="range"
+          className="bt-range"
+          min={1}
+          max={500}
+          value={companySize}
+          onChange={e => setCompanySize(Number(e.target.value))}
+        />
       </div>
+      <SummaryStat label="Apps" value={String(calc.appCount)} />
+      <SummaryStat label="Spend / month" value={money(calc.totalMonthlyCost)} />
+      <SummaryStat label="Spend / year" value={money(calc.totalYearlyCost)} accent={!showPrice} />
+      {showPrice && (
+        <>
+          <SummaryStat label="BigTopa / year" value={money(calc.bigTopaYearlyCost)} accent />
+          <SummaryStat
+            label="Savings / year"
+            value={`${calc.yearlySavings < 0 ? '–' : ''}${money(calc.yearlySavings)}`}
+            tone={calc.yearlySavings >= 0 ? 'green' : 'accent'}
+          />
+        </>
+      )}
+      {cta?.label && cta.url && (
+        <div className="bt-summary-cta">
+          <CtaButton cta={cta} />
+        </div>
+      )}
+    </div>
+    </div>
+  )
+}
+
+const money = (n: number) => `$${Math.round(Math.abs(n)).toLocaleString()}`
+
+function SummaryStat({ label, value, accent, tone }: { label: string; value: string; accent?: boolean; tone?: 'green' | 'accent' }) {
+  const cls = tone ?? (accent ? 'accent' : '')
+  return (
+    <div className="bt-summary-stat">
+      <span className="bt-summary-label">{label}</span>
+      <span className={`bt-metric-val ${cls}`}>{value}</span>
     </div>
   )
 }

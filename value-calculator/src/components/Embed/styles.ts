@@ -379,17 +379,53 @@ export const EMBED_CSS = `
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(260px, 2fr);
   gap: 16px;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 720px) {
   .bt-split { grid-template-columns: minmax(0, 1fr); }
 }
 
-.bt-split-side {
+.bt-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: var(--bt-ink3);
+  border: 1px solid var(--bt-edge);
+  border-radius: 14px;
+}
+
+.bt-summary-people {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.bt-summary-people .bt-slider-row { margin-bottom: 8px; }
+
+.bt-summary-stat {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.bt-summary-stat .bt-metric-val { font-size: 18px; }
+
+.bt-summary-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--bt-muted);
+}
+
+.bt-summary-cta { margin-left: auto; }
+
+.bt-summary-cta .bt-cta-btn {
+  padding: 11px 20px;
+  white-space: nowrap;
 }
 
 .bt-panel {
