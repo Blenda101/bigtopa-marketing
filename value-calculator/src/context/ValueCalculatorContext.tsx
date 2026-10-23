@@ -35,6 +35,7 @@ const DEFAULT_PRICING = {
 export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [apps, setApps] = useState<App[]>([]);
   const [sites, setSites] = useState<Site[]>(KNOWN_SITES);
+  const [sitesLoaded, setSitesLoaded] = useState(false);
   const [activeSiteId, setActiveSiteIdState] = useState<string>(
     () => localStorage.getItem(ACTIVE_SITE_KEY) || KNOWN_SITES[0].id
   );
@@ -44,12 +45,13 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
     localStorage.setItem(ACTIVE_SITE_KEY, id);
   };
 
-  // Fall back to the first site if the remembered one was deleted
+  // Fall back to the first site if the remembered one was deleted.
+  // Waits for the real list so the KNOWN_SITES placeholder doesn't reset it on load.
   useEffect(() => {
-    if (sites.length && !sites.some((s) => s.id === activeSiteId)) {
+    if (sitesLoaded && sites.length && !sites.some((s) => s.id === activeSiteId)) {
       setActiveSiteId(sites[0].id);
     }
-  }, [sites, activeSiteId]);
+  }, [sitesLoaded, sites, activeSiteId]);
   const [state, setState] = useState<CalculatorState>({
     selectedApps: [],
     companySize: 25,
@@ -248,9 +250,10 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
 
     if (error) {
       console.error('Error loading sites (using fallback list):', error);
-      return;
+    } else {
+      setSites(data as Site[]);
     }
-    setSites(data as Site[]);
+    setSitesLoaded(true);
   };
 
   const addSite = async (site: Site) => {
