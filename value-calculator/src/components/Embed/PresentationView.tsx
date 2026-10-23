@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import { EmbedCalculator, PAGE_BG } from './EmbedCalculator'
+import { EmbedCalculator, Layout, PAGE_BG } from './EmbedCalculator'
 import { EMBED_CSS } from './styles'
 
-// Full-page embed for presenting a collection: /?site=<id>[&theme=light|dark&accent=<hex>]
+// Full-page embed for presenting a collection: /?site=<id>[&theme=light|dark|white&accent=<hex>&layout=compact|split]
 // Without theme/accent the collection's saved colours are used.
 
 interface Props {
   siteId: string
   theme?: string
   accent?: string
+  layout?: Layout
 }
 
-export function PresentationView({ siteId, theme, accent }: Props) {
+export function PresentationView({ siteId, theme, accent, layout }: Props) {
   const [resolvedTheme, setResolvedTheme] = useState(theme || 'light')
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export function PresentationView({ siteId, theme, accent }: Props) {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', padding: '48px 16px', boxSizing: 'border-box' }}>
       <div style={{ width: '100%', maxWidth: 1040 }}>
-        <EmbedCalculator siteId={siteId} theme={theme} accent={accent} onThemeResolved={setResolvedTheme} />
+        <EmbedCalculator siteId={siteId} theme={theme} accent={accent} layout={layout} onThemeResolved={setResolvedTheme} />
       </div>
     </div>
   )

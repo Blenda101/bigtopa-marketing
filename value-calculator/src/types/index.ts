@@ -22,6 +22,10 @@ export interface Site {
   per_user_monthly?: number;
   theme?: SiteTheme | null;
   accent?: string | null;
+  layout?: 'compact' | 'split';
+  show_price?: boolean;
+  cta_label?: string | null;
+  cta_url?: string | null;
 }
 
 // Fallback when the `sites` table can't be read

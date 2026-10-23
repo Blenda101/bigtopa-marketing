@@ -243,7 +243,7 @@ export const ValueCalculatorProvider: React.FC<{ children: React.ReactNode }> = 
   const loadSites = async () => {
     const { data, error } = await supabase
       .from('sites')
-      .select('id, label, flat_monthly, per_user_monthly, theme, accent')
+      .select('id, label, flat_monthly, per_user_monthly, theme, accent, layout, show_price, cta_label, cta_url')
       .order('label', { ascending: true });
 
     if (error) {

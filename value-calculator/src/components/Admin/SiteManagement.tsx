@@ -23,6 +23,10 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
   const [perUserPrice, setPerUserPrice] = useState('');
   const [themeDraft, setThemeDraft] = useState<SiteTheme>('light');
   const [accentDraft, setAccentDraft] = useState(DEFAULT_ACCENT);
+  const [layoutDraft, setLayoutDraft] = useState<'compact' | 'split'>('compact');
+  const [showPriceDraft, setShowPriceDraft] = useState(true);
+  const [ctaLabelDraft, setCtaLabelDraft] = useState('');
+  const [ctaUrlDraft, setCtaUrlDraft] = useState('');
   const [settingsSaved, setSettingsSaved] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [newSlug, setNewSlug] = useState('');
@@ -42,8 +46,12 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     setPerUserPrice(activeSite?.per_user_monthly?.toString() ?? '0');
     setThemeDraft(activeSite?.theme ?? 'light');
     setAccentDraft(activeSite?.accent ?? DEFAULT_ACCENT);
+    setLayoutDraft(activeSite?.layout ?? 'compact');
+    setShowPriceDraft(activeSite?.show_price ?? true);
+    setCtaLabelDraft(activeSite?.cta_label ?? '');
+    setCtaUrlDraft(activeSite?.cta_url ?? '');
     setSettingsSaved(false);
-  }, [activeSite?.id, activeSite?.flat_monthly, activeSite?.per_user_monthly, activeSite?.theme, activeSite?.accent]);
+  }, [activeSite]);
 
   const parsePrice = (v: string) => (v.trim() === '' ? NaN : parseFloat(v));
 
@@ -54,12 +62,20 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
     const base = parsePrice(basePrice);
     const perUser = parsePrice(perUserPrice);
     if (!(base >= 0) || !(perUser >= 0)) return setError('Enter both prices (0 or more)');
+    const ctaLabel = ctaLabelDraft.trim();
+    const ctaUrl = ctaUrlDraft.trim();
+    if (!!ctaLabel !== !!ctaUrl) return setError('Button needs both text and a link, or neither');
+    if (ctaUrl && !/^https?:\/\//i.test(ctaUrl)) return setError('Button link must start with https://');
     run(async () => {
       await updateSiteSettings(activeId, {
         flat_monthly: base,
         per_user_monthly: perUser,
         theme: themeDraft,
         accent: accentDraft.toUpperCase(),
+        layout: layoutDraft,
+        show_price: showPriceDraft,
+        cta_label: ctaLabel || null,
+        cta_url: ctaUrl || null,
       });
       setSettingsSaved(true);
       setTimeout(() => setSettingsSaved(false), 1500);
@@ -358,6 +374,22 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
 
           <div className="mb-5 flex flex-wrap items-end gap-3 bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Layout</label>
+              <div className="flex rounded-md border border-gray-300 overflow-hidden">
+                {([['compact', 'Compact'], ['split', 'Side by side']] as const).map(([value, label]) => (
+                  <button
+                    key={value}
+                    onClick={() => setLayoutDraft(value)}
+                    className={`px-3 py-1.5 text-sm transition-colors ${
+                      layoutDraft === value ? 'bg-[#FD5108] text-white' : 'bg-white text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
               <label className="block text-xs font-medium text-gray-600 mb-1">Theme</label>
               <div className="flex rounded-md border border-gray-300 overflow-hidden">
                 {(['light', 'dark', 'white'] as const).map((t) => (
@@ -392,7 +424,17 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 />
               </div>
             </div>
-            <div>
+            <label className="flex items-center gap-2 text-sm text-gray-700 select-none cursor-pointer basis-full">
+              <input
+                type="checkbox"
+                className="accent-[#FD5108]"
+                checked={showPriceDraft}
+                onChange={(e) => setShowPriceDraft(e.target.checked)}
+              />
+              Show BigTopa price and savings
+              <span className="text-xs text-gray-500">(off = show current spend only, for custom pricing)</span>
+            </label>
+            <div className={showPriceDraft ? '' : 'opacity-40 pointer-events-none'}>
               <label className="block text-xs font-medium text-gray-600 mb-1">BigTopa flat fee ($/month)</label>
               <input
                 type="number"
@@ -404,7 +446,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
               />
             </div>
-            <div>
+            <div className={showPriceDraft ? '' : 'opacity-40 pointer-events-none'}>
               <label className="block text-xs font-medium text-gray-600 mb-1">BigTopa per user ($/month)</label>
               <input
                 type="number"
@@ -416,6 +458,27 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
                 className="w-44 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
               />
             </div>
+            <div className="basis-full h-0" />
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Button text (optional)</label>
+              <input
+                type="text"
+                value={ctaLabelDraft}
+                onChange={(e) => setCtaLabelDraft(e.target.value)}
+                placeholder="e.g. Talk to sales"
+                className="w-48 px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
+              />
+            </div>
+            <div className="flex-1 min-w-[220px]">
+              <label className="block text-xs font-medium text-gray-600 mb-1">Button link</label>
+              <input
+                type="url"
+                value={ctaUrlDraft}
+                onChange={(e) => setCtaUrlDraft(e.target.value)}
+                placeholder="https://calendly.com/…"
+                className="w-full px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#FD5108]"
+              />
+            </div>
             <button
               onClick={handleSaveSettings}
               disabled={busy}
@@ -424,7 +487,7 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               {settingsSaved ? 'Saved' : 'Save settings'}
             </button>
             <p className="text-xs text-gray-500 basis-full">
-              BigTopa yearly cost = (flat fee + per user × people) × 12. Set either to 0 if unused. The preview below shows unsaved colours; prices apply after saving.
+              BigTopa yearly cost = (flat fee + per user × people) × 12. Set either to 0 if unused. The preview below shows unsaved settings; prices apply after saving.
             </p>
           </div>
 
@@ -445,6 +508,10 @@ const SiteManagement: React.FC<SiteManagementProps> = ({ onClose }) => {
               siteId={activeId}
               theme={themeDraft}
               accent={validAccent ? accentDraft : DEFAULT_ACCENT}
+              layout={layoutDraft}
+              showPrice={showPriceDraft}
+              ctaLabel={ctaLabelDraft.trim()}
+              ctaUrl={ctaUrlDraft.trim()}
               surface
             />
           </div>

@@ -13,17 +13,23 @@ interface Props {
   selectedIds: string[]
   onToggle: (id: string) => void
   sortMode: SortMode
+  draggable?: boolean
+  emptyText?: string
 }
 
 const FALLBACK_SVG = (letter: string) =>
   `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="%231E2840"/><text x="50%25" y="55%25" text-anchor="middle" dominant-baseline="middle" fill="%238892A4" font-size="16" font-family="sans-serif">${letter}</text></svg>`
 
-function Badge({ app, selected, onToggle }: { app: App; selected: boolean; onToggle: () => void }) {
+export const DRAG_TYPE = 'text/plain'
+
+function Badge({ app, selected, onToggle, draggable }: { app: App; selected: boolean; onToggle: () => void; draggable?: boolean }) {
   return (
     <button
       className={`bt-badge${selected ? ' bt-selected' : ''}`}
       onClick={onToggle}
       title={app.name}
+      draggable={draggable}
+      onDragStart={draggable ? e => e.dataTransfer.setData(DRAG_TYPE, app.id) : undefined}
     >
       {selected && (
         <span className="bt-check-pip">
@@ -45,9 +51,9 @@ function Badge({ app, selected, onToggle }: { app: App; selected: boolean; onTog
   )
 }
 
-export function BadgeGrid({ apps, selectedIds, onToggle, sortMode }: Props) {
+export function BadgeGrid({ apps, selectedIds, onToggle, sortMode, draggable, emptyText }: Props) {
   if (!apps.length) {
-    return <div className="bt-empty">No apps configured for this site.</div>
+    return <div className="bt-empty">{emptyText ?? 'No apps configured for this site.'}</div>
   }
 
   if (sortMode === 'name') {
@@ -59,6 +65,7 @@ export function BadgeGrid({ apps, selectedIds, onToggle, sortMode }: Props) {
             app={app}
             selected={selectedIds.includes(app.id)}
             onToggle={() => onToggle(app.id)}
+            draggable={draggable}
           />
         ))}
       </div>
@@ -84,6 +91,7 @@ export function BadgeGrid({ apps, selectedIds, onToggle, sortMode }: Props) {
                 app={app}
                 selected={selectedIds.includes(app.id)}
                 onToggle={() => onToggle(app.id)}
+                draggable={draggable}
               />
             ))}
           </div>

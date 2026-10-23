@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { PresentationView } from './components/Embed/PresentationView';
+import type { Layout } from './components/Embed/EmbedCalculator';
 import './index.css';
 
 const params = new URLSearchParams(window.location.search);
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         siteId={site}
         theme={params.get('theme') || undefined}
         accent={params.get('accent') || undefined}
+        layout={(params.get('layout') as Layout) || undefined}
       />
     ) : (
       <App />
