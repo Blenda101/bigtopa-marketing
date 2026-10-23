@@ -503,6 +503,32 @@ export const EMBED_CSS = `
 
 .bt-used-chip:hover .bt-used-x { color: var(--bt-accent); }
 
+/* ── COST TOOLTIP ── */
+.bt-embed [data-tip] { position: relative; }
+
+.bt-embed [data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+}
+
+/* .bt-embed button resets font-size to the host page's; restate sizes with higher specificity */
+.bt-embed .bt-used-chip { font-size: 12px; }
+.bt-embed .bt-adjust-btn { font-size: 11px; }
+
 /* ── STATES ── */
 .bt-loading {
   display: flex;

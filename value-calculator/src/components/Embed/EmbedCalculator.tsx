@@ -228,6 +228,7 @@ export function EmbedCalculator({
             selectedIds={selectedIds}
             onToggle={toggleApp}
             sortMode={sortMode}
+            companySize={companySize}
           />
           <button
             className="bt-calc-btn"

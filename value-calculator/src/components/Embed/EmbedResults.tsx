@@ -46,6 +46,15 @@ export function calculate(selectedApps: App[], companySize: number, pricing: Pri
 
 const money = (n: number) => `$${Math.round(Math.abs(n)).toLocaleString()}`
 
+// Hover text for one app's estimated cost at the current team size
+export function appCostTip(app: { cost_per_user: number; pricing_type?: 'per_user' | 'flat' }, companySize: number) {
+  const cost = Number(app.cost_per_user) || 0
+  if (cost === 0) return 'Free'
+  const monthly = app.pricing_type === 'flat' ? cost : cost * companySize
+  const basis = app.pricing_type === 'flat' ? 'flat' : `${companySize} people`
+  return `≈ ${money(monthly)}/mo · ${money(monthly * 12)}/yr (${basis})`
+}
+
 export function TeamSizeCard({ companySize, onChange }: { companySize: number; onChange: (n: number) => void }) {
   return (
     <div className="bt-card">

@@ -1,11 +1,14 @@
 import { Fragment } from 'react'
 import { SortMode } from './EmbedCalculator'
+import { appCostTip } from './EmbedResults'
 
 interface App {
   id: string
   name: string
   logo: string
   category: string
+  cost_per_user: number
+  pricing_type?: 'per_user' | 'flat'
 }
 
 interface Props {
@@ -13,6 +16,7 @@ interface Props {
   selectedIds: string[]
   onToggle: (id: string) => void
   sortMode: SortMode
+  companySize: number
   draggable?: boolean
   emptyText?: string
 }
@@ -22,12 +26,13 @@ const FALLBACK_SVG = (letter: string) =>
 
 export const DRAG_TYPE = 'text/plain'
 
-function Badge({ app, selected, onToggle, draggable }: { app: App; selected: boolean; onToggle: () => void; draggable?: boolean }) {
+function Badge({ app, selected, onToggle, draggable, tip }: { app: App; selected: boolean; onToggle: () => void; draggable?: boolean; tip: string }) {
   return (
     <button
       className={`bt-badge${selected ? ' bt-selected' : ''}`}
       onClick={onToggle}
-      title={app.name}
+      data-tip={tip}
+      aria-label={`${app.name}: ${tip}`}
       draggable={draggable}
       onDragStart={draggable ? e => e.dataTransfer.setData(DRAG_TYPE, app.id) : undefined}
     >
@@ -51,7 +56,7 @@ function Badge({ app, selected, onToggle, draggable }: { app: App; selected: boo
   )
 }
 
-export function BadgeGrid({ apps, selectedIds, onToggle, sortMode, draggable, emptyText }: Props) {
+export function BadgeGrid({ apps, selectedIds, onToggle, sortMode, companySize, draggable, emptyText }: Props) {
   if (!apps.length) {
     return <div className="bt-empty">{emptyText ?? 'No apps configured for this site.'}</div>
   }
@@ -66,6 +71,7 @@ export function BadgeGrid({ apps, selectedIds, onToggle, sortMode, draggable, em
             selected={selectedIds.includes(app.id)}
             onToggle={() => onToggle(app.id)}
             draggable={draggable}
+            tip={appCostTip(app, companySize)}
           />
         ))}
       </div>
@@ -92,6 +98,7 @@ export function BadgeGrid({ apps, selectedIds, onToggle, sortMode, draggable, em
                 selected={selectedIds.includes(app.id)}
                 onToggle={() => onToggle(app.id)}
                 draggable={draggable}
+                tip={appCostTip(app, companySize)}
               />
             ))}
           </div>

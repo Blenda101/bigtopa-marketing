@@ -1,6 +1,6 @@
 import { useMemo, useState, DragEvent } from 'react'
 import { BadgeGrid, DRAG_TYPE } from './BadgeGrid'
-import { calculate, CtaButton, Cta, Pricing } from './EmbedResults'
+import { appCostTip, calculate, CtaButton, Cta, Pricing } from './EmbedResults'
 import { SortMode } from './EmbedCalculator'
 
 interface App {
@@ -77,6 +77,7 @@ export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, sho
           selectedIds={[]}
           onToggle={add}
           sortMode={sortMode}
+          companySize={companySize}
           draggable
           emptyText={apps.length ? 'All apps added' : undefined}
         />
@@ -102,7 +103,8 @@ export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, sho
                   draggable
                   onDragStart={e => e.dataTransfer.setData(DRAG_TYPE, app.id)}
                   onClick={() => remove(app.id)}
-                  title={`Remove ${app.name}`}
+                  data-tip={appCostTip(app, companySize)}
+                  aria-label={`Remove ${app.name}`}
                 >
                   <img src={app.logo} alt="" className="bt-used-img" />
                   <span>{app.name}</span>
