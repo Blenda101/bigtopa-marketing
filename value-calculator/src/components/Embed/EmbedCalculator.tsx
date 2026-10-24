@@ -61,6 +61,10 @@ export const PAGE_BG: Record<string, string> = {
 
 export const DEFAULT_ACCENT = '#C4713A'
 
+// "Google Drive" -> "google-drive"; used to match preselected apps by name
+export const appSlug = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 export type Layout = 'compact' | 'split'
 
 interface SiteConfig {
@@ -83,18 +87,21 @@ interface Props {
   ctaUrl?: string
   surface?: boolean
   onThemeResolved?: (theme: string) => void
+  // App slugs (or ids) to start selected, e.g. from an interview
+  preselect?: string[]
+  initialSize?: number
 }
 
 export function EmbedCalculator({
   siteId, theme: themeProp, accent: accentProp, layout: layoutProp, showPrice: showPriceProp,
-  ctaLabel, ctaUrl, surface, onThemeResolved,
+  ctaLabel, ctaUrl, surface, onThemeResolved, preselect, initialSize,
 }: Props) {
   const [siteConfig, setSiteConfig] = useState<SiteConfig>({})
   const [apps, setApps] = useState<App[]>([])
   const [pricing, setPricing] = useState<Pricing>({ flat_monthly: 0, per_user_monthly: 0 })
   const [loading, setLoading] = useState(true)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
-  const [companySize, setCompanySize] = useState(25)
+  const [companySize, setCompanySize] = useState(initialSize ?? 25)
   const [embedState, setEmbedState] = useState<EmbedState>('selecting')
   const [lastCalc, setLastCalc] = useState<Calculation | null>(null)
   const [sortMode, setSortMode] = useState<SortMode>('name')
@@ -134,6 +141,10 @@ export function EmbedCalculator({
       app => app.sites?.includes(siteId)
     )
     setApps(filtered)
+    if (preselect?.length) {
+      const wanted = new Set(preselect.map(p => p.toLowerCase()))
+      setSelectedIds(filtered.filter(a => wanted.has(a.id) || wanted.has(appSlug(a.name))).map(a => a.id))
+    }
   }
 
   async function loadPricing() {
@@ -168,6 +179,8 @@ export function EmbedCalculator({
       <div className="bt-embed" style={themeVars}>
         <SplitCalculator
           apps={sortedApps}
+          initialSelected={selectedIds}
+          initialSize={companySize}
           sortMode={sortMode}
           onSortModeChange={setSortMode}
           pricing={pricing}

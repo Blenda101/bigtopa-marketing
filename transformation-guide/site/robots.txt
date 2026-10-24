@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /guide/
+
+Sitemap: https://guide.bigtopa.com/sitemap.xml

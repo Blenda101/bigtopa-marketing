@@ -1,0 +1,4 @@
+*.docx
+mockup-*.html
+__pycache__/
+.netlify/

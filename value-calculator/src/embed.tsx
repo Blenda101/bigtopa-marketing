@@ -19,9 +19,13 @@ function mount() {
     // Optional overrides; otherwise the site's saved theme/accent is used
     const theme   = el.getAttribute('data-theme')  || undefined
     const accent  = el.getAttribute('data-accent') || undefined
+    // Optional preselection: data-apps="groupme,venmo,cash-app" (app slugs or ids), data-size="60"
+    const preselect = (el.getAttribute('data-apps') || '').split(',').map(s => s.trim()).filter(Boolean)
+    const sizeAttr = Number(el.getAttribute('data-size'))
+    const initialSize = Number.isFinite(sizeAttr) && sizeAttr > 0 ? sizeAttr : undefined
     createRoot(el).render(
       <React.StrictMode>
-        <EmbedCalculator siteId={siteId} theme={theme} accent={accent} />
+        <EmbedCalculator siteId={siteId} theme={theme} accent={accent} preselect={preselect} initialSize={initialSize} />
       </React.StrictMode>
     )
   })

@@ -1,0 +1,10 @@
+# guide.bigtopa.com: the Digital Transformation Architecture guide.
+# The site is prebuilt (see README.md), so Netlify only publishes the site/ folder.
+[build]
+  publish = "site"
+  command = ""
+
+[[headers]]
+  for = "/guide/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

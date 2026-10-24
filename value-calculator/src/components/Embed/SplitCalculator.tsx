@@ -19,14 +19,16 @@ interface Props {
   pricing: Pricing
   showPrice: boolean
   cta?: Cta
+  initialSelected?: string[]
+  initialSize?: number
 }
 
 // Side-by-side layout: available apps on the left, "Apps we use" on the right,
 // team size + live summary in a full-width footer below both.
 // Apps move by click or drag in either direction.
-export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, showPrice, cta }: Props) {
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
-  const [companySize, setCompanySize] = useState(25)
+export function SplitCalculator({ apps, sortMode, onSortModeChange, pricing, showPrice, cta, initialSelected, initialSize }: Props) {
+  const [selectedIds, setSelectedIds] = useState<string[]>(initialSelected ?? [])
+  const [companySize, setCompanySize] = useState(initialSize ?? 25)
   const [dragOver, setDragOver] = useState<'available' | 'used' | null>(null)
 
   const available = apps.filter(a => !selectedIds.includes(a.id))
